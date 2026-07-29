@@ -23,7 +23,71 @@ export interface Material extends Timestamped {
   mime_type: string;
   file_size: number;
   processing_status: string;
+  ingestion_status: string;
+  indexing_status: string;
+  chunk_count: number;
+  indexed_chunk_count: number;
+  processed_at: string | null;
+  indexed_at: string | null;
   error_message: string | null;
+}
+
+export interface MaterialChunk extends Timestamped {
+  material_id: number;
+  chunk_index: number;
+  content: string;
+  char_count: number;
+  content_hash: string;
+  page_number: number | null;
+  section_title: string | null;
+}
+
+export interface MaterialChunkPage {
+  items: MaterialChunk[];
+  total: number;
+  page: number;
+  page_size: number;
+  pages: number;
+}
+
+export interface MaterialIndexStatus {
+  available: boolean;
+  building: boolean;
+  model_name: string;
+  embedding_dimension: number | null;
+  chunk_count: number;
+  built_at: string | null;
+  index_version: string | null;
+  stale: boolean;
+  error_message: string | null;
+}
+
+export interface MaterialIndexBuildResult {
+  index_version: string | null;
+  chunk_count: number;
+  model_name: string;
+  embedding_dimension: number | null;
+  built_at: string | null;
+}
+
+export interface MaterialSearchResult {
+  rank: number;
+  score: number;
+  chunk_id: number;
+  material_id: number;
+  original_filename: string;
+  chunk_index: number;
+  content: string;
+  page_number: number | null;
+  section_title: string | null;
+}
+
+export interface MaterialSearchResponse {
+  query: string;
+  model_name: string;
+  index_version: string;
+  results: MaterialSearchResult[];
+  duration_ms: number;
 }
 
 export interface Course extends Timestamped {
@@ -137,4 +201,3 @@ export interface MetaData {
   server_date: string;
   server_time: string;
 }
-

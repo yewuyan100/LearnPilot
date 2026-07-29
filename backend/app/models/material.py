@@ -1,8 +1,10 @@
-from sqlalchemy import BigInteger, String, Text
+from datetime import datetime
+
+from sqlalchemy import BigInteger, DateTime, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.db.base import Base, TimestampMixin
-from app.models.enums import MaterialStatus
+from app.models.enums import IndexingStatus, IngestionStatus, MaterialStatus
 
 
 class Material(TimestampMixin, Base):
@@ -19,5 +21,14 @@ class Material(TimestampMixin, Base):
     processing_status: Mapped[str] = mapped_column(
         String(32), default=MaterialStatus.uploaded, nullable=False, index=True
     )
+    ingestion_status: Mapped[str] = mapped_column(
+        String(32), default=IngestionStatus.pending, nullable=False, index=True
+    )
+    indexing_status: Mapped[str] = mapped_column(
+        String(32), default=IndexingStatus.pending, nullable=False, index=True
+    )
+    chunk_count: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    indexed_chunk_count: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    processed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    indexed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     error_message: Mapped[str | None] = mapped_column(Text, nullable=True)
-

@@ -4,6 +4,7 @@ from app.models.knowledge_point import KnowledgePoint
 from app.models.learning_goal import LearningGoal
 from app.models.learning_session import LearningSession
 from app.models.material import Material
+from app.models.material_chunk import MaterialChunk
 
 __all__ = [
     "Course",
@@ -12,5 +13,5 @@ __all__ = [
     "LearningGoal",
     "LearningSession",
     "Material",
+    "MaterialChunk",
 ]
-

@@ -20,7 +20,7 @@ settings = get_settings()
 app = FastAPI(
     title=settings.app_name,
     version=settings.app_version,
-    description="PersonalLearning V1 本地优先学习管理 API",
+    description="PersonalLearning V2 本地优先学习管理与资料知识库 API",
 )
 app.add_middleware(
     CORSMiddleware,
@@ -77,4 +77,3 @@ async def unexpected_error_handler(request: Request, exc: Exception) -> JSONResp
         status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
         content=error_body("internal_error", "服务发生意外错误，请查看后端日志"),
     )
-

@@ -30,3 +30,16 @@ export const statusLabel: Record<string, string> = {
   skipped: "已跳过",
 };
 
+export const ingestionStatusLabel: Record<string, string> = {
+  pending: "待解析",
+  processing: "正在解析",
+  completed: "已解析",
+  failed: "解析失败",
+};
+
+export const indexingStatusLabel: Record<string, string> = {
+  pending: "待索引",
+  indexing: "正在索引",
+  completed: "已索引",
+  failed: "索引失败",
+};

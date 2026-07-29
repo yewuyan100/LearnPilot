@@ -1,64 +1,58 @@
-# V1 架构
+# V2 架构
 
-## 边界
-
-PersonalLearning V1 是本地单体应用：React 前端通过 HTTP 调用 FastAPI，FastAPI 使用 SQLAlchemy 访问 SQLite，并把上传文件保存到本地受控目录。
+PersonalLearning V2 仍是本地单体、单用户应用，不引入消息队列、微服务或外部模型 API。
 
 ```text
 React + TanStack Query
           │ JSON / multipart
           ▼
-FastAPI 路由 + Pydantic Schema
+FastAPI Router + Pydantic
           │
-          ├─ CRUD / 聚合服务 ── SQLAlchemy ── SQLite
+          ├─ V1 CRUD / 聚合 ───────── SQLAlchemy ── SQLite
           │
-          └─ MaterialService ──────────────── 本地 uploads/
+          └─ Material Pipeline
+                ├─ Parser / Cleaner / Chunker
+                ├─ Repository ─────── SQLite material_chunks
+                ├─ BGE-M3 ────────── 本地 Hugging Face 缓存
+                └─ FAISS Store ───── 索引文件 + Manifest
 ```
 
-V1 不包含模型调用、异步任务、向量索引或 Agent 运行时。
+## 分层
 
-## 后端分层
+- `app/api/routes`：HTTP 参数、依赖注入、状态码和响应；
+- `app/schemas`：Pydantic 数据契约；
+- `app/repositories`：Material / MaterialChunk 查询、分页、批量替换和搜索回查；
+- `app/services/material_processing`：Parser、Cleaner、Chunker 与处理编排；
+- `app/services/embedding`：可注入 Embedding 协议和 BGE-M3 离线实现；
+- `app/services/vector_store`：FAISS、Manifest、索引生命周期、搜索和进程内锁；
+- `app/models` / `app/db`：SQLAlchemy、SQLite 外键与会话；
+- `alembic`：显式增量迁移。
 
-- `app/api/routes`：HTTP 路由、状态码、依赖注入和响应 Schema；
-- `app/schemas`：请求与响应的 Pydantic 模型；
-- `app/services`：通用 CRUD、文件保存/删除、Demo 数据事务；
-- `app/models`：六张 SQLAlchemy 表和状态枚举；
-- `app/db`：Base、命名约定、会话工厂和 SQLite 外键设置；
-- `app/core`：环境配置与统一错误处理；
-- `alembic`：显式数据库迁移。
+Router 不承载解析或向量逻辑；LLM 不参与任何 V2 流程。
 
-写操作以单个数据库会话为事务边界。出现异常时回滚；API 不直接序列化 SQLAlchemy 实例，而是转换为 Pydantic 响应。
+## 一致性边界
 
-## 前端结构
+Chunk 替换在单个 SQLite 事务内完成。解析失败时回滚，不覆盖上一批完整 Chunk。
 
-- `src/api`：统一请求、错误解析和资源 API；
-- `src/types`：前后端数据契约的 TypeScript 类型；
-- `src/layouts`：桌面侧边栏、移动导航和路由出口；
-- `src/pages`：今日、课程、资料、复习、进度、设置和学习会话；
-- `src/components`：Dialog、Toast、表单与统一状态组件；
-- `src/test`：路由、加载、CRUD 交互和错误状态测试。
+SQLite、原文件和 FAISS 不是同一事务，因此采用：
 
-页面使用 TanStack Query 读取真实 API。变更成功后按资源失效缓存，页面刷新时重新从 SQLite 读取。
+- 原文件上传先独立可靠保存；
+- Chunk 成功提交后才构建索引；
+- FAISS 与 Manifest 通过临时文件、校验、备份恢复和原子替换保持完整；
+- 索引失败不删除原文件或 Chunk；
+- 搜索命中必须回查 SQLite，删除或无效 ID 不返回；
+- 内容 checksum 用于识别 SQLite 与索引不一致。
 
-## 基础学习链路
+## 前端
 
-1. 今日页读取 `/api/today`；
-2. 用户从任务创建或恢复 `learning_session`；
-3. 前端跳转 `/learning-sessions/{id}`；
-4. 工作台读取会话、课程知识点和任务；
-5. 用户保存笔记、暂停/继续或完成；
-6. 完成请求在一个事务中同步更新会话、知识点和今日任务状态；
-7. 今日页与进度页重新聚合真实数据。
+资料页保持 V1 视觉与 Query 模式，新增三个聚合组件：
 
-## 文件安全
+- `MaterialIndexPanel`：索引状态与重建；
+- `MaterialChunksDialog`：真实分页 Chunk；
+- `MaterialSearchPanel`：非聊天式资料片段检索。
 
-- 扩展名白名单：PDF、MD、Markdown、TXT；
-- 服务端流式计数并执行大小限制；
-- 存储文件名使用 UUID，与原始文件名分离；
-- 文件保存在配置目录内；
-- 删除数据库记录时同步删除对应文件；
-- 测试通过临时目录隔离上传内容。
+变更成功后失效 `["materials"]` 与 `["material-index"]`，不使用定时器伪造状态。
 
-## 后续扩展点
+## 边界
 
-后续版本可在 `services` 下增加解析、检索与教学模块，并把资料处理状态扩展为更细阶段。V1 没有创建空的 LLM、RAG、MCP 或 Agent 假实现，也没有相关运行依赖。
+V2 只提供资料处理、Embedding、向量索引和来源检索。RAG 答案、LLM、LangGraph、Agent、OCR、自动课程和教学逻辑不在本版本。

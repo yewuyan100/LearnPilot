@@ -1,4 +1,4 @@
-# V1 数据模型
+# V2 数据模型
 
 ## 关系
 
@@ -9,94 +9,109 @@ learning_goals
   ├─ daily_tasks
   └─ learning_sessions
 
-courses / knowledge_points
-  ├─ daily_tasks
-  └─ learning_sessions
-
-materials（V1 独立保存文件元数据）
+materials
+  └─ material_chunks
 ```
 
-SQLite 外键已启用。目标或课程删除时，关联记录按外键级联；资料删除由服务同步处理数据库与本地文件。
+SQLite 外键已启用。V2 不把 Embedding 存入 SQLite；FAISS 位置通过 Manifest 的 `chunk_ids` 映射到 `material_chunks.id`。
 
-## learning_goals
+## materials
+
+V1 字段保留：
 
 | 字段 | 说明 |
 |---|---|
 | `id` | 主键 |
-| `title` / `description` | 目标内容 |
-| `target_date` | 可空目标日期 |
-| `daily_minutes` | 每日分钟数，5–1440 |
-| `current_level` | 当前水平 |
-| `status` | `active`、`paused`、`completed`、`archived` |
-| `is_demo` | Demo 数据标记 |
-| `created_at` / `updated_at` | 时间戳 |
-
-## materials
-
-| 字段 | 说明 |
-|---|---|
 | `title` | 默认取安全化后的文件主名 |
-| `original_filename` | 原始文件名 |
-| `stored_filename` | UUID 存储名 |
-| `file_path` | 本地受控路径 |
+| `original_filename` | 用户上传文件名 |
+| `stored_filename` | 唯一生成的受控存储名 |
+| `file_path` | 服务端受控路径，不在 Chunk API/搜索 API 返回 |
 | `source_type` / `mime_type` | 文件类型 |
 | `file_size` | 字节数 |
-| `processing_status` | V1 为 `uploaded`、`ready`、`failed` |
-| `error_message` | 保存失败说明 |
+| `processing_status` | V1 文件保存状态；`ready` 只表示保存成功 |
 | `created_at` / `updated_at` | 时间戳 |
 
-V1 不保存正文、Chunk 或向量。
-
-## courses
+V2 新增字段：
 
 | 字段 | 说明 |
 |---|---|
-| `learning_goal_id` | 所属目标 |
-| `title` / `description` | 课程信息 |
-| `status` | `draft`、`active`、`completed`、`archived` |
-| `is_demo` | Demo 数据标记 |
-| `created_at` / `updated_at` | 时间戳 |
+| `ingestion_status` | `pending`、`processing`、`completed`、`failed` |
+| `indexing_status` | `pending`、`indexing`、`completed`、`failed` |
+| `chunk_count` | SQLite 中该资料的真实 Chunk 数 |
+| `indexed_chunk_count` | 当前完整索引包含的该资料 Chunk 数 |
+| `processed_at` | 最近解析和切片成功时间 |
+| `indexed_at` | 最近索引成功时间 |
+| `error_message` | 最近一次解析或索引的用户可理解错误 |
 
-## knowledge_points
+升级已有 V1 数据后，新状态为 `pending`，计数为 0，时间为空；原 `processing_status` 不变。
 
-| 字段 | 说明 |
-|---|---|
-| `course_id` | 所属课程 |
-| `title` / `description` | 知识点信息 |
-| `order_index` | 课程内顺序；与 `course_id` 联合唯一 |
-| `estimated_minutes` | 预计分钟数，至少 1 |
-| `status` | `not_started`、`learning`、`completed`、`locked` |
-| `created_at` / `updated_at` | 时间戳 |
-
-V1 的状态由用户或 Demo 脚本维护，不代表掌握度。
-
-## daily_tasks
+## material_chunks
 
 | 字段 | 说明 |
 |---|---|
-| `learning_goal_id` | 所属目标 |
-| `course_id` / `knowledge_point_id` | 可空课程与知识点 |
-| `title` | 任务标题 |
-| `task_type` | `learning`、`review`、`summary` |
-| `estimated_minutes` | 预计分钟数 |
-| `scheduled_date` | 计划日期 |
-| `status` | `pending`、`in_progress`、`completed`、`skipped` |
+| `id` | 主键，也是 Manifest 中的稳定 Chunk ID |
+| `material_id` | `materials.id` 外键，`ON DELETE CASCADE`，有索引 |
+| `chunk_index` | 资料内从 0 连续递增的稳定顺序 |
+| `content` | 清洗后的真实文本 |
+| `char_count` | `content` 字符数，必须大于 0 |
+| `content_hash` | `content` 的 SHA-256 |
+| `page_number` | PDF 页码，从 1 开始；其他类型可空 |
+| `section_title` | Markdown 当前标题；其他类型可空 |
 | `created_at` / `updated_at` | 时间戳 |
 
-## learning_sessions
+约束：
+
+- `(material_id, chunk_index)` 唯一；
+- `chunk_index >= 0`；
+- `char_count > 0`；
+- 删除 Material 时 Chunk 级联删除；
+- 重新处理在同一数据库事务中先删旧 Chunk、再写完整新批次；失败回滚，因此旧完整批次保留。
+
+## FAISS 与 Manifest
+
+FAISS 文件使用归一化 `float32` 向量和 `IndexFlatIP`。Manifest 是 UTF-8 JSON，不保存正文和完整向量：
 
 | 字段 | 说明 |
 |---|---|
-| `learning_goal_id` | 所属目标 |
-| `course_id` / `knowledge_point_id` | 可空学习上下文 |
-| `daily_task_id` | 可空今日任务 |
-| `started_at` / `ended_at` | 开始和结束时间 |
-| `status` | `active`、`paused`、`completed`、`cancelled` |
-| `notes` | 手动学习笔记 |
-| `created_at` / `updated_at` | 时间戳 |
+| `schema_version` | Manifest 结构版本，当前为 1 |
+| `index_version` | 每次成功构建生成的 UUID |
+| `model_name` / `model_revision` | Embedding 配置 |
+| `embedding_dimension` | 模型实际输出维度 |
+| `normalized` | 是否归一化 |
+| `distance_metric` | `inner_product` |
+| `chunk_count` | 索引向量数 |
+| `chunk_ids` | FAISS 位置到 SQLite Chunk ID 的映射 |
+| `built_at` | 构建时间 |
+| `content_checksum` | 按 Chunk ID、Material ID、内容哈希生成的一致性校验 |
+| `index_checksum` | FAISS 文件 SHA-256 |
 
-同一未完成任务再次“开始学习”时返回已有的活动/暂停会话，从而支持刷新和恢复。
+索引与 Manifest 先写唯一临时文件，校验数量和维度后再替换正式文件。失败时恢复旧索引。加载时校验文件完整性、数量、维度、模型、归一化配置和 checksum。
 
-## 迁移
+## 保留的 V1 表
 
-首个迁移为 `20260729_0001_initial_v1.py`。应用不会在生产启动路径中调用 `create_all`；数据库结构以 Alembic 为准。
+### learning_goals
+
+学习目标内容、目标日期、每日分钟数、当前水平、状态、Demo 标记和时间戳。
+
+### courses
+
+关联学习目标，保存手动课程标题、描述、状态、Demo 标记和时间戳。
+
+### knowledge_points
+
+关联课程，保存标题、描述、唯一顺序、预计分钟数和用户维护状态。V2 仍不代表算法掌握度。
+
+### daily_tasks
+
+关联目标及可选课程/知识点，保存任务类型、计划日期、预计分钟数和状态。
+
+### learning_sessions
+
+关联目标及可选课程/知识点/任务，保存开始结束时间、基础状态和手动笔记。
+
+## Alembic
+
+- `20260729_0001_initial_v1.py`：V1 初始结构，未修改；
+- `20260730_0002_material_knowledge_base.py`：新增 Material 状态字段和 `material_chunks`。
+
+当前 head：`20260730_0002`。应用启动不隐式执行 `create_all`，结构以 Alembic 为准。

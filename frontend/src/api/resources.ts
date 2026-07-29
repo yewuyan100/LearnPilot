@@ -6,6 +6,10 @@ import type {
   LearningGoal,
   LearningSession,
   Material,
+  MaterialChunkPage,
+  MaterialIndexBuildResult,
+  MaterialIndexStatus,
+  MaterialSearchResponse,
   MetaData,
   ProgressData,
   ReviewData,
@@ -33,6 +37,25 @@ export const materialsApi = {
     return api<Material>("/materials/upload", { method: "POST", body: data });
   },
   remove: (id: number) => api<void>(`/materials/${id}`, { method: "DELETE" }),
+  process: (id: number) =>
+    api<Material>(`/materials/${id}/process`, { method: "POST" }),
+  chunks: (id: number, page = 1, pageSize = 20) =>
+    api<MaterialChunkPage>(
+      `/materials/${id}/chunks?page=${page}&page_size=${pageSize}`,
+    ),
+  indexStatus: () => api<MaterialIndexStatus>("/materials/index/status"),
+  rebuildIndex: () =>
+    api<MaterialIndexBuildResult>("/materials/index/rebuild", { method: "POST" }),
+  search: (data: {
+    query: string;
+    top_k: number;
+    material_ids: number[] | null;
+    min_score?: number | null;
+  }) =>
+    api<MaterialSearchResponse>("/materials/search", {
+      method: "POST",
+      ...jsonBody(data),
+    }),
 };
 
 export const coursesApi = {
@@ -77,4 +100,3 @@ export const demoApi = {
   seed: () => api<LearningGoal>("/demo-data", { method: "POST" }),
   clear: () => api<{ deleted_goals: number }>("/demo-data", { method: "DELETE" }),
 };
-

@@ -1,97 +1,211 @@
-# V1 API
+# V2 API
 
 默认基地址：`http://127.0.0.1:8000/api`
 
-FastAPI 交互文档：`http://127.0.0.1:8000/docs`
+OpenAPI：`http://127.0.0.1:8000/docs`
 
-## 接口清单
+## V2 资料知识库
+
+| 方法 | 路径 | 说明 |
+|---|---|---|
+| POST | `/materials/upload` | 保存 PDF、MD、Markdown、TXT；返回 `201` 和待解析状态 |
+| GET | `/materials` | 列表；支持 `search`、`source_type` |
+| GET | `/materials/{id}` | 资料详情和真实处理/索引状态 |
+| DELETE | `/materials/{id}` | 删除记录、级联 Chunk、本地文件并重建索引 |
+| POST | `/materials/{id}/process` | 解析、清洗、切片、事务替换 Chunk 并全量重建索引 |
+| GET | `/materials/{id}/chunks` | 按 `chunk_index` 分页返回 Chunk |
+| GET | `/materials/index/status` | 索引可用性、模型、维度、版本、数量和一致性 |
+| POST | `/materials/index/rebuild` | 使用全部有效 Chunk 原子全量重建 |
+| POST | `/materials/search` | BGE-M3 + FAISS 语义召回，不调用 LLM |
+
+静态路径 `/search`、`/index/status`、`/index/rebuild` 在动态 `{id}` 路径之前注册。
+
+### 上传语义
+
+`POST /materials/upload` 保留 V1 兼容行为：文件保存成功即返回 `201`。此时典型状态为：
+
+```json
+{
+  "processing_status": "ready",
+  "ingestion_status": "pending",
+  "indexing_status": "pending",
+  "chunk_count": 0,
+  "indexed_chunk_count": 0
+}
+```
+
+它不表示正文已经解析或索引。
+
+### 处理资料
+
+```http
+POST /api/materials/3/process
+```
+
+同步调用链：
+
+```text
+MaterialProcessingPipeline
+→ Parser
+→ Cleaner
+→ Chunker
+→ SQLite 事务替换 MaterialChunk
+→ MaterialIndexService.rebuild
+→ BGE-M3
+→ FAISS + Manifest 原子替换
+```
+
+`pending`、`failed`、`completed` 均可处理。正在处理返回 `409`。解析失败常用 `422`；模型/索引不可用使用统一业务错误，不返回堆栈。
+
+### Chunk 分页
+
+```http
+GET /api/materials/3/chunks?page=1&page_size=20
+```
+
+响应：
+
+```json
+{
+  "items": [
+    {
+      "id": 12,
+      "material_id": 3,
+      "chunk_index": 0,
+      "content": "原始资料的清洗后文本……",
+      "char_count": 126,
+      "content_hash": "sha256",
+      "page_number": 6,
+      "section_title": "Resources",
+      "created_at": "2026-07-30T10:00:00",
+      "updated_at": "2026-07-30T10:00:00"
+    }
+  ],
+  "total": 8,
+  "page": 1,
+  "page_size": 20,
+  "pages": 1
+}
+```
+
+不返回向量，也不返回资料本地绝对路径。
+
+### 索引状态
+
+```http
+GET /api/materials/index/status
+```
+
+```json
+{
+  "available": true,
+  "building": false,
+  "model_name": "BAAI/bge-m3",
+  "embedding_dimension": 1024,
+  "chunk_count": 24,
+  "built_at": "2026-07-30T10:10:00",
+  "index_version": "uuid",
+  "stale": false,
+  "error_message": null
+}
+```
+
+没有索引时接口仍返回 `200`，`available=false`。索引/Manifest 损坏或配置不一致时 `stale=true` 并给出错误说明。
+
+### 重建索引
+
+```http
+POST /api/materials/index/rebuild
+```
+
+一次只允许一个重建；锁已占用返回 `409 index_build_in_progress`。没有有效 Chunk 时会清除索引文件并返回 `chunk_count=0`，不会伪造可用索引。
+
+### 语义检索
+
+请求：
+
+```json
+{
+  "query": "MCP 中 Tools 和 Resources 有什么区别？",
+  "top_k": 5,
+  "material_ids": [3],
+  "min_score": null
+}
+```
+
+响应：
+
+```json
+{
+  "query": "MCP 中 Tools 和 Resources 有什么区别？",
+  "model_name": "BAAI/bge-m3",
+  "index_version": "uuid",
+  "results": [
+    {
+      "rank": 1,
+      "score": 0.82,
+      "chunk_id": 12,
+      "material_id": 3,
+      "original_filename": "mcp-guide.pdf",
+      "chunk_index": 4,
+      "content": "……",
+      "page_number": 6,
+      "section_title": "Tools and Resources"
+    }
+  ],
+  "duration_ms": 37
+}
+```
+
+- `query` 会去除首尾空格，空值返回 `422`；
+- `top_k` 默认 5，最大 20；
+- `material_ids` 可空；传入不存在的资料返回 `404`；
+- 无可用索引返回 `409 index_unavailable`；
+- 结果按分数降序，同分按 `chunk_id` 稳定排序；
+- 已删除、非解析完成或 SQLite 中不存在的 Chunk 不返回；
+- 响应不包含 Embedding，不生成答案或总结。
+
+## 保留的 V1 API
 
 | 方法 | 路径 | 说明 |
 |---|---|---|
 | GET | `/health` | 健康检查 |
-| GET | `/meta` | 版本、数据库、上传配置 |
-| GET / POST | `/learning-goals` | 列表 / 创建目标 |
-| GET / PATCH / DELETE | `/learning-goals/{id}` | 目标详情 / 更新 / 删除 |
-| POST | `/materials/upload` | 上传 PDF、MD、Markdown、TXT |
-| GET | `/materials` | 资料列表，支持 `search`、`source_type` |
-| GET / DELETE | `/materials/{id}` | 资料详情 / 同步删除文件和记录 |
+| GET | `/meta` | 版本、数据库与上传配置 |
+| GET / POST | `/learning-goals` | 目标列表 / 创建 |
+| GET / PATCH / DELETE | `/learning-goals/{id}` | 详情 / 更新 / 删除 |
 | GET / POST | `/courses` | 课程列表 / 创建 |
-| GET / PATCH / DELETE | `/courses/{id}` | 课程详情 / 更新 / 删除 |
+| GET / PATCH / DELETE | `/courses/{id}` | 详情 / 更新 / 删除 |
 | GET / POST | `/courses/{id}/knowledge-points` | 知识点列表 / 创建 |
 | PATCH / DELETE | `/knowledge-points/{id}` | 更新 / 删除知识点 |
-| GET | `/today` | 当前目标、今日任务、最近课程和会话 |
+| GET | `/today` | 今日聚合 |
 | POST | `/daily-tasks` | 创建任务 |
 | PATCH / DELETE | `/daily-tasks/{id}` | 更新 / 删除任务 |
 | GET / POST | `/learning-sessions` | 会话列表 / 创建或恢复 |
-| GET / PATCH | `/learning-sessions/{id}` | 会话详情 / 更新状态和笔记 |
+| GET / PATCH | `/learning-sessions/{id}` | 详情 / 状态和笔记 |
 | GET | `/review-items` | 未完成知识点与历史任务 |
-| GET | `/progress` | 数据库聚合进度 |
+| GET | `/progress` | SQLite 聚合进度 |
 | POST / DELETE | `/demo-data` | 导入 / 清理 Demo |
 
-## 查询示例
-
-创建目标：
-
-```json
-{
-  "title": "三周入门 MCP",
-  "description": "理解 MCP 的核心概念并完成一个基础 Server",
-  "target_date": "2026-08-19",
-  "daily_minutes": 40,
-  "current_level": "了解普通 API",
-  "status": "active"
-}
-```
-
-创建课程：
-
-```json
-{
-  "learning_goal_id": 1,
-  "title": "MCP 基础",
-  "description": "手动建立的 V1 课程",
-  "status": "active"
-}
-```
-
-完成学习会话并同步状态：
-
-```json
-{
-  "status": "completed",
-  "notes": "记录本次学习结论",
-  "knowledge_point_status": "completed",
-  "daily_task_status": "completed"
-}
-```
-
 ## 错误结构
-
-业务错误统一返回：
 
 ```json
 {
   "error": {
-    "code": "resource_not_found",
-    "message": "学习目标不存在",
+    "code": "index_unavailable",
+    "message": "尚未建立可用的资料索引，请先处理资料或重建索引。",
     "details": null
   }
 }
 ```
 
-输入校验错误使用 HTTP 422，并在 `details` 中返回字段位置与原因。常用状态码：
+常用状态码：
 
-- `200`：读取或更新成功；
-- `201`：创建成功；
+- `200`：读取、更新、处理、检索或重建成功；
+- `201`：上传/创建成功；
 - `204`：删除成功；
-- `400`：文件类型、大小或关联字段错误；
-- `404`：记录不存在；
-- `409`：唯一顺序等数据冲突；
-- `422`：Pydantic 参数校验失败；
-- `503`：数据库不可用。
+- `404`：资料或其他记录不存在；
+- `409`：索引不可用、正在重建或数据冲突；
+- `422`：参数或资料正文校验失败；
+- `503`：模型、索引或数据库暂时不可用。
 
-## 事务说明
-
-- 目标、课程、知识点、任务和会话写操作在数据库事务中提交；
-- 完成会话可在一个事务中同步会话、知识点和任务状态；
-- 资料删除先定位受控文件，数据库删除失败会回滚；文件操作异常返回清晰业务错误。
+服务端记录错误堆栈，API 只返回面向用户的消息。

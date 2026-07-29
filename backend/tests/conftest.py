@@ -6,9 +6,11 @@ from sqlalchemy import create_engine, event
 from sqlalchemy.orm import sessionmaker
 
 from app.core.config import Settings, get_settings
+from app.api.deps import get_embedder
 from app.db.base import Base
 from app.db.session import get_db
 from app.main import app
+from tests.fakes import FakeEmbedder
 
 
 @pytest.fixture()
@@ -33,7 +35,17 @@ def client(tmp_path: Path):
         upload_dir=upload_path,
         max_upload_size_mb=1,
         demo_data_enabled=False,
+        material_chunk_size=160,
+        material_chunk_overlap=30,
+        material_min_chunk_size=20,
+        embedding_model_name="fake/bge-m3",
+        embedding_model_revision="test",
+        faiss_index_path=tmp_path / "materials.faiss",
+        faiss_manifest_path=tmp_path / "materials.faiss.manifest.json",
+        search_top_k_default=3,
+        search_top_k_max=10,
     )
+    fake_embedder = FakeEmbedder()
 
     def override_db():
         with TestingSession() as db:
@@ -41,6 +53,7 @@ def client(tmp_path: Path):
 
     app.dependency_overrides[get_db] = override_db
     app.dependency_overrides[get_settings] = lambda: settings
+    app.dependency_overrides[get_embedder] = lambda: fake_embedder
     with TestClient(app, raise_server_exceptions=False) as test_client:
         yield test_client, upload_path
     app.dependency_overrides.clear()
@@ -58,4 +71,3 @@ def goal_payload():
         "current_level": "了解普通 API",
         "status": "active",
     }
-

@@ -6,6 +6,10 @@ __pycache__/
 htmlcov/
 *.py[cod]
 *.sqlite3
+*.sqlite
+*.faiss
+*.index
+*.manifest.json
 backend/data/
 backend/uploads/
 backend/test-data/
@@ -14,4 +18,3 @@ frontend/dist/
 frontend/coverage/
 .idea/
 .vscode/
-

@@ -14,6 +14,20 @@ class MaterialStatus(StrEnum):
     failed = "failed"
 
 
+class IngestionStatus(StrEnum):
+    pending = "pending"
+    processing = "processing"
+    completed = "completed"
+    failed = "failed"
+
+
+class IndexingStatus(StrEnum):
+    pending = "pending"
+    indexing = "indexing"
+    completed = "completed"
+    failed = "failed"
+
+
 class CourseStatus(StrEnum):
     draft = "draft"
     active = "active"
@@ -40,4 +54,3 @@ class LearningSessionStatus(StrEnum):
     paused = "paused"
     completed = "completed"
     cancelled = "cancelled"
-

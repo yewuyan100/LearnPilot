@@ -25,7 +25,37 @@ describe("PersonalLearning V1 UI", () => {
       if (url.endsWith("/courses")) return response([course]);
       if (url.endsWith("/courses/1/knowledge-points") && init?.method === "POST") return response(point, 201);
       if (url.endsWith("/courses/1/knowledge-points")) return response([point]);
-      if (url.endsWith("/materials/upload")) return response({ id: 1, title: "guide", original_filename: "guide.md", stored_filename: "x.md", file_path: "x", source_type: "md", mime_type: "text/markdown", file_size: 10, processing_status: "ready", error_message: null, created_at: now, updated_at: now }, 201);
+      if (url.endsWith("/materials/upload")) return response({
+        id: 1,
+        title: "guide",
+        original_filename: "guide.md",
+        stored_filename: "x.md",
+        file_path: "x",
+        source_type: "md",
+        mime_type: "text/markdown",
+        file_size: 10,
+        processing_status: "ready",
+        ingestion_status: "pending",
+        indexing_status: "pending",
+        chunk_count: 0,
+        indexed_chunk_count: 0,
+        processed_at: null,
+        indexed_at: null,
+        error_message: null,
+        created_at: now,
+        updated_at: now,
+      }, 201);
+      if (url.endsWith("/materials/index/status")) return response({
+        available: false,
+        healthy: true,
+        stale: false,
+        message: "尚未建立索引",
+        chunk_count: 0,
+        dimension: null,
+        model_name: null,
+        model_revision: null,
+        built_at: null,
+      });
       if (url.includes("/materials")) return response([]);
       if (url.endsWith("/learning-sessions") && init?.method === "POST") return response(session, 201);
       if (url.endsWith("/learning-sessions/1") && init?.method === "PATCH") return response({ ...session, status: "completed", ended_at: now, notes: "学习笔记" });
