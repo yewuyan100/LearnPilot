@@ -9,6 +9,7 @@ from app.api.routes import (
     learning_goals,
     learning_sessions,
     materials,
+    rag,
 )
 
 api_router = APIRouter()
@@ -21,5 +22,6 @@ for router in (
     learning_sessions.router,
     dashboard.router,
     demo.router,
+    rag.router,
 ):
     api_router.include_router(router)

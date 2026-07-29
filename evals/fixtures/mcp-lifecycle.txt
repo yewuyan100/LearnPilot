@@ -1,0 +1,4 @@
+MCP clients and servers negotiate capabilities during initialization.
+After initialization, normal protocol operations can begin.
+A client sends requests and a server returns responses or notifications.
+The host is responsible for user consent, security boundaries, and model access.

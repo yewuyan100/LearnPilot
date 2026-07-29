@@ -28,6 +28,22 @@ class IndexingStatus(StrEnum):
     failed = "failed"
 
 
+class RagConversationStatus(StrEnum):
+    active = "active"
+    archived = "archived"
+
+
+class RagMessageRole(StrEnum):
+    user = "user"
+    assistant = "assistant"
+
+
+class RagMessageStatus(StrEnum):
+    pending = "pending"
+    completed = "completed"
+    failed = "failed"
+
+
 class CourseStatus(StrEnum):
     draft = "draft"
     active = "active"

@@ -201,3 +201,70 @@ export interface MetaData {
   server_date: string;
   server_time: string;
 }
+
+export interface RagConversation extends Timestamped {
+  title: string;
+  status: "active" | "archived";
+  default_top_k: number | null;
+  last_message_at: string | null;
+}
+
+export interface RagCitation {
+  id: number;
+  source_label: string;
+  chunk_id: number | null;
+  material_id: number | null;
+  rank: number;
+  score: number;
+  original_filename: string;
+  chunk_index: number;
+  page_number: number | null;
+  section_title: string | null;
+  content_excerpt: string;
+  source_available: boolean;
+  created_at: string;
+}
+
+export interface RagMessage extends Timestamped {
+  conversation_id: number;
+  reply_to_message_id: number | null;
+  role: "user" | "assistant";
+  content: string;
+  status: "pending" | "completed" | "failed";
+  request_id: string | null;
+  original_query: string | null;
+  retrieval_query: string | null;
+  answerable: boolean | null;
+  refusal_reason: string | null;
+  prompt_version: string | null;
+  model_name: string | null;
+  latency_ms: number | null;
+  citations: RagCitation[];
+}
+
+export interface RagConversationPage {
+  items: RagConversation[];
+  total: number;
+  page: number;
+  page_size: number;
+  pages: number;
+}
+
+export interface RagConversationDetail extends RagConversation {
+  messages: RagMessage[];
+  message_total: number;
+  message_page: number;
+  message_page_size: number;
+  message_pages: number;
+}
+
+export interface RagStatus {
+  llm_configured: boolean;
+  provider: string;
+  model: string | null;
+  index_available: boolean;
+  index_stale: boolean;
+  index_version: string | null;
+  rag_prompt_version: string;
+  rewrite_prompt_version: string;
+}

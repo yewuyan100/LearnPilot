@@ -209,3 +209,48 @@ POST /api/materials/index/rebuild
 - `503`：模型、索引或数据库暂时不可用。
 
 服务端记录错误堆栈，API 只返回面向用户的消息。
+
+## V3 可信资料问答 API
+
+| 方法 | 路径 | 说明 |
+|---|---|---|
+| POST | `/rag/conversations` | 创建会话 |
+| GET | `/rag/conversations` | 按状态分页列出会话 |
+| GET | `/rag/conversations/{id}` | 获取会话、消息和引用快照 |
+| DELETE | `/rag/conversations/{id}` | 归档会话 |
+| POST | `/rag/conversations/{id}/ask` | 同步可信问答 |
+| POST | `/rag/conversations/{id}/stream` | POST SSE 可信问答 |
+| GET | `/rag/status` | LLM 配置与 V2 索引可用状态 |
+
+同步问答请求：
+
+```json
+{
+  "question": "MCP Tools 与 Resources 有什么区别？",
+  "request_id": "browser-generated-uuid",
+  "top_k": 6,
+  "material_ids": [3]
+}
+```
+
+`request_id` 在会话内唯一。相同 ID 与相同问题会返回原结果并设置 `idempotent_replay=true`；相同 ID 用于不同问题返回 `409 request_id_conflict`。`material_ids` 为空表示全部已索引资料。
+
+响应同时包含：
+
+- `user_message` 与最终 `assistant_message`；
+- `assistant_message.citations`：只包含答案正文实际引用的快照；
+- `retrieval`：最终检索查询、候选/来源数、阈值、索引版本与耗时；
+- `model`：Provider、模型名和是否使用降级修复，不包含密钥；
+- `idempotent_replay`。
+
+资料不足时仍返回一条可恢复的 completed 助手消息，`answerable=false`、`citations=[]` 和稳定 `refusal_reason`。如果已有相关资料但 LLM 未配置或暂时不可用，返回 `503`，并保存失败状态供页面刷新恢复。
+
+### SSE
+
+`POST /rag/conversations/{id}/stream` 使用与同步问答相同的 JSON 请求。事件顺序为：
+
+```text
+accepted → retrieval → message_start → delta* → citations → done
+```
+
+发生错误时以 `error` 结束。服务端先完成模型输出解析、引用校验和数据库持久化，再发送 `delta`；不会把未经校验的原始模型 Token 直接转发。断线后客户端重新 GET 会话即可恢复最终状态。

@@ -21,6 +21,9 @@ const ProgressPage = lazy(() =>
 const SettingsPage = lazy(() =>
   import("./pages/SettingsPage").then((module) => ({ default: module.SettingsPage })),
 );
+const RagPage = lazy(() =>
+  import("./pages/RagPage").then((module) => ({ default: module.RagPage })),
+);
 const LearningSessionPage = lazy(() =>
   import("./pages/LearningSessionPage").then((module) => ({
     default: module.LearningSessionPage,
@@ -39,6 +42,7 @@ export default function App() {
           <Route path="/today" element={<TodayPage />} />
           <Route path="/courses" element={<CoursesPage />} />
           <Route path="/materials" element={<MaterialsPage />} />
+          <Route path="/rag" element={<RagPage />} />
           <Route path="/reviews" element={<ReviewsPage />} />
           <Route path="/progress" element={<ProgressPage />} />
           <Route path="/settings" element={<SettingsPage />} />

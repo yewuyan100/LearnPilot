@@ -1,38 +1,42 @@
 # PersonalLearning
 
-PersonalLearning 是一个本地优先、单用户使用的个人学习工作台。当前版本为 **V2：本地学习资料知识库底座**，在完整保留 V1 学习目标、课程、任务、会话和进度功能的基础上，将上传文件转换为可持久化、可重建、可定位来源的本地语义索引。
+PersonalLearning 是一个本地优先、单用户使用的个人学习工作台。当前版本为 **V3：可信引用式 RAG 学习问答层**。它完整保留 V1 学习管理和 V2 本地知识库，并在其上提供有资料依据、有来源引用、资料不足会拒答的多轮问答。
 
-## V2 能做什么
+## V3 能做什么
 
 ```text
-上传 PDF / Markdown / TXT
-→ 手动启动资料处理
-→ 正文解析、清洗和确定性切片
-→ Chunk 保存到 SQLite
-→ 本地 BAAI/bge-m3 生成归一化 Embedding
-→ FAISS IndexFlatIP + Manifest 原子保存
-→ 自然语言语义检索
-→ 返回文件名、页码、章节、Chunk 和相似度
+创建资料问答会话
+→ 有限历史查询改写
+→ 复用 V2 BGE-M3 + FAISS 检索
+→ 来源筛选、去重和上下文预算
+→ 资料充分性门控
+→ OpenAI-compatible LLM Structured Output
+→ 引用合法性校验或一次修复
+→ 回答并显示来源，或稳定拒答
+→ 消息与引用快照持久化
+→ 校验后 SSE 分段输出
 ```
 
-资料页支持查看解析/索引状态与失败原因、分页查看 Chunk、重新处理、手动全量重建索引、限定资料范围检索和删除资料。重启应用后可以继续加载已有索引。
+`/rag` 页面支持会话列表、刷新恢复、限定资料范围、停止生成和来源详情。回答只引用本次实际送入模型的 `S1`、`S2` 等来源。删除原资料后，历史消息仍保留文件名、位置和正文摘录快照，但新检索不会命中已删除资料。
 
-V1 原有能力继续可用：
+V1/V2 原有能力继续可用：
 
 - 学习目标、课程、知识点和今日任务 CRUD；
 - 学习会话创建/恢复、暂停/继续、笔记和完成；
 - 今日页、复习基础页、进度页和设置页；
 - Demo 数据导入与清理。
+- PDF / Markdown / TXT 解析、切片、本地 BGE-M3 Embedding、FAISS 索引和语义检索。
 
-## V2 不能做什么
+## 当前不能做什么
 
-当前版本不生成 AI 答案，不总结全文，不自动创建课程或知识点，不自动出题或批改，也不包含 RAG 最终回答、LLM、LangGraph、Agent、Prompt、SSE、OCR、图片/音视频理解、自动学习规划、掌握度算法、多用户或云部署。扫描版 PDF 会明确提示 V2 暂不支持 OCR。
+当前版本不包含 LangGraph、Agent Planner、工具调用、联网搜索、MCP 连接器、自动课程、自动出题/批改、掌握度算法、OCR、图片/音视频理解、多用户、登录、云部署或微服务。扫描版 PDF 仍不支持 OCR。
 
 ## 技术栈
 
 - 前端：React 19、TypeScript、Vite、React Router、TanStack Query、Lucide React、Recharts；
 - 后端：Python、FastAPI、Pydantic 2、SQLAlchemy 2、Alembic、SQLite；
 - 知识库：pypdf、sentence-transformers、`BAAI/bge-m3`、NumPy、FAISS `IndexFlatIP`；
+- 问答：OpenAI-compatible Chat Completions、Pydantic Structured Output、FastAPI `StreamingResponse`；
 - 测试：pytest、FastAPI TestClient、Vitest、Testing Library、ESLint。
 
 ## 目录结构
@@ -50,7 +54,9 @@ PersonalLearning/
 │  │  ├─ schemas/
 │  │  └─ services/
 │  │     ├─ embedding/
+│  │     ├─ llm/
 │  │     ├─ material_processing/
+│  │     ├─ rag/
 │  │     └─ vector_store/
 │  └─ tests/
 ├─ frontend/src/
@@ -62,14 +68,19 @@ PersonalLearning/
 │  ├─ types/
 │  └─ utils/
 ├─ docs/
+├─ evals/
 ├─ scripts/
 │  ├─ acceptance_v1.py
-│  └─ acceptance_v2.py
+│  ├─ acceptance_v2.py
+│  ├─ acceptance_v3.py
+│  └─ evaluate_v3.py
 ├─ .env.example
 ├─ V1_*.md
 ├─ V2_TASK.md
 ├─ V2_PROGRESS.md
-└─ V2_COMPLETION_REPORT.md
+├─ V2_COMPLETION_REPORT.md
+├─ V3_TASK.md
+└─ V3_PROGRESS.md
 ```
 
 ## 环境要求
@@ -78,6 +89,7 @@ PersonalLearning/
 - Python 3.11+；
 - Node.js 20+ 与 npm 10+；
 - 本机已有 `BAAI/bge-m3` Hugging Face 缓存。无需重新下载已有模型。
+- 一个可用的 OpenAI-compatible Chat Completions 服务（仅真实问答、评测和 V3 验收需要）。
 
 ## Windows PowerShell 安装
 
@@ -111,6 +123,23 @@ EMBEDDING_NORMALIZE=true
 
 默认 `local_files_only=true`，不会偷偷联网下载模型。模型缺失时，处理 API 会保留原文件与 Material 记录，并返回可理解的配置错误。
 
+## 回答模型配置
+
+`.env` 只保存本地配置，已被 Git 忽略。不要把真实 Key 写入 `.env.example`：
+
+```env
+LLM_PROVIDER=openai_compatible
+LLM_API_KEY=
+LLM_BASE_URL=
+LLM_MODEL=
+LLM_TIMEOUT_SECONDS=60
+LLM_MAX_RETRIES=2
+LLM_TEMPERATURE=0.1
+LLM_MAX_OUTPUT_TOKENS=1200
+```
+
+未配置 LLM 时，上传、解析、索引、检索和全部隔离测试仍可运行；`GET /api/rag/status` 会诚实返回 `llm_configured=false`。找到相关资料后发起生成会返回清晰的 `503 llm_not_configured`。
+
 ## 数据库迁移
 
 ```powershell
@@ -122,7 +151,7 @@ Set-Location .\backend
 Set-Location ..
 ```
 
-当前 head 为 `20260730_0002`。重置本地开发数据库会删除本地数据：
+当前 head 为 `20260730_0003`。重置本地开发数据库会删除本地数据：
 
 ```powershell
 .\scripts\reset_database.ps1
@@ -193,6 +222,21 @@ $env:HF_HUB_OFFLINE = "1"
 Remove-Item Env:HF_HUB_OFFLINE -ErrorAction SilentlyContinue
 ```
 
+V3 真实验收使用真实 BGE-M3 和 `.env` 中的真实 LLM 配置，在 8012 端口自行启动两次隔离后端：
+
+```powershell
+$env:HF_HOME = "D:\AIModels\HuggingFace"
+$env:HF_HUB_OFFLINE = "1"
+.\.venv\Scripts\python.exe .\scripts\acceptance_v3.py
+Remove-Item Env:HF_HUB_OFFLINE -ErrorAction SilentlyContinue
+```
+
+准备好 `evals/fixtures` 三份资料并建立索引后，可对运行中的 API 执行评测：
+
+```powershell
+.\.venv\Scripts\python.exe .\scripts\evaluate_v3.py --isolated
+```
+
 ## 关键配置
 
 | 配置 | 默认值 | 说明 |
@@ -204,6 +248,11 @@ Remove-Item Env:HF_HUB_OFFLINE -ErrorAction SilentlyContinue
 | `FAISS_MANIFEST_PATH` | `./data/materials.faiss.manifest.json` | ID 映射与索引元数据 |
 | `SEARCH_TOP_K_DEFAULT` | `5` | 默认返回数 |
 | `SEARCH_TOP_K_MAX` | `20` | API 上限 |
+| `RAG_TOP_K_DEFAULT` / `RAG_TOP_K_MAX` | `6` / `12` | RAG 初始召回数与请求上限 |
+| `RAG_MIN_SCORE` | `0.35` | 初始相关度阈值，需通过评测调整，不是普适最佳值 |
+| `RAG_MAX_SOURCES` | `6` | 最多送入模型的来源数 |
+| `RAG_MAX_CONTEXT_CHARS` | `12000` | 资料上下文总字符预算 |
+| `RAG_HISTORY_MESSAGES` | `6` | 查询改写最多读取的最近消息数 |
 
 上传内容、SQLite、FAISS、Manifest、模型缓存、虚拟环境、`node_modules` 和构建产物均不会提交到 Git。
 
@@ -225,8 +274,8 @@ Remove-Item Env:HF_HUB_OFFLINE -ErrorAction SilentlyContinue
 
 Manifest 与 SQLite Chunk 校验不一致、模型配置变化、索引文件缺失或损坏时，旧索引会拒绝使用。请在资料页执行“重新构建索引”。
 
-### 语义检索是不是 AI 回答？
+### 为什么资料问答会拒答？
 
-不是。结果是 BGE-M3 + FAISS 召回的原始资料片段，包含来源信息；V2 不调用 LLM。
+没有可用索引、索引过期、检索无结果、分数低于当前阈值或上下文为空时，确定性门控会在调用 LLM 前拒答。模型即使被调用，也必须返回受 Pydantic 校验的结构，并通过引用校验。
 
-更多说明见 [架构](docs/architecture.md)、[数据模型](docs/data-model.md) 与 [API](docs/api.md)。
+更多说明见 [架构](docs/architecture.md)、[RAG 设计](docs/rag.md)、[评测](docs/evaluation.md)、[数据模型](docs/data-model.md) 与 [API](docs/api.md)。

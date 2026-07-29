@@ -20,7 +20,7 @@ settings = get_settings()
 app = FastAPI(
     title=settings.app_name,
     version=settings.app_version,
-    description="PersonalLearning V2 本地优先学习管理与资料知识库 API",
+    description="PersonalLearning V3 本地优先学习管理与可信引用式 RAG API",
 )
 app.add_middleware(
     CORSMiddleware,

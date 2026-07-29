@@ -16,5 +16,6 @@ backend/test-data/
 frontend/node_modules/
 frontend/dist/
 frontend/coverage/
+evals/results/
 .idea/
 .vscode/

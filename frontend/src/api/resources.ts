@@ -1,4 +1,4 @@
-import { api, jsonBody } from "./client";
+import { api, jsonBody, streamPost } from "./client";
 import type {
   Course,
   DailyTask,
@@ -12,6 +12,10 @@ import type {
   MaterialSearchResponse,
   MetaData,
   ProgressData,
+  RagConversation,
+  RagConversationDetail,
+  RagConversationPage,
+  RagStatus,
   ReviewData,
   TodayData,
 } from "../types";
@@ -99,4 +103,29 @@ export const sessionsApi = {
 export const demoApi = {
   seed: () => api<LearningGoal>("/demo-data", { method: "POST" }),
   clear: () => api<{ deleted_goals: number }>("/demo-data", { method: "DELETE" }),
+};
+
+export const ragApi = {
+  status: () => api<RagStatus>("/rag/status"),
+  list: () =>
+    api<RagConversationPage>("/rag/conversations?page=1&page_size=100&status=active"),
+  get: (id: number) => api<RagConversationDetail>(`/rag/conversations/${id}`),
+  create: (title = "新建资料问答") =>
+    api<RagConversation>("/rag/conversations", {
+      method: "POST",
+      ...jsonBody({ title }),
+    }),
+  archive: (id: number) =>
+    api<void>(`/rag/conversations/${id}`, { method: "DELETE" }),
+  stream: (
+    id: number,
+    payload: {
+      question: string;
+      request_id: string;
+      top_k?: number;
+      material_ids?: number[] | null;
+    },
+    signal: AbortSignal,
+    onEvent: (event: string, data: unknown) => void,
+  ) => streamPost(`/rag/conversations/${id}/stream`, payload, signal, onEvent),
 };

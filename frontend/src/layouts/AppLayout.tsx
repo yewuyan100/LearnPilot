@@ -5,6 +5,7 @@ import {
   Files,
   GraduationCap,
   Menu,
+  MessageSquareText,
   RotateCcw,
   Settings,
   X,
@@ -16,6 +17,7 @@ const navigation = [
   { to: "/today", label: "今日学习", icon: CalendarCheck },
   { to: "/courses", label: "课程", icon: BookOpen },
   { to: "/materials", label: "资料", icon: Files },
+  { to: "/rag", label: "资料问答", icon: MessageSquareText },
   { to: "/reviews", label: "复习", icon: RotateCcw },
   { to: "/progress", label: "进度", icon: BarChart3 },
   { to: "/settings", label: "设置", icon: Settings },
@@ -57,14 +59,13 @@ export function AppLayout() {
         </nav>
         <div className="side-rail__foot">
           <span className="status-dot" /> 本地数据库
-          <small>PersonalLearning V1</small>
+          <small>PersonalLearning V3</small>
         </div>
       </aside>
       <main className="app-main">
         <Outlet />
-        <footer className="app-footer">PersonalLearning · V1 本地学习管理工作台</footer>
+        <footer className="app-footer">PersonalLearning · V3 可信资料学习工作台</footer>
       </main>
     </div>
   );
 }
-

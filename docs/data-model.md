@@ -114,4 +114,24 @@ FAISS 文件使用归一化 `float32` 向量和 `IndexFlatIP`。Manifest 是 UTF
 - `20260729_0001_initial_v1.py`：V1 初始结构，未修改；
 - `20260730_0002_material_knowledge_base.py`：新增 Material 状态字段和 `material_chunks`。
 
-当前 head：`20260730_0002`。应用启动不隐式执行 `create_all`，结构以 Alembic 为准。
+V2 完成时 head 为 `20260730_0002`。V3 继续使用显式增量迁移；应用启动不隐式执行 `create_all`。
+
+## rag_conversations
+
+保存单用户资料问答会话：`title`、`status(active/archived)`、可选默认 `top_k`、最近消息时间和时间戳。归档不会删除历史消息。
+
+## rag_messages
+
+每个问题保存一条 `user` 消息和一条通过 `reply_to_message_id` 关联的 `assistant` 消息。助手消息保存唯一 `(conversation_id, request_id)`、原问题、最终检索查询、回答/拒答状态、Prompt 版本、模型名、Token 和延迟。相同 request_id 不会创建第二组消息。
+
+消息不保存完整 Prompt、完整历史或资料上下文。删除会话时消息级联删除；助手消息不会脱离对应用户消息独立写入。
+
+## rag_citations
+
+每个被最终答案实际引用的来源保存 `S1` 标签、rank、score、Material/Chunk 外键，以及文件名、片段序号、页码/章节和正文摘录快照。删除资料后外键设为 `NULL`，快照仍可读取；新检索依赖当前 V2 索引，因此不会继续命中已删除来源。
+
+## Alembic V3
+
+- `20260730_0003_rag_conversations.py`：新增 `rag_conversations`、`rag_messages`、`rag_citations`；
+- 当前 head：`20260730_0003`；
+- V1 的 `0001` 与 V2 的 `0002` 未修改。

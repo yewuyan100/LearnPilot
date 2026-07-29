@@ -5,6 +5,9 @@ from app.models.learning_goal import LearningGoal
 from app.models.learning_session import LearningSession
 from app.models.material import Material
 from app.models.material_chunk import MaterialChunk
+from app.models.rag_citation import RagCitation
+from app.models.rag_conversation import RagConversation
+from app.models.rag_message import RagMessage
 
 __all__ = [
     "Course",
@@ -14,4 +17,7 @@ __all__ = [
     "LearningSession",
     "Material",
     "MaterialChunk",
+    "RagCitation",
+    "RagConversation",
+    "RagMessage",
 ]
