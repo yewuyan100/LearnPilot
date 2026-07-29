@@ -16,6 +16,23 @@ from app.services.llm.errors import (
 StructuredModel = TypeVar("StructuredModel", bound=BaseModel)
 
 
+def _decode_json_content(raw: str) -> object:
+    content = raw.strip()
+    if content.startswith("```") and content.endswith("```"):
+        first_newline = content.find("\n")
+        if first_newline >= 0:
+            content = content[first_newline + 1 : -3].strip()
+    return json.loads(content)
+
+
+def _validation_reason(exc: ValidationError) -> str:
+    items = []
+    for error in exc.errors(include_input=False)[:8]:
+        location = ".".join(str(item) for item in error["loc"])
+        items.append(f"{location}:{error['type']}")
+    return "schema_validation:" + ",".join(items)
+
+
 class OpenAICompatibleProvider:
     def __init__(self, settings: Settings):
         if not settings.llm_configured:
@@ -28,13 +45,21 @@ class OpenAICompatibleProvider:
         *,
         messages: list[dict[str, str]],
         schema: type[StructuredModel],
+        temperature: float | None = None,
+        max_output_tokens: int | None = None,
     ) -> StructuredLLMResult:
         started = perf_counter()
         payload = {
             "model": self.model_name,
             "messages": messages,
-            "temperature": self.settings.llm_temperature,
-            "max_tokens": self.settings.llm_max_output_tokens,
+            "temperature": (
+                self.settings.llm_temperature if temperature is None else temperature
+            ),
+            "max_tokens": (
+                self.settings.llm_max_output_tokens
+                if max_output_tokens is None
+                else max_output_tokens
+            ),
             "response_format": {"type": "json_object"},
         }
         headers = {
@@ -56,7 +81,7 @@ class OpenAICompatibleProvider:
                 raw = body["choices"][0]["message"]["content"]
                 if isinstance(raw, list):
                     raw = "".join(item.get("text", "") for item in raw if isinstance(item, dict))
-                parsed = schema.model_validate(json.loads(raw))
+                parsed = schema.model_validate(_decode_json_content(raw))
                 usage = body.get("usage") or {}
                 return StructuredLLMResult(
                     value=parsed,
@@ -67,8 +92,21 @@ class OpenAICompatibleProvider:
                     model=body.get("model") or self.model_name,
                     latency_ms=round((perf_counter() - started) * 1000),
                 )
-            except (json.JSONDecodeError, KeyError, TypeError, ValidationError) as exc:
-                raise LLMOutputInvalidError("模型未返回有效的结构化结果") from exc
+            except json.JSONDecodeError as exc:
+                raise LLMOutputInvalidError(
+                    "模型未返回有效的结构化结果",
+                    reason="invalid_json",
+                ) from exc
+            except ValidationError as exc:
+                raise LLMOutputInvalidError(
+                    "模型输出未通过结构校验",
+                    reason=_validation_reason(exc),
+                ) from exc
+            except (KeyError, TypeError) as exc:
+                raise LLMOutputInvalidError(
+                    "模型服务响应结构不完整",
+                    reason="malformed_provider_response",
+                ) from exc
             except (
                 httpx.TimeoutException,
                 httpx.NetworkError,

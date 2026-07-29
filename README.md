@@ -1,8 +1,23 @@
 # PersonalLearning
 
-PersonalLearning 是一个本地优先、单用户使用的个人学习工作台。当前版本为 **V3：可信引用式 RAG 学习问答层**。它完整保留 V1 学习管理和 V2 本地知识库，并在其上提供有资料依据、有来源引用、资料不足会拒答的多轮问答。
+PersonalLearning 是一个本地优先、单用户使用的个人学习工作台。当前版本为 **V4：学习活动、测验、批改与错题闭环**。它完整保留 V1 学习管理、V2 本地知识库和 V3 可信 RAG，并新增基于真实资料 Chunk 的出题、作答、批改、结果与错题复习。
 
-## V3 能做什么
+## V4 能做什么
+
+```text
+选择课程、知识点和已索引资料
+→ 复用 BGE-M3 + FAISS 检索真实 Chunk
+→ 生成带来源的四类题目草稿
+→ 预览、删题、排序并发布
+→ 逐题保存和提交测验
+→ 客观题确定性批改 / 简答题 Rubric 受控批改
+→ 查看总分、逐题反馈和来源快照
+→ 自动形成错题并发起复习
+```
+
+页面入口为 `/activities` 和 `/wrong-answers`。草稿管理页可见答案、解析和 Rubric；发布后的答题接口不返回正确答案、参考答案或 Rubric。资料删除后，历史答题结果继续显示生成时保存的来源摘录，并标记来源已不可用。
+
+## V3 保留能力
 
 ```text
 创建资料问答会话
@@ -29,7 +44,7 @@ V1/V2 原有能力继续可用：
 
 ## 当前不能做什么
 
-当前版本不包含 LangGraph、Agent Planner、工具调用、联网搜索、MCP 连接器、自动课程、自动出题/批改、掌握度算法、OCR、图片/音视频理解、多用户、登录、云部署或微服务。扫描版 PDF 仍不支持 OCR。
+当前版本不包含 LangGraph、Agent Planner、多 Agent、外部工具调用、联网搜索、外部 MCP 资料源、自动课程、七天学习计划、掌握度算法、FSRS、自适应复习、OCR、图片/音视频理解、多用户、登录、云部署或微服务。扫描版 PDF 仍不支持 OCR。
 
 ## 技术栈
 
@@ -151,7 +166,7 @@ Set-Location .\backend
 Set-Location ..
 ```
 
-当前 head 为 `20260730_0003`。重置本地开发数据库会删除本地数据：
+当前 head 为 `20260730_0004`。重置本地开发数据库会删除本地数据：
 
 ```powershell
 .\scripts\reset_database.ps1
@@ -207,10 +222,10 @@ npm run build
 Set-Location ..
 ```
 
-V1 API 回归需要先启动 8000 端口后端：
+V1 API 回归可使用隔离模式自行启动临时后端：
 
 ```powershell
-.\.venv\Scripts\python.exe .\scripts\acceptance_v1.py
+.\.venv\Scripts\python.exe .\scripts\acceptance_v1.py --isolated
 ```
 
 V2 真实模型验收会在 8011 端口自行启动两次隔离后端，使用临时数据库、上传目录和索引，并验证重启恢复：
@@ -230,6 +245,18 @@ $env:HF_HUB_OFFLINE = "1"
 .\.venv\Scripts\python.exe .\scripts\acceptance_v3.py
 Remove-Item Env:HF_HUB_OFFLINE -ErrorAction SilentlyContinue
 ```
+
+V4 真实验收在 8013 端口运行完整活动、批改、错题、重启和来源删除闭环；评测使用同一组专用人工夹具：
+
+```powershell
+$env:HF_HOME = "D:\AIModels\HuggingFace"
+$env:HF_HUB_OFFLINE = "1"
+.\.venv\Scripts\python.exe .\scripts\acceptance_v4.py
+.\.venv\Scripts\python.exe .\scripts\evaluate_v4.py --isolated
+Remove-Item Env:HF_HUB_OFFLINE -ErrorAction SilentlyContinue
+```
+
+这两项会把 `evals/fixtures/v4` 中的人工测试资料发送给 `.env` 配置的模型服务；不会读取个人知识库。普通 pytest 始终使用 FakeEmbedder、FakeLLM 和临时存储。
 
 准备好 `evals/fixtures` 三份资料并建立索引后，可对运行中的 API 执行评测：
 
@@ -253,6 +280,22 @@ Remove-Item Env:HF_HUB_OFFLINE -ErrorAction SilentlyContinue
 | `RAG_MAX_SOURCES` | `6` | 最多送入模型的来源数 |
 | `RAG_MAX_CONTEXT_CHARS` | `12000` | 资料上下文总字符预算 |
 | `RAG_HISTORY_MESSAGES` | `6` | 查询改写最多读取的最近消息数 |
+| `ACTIVITY_MAX_QUESTION_COUNT` | `20` | 单次活动题目上限 |
+| `ACTIVITY_MAX_SOURCES` | `8` | 出题上下文最多来源数 |
+| `ACTIVITY_MAX_CONTEXT_CHARS` | `16000` | 出题上下文总字符预算 |
+| `ACTIVITY_GENERATION_PROMPT_VERSION` | `activity-generation-v1` | 题目生成契约版本 |
+| `SHORT_ANSWER_GRADING_PROMPT_VERSION` | `short-answer-grading-v1` | 简答题评分契约版本 |
+| `SHORT_ANSWER_GRADING_TEMPERATURE` | `0.0` | 简答题评分温度 |
+| `WRONG_ANSWER_SHORT_ANSWER_THRESHOLD` | `0.6` | 简答题进入错题本的得分比例阈值 |
+
+## 版本边界
+
+- V1：学习管理；
+- V2：本地资料知识库；
+- V3：可信引用 RAG；
+- V4：测验、批改和错题；
+- V5：LangGraph 单学习 Agent；
+- V6：掌握度和自适应复习。
 
 上传内容、SQLite、FAISS、Manifest、模型缓存、虚拟环境、`node_modules` 和构建产物均不会提交到 Git。
 

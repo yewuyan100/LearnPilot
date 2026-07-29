@@ -12,3 +12,12 @@ class LLMUnavailableError(LLMError):
 
 class LLMOutputInvalidError(LLMError):
     code = "llm_output_invalid"
+
+    def __init__(
+        self,
+        message: str,
+        *,
+        reason: str = "structured_output_invalid",
+    ):
+        super().__init__(message)
+        self.reason = reason

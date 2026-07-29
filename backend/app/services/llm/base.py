@@ -28,4 +28,6 @@ class LLMProvider(Protocol):
         *,
         messages: list[dict[str, str]],
         schema: type[StructuredModel],
+        temperature: float | None = None,
+        max_output_tokens: int | None = None,
     ) -> StructuredLLMResult: ...

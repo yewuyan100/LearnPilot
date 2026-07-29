@@ -1,10 +1,18 @@
 """Run the six V1 acceptance scenarios against a live local API."""
 
+from argparse import ArgumentParser
 from datetime import date
 import json
+import os
+from pathlib import Path
+import subprocess
 import sys
+from tempfile import TemporaryDirectory
+import time
 
 import httpx
+
+from acceptance_v2 import ALEMBIC, BACKEND, live_backend
 
 BASE_URL = "http://127.0.0.1:8000/api"
 
@@ -18,9 +26,9 @@ def require(response: httpx.Response, expected: int) -> dict:
     return response.json() if response.content else {}
 
 
-def main() -> None:
+def main(base_url: str = BASE_URL) -> None:
     results: list[str] = []
-    with httpx.Client(base_url=BASE_URL, timeout=20) as client:
+    with httpx.Client(base_url=base_url, timeout=20) as client:
         require(client.get("/health"), 200)
 
         goal = require(
@@ -163,10 +171,48 @@ def main() -> None:
     print(json.dumps({"status": "passed", "results": results}, ensure_ascii=False, indent=2))
 
 
+def run() -> None:
+    parser = ArgumentParser()
+    parser.add_argument("--isolated", action="store_true")
+    parser.add_argument("--port", type=int, default=8010)
+    args = parser.parse_args()
+    if not args.isolated:
+        main()
+        return
+
+    with TemporaryDirectory(prefix="personal-learning-v1-acceptance-") as temp:
+        root = Path(temp)
+        environment = os.environ.copy()
+        environment.update(
+            {
+                "DATABASE_URL": f"sqlite:///{(root / 'acceptance.sqlite3').as_posix()}",
+                "UPLOAD_DIR": str(root / "uploads"),
+                "FAISS_INDEX_PATH": str(root / "materials.faiss"),
+                "FAISS_MANIFEST_PATH": str(root / "materials.faiss.manifest.json"),
+                "DEMO_DATA_ENABLED": "true",
+            }
+        )
+        subprocess.run(
+            [str(ALEMBIC), "upgrade", "head"],
+            cwd=BACKEND,
+            env=environment,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        with live_backend(
+            port=args.port,
+            environment=environment,
+            log_path=root / "backend.log",
+        ) as base_url:
+            main(base_url)
+        # Windows may keep the SQLite file handle briefly after uvicorn exits.
+        time.sleep(1)
+
+
 if __name__ == "__main__":
     try:
-        main()
+        run()
     except Exception as exc:
         print(json.dumps({"status": "failed", "error": str(exc)}, ensure_ascii=False, indent=2))
         sys.exit(1)
-

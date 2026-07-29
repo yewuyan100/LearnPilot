@@ -23,6 +23,9 @@ class DailyTask(TimestampMixin, Base):
     knowledge_point_id: Mapped[int | None] = mapped_column(
         ForeignKey("knowledge_points.id", ondelete="SET NULL"), index=True, nullable=True
     )
+    activity_id: Mapped[int | None] = mapped_column(
+        ForeignKey("learning_activities.id", ondelete="SET NULL"), index=True, nullable=True
+    )
     title: Mapped[str] = mapped_column(String(200), nullable=False)
     task_type: Mapped[str] = mapped_column(String(32), default="learning", nullable=False)
     estimated_minutes: Mapped[int] = mapped_column(default=20, nullable=False)
@@ -30,4 +33,3 @@ class DailyTask(TimestampMixin, Base):
     status: Mapped[str] = mapped_column(
         String(32), default=DailyTaskStatus.pending, nullable=False, index=True
     )
-

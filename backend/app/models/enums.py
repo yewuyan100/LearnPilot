@@ -70,3 +70,51 @@ class LearningSessionStatus(StrEnum):
     paused = "paused"
     completed = "completed"
     cancelled = "cancelled"
+
+
+class ActivityStatus(StrEnum):
+    draft = "draft"
+    published = "published"
+    archived = "archived"
+    generation_failed = "generation_failed"
+
+
+class QuestionType(StrEnum):
+    single_choice = "single_choice"
+    multiple_choice = "multiple_choice"
+    true_false = "true_false"
+    short_answer = "short_answer"
+
+
+class QuestionDifficulty(StrEnum):
+    easy = "easy"
+    medium = "medium"
+    hard = "hard"
+
+
+class AttemptStatus(StrEnum):
+    in_progress = "in_progress"
+    submitted = "submitted"
+    grading = "grading"
+    completed = "completed"
+    failed = "failed"
+    abandoned = "abandoned"
+
+
+class GradingStatus(StrEnum):
+    pending = "pending"
+    completed = "completed"
+    failed = "failed"
+
+
+class WrongAnswerStatus(StrEnum):
+    active = "active"
+    reviewing = "reviewing"
+    resolved = "resolved"
+    dismissed = "dismissed"
+
+
+class WrongAnswerErrorType(StrEnum):
+    incorrect = "incorrect"
+    partial = "partial"
+    unanswered = "unanswered"

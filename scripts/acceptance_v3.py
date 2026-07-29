@@ -91,7 +91,11 @@ def live_backend(
 def upload_fixtures(client: httpx.Client) -> list[dict]:
     materials = []
     mime = {".md": "text/markdown", ".txt": "text/plain"}
-    for path in sorted(FIXTURES.iterdir()):
+    for path in sorted(
+        item
+        for item in FIXTURES.iterdir()
+        if item.is_file() and item.suffix in mime
+    ):
         material = require(
             client.post(
                 "/materials/upload",
@@ -163,7 +167,9 @@ def first_run(base_url: str) -> dict:
             ),
             200,
         )
-        assert followup["assistant_message"]["answerable"] is True
+        assert followup["assistant_message"]["answerable"] is True, json.dumps(
+            followup, ensure_ascii=False
+        )
         assert followup["assistant_message"]["retrieval_query"]
 
         scoped = require(

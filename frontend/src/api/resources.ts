@@ -1,6 +1,8 @@
 import { api, jsonBody, streamPost } from "./client";
 import type {
   Course,
+  ActivityDetail,
+  ActivityPage,
   DailyTask,
   KnowledgePoint,
   LearningGoal,
@@ -18,6 +20,9 @@ import type {
   RagStatus,
   ReviewData,
   TodayData,
+  QuizAttempt,
+  WrongAnswer,
+  WrongAnswerPage,
 } from "../types";
 
 export const goalsApi = {
@@ -128,4 +133,88 @@ export const ragApi = {
     signal: AbortSignal,
     onEvent: (event: string, data: unknown) => void,
   ) => streamPost(`/rag/conversations/${id}/stream`, payload, signal, onEvent),
+};
+
+export const activitiesApi = {
+  list: (status = "") =>
+    api<ActivityPage>(
+      `/learning-activities?page=1&page_size=100${status ? `&status=${status}` : ""}`,
+    ),
+  get: (id: number) => api<ActivityDetail>(`/learning-activities/${id}`),
+  generate: (data: unknown) =>
+    api<ActivityDetail>("/learning-activities/generate", {
+      method: "POST",
+      ...jsonBody(data),
+    }),
+  update: (id: number, data: unknown) =>
+    api<ActivityDetail>(`/learning-activities/${id}`, {
+      method: "PATCH",
+      ...jsonBody(data),
+    }),
+  deleteQuestion: (activityId: number, questionId: number) =>
+    api<ActivityDetail>(
+      `/learning-activities/${activityId}/questions/${questionId}`,
+      { method: "DELETE" },
+    ),
+  reorder: (id: number, questionIds: number[]) =>
+    api<ActivityDetail>(`/learning-activities/${id}/questions/reorder`, {
+      method: "POST",
+      ...jsonBody({ question_ids: questionIds }),
+    }),
+  publish: (id: number) =>
+    api<ActivityDetail>(`/learning-activities/${id}/publish`, { method: "POST" }),
+  start: (id: number, learningSessionId: number | null = null) =>
+    api<QuizAttempt>(`/learning-activities/${id}/attempts`, {
+      method: "POST",
+      ...jsonBody({ learning_session_id: learningSessionId }),
+    }),
+};
+
+export const attemptsApi = {
+  get: (id: number) => api<QuizAttempt>(`/quiz-attempts/${id}`),
+  save: (
+    attemptId: number,
+    questionId: number,
+    data: { answer?: Array<string | boolean> | null; answer_text?: string | null },
+  ) =>
+    api<QuizAttempt>(`/quiz-attempts/${attemptId}/answers/${questionId}`, {
+      method: "PUT",
+      ...jsonBody(data),
+    }),
+  submit: (
+    id: number,
+    data: {
+      request_id: string;
+      answers: Array<{
+        question_id: number;
+        answer?: Array<string | boolean> | null;
+        answer_text?: string | null;
+      }>;
+    },
+  ) =>
+    api<QuizAttempt>(`/quiz-attempts/${id}/submit`, {
+      method: "POST",
+      ...jsonBody(data),
+    }),
+};
+
+export const wrongAnswersApi = {
+  list: (status = "") =>
+    api<WrongAnswerPage>(
+      `/wrong-answers?page=1&page_size=100${status ? `&status=${status}` : ""}`,
+    ),
+  get: (id: number) => api<WrongAnswer>(`/wrong-answers/${id}`),
+  update: (id: number, status: "active" | "resolved" | "dismissed") =>
+    api<WrongAnswer>(`/wrong-answers/${id}`, {
+      method: "PATCH",
+      ...jsonBody({ status }),
+    }),
+  review: (wrongAnswerIds: number[]) =>
+    api<QuizAttempt>("/wrong-answers/review", {
+      method: "POST",
+      ...jsonBody({
+        wrong_answer_ids: wrongAnswerIds,
+        request_id: crypto.randomUUID(),
+      }),
+    }),
 };

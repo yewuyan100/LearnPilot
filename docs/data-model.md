@@ -1,4 +1,4 @@
-# V2 数据模型
+# PersonalLearning 数据模型
 
 ## 关系
 
@@ -135,3 +135,35 @@ V2 完成时 head 为 `20260730_0002`。V3 继续使用显式增量迁移；应�
 - `20260730_0003_rag_conversations.py`：新增 `rag_conversations`、`rag_messages`、`rag_citations`；
 - 当前 head：`20260730_0003`；
 - V1 的 `0001` 与 V2 的 `0002` 未修改。
+
+## V4 学习活动
+
+### learning_activities
+
+保存活动标题、`quiz/review` 类型、`draft/published/archived/generation_failed` 状态、可空课程/知识点、来源范围、题数/总分、生成请求 ID、Prompt/模型版本和发布时间。生成请求 ID 唯一。课程或知识点删除时外键置空，历史活动保留。
+
+### activity_questions
+
+保存活动内唯一顺序、四种题型、选项、标准答案/参考答案、Rubric、解析、难度、分值和内容哈希。`(activity_id, question_index)` 唯一；结构化 JSON 入库前均经过严格 Schema 和跨字段校验。
+
+### question_sources
+
+保存题目引用标签、排序/相似度和受限正文摘录，以及由数据库确定的文件名、Chunk 序号、页码和章节。`(question_id, source_label)` 唯一。Material/Chunk 外键使用 `SET NULL`，因此删除资料不会破坏历史结果。
+
+### quiz_attempts / quiz_answers
+
+Attempt 保存活动、可选学习会话、提交请求、状态、总分统计、批改模型/Prompt 和错误状态。Answer 以 `(attempt_id, question_id)` 唯一，保存用户答案、评分状态、得分、反馈、Rubric 命中/缺失项和置信度。批改失败不会写成零分。
+
+### wrong_answers
+
+每条错题来自真实 Answer，以 `(attempt_id, answer_id)` 去重，保存 `incorrect/partial/unanswered` 类型、用户状态、复习次数和解决时间。它不表示算法掌握度。
+
+### daily_tasks.activity_id
+
+V4 为今日任务增加可空 Activity 外键。有关联 Activity 的任务只会在对应 Attempt 成功完成批改后自动完成；关联学习会话同样在成功批改后完成。
+
+## Alembic V4
+
+- `20260730_0004_learning_activities.py`：新增六张 V4 表、约束和查询索引，并为 `daily_tasks` 增加 `activity_id`；
+- 当前 head：`20260730_0004`；
+- `0001`、`0002`、`0003` 历史迁移均未修改。

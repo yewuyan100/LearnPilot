@@ -1,0 +1,5 @@
+MCP peers can communicate through stdio or Streamable HTTP.
+
+With stdio, a host starts a local server process and exchanges protocol messages over standard input and standard output. With Streamable HTTP, peers exchange protocol messages over HTTP while keeping session and transport security responsibilities in the host application.
+
+The protocol does not automatically grant trust. Applications still validate tool parameters, protect credentials, apply user consent, and treat external content as untrusted data.

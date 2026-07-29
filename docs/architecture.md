@@ -1,6 +1,6 @@
-# V3 架构
+# V4 架构
 
-PersonalLearning V3 仍是本地单体、单用户应用，不引入消息队列或微服务。外部依赖仅增加一个可配置的 OpenAI-compatible LLM。
+PersonalLearning V4 仍是本地单体、单用户应用，不引入消息队列或微服务。V4 复用已有 SQLite、V2 BGE-M3/FAISS 和 V3 OpenAI-compatible LLM Provider。
 
 ```text
 React + TanStack Query
@@ -72,6 +72,37 @@ SQLite、原文件和 FAISS 不是同一事务，因此采用：
 - SSE 先完成生成、解析、引用校验和数据库持久化，再分段发送最终安全内容；
 - API Key、完整 Prompt、完整历史、完整资料正文不写日志。
 
+## V4 学习活动调用链
+
+```text
+React 活动配置
+→ FastAPI Router
+→ ActivityGenerationService
+   ├─ 范围校验与 V2 检索
+   ├─ 去重和字符预算
+   ├─ 不可信 Sources S1…Sn
+   ├─ LLM Structured Output
+   └─ Question / Source Validator → 原子保存 draft
+→ 草稿管理 → 发布
+→ QuizAttemptService
+   ├─ ObjectiveGrader（纯代码）
+   ├─ ShortAnswerGrader（LLM + Rubric）
+   ├─ ScoreAggregator
+   └─ WrongAnswerService
+→ 结果、来源快照、学习会话与关联任务
+```
+
+活动生成和提交均以进程锁缩小并发竞态窗口，以数据库唯一约束保证最终幂等。Router 只负责 HTTP 契约；生成、验证、批改、聚合和错题分别由服务承担。LLM 不直接访问数据库，也不能直接修改分数、任务或学习状态。
+
+## 一致性与安全边界
+
+- 生成输出整体通过 Pydantic 与来源子集验证后，才在一个事务内保存；修复最多一次，失败不保留半批题目；
+- 发布后题目核心字段不可原地修改，Attempt 保存独立答案与结果；
+- 客观题只由确定性代码评分，简答题评分结果必须匹配已定义 Rubric；
+- 批改失败保留 `failed`，不伪装成零分；同一提交可重试；
+- QuestionSource 保存受限摘录和数据库确定的文件/页码/章节元数据，Material/Chunk 删除时外键置空；
+- 资料和用户答案都被标记为不可信数据，完整 Prompt、API Key、完整正文和模型推理不进入日志。
+
 ## 版本边界
 
-V3 提供可信引用式问答，但不提供 LangGraph、Agent、工具调用、OCR、自动课程和教学闭环。
+V4 提供资料约束的测验、批改和错题闭环，但不提供 LangGraph、Agent、掌握度、FSRS、自适应计划、多 Agent 或外部 MCP 资料源。

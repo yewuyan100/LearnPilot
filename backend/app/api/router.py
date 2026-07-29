@@ -8,8 +8,11 @@ from app.api.routes import (
     health,
     learning_goals,
     learning_sessions,
+    learning_activities,
     materials,
+    quiz_attempts,
     rag,
+    wrong_answers,
 )
 
 api_router = APIRouter()
@@ -20,8 +23,11 @@ for router in (
     courses.router,
     daily_tasks.router,
     learning_sessions.router,
+    learning_activities.router,
     dashboard.router,
     demo.router,
     rag.router,
+    quiz_attempts.router,
+    wrong_answers.router,
 ):
     api_router.include_router(router)

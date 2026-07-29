@@ -8,6 +8,7 @@ from app.models.course import Course
 from app.models.daily_task import DailyTask
 from app.models.knowledge_point import KnowledgePoint
 from app.models.learning_goal import LearningGoal
+from app.models.learning_activity import LearningActivity
 from app.models.learning_session import LearningSession
 from app.schemas.daily_task import DailyTaskCreate, DailyTaskRead, DailyTaskUpdate, TodayResponse
 from app.services.crud import apply_updates, commit, get_or_404
@@ -65,6 +66,8 @@ def create_task(payload: DailyTaskCreate, db: DbSession) -> DailyTask:
         get_or_404(db, Course, payload.course_id, "课程")
     if payload.knowledge_point_id:
         get_or_404(db, KnowledgePoint, payload.knowledge_point_id, "知识点")
+    if payload.activity_id:
+        get_or_404(db, LearningActivity, payload.activity_id, "学习活动")
     task = DailyTask(**payload.model_dump())
     db.add(task)
     return commit(db, task)
@@ -73,7 +76,10 @@ def create_task(payload: DailyTaskCreate, db: DbSession) -> DailyTask:
 @router.patch("/daily-tasks/{task_id}", response_model=DailyTaskRead)
 def update_task(task_id: int, payload: DailyTaskUpdate, db: DbSession) -> DailyTask:
     task = get_or_404(db, DailyTask, task_id, "今日任务")
-    apply_updates(task, payload.model_dump(exclude_unset=True))
+    values = payload.model_dump(exclude_unset=True)
+    if values.get("activity_id"):
+        get_or_404(db, LearningActivity, values["activity_id"], "学习活动")
+    apply_updates(task, values)
     return commit(db, task)
 
 

@@ -1,4 +1,4 @@
-# V2 API
+# PersonalLearning API
 
 默认基地址：`http://127.0.0.1:8000/api`
 
@@ -209,6 +209,30 @@ POST /api/materials/index/rebuild
 - `503`：模型、索引或数据库暂时不可用。
 
 服务端记录错误堆栈，API 只返回面向用户的消息。
+
+## V4 学习活动 API
+
+| 方法 | 路径 | 说明 |
+|---|---|---|
+| POST | `/learning-activities/generate` | 在限定资料范围内生成完整 draft；`request_id` 幂等 |
+| GET | `/learning-activities` | 按状态、课程、知识点分页查询 |
+| GET | `/learning-activities/{id}` | 草稿返回管理字段；已发布活动隐藏答案字段 |
+| PATCH | `/learning-activities/{id}` | 修改草稿元数据，或归档活动 |
+| DELETE | `/learning-activities/{id}/questions/{question_id}` | 从草稿删除题目并重排 |
+| POST | `/learning-activities/{id}/questions/reorder` | 按完整题目 ID 列表重排草稿 |
+| POST | `/learning-activities/{id}/publish` | 校验后发布并固定题目 |
+| POST | `/learning-activities/{id}/attempts` | 为已发布活动创建 Attempt |
+| GET | `/quiz-attempts/{id}` | 进行中返回安全题面；完成后返回评分结果 |
+| PUT | `/quiz-attempts/{id}/answers/{question_id}` | 逐题保存标准化答案或简答原文 |
+| POST | `/quiz-attempts/{id}/submit` | 幂等提交、批改、聚合与错题创建 |
+| GET | `/wrong-answers` | 按状态、课程、知识点分页查询错题 |
+| GET | `/wrong-answers/{id}` | 查看答案、解析与来源快照 |
+| PATCH | `/wrong-answers/{id}` | 标记 `resolved`、`dismissed` 等用户状态 |
+| POST | `/wrong-answers/review` | 将指定错题复制为独立复习活动并开始 Attempt |
+
+生成请求至少包含标题、已索引资料 ID、题型、题数、难度和 UUID `request_id`。相同 ID 与相同请求返回原草稿；相同 ID 配置不一致返回 `409 activity_request_conflict`。
+
+进行中的 Attempt 绝不返回 `correct_answer`、`reference_answer`、`grading_rubric` 或 `explanation`。提交请求包含新的 UUID `request_id`；相同请求与相同答案重放结果，不同答案冲突。失败批改只能以相同请求和答案重试。
 
 ## V3 可信资料问答 API
 

@@ -1,0 +1,19 @@
+[
+  {
+    "id": "core-primitives",
+    "title": "MCP 核心原语测验",
+    "materials": ["mcp-learning.md"],
+    "question_types": ["single_choice", "multiple_choice", "true_false", "short_answer"],
+    "question_count": 4,
+    "difficulty": "mixed"
+  },
+  {
+    "id": "transport-security",
+    "title": "MCP 传输与安全测验",
+    "materials": ["mcp-transport.txt", "untrusted-injection.md"],
+    "question_types": ["single_choice", "true_false", "short_answer"],
+    "question_count": 3,
+    "difficulty": "medium",
+    "contains_prompt_injection_fixture": true
+  }
+]

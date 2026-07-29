@@ -44,3 +44,23 @@ $env:HF_HUB_OFFLINE = "1"
 ```
 
 缺失 Key、余额不足、网络故障或限流都必须报告为失败，不能用 FakeLLM 结果标记真实验收通过。
+
+## V4 活动与批改评测
+
+资产：
+
+- `evals/fixtures/v4/`：人工编写、可核验的 MCP 资料，其中包含一份 Prompt Injection 资料；
+- `evals/activity_generation_dataset.json`：题型、数量、难度和来源范围用例；
+- `evals/grading_dataset.json`：客观题确定性答案及简答题允许分数区间和预期 Rubric 项；
+- `scripts/evaluate_v4.py`：隔离启动真实后端，通过 HTTP API 计算指标；
+- `scripts/acceptance_v4.py`：验证真实生成、真实简答批改、错题复习、重启和来源删除快照。
+
+生成指标包括 Schema Validity、Question Source Validity、Answer Key Validity、Rubric Validity、Duplicate Rate、Requested Count Completion、Prompt Injection Resistance、Generation Failure 和平均延迟。
+
+批改指标包括 Objective Grading Accuracy，以及简答题 Score MAE（相对人工允许区间的越界距离）、Within-Tolerance、Rubric Match、Invalid Grade、Failure 和平均延迟。错题指标包括创建准确率、去重率和复习解决准确率。
+
+```powershell
+.\.venv\Scripts\python.exe .\scripts\evaluate_v4.py --isolated
+```
+
+这是小型回归数据集，只验证当前专用资料和契约的稳定性，不代表通用教学质量或通用评分准确率。真实 Provider 不可用时必须如实记录失败，不能用 FakeLLM 替代。

@@ -112,6 +112,7 @@ export interface DailyTask extends Timestamped {
   learning_goal_id: number;
   course_id: number | null;
   knowledge_point_id: number | null;
+  activity_id: number | null;
   title: string;
   task_type: string;
   estimated_minutes: number;
@@ -267,4 +268,166 @@ export interface RagStatus {
   index_version: string | null;
   rag_prompt_version: string;
   rewrite_prompt_version: string;
+}
+
+export interface QuestionOption {
+  id: string;
+  text: string;
+}
+
+export interface RubricItem {
+  criterion: string;
+  points: number;
+  required_concepts: string[];
+}
+
+export interface QuestionSource extends Timestamped {
+  question_id: number;
+  source_label: string;
+  material_id: number | null;
+  chunk_id: number | null;
+  rank: number;
+  score: number;
+  original_filename: string;
+  chunk_index: number;
+  page_number: number | null;
+  section_title: string | null;
+  content_excerpt: string;
+  source_available: boolean;
+}
+
+export interface ActivityQuestion extends Timestamped {
+  activity_id: number;
+  question_index: number;
+  question_type: "single_choice" | "multiple_choice" | "true_false" | "short_answer";
+  stem: string;
+  options: QuestionOption[] | null;
+  correct_answer: Array<string | boolean> | null;
+  reference_answer: string | null;
+  grading_rubric: RubricItem[] | null;
+  explanation: string;
+  difficulty: string;
+  points: number;
+  status: string;
+  sources: QuestionSource[];
+}
+
+export interface ActivityListItem extends Timestamped {
+  title: string;
+  description: string;
+  activity_type: string;
+  status: "draft" | "published" | "archived" | "generation_failed";
+  course_id: number | null;
+  knowledge_point_id: number | null;
+  course_title: string | null;
+  knowledge_point_title: string | null;
+  question_count: number;
+  total_points: number;
+  published_at: string | null;
+  completed_attempt_count: number;
+}
+
+export interface ActivityDetail extends ActivityListItem {
+  source_scope: Record<string, unknown>;
+  generation_request_id: string;
+  prompt_version: string;
+  model_name: string | null;
+  validation_warnings: string[];
+  questions: ActivityQuestion[];
+}
+
+export interface ActivityPage {
+  items: ActivityListItem[];
+  total: number;
+  page: number;
+  page_size: number;
+  pages: number;
+}
+
+export interface AttemptQuestion {
+  id: number;
+  question_index: number;
+  question_type: ActivityQuestion["question_type"];
+  stem: string;
+  options: QuestionOption[] | null;
+  difficulty: string;
+  points: number;
+  saved_answer: Array<string | boolean> | null;
+  saved_answer_text: string | null;
+}
+
+export interface QuizAnswer extends Timestamped {
+  question_id: number;
+  question_type: ActivityQuestion["question_type"];
+  stem: string;
+  answer: Array<string | boolean> | null;
+  answer_text: string | null;
+  is_correct: boolean | null;
+  grading_status: "pending" | "completed" | "failed";
+  earned_points: number | null;
+  max_points: number;
+  feedback: string | null;
+  matched_rubric_items: string[] | null;
+  missing_rubric_items: string[] | null;
+  grader_confidence: number | null;
+  correct_answer: Array<string | boolean> | null;
+  reference_answer: string | null;
+  grading_rubric: RubricItem[] | null;
+  explanation: string | null;
+  sources: QuestionSource[];
+  wrong_answer_id: number | null;
+  wrong_answer_status: string | null;
+}
+
+export interface QuizAttempt extends Timestamped {
+  activity_id: number;
+  activity_title: string;
+  learning_session_id: number | null;
+  status: "in_progress" | "submitted" | "grading" | "completed" | "failed" | "abandoned";
+  started_at: string;
+  submitted_at: string | null;
+  graded_at: string | null;
+  total_points: number | null;
+  earned_points: number | null;
+  score_percentage: number | null;
+  correct_count: number;
+  incorrect_count: number;
+  partial_count: number;
+  grading_model: string | null;
+  grading_prompt_version: string | null;
+  error_message: string | null;
+  questions: AttemptQuestion[];
+  answers: QuizAnswer[];
+  idempotent_replay: boolean;
+}
+
+export interface WrongAnswer extends Timestamped {
+  question_id: number;
+  attempt_id: number;
+  answer_id: number;
+  course_id: number | null;
+  knowledge_point_id: number | null;
+  course_title: string | null;
+  knowledge_point_title: string | null;
+  status: "active" | "reviewing" | "resolved" | "dismissed";
+  error_type: "incorrect" | "partial" | "unanswered";
+  review_count: number;
+  last_reviewed_at: string | null;
+  resolved_at: string | null;
+  question_type: ActivityQuestion["question_type"];
+  stem: string;
+  explanation: string;
+  answer: Array<string | boolean> | null;
+  answer_text: string | null;
+  correct_answer: Array<string | boolean> | null;
+  reference_answer: string | null;
+  sources: QuestionSource[];
+}
+
+export interface WrongAnswerPage {
+  items: WrongAnswer[];
+  total: number;
+  page: number;
+  page_size: number;
+  pages: number;
 }

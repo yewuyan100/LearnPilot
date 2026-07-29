@@ -7,7 +7,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     app_name: str = "PersonalLearning"
-    app_version: str = "3.0.0"
+    app_version: str = "4.0.0"
     api_prefix: str = "/api"
     database_url: str = "sqlite:///./data/personal_learning.sqlite3"
     upload_dir: Path = Path("./uploads")
@@ -55,6 +55,19 @@ class Settings(BaseSettings):
     rag_prompt_version: str = "rag-answer-v1"
     rag_rewrite_prompt_version: str = "rag-rewrite-v1"
     rag_citation_excerpt_chars: int = 800
+    activity_max_question_count: int = 20
+    activity_default_question_count: int = 8
+    activity_max_sources: int = 8
+    activity_max_context_chars: int = 16000
+    activity_max_chunk_chars: int = 2400
+    activity_generation_prompt_version: str = "activity-generation-v1"
+    activity_generation_max_output_tokens: int = 6000
+    short_answer_grading_prompt_version: str = "short-answer-grading-v1"
+    short_answer_max_chars: int = 4000
+    short_answer_grading_temperature: float = 0.0
+    short_answer_grading_max_retries: int = 1
+    wrong_answer_short_answer_threshold: float = 0.6
+    question_source_excerpt_chars: int = 800
 
     model_config = SettingsConfigDict(
         env_file="../.env",
@@ -107,6 +120,23 @@ class Settings(BaseSettings):
             self.rag_citation_excerpt_chars,
         ) <= 0:
             raise ValueError("RAG 限制配置必须大于 0")
+        if not 1 <= self.activity_default_question_count <= self.activity_max_question_count:
+            raise ValueError("默认题目数必须在 1 到 ACTIVITY_MAX_QUESTION_COUNT 之间")
+        if min(
+            self.activity_max_sources,
+            self.activity_max_context_chars,
+            self.activity_max_chunk_chars,
+            self.activity_generation_max_output_tokens,
+            self.short_answer_max_chars,
+            self.question_source_excerpt_chars,
+        ) <= 0:
+            raise ValueError("V4 活动与批改限制配置必须大于 0")
+        if not 0 <= self.short_answer_grading_temperature <= 2:
+            raise ValueError("SHORT_ANSWER_GRADING_TEMPERATURE 必须在 0 到 2 之间")
+        if self.short_answer_grading_max_retries < 0:
+            raise ValueError("SHORT_ANSWER_GRADING_MAX_RETRIES 不能小于 0")
+        if not 0 <= self.wrong_answer_short_answer_threshold <= 1:
+            raise ValueError("WRONG_ANSWER_SHORT_ANSWER_THRESHOLD 必须在 0 到 1 之间")
         return self
 
     @property

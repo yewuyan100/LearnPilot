@@ -24,6 +24,29 @@ const SettingsPage = lazy(() =>
 const RagPage = lazy(() =>
   import("./pages/RagPage").then((module) => ({ default: module.RagPage })),
 );
+const ActivitiesPage = lazy(() =>
+  import("./pages/ActivitiesPage").then((module) => ({ default: module.ActivitiesPage })),
+);
+const ActivityBuilderPage = lazy(() =>
+  import("./pages/ActivityBuilderPage").then((module) => ({
+    default: module.ActivityBuilderPage,
+  })),
+);
+const QuizAttemptPage = lazy(() =>
+  import("./pages/QuizAttemptPage").then((module) => ({
+    default: module.QuizAttemptPage,
+  })),
+);
+const QuizResultPage = lazy(() =>
+  import("./pages/QuizResultPage").then((module) => ({
+    default: module.QuizResultPage,
+  })),
+);
+const WrongAnswersPage = lazy(() =>
+  import("./pages/WrongAnswersPage").then((module) => ({
+    default: module.WrongAnswersPage,
+  })),
+);
 const LearningSessionPage = lazy(() =>
   import("./pages/LearningSessionPage").then((module) => ({
     default: module.LearningSessionPage,
@@ -43,12 +66,17 @@ export default function App() {
           <Route path="/courses" element={<CoursesPage />} />
           <Route path="/materials" element={<MaterialsPage />} />
           <Route path="/rag" element={<RagPage />} />
+          <Route path="/activities" element={<ActivitiesPage />} />
+          <Route path="/activities/:id" element={<ActivityBuilderPage />} />
+          <Route path="/wrong-answers" element={<WrongAnswersPage />} />
           <Route path="/reviews" element={<ReviewsPage />} />
           <Route path="/progress" element={<ProgressPage />} />
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
         <Route path="/learning-sessions/:id" element={<LearningSessionPage />} />
+        <Route path="/quiz-attempts/:id" element={<QuizAttemptPage />} />
+        <Route path="/quiz-attempts/:id/result" element={<QuizResultPage />} />
       </Routes>
     </Suspense>
   );
