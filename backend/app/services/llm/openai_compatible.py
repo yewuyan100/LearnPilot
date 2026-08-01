@@ -93,16 +93,25 @@ class OpenAICompatibleProvider:
                     latency_ms=round((perf_counter() - started) * 1000),
                 )
             except json.JSONDecodeError as exc:
+                if attempt < self.settings.llm_max_retries:
+                    last_error = exc
+                    continue
                 raise LLMOutputInvalidError(
                     "模型未返回有效的结构化结果",
                     reason="invalid_json",
                 ) from exc
             except ValidationError as exc:
+                if attempt < self.settings.llm_max_retries:
+                    last_error = exc
+                    continue
                 raise LLMOutputInvalidError(
                     "模型输出未通过结构校验",
                     reason=_validation_reason(exc),
                 ) from exc
             except (KeyError, TypeError) as exc:
+                if attempt < self.settings.llm_max_retries:
+                    last_error = exc
+                    continue
                 raise LLMOutputInvalidError(
                     "模型服务响应结构不完整",
                     reason="malformed_provider_response",

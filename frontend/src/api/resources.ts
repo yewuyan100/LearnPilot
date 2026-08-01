@@ -23,6 +23,9 @@ import type {
   QuizAttempt,
   WrongAnswer,
   WrongAnswerPage,
+  AgentConversation,
+  AgentConversationDetail,
+  AgentRun,
 } from "../types";
 
 export const goalsApi = {
@@ -217,4 +220,22 @@ export const wrongAnswersApi = {
         request_id: crypto.randomUUID(),
       }),
     }),
+};
+
+export const agentApi = {
+  list: () => api<AgentConversation[]>("/agent/conversations"),
+  get: (id: number) => api<AgentConversationDetail>(`/agent/conversations/${id}`),
+  create: (title = "新建学习助手会话") =>
+    api<AgentConversation>("/agent/conversations", { method: "POST", ...jsonBody({ title }) }),
+  archive: (id: number) =>
+    api<AgentConversation>(`/agent/conversations/${id}/archive`, { method: "POST" }),
+  run: (conversationId: number, input: string, requestId: string) =>
+    api<AgentRun>(`/agent/conversations/${conversationId}/runs`, {
+      method: "POST", ...jsonBody({ input, request_id: requestId }),
+    }),
+  stream: (conversationId: number, input: string, requestId: string, signal: AbortSignal,
+    onEvent: (event: string, data: unknown) => void) =>
+    streamPost(`/agent/conversations/${conversationId}/runs/stream`, { input, request_id: requestId }, signal, onEvent),
+  confirm: (runId: number, decision: "approve" | "reject") =>
+    api<AgentRun>(`/agent/runs/${runId}/confirm`, { method: "POST", ...jsonBody({ decision }) }),
 };

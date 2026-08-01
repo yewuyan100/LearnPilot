@@ -14,6 +14,7 @@ from app.models.question_source import QuestionSource
 from app.models.quiz_answer import QuizAnswer
 from app.models.quiz_attempt import QuizAttempt
 from app.models.wrong_answer import WrongAnswer
+from app.models.agent import AgentConversation, AgentMessage, AgentRun, AgentToolCall, AgentConfirmation
 
 __all__ = [
     "Course",
@@ -32,4 +33,9 @@ __all__ = [
     "QuizAnswer",
     "QuizAttempt",
     "WrongAnswer",
+    "AgentConversation",
+    "AgentMessage",
+    "AgentRun",
+    "AgentToolCall",
+    "AgentConfirmation",
 ]

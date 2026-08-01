@@ -1,6 +1,6 @@
 # PersonalLearning
 
-PersonalLearning 是一个本地优先、单用户使用的个人学习工作台。当前版本为 **V4：学习活动、测验、批改与错题闭环**。它完整保留 V1 学习管理、V2 本地知识库和 V3 可信 RAG，并新增基于真实资料 Chunk 的出题、作答、批改、结果与错题复习。
+PersonalLearning 是一个本地优先、单用户使用的个人学习工作台。当前版本为 **V5：LangGraph 单学习 Agent 与受控工具编排**。它完整保留 V1 学习管理、V2 本地知识库、V3 可信 RAG 和 V4 测验错题闭环，并新增可中断恢复、写前确认的学习助手。
 
 ## V4 能做什么
 
@@ -322,3 +322,8 @@ Manifest 与 SQLite Chunk 校验不一致、模型配置变化、索引文件缺
 没有可用索引、索引过期、检索无结果、分数低于当前阈值或上下文为空时，确定性门控会在调用 LLM 前拒答。模型即使被调用，也必须返回受 Pydantic 校验的结构，并通过引用校验。
 
 更多说明见 [架构](docs/architecture.md)、[RAG 设计](docs/rag.md)、[评测](docs/evaluation.md)、[数据模型](docs/data-model.md) 与 [API](docs/api.md)。
+# PersonalLearning V5：Checkpointed LangGraph 学习助手
+
+V5 在 V1–V4 本地学习闭环之上新增单一学习 Agent。访问 `/agent` 可进行资料问答、学习数据查询，以及需人工确认的任务、笔记、活动草稿、错题复习和测验启动操作。Agent 使用显式 `StateGraph`、独立 SQLite checkpoint、稳定 `thread_id`、不可变确认快照和业务审计表；任何业务写入都必须在确认恢复后执行。
+
+常用验证命令：`python scripts/acceptance_v5.py`、`python scripts/evaluate_v5.py --isolated`。详见 [Agent 架构](docs/agent-architecture.md)、[工具清单](docs/agent-tools.md)、[Checkpoint](docs/agent-checkpoint.md) 与 [安全边界](docs/agent-security.md)。

@@ -7,7 +7,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     app_name: str = "PersonalLearning"
-    app_version: str = "4.0.0"
+    app_version: str = "5.0.0"
     api_prefix: str = "/api"
     database_url: str = "sqlite:///./data/personal_learning.sqlite3"
     upload_dir: Path = Path("./uploads")
@@ -68,6 +68,22 @@ class Settings(BaseSettings):
     short_answer_grading_max_retries: int = 1
     wrong_answer_short_answer_threshold: float = 0.6
     question_source_excerpt_chars: int = 800
+    app_timezone: str = "Asia/Shanghai"
+    agent_enabled: bool = True
+    agent_max_history_messages: int = 10
+    agent_max_history_chars: int = 8000
+    agent_max_steps: int = 4
+    agent_max_read_tools: int = 3
+    agent_max_write_tools: int = 1
+    agent_recursion_limit: int = 16
+    agent_confirmation_ttl_minutes: int = 1440
+    agent_classification_prompt_version: str = "agent-classification-v1"
+    agent_planning_prompt_version: str = "agent-planning-v1"
+    agent_response_prompt_version: str = "agent-response-v1"
+    agent_checkpoint_enabled: bool = True
+    agent_checkpoint_db_path: Path = Path("./data/agent_checkpoints.sqlite")
+    agent_tool_result_max_chars: int = 6000
+    agent_stream_chunk_chars: int = 24
 
     model_config = SettingsConfigDict(
         env_file="../.env",
@@ -137,6 +153,20 @@ class Settings(BaseSettings):
             raise ValueError("SHORT_ANSWER_GRADING_MAX_RETRIES 不能小于 0")
         if not 0 <= self.wrong_answer_short_answer_threshold <= 1:
             raise ValueError("WRONG_ANSWER_SHORT_ANSWER_THRESHOLD 必须在 0 到 1 之间")
+        if min(
+            self.agent_max_history_messages,
+            self.agent_max_history_chars,
+            self.agent_max_steps,
+            self.agent_max_read_tools,
+            self.agent_max_write_tools,
+            self.agent_recursion_limit,
+            self.agent_confirmation_ttl_minutes,
+            self.agent_tool_result_max_chars,
+            self.agent_stream_chunk_chars,
+        ) <= 0:
+            raise ValueError("Agent limits must be greater than zero")
+        if self.agent_max_write_tools != 1:
+            raise ValueError("AGENT_MAX_WRITE_TOOLS must be 1")
         return self
 
     @property

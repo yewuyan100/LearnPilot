@@ -245,9 +245,14 @@ class RagConversationService:
                     )
             except LLMOutputInvalidError:
                 try:
-                    answer = self._repair_answer(
-                        question, retrieval.sources, "llm_output_invalid"
-                    )
+                    try:
+                        answer = self._repair_answer(
+                            question, retrieval.sources, "llm_output_invalid"
+                        )
+                    except LLMOutputInvalidError:
+                        answer = self._repair_answer(
+                            question, retrieval.sources, "llm_output_invalid_retry"
+                        )
                     valid, invalid_reason = validate_answer(answer, retrieval.sources)
                     if valid and answer.answerable:
                         assistant.content = answer.answer_markdown.strip()

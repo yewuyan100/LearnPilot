@@ -431,3 +431,70 @@ export interface WrongAnswerPage {
   page_size: number;
   pages: number;
 }
+
+export interface AgentCitation {
+  source_label: string;
+  material_id: number | null;
+  chunk_id: number | null;
+  original_filename: string;
+  page_number: number | null;
+  section_title: string | null;
+  content_excerpt: string;
+}
+
+export interface AgentConversation extends Timestamped {
+  title: string;
+  status: "active" | "archived";
+  thread_id: string;
+  last_message_at: string | null;
+}
+
+export interface AgentMessage {
+  id: number;
+  role: "user" | "assistant";
+  content: string;
+  citations: AgentCitation[];
+  run_id: number | null;
+  created_at: string;
+}
+
+export interface AgentConversationDetail extends AgentConversation {
+  messages: AgentMessage[];
+}
+
+export interface AgentConfirmation {
+  id: number;
+  summary: string;
+  tool_name: string;
+  arguments: Record<string, unknown>;
+  status: string;
+  expires_at: string;
+}
+
+export interface AgentToolCall {
+  id: number;
+  step_index: number;
+  tool_name: string;
+  tool_kind: "read" | "write";
+  arguments: Record<string, unknown>;
+  status: string;
+  result: null | { success: boolean; user_summary: string };
+  duration_ms: number | null;
+}
+
+export interface AgentRun {
+  id: number;
+  conversation_id: number;
+  request_id: string;
+  input: string;
+  status: string;
+  intent: string | null;
+  final_answer: string | null;
+  citations: AgentCitation[];
+  error_code: string | null;
+  idempotent_replay: boolean;
+  confirmation: AgentConfirmation | null;
+  tool_calls: AgentToolCall[];
+  created_at: string;
+  updated_at: string;
+}

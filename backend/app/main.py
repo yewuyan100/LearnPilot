@@ -1,4 +1,5 @@
 import logging
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request, status
 from fastapi.exceptions import RequestValidationError
@@ -9,6 +10,7 @@ from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from app.api.router import api_router
 from app.core.config import get_settings
 from app.core.errors import AppError
+from app.services.agent.runtime import AgentRuntime
 
 logging.basicConfig(
     level=logging.INFO,
@@ -17,10 +19,20 @@ logging.basicConfig(
 logger = logging.getLogger("personal_learning")
 settings = get_settings()
 
+
+@asynccontextmanager
+async def lifespan(application: FastAPI):
+    application.state.agent_runtime = AgentRuntime(settings)
+    try:
+        yield
+    finally:
+        application.state.agent_runtime.close()
+
 app = FastAPI(
     title=settings.app_name,
     version=settings.app_version,
-    description="PersonalLearning V4 本地优先学习活动、测验、批改与错题闭环 API",
+    lifespan=lifespan,
+    description="PersonalLearning V5 LangGraph 单学习 Agent 与受控工具编排 API",
 )
 app.add_middleware(
     CORSMiddleware,

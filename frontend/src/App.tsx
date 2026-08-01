@@ -24,6 +24,9 @@ const SettingsPage = lazy(() =>
 const RagPage = lazy(() =>
   import("./pages/RagPage").then((module) => ({ default: module.RagPage })),
 );
+const AgentPage = lazy(() =>
+  import("./pages/AgentPage").then((module) => ({ default: module.AgentPage })),
+);
 const ActivitiesPage = lazy(() =>
   import("./pages/ActivitiesPage").then((module) => ({ default: module.ActivitiesPage })),
 );
@@ -66,6 +69,7 @@ export default function App() {
           <Route path="/courses" element={<CoursesPage />} />
           <Route path="/materials" element={<MaterialsPage />} />
           <Route path="/rag" element={<RagPage />} />
+          <Route path="/agent" element={<AgentPage />} />
           <Route path="/activities" element={<ActivitiesPage />} />
           <Route path="/activities/:id" element={<ActivityBuilderPage />} />
           <Route path="/wrong-answers" element={<WrongAnswersPage />} />

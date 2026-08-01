@@ -278,3 +278,6 @@ accepted → retrieval → message_start → delta* → citations → done
 ```
 
 发生错误时以 `error` 结束。服务端先完成模型输出解析、引用校验和数据库持久化，再发送 `delta`；不会把未经校验的原始模型 Token 直接转发。断线后客户端重新 GET 会话即可恢复最终状态。
+# V5 Agent API
+
+`/api/agent` 提供状态、会话创建/列表/详情/归档、运行创建/查询、确认，以及运行和确认两类 SSE 接口。应用 SSE 只允许 `accepted`、`status`、`tool_start`、`tool_result`、`confirmation_required`、`message_start`、`delta`、`citations`、`done`、`error`，不包含图状态、节点名、内部计划、提示词或推理。

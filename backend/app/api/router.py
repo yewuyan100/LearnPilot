@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 
 from app.api.routes import (
+    agent,
     courses,
     daily_tasks,
     dashboard,
@@ -17,6 +18,7 @@ from app.api.routes import (
 
 api_router = APIRouter()
 for router in (
+    agent.router,
     health.router,
     learning_goals.router,
     materials.router,

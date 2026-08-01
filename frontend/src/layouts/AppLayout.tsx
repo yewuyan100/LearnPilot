@@ -7,6 +7,7 @@ import {
   ClipboardCheck,
   Menu,
   MessageSquareText,
+  Bot,
   RotateCcw,
   CircleX,
   Settings,
@@ -16,6 +17,7 @@ import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
 const navigation = [
+  { to: "/agent", label: "学习助手", icon: Bot },
   { to: "/today", label: "今日学习", icon: CalendarCheck },
   { to: "/courses", label: "课程", icon: BookOpen },
   { to: "/materials", label: "资料", icon: Files },
@@ -63,12 +65,12 @@ export function AppLayout() {
         </nav>
         <div className="side-rail__foot">
           <span className="status-dot" /> 本地数据库
-          <small>PersonalLearning V4</small>
+          <small>PersonalLearning V5</small>
         </div>
       </aside>
       <main className="app-main">
         <Outlet />
-        <footer className="app-footer">PersonalLearning · V4 学习活动与错题闭环</footer>
+        <footer className="app-footer">PersonalLearning · V5 受控学习助手</footer>
       </main>
     </div>
   );

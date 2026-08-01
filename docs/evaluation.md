@@ -64,3 +64,6 @@ $env:HF_HUB_OFFLINE = "1"
 ```
 
 这是小型回归数据集，只验证当前专用资料和契约的稳定性，不代表通用教学质量或通用评分准确率。真实 Provider 不可用时必须如实记录失败，不能用 FakeLLM 替代。
+# V5 评测
+
+`scripts/evaluate_v5.py --isolated` 使用 `evals/agent_v5_cases.json` 与 `evals/fixtures/v5/`，报告意图、工具选择、计划参数、澄清、拒绝、确认、确认前零写入、写入幂等、引用、checkpoint、安全拒绝和延迟指标。该集合规模小、用途是可重复回归，不代表通用 Agent 能力。`scripts/acceptance_v5.py` 使用真实 BGE-M3、真实 OpenAI-compatible LLM、临时业务库/上传目录/FAISS/checkpoint 与 HTTP 完成端到端验收。

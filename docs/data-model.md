@@ -167,3 +167,6 @@ V4 为今日任务增加可空 Activity 外键。有关联 Activity 的任务只
 - `20260730_0004_learning_activities.py`：新增六张 V4 表、约束和查询索引，并为 `daily_tasks` 增加 `activity_id`；
 - 当前 head：`20260730_0004`；
 - `0001`、`0002`、`0003` 历史迁移均未修改。
+# Alembic V5
+
+迁移 `20260801_0005_langgraph_learning_agent.py` 新增 `agent_conversations`、`agent_messages`、`agent_runs`、`agent_tool_calls`、`agent_confirmations`。`conversation_id + request_id`、`run_id + step_index` 和每运行一个 confirmation 均有唯一约束。LangGraph checkpoint 不写入这些业务表，而是保存在 `AGENT_CHECKPOINT_DB_PATH` 指向的独立 SQLite 文件。
