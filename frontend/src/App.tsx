@@ -12,8 +12,14 @@ const CoursesPage = lazy(() =>
 const MaterialsPage = lazy(() =>
   import("./pages/MaterialsPage").then((module) => ({ default: module.MaterialsPage })),
 );
-const ReviewsPage = lazy(() =>
-  import("./pages/ReviewsPage").then((module) => ({ default: module.ReviewsPage })),
+const ReviewPlanPage = lazy(() =>
+  import("./pages/ReviewPlanPage").then((module) => ({ default: module.ReviewPlanPage })),
+);
+const MasteryPage = lazy(() =>
+  import("./pages/MasteryPage").then((module) => ({ default: module.MasteryPage })),
+);
+const MasteryDetailPage = lazy(() =>
+  import("./pages/MasteryDetailPage").then((module) => ({ default: module.MasteryDetailPage })),
 );
 const ProgressPage = lazy(() =>
   import("./pages/ProgressPage").then((module) => ({ default: module.ProgressPage })),
@@ -73,7 +79,9 @@ export default function App() {
           <Route path="/activities" element={<ActivitiesPage />} />
           <Route path="/activities/:id" element={<ActivityBuilderPage />} />
           <Route path="/wrong-answers" element={<WrongAnswersPage />} />
-          <Route path="/reviews" element={<ReviewsPage />} />
+          <Route path="/mastery" element={<MasteryPage />} />
+          <Route path="/mastery/:id" element={<MasteryDetailPage />} />
+          <Route path="/reviews" element={<ReviewPlanPage />} />
           <Route path="/progress" element={<ProgressPage />} />
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="*" element={<NotFoundPage />} />

@@ -3,7 +3,7 @@ from datetime import datetime
 from fastapi import APIRouter, status
 from sqlalchemy import select
 
-from app.api.deps import DbSession
+from app.api.deps import AppSettings, DbSession
 from app.models.course import Course
 from app.models.daily_task import DailyTask
 from app.models.knowledge_point import KnowledgePoint
@@ -79,7 +79,7 @@ def get_session(session_id: int, db: DbSession) -> LearningSessionRead:
 
 @router.patch("/{session_id}", response_model=LearningSessionRead)
 def update_session(
-    session_id: int, payload: LearningSessionUpdate, db: DbSession
+    session_id: int, payload: LearningSessionUpdate, db: DbSession, settings: AppSettings
 ) -> LearningSessionRead:
     session = get_or_404(db, LearningSession, session_id, "学习会话")
     values = payload.model_dump(exclude_unset=True)
@@ -93,5 +93,10 @@ def update_session(
     if task_status and session.daily_task_id:
         get_or_404(db, DailyTask, session.daily_task_id, "今日任务").status = task_status
     commit(db, session)
+    if session.status == "completed" and session.knowledge_point_id:
+        from app.services.adaptive_learning.lifecycle import try_refresh_adaptive_learning
+        try_refresh_adaptive_learning(
+            db, settings, session.knowledge_point_id,
+            trigger_type="learning_session_completed", trigger_source_id=session.id,
+        )
     return serialize_session(db, session)
-

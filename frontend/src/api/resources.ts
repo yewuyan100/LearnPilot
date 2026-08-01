@@ -26,6 +26,11 @@ import type {
   AgentConversation,
   AgentConversationDetail,
   AgentRun,
+  AdaptiveRecommendation,
+  AdaptiveReview,
+  MasteryDetail,
+  MasteryPageData,
+  WeakPoint,
 } from "../types";
 
 export const goalsApi = {
@@ -238,4 +243,32 @@ export const agentApi = {
     streamPost(`/agent/conversations/${conversationId}/runs/stream`, { input, request_id: requestId }, signal, onEvent),
   confirm: (runId: number, decision: "approve" | "reject") =>
     api<AgentRun>(`/agent/runs/${runId}/confirm`, { method: "POST", ...jsonBody({ decision }) }),
+};
+
+export const masteryApi = {
+  list: () => api<MasteryPageData>("/mastery?page=1&page_size=100&sort=weakness"),
+  get: (knowledgePointId: number) => api<MasteryDetail>(`/mastery/${knowledgePointId}`),
+  weakPoints: () => api<WeakPoint[]>("/mastery/weak-points?limit=100&include_unassessed=true"),
+  rebuild: () => api<{ processed: number }>("/mastery/rebuild", {
+    method: "POST", ...jsonBody({ course_id: null, knowledge_point_id: null }),
+  }),
+  selfAssessment: (knowledgePointId: number, rating: number) =>
+    api<MasteryDetail>(`/mastery/${knowledgePointId}/self-assessment`, {
+      method: "PUT", ...jsonBody({ rating, request_id: crypto.randomUUID() }),
+    }),
+};
+
+export const adaptiveApi = {
+  reviews: () => api<AdaptiveReview[]>("/reviews?limit=200"),
+  recommendations: (status = "pending") =>
+    api<AdaptiveRecommendation[]>(`/adaptive-recommendations?status=${status}`),
+  accept: (id: number) => api<{
+    recommendation: AdaptiveRecommendation;
+    task: DailyTask;
+    idempotent_replay: boolean;
+  }>(`/adaptive-recommendations/${id}/accept`, {
+    method: "POST", ...jsonBody({ request_id: crypto.randomUUID(), confirmed: true }),
+  }),
+  reject: (id: number) =>
+    api<AdaptiveRecommendation>(`/adaptive-recommendations/${id}/reject`, { method: "POST" }),
 };

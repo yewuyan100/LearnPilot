@@ -31,6 +31,7 @@ from app.services.grading.objective import normalize_objective_answer
 from app.services.grading.service import GradingService
 from app.services.llm.base import LLMProvider
 from app.services.wrong_answers import WrongAnswerService
+from app.services.adaptive_learning.lifecycle import try_refresh_adaptive_learning
 
 
 logger = logging.getLogger("personal_learning.attempts")
@@ -307,6 +308,25 @@ class QuizAttemptService:
             attempt.graded_at = datetime.now(timezone.utc)
             self._complete_learning_links(attempt, activity)
             self.db.commit()
+            if activity.knowledge_point_id:
+                from app.services.adaptive_learning.scheduler import ReviewScheduler
+                completed_tasks = self.db.scalars(select(DailyTask).where(
+                    DailyTask.knowledge_point_id == activity.knowledge_point_id,
+                    DailyTask.status == "completed",
+                )).all()
+                scheduler = ReviewScheduler(self.db, self.settings)
+                for completed_task in completed_tasks:
+                    scheduler.complete_for_task(completed_task)
+                self.db.commit()
+            try_refresh_adaptive_learning(
+                self.db, self.settings, activity.knowledge_point_id,
+                trigger_type=(
+                    "review_completed"
+                    if activity.source_scope.get("kind") == "wrong_answer_review"
+                    else "quiz_completed"
+                ),
+                trigger_source_id=attempt.id,
+            )
             logger.info(
                 "attempt_grading_completed request_id=%s activity_id=%s attempt_id=%s "
                 "objective_question_count=%s short_answer_count=%s earned_points=%s "

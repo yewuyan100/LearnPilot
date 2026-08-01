@@ -78,7 +78,8 @@ class AgentService:
         conversation.last_message_at=now; self.db.commit(); self.db.refresh(run)
         initial = {"conversation_id":conversation_id,"run_id":run.id,"thread_id":conversation.thread_id,"request_id":request_id,
             "user_input":user_input.strip(),"history":[],"plan":[],"current_step":0,"completed_steps":[],"tool_results":[],
-            "errors":[],"citations":[],"status":"accepted","step_count":0,"max_steps":self.settings.agent_max_steps}
+            "errors":[],"citations":[],"status":"accepted","step_count":0,"max_steps":self.settings.agent_max_steps,
+            "fast_route_used":False,"planner_skipped":False,"composer_skipped":True,"llm_call_count":0}
         graph = build_graph(GraphContext(self.db,self.settings,self.provider,ToolRegistry(self.db,self.settings,self.embedder,self.provider)), self.checkpointer)
         try:
             graph.invoke(initial, config={"configurable":{"thread_id":conversation.thread_id},"recursion_limit":self.settings.agent_recursion_limit})
@@ -127,7 +128,13 @@ class AgentService:
             call=next((x for x in calls if x.id==confirmation.tool_call_id),None)
             confirmation_read=AgentConfirmationRead(id=confirmation.id,summary=confirmation.summary,tool_name=call.tool_name if call else "",
                 arguments=confirmation.arguments_snapshot,status=confirmation.status,expires_at=confirmation.expires_at)
+        performance = dict((run.prompt_versions or {}).get("performance") or {})
+        if run.started_at and run.completed_at:
+            started = run.started_at.replace(tzinfo=timezone.utc) if run.started_at.tzinfo is None else run.started_at
+            completed = run.completed_at.replace(tzinfo=timezone.utc) if run.completed_at.tzinfo is None else run.completed_at
+            performance["total_latency_ms"] = round((completed - started).total_seconds() * 1000)
+        performance["tool_latency_ms"] = sum(x.duration_ms or 0 for x in calls)
         return AgentRunRead(id=run.id,conversation_id=run.conversation_id,request_id=run.request_id,input=run.input_text,status=run.status,
             intent=run.intent,final_answer=run.final_answer,citations=run.citations or [],error_code=run.error_code,idempotent_replay=idempotent,
-            confirmation=confirmation_read,tool_calls=[AgentToolCallRead(id=x.id,step_index=x.step_index,tool_name=x.tool_name,tool_kind=x.tool_kind,
+            confirmation=confirmation_read,performance=performance,tool_calls=[AgentToolCallRead(id=x.id,step_index=x.step_index,tool_name=x.tool_name,tool_kind=x.tool_kind,
             arguments=x.arguments,status=x.status,result=x.result,duration_ms=x.duration_ms) for x in calls],created_at=run.created_at,updated_at=run.updated_at)

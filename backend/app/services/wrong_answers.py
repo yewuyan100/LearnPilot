@@ -216,6 +216,11 @@ class WrongAnswerService:
         elif value in {"active", "dismissed"}:
             wrong.resolved_at = None
         self.db.commit()
+        from app.services.adaptive_learning.lifecycle import try_refresh_adaptive_learning
+        try_refresh_adaptive_learning(
+            self.db, self.settings, wrong.knowledge_point_id,
+            trigger_type="review_completed", trigger_source_id=wrong.id,
+        )
         return self._serialize(wrong)
 
     def create_review_attempt(

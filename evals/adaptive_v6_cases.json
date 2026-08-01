@@ -1,0 +1,14 @@
+[
+  {"id":"no-evidence","scores":[],"expected_level":"unassessed"},
+  {"id":"few-high","scores":[["objective_quiz",90,0.40]],"expected_level":"strong"},
+  {"id":"many-high","scores":[["objective_quiz",90,0.40],["short_answer_quiz",85,0.25],["successful_review",100,0.15]],"expected_level":"strong"},
+  {"id":"consecutive-errors","scores":[["objective_quiz",10,0.40],["objective_quiz",20,0.40]],"expected_level":"beginner"},
+  {"id":"tasks-high-quiz-low","scores":[["task_completion",100,0.08],["objective_quiz",20,0.40]],"expected_level":"beginner"},
+  {"id":"review-improvement","scores":[["objective_quiz",45,0.40],["successful_review",100,0.15]],"expected_level":"proficient"},
+  {"id":"review-failed","scores":[["short_answer_quiz",25,0.25]],"expected_level":"beginner"},
+  {"id":"active-wrong","scores":[["objective_quiz",30,0.40]],"expected_level":"beginner"},
+  {"id":"overdue","scores":[["objective_quiz",55,0.40]],"expected_level":"developing"},
+  {"id":"high-low-confidence","scores":[["self_assessment",100,0.05]],"expected_level":"strong"},
+  {"id":"agent-weak-query","agent_tool":"list_weak_knowledge_points"},
+  {"id":"agent-review-task","agent_tool":"accept_review_recommendation"}
+]

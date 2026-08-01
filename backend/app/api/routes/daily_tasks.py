@@ -3,7 +3,7 @@ from datetime import date
 from fastapi import APIRouter, Response, status
 from sqlalchemy import select
 
-from app.api.deps import DbSession
+from app.api.deps import AppSettings, DbSession
 from app.models.course import Course
 from app.models.daily_task import DailyTask
 from app.models.knowledge_point import KnowledgePoint
@@ -74,13 +74,23 @@ def create_task(payload: DailyTaskCreate, db: DbSession) -> DailyTask:
 
 
 @router.patch("/daily-tasks/{task_id}", response_model=DailyTaskRead)
-def update_task(task_id: int, payload: DailyTaskUpdate, db: DbSession) -> DailyTask:
+def update_task(task_id: int, payload: DailyTaskUpdate, db: DbSession, settings: AppSettings) -> DailyTask:
     task = get_or_404(db, DailyTask, task_id, "今日任务")
     values = payload.model_dump(exclude_unset=True)
     if values.get("activity_id"):
         get_or_404(db, LearningActivity, values["activity_id"], "学习活动")
     apply_updates(task, values)
-    return commit(db, task)
+    commit(db, task)
+    if task.status == "completed" and task.knowledge_point_id:
+        from app.services.adaptive_learning.lifecycle import try_refresh_adaptive_learning
+        from app.services.adaptive_learning.scheduler import ReviewScheduler
+        ReviewScheduler(db, settings).complete_for_task(task)
+        db.commit()
+        try_refresh_adaptive_learning(
+            db, settings, task.knowledge_point_id,
+            trigger_type="task_completed", trigger_source_id=task.id,
+        )
+    return task
 
 
 @router.delete("/daily-tasks/{task_id}", status_code=status.HTTP_204_NO_CONTENT)

@@ -30,3 +30,7 @@ class AgentState(TypedDict, total=False):
     failure_code: str | None
     step_count: int
     max_steps: int
+    fast_route_used: bool
+    planner_skipped: bool
+    composer_skipped: bool
+    llm_call_count: int

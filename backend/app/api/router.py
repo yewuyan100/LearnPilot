@@ -1,6 +1,8 @@
 from fastapi import APIRouter
 
 from app.api.routes import (
+    adaptive,
+    adaptive_metrics,
     agent,
     courses,
     daily_tasks,
@@ -14,10 +16,16 @@ from app.api.routes import (
     quiz_attempts,
     rag,
     wrong_answers,
+    mastery,
+    reviews,
 )
 
 api_router = APIRouter()
 for router in (
+    mastery.router,
+    reviews.router,
+    adaptive.router,
+    adaptive_metrics.router,
     agent.router,
     health.router,
     learning_goals.router,

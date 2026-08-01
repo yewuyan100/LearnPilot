@@ -11,6 +11,7 @@ import {
   RotateCcw,
   CircleX,
   Settings,
+  BrainCircuit,
   X,
 } from "lucide-react";
 import { useState } from "react";
@@ -24,7 +25,8 @@ const navigation = [
   { to: "/rag", label: "资料问答", icon: MessageSquareText },
   { to: "/activities", label: "学习活动", icon: ClipboardCheck },
   { to: "/wrong-answers", label: "错题本", icon: CircleX },
-  { to: "/reviews", label: "复习", icon: RotateCcw },
+  { to: "/mastery", label: "掌握度", icon: BrainCircuit },
+  { to: "/reviews", label: "复习计划", icon: RotateCcw },
   { to: "/progress", label: "进度", icon: BarChart3 },
   { to: "/settings", label: "设置", icon: Settings },
 ];
@@ -65,12 +67,12 @@ export function AppLayout() {
         </nav>
         <div className="side-rail__foot">
           <span className="status-dot" /> 本地数据库
-          <small>PersonalLearning V5</small>
+          <small>PersonalLearning V6</small>
         </div>
       </aside>
       <main className="app-main">
         <Outlet />
-        <footer className="app-footer">PersonalLearning · V5 受控学习助手</footer>
+        <footer className="app-footer">PersonalLearning · V6 自适应学习主线完成版</footer>
       </main>
     </div>
   );

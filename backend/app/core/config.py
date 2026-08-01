@@ -1,5 +1,6 @@
 from functools import lru_cache
 from pathlib import Path
+from datetime import datetime
 
 from pydantic import SecretStr, field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -7,7 +8,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     app_name: str = "PersonalLearning"
-    app_version: str = "5.0.0"
+    app_version: str = "6.0.0"
     api_prefix: str = "/api"
     database_url: str = "sqlite:///./data/personal_learning.sqlite3"
     upload_dir: Path = Path("./uploads")
@@ -84,6 +85,25 @@ class Settings(BaseSettings):
     agent_checkpoint_db_path: Path = Path("./data/agent_checkpoints.sqlite")
     agent_tool_result_max_chars: int = 6000
     agent_stream_chunk_chars: int = 24
+    mastery_algorithm_version: str = "mastery-rule-v1"
+    mastery_max_evidence_per_type: int = 10
+    mastery_evidence_half_life_days: int = 30
+    mastery_objective_weight: float = 0.40
+    mastery_short_answer_weight: float = 0.25
+    mastery_review_weight: float = 0.15
+    mastery_task_weight: float = 0.08
+    mastery_session_weight: float = 0.07
+    mastery_self_assessment_weight: float = 0.05
+    mastery_beginner_max: float = 39
+    mastery_developing_max: float = 59
+    mastery_proficient_max: float = 79
+    review_interval_beginner_days: int = 1
+    review_interval_developing_days: int = 3
+    review_interval_proficient_days: int = 7
+    review_interval_strong_days: int = 14
+    review_failed_interval_days: int = 1
+    review_unresolved_wrong_answer_days: int = 3
+    adaptive_fixed_now: datetime | None = None
 
     model_config = SettingsConfigDict(
         env_file="../.env",
@@ -167,6 +187,23 @@ class Settings(BaseSettings):
             raise ValueError("Agent limits must be greater than zero")
         if self.agent_max_write_tools != 1:
             raise ValueError("AGENT_MAX_WRITE_TOOLS must be 1")
+        if self.mastery_max_evidence_per_type <= 0 or self.mastery_evidence_half_life_days <= 0:
+            raise ValueError("Mastery evidence limits must be greater than zero")
+        mastery_weights = (
+            self.mastery_objective_weight, self.mastery_short_answer_weight,
+            self.mastery_review_weight, self.mastery_task_weight,
+            self.mastery_session_weight, self.mastery_self_assessment_weight,
+        )
+        if any(weight <= 0 or weight > 1 for weight in mastery_weights):
+            raise ValueError("Mastery weights must be in (0, 1]")
+        if not (0 <= self.mastery_beginner_max < self.mastery_developing_max < self.mastery_proficient_max < 100):
+            raise ValueError("Mastery level thresholds are invalid")
+        if min(
+            self.review_interval_beginner_days, self.review_interval_developing_days,
+            self.review_interval_proficient_days, self.review_interval_strong_days,
+            self.review_failed_interval_days, self.review_unresolved_wrong_answer_days,
+        ) <= 0:
+            raise ValueError("Review intervals must be greater than zero")
         return self
 
     @property

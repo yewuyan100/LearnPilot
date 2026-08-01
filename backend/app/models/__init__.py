@@ -15,6 +15,11 @@ from app.models.quiz_answer import QuizAnswer
 from app.models.quiz_attempt import QuizAttempt
 from app.models.wrong_answer import WrongAnswer
 from app.models.agent import AgentConversation, AgentMessage, AgentRun, AgentToolCall, AgentConfirmation
+from app.models.adaptive_recommendation import AdaptiveRecommendation
+from app.models.knowledge_mastery import KnowledgeMastery
+from app.models.mastery_evidence import MasteryEvidence
+from app.models.mastery_snapshot import MasterySnapshot
+from app.models.review_schedule import ReviewSchedule
 
 __all__ = [
     "Course",
@@ -38,4 +43,9 @@ __all__ = [
     "AgentRun",
     "AgentToolCall",
     "AgentConfirmation",
+    "AdaptiveRecommendation",
+    "KnowledgeMastery",
+    "MasteryEvidence",
+    "MasterySnapshot",
+    "ReviewSchedule",
 ]

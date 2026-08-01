@@ -13,6 +13,7 @@ from app.models import (
     Course, DailyTask, KnowledgePoint, LearningActivity, LearningGoal,
     LearningSession, QuizAttempt, WrongAnswer,
 )
+from app.services.adaptive_learning.service import AdaptiveLearningService
 from app.schemas.daily_task import DailyTaskCreate, DailyTaskUpdate
 from app.schemas.learning_activity import ActivityGenerateRequest
 from app.services.crud import apply_updates, get_or_404
@@ -31,10 +32,13 @@ READ_TOOLS = (
     "answer_from_materials", "search_materials", "list_courses", "list_knowledge_points",
     "list_daily_tasks", "get_learning_progress", "list_learning_activities",
     "get_activity_summary", "list_quiz_attempts", "get_wrong_answers",
+    "get_knowledge_mastery", "list_weak_knowledge_points", "list_due_reviews",
+    "get_adaptive_recommendations", "explain_mastery",
 )
 WRITE_TOOLS = (
     "create_daily_task", "update_daily_task_status", "save_learning_note",
     "generate_learning_activity", "create_wrong_answer_review", "start_quiz_attempt",
+    "accept_review_recommendation",
 )
 FORBIDDEN_TOKENS = (
     "delete", "drop ", "truncate", "shell", "powershell", "cmd.exe", "python",
@@ -47,6 +51,9 @@ REQUIRED_ARGS = {
     "update_daily_task_status": {"task_id", "status"}, "save_learning_note": {"learning_goal_id", "note"},
     "generate_learning_activity": {"title", "material_ids", "question_types", "question_count", "difficulty"},
     "create_wrong_answer_review": {"wrong_answer_ids"}, "start_quiz_attempt": {"activity_id"},
+    "get_knowledge_mastery": {"knowledge_point_id"},
+    "explain_mastery": {"knowledge_point_id"},
+    "accept_review_recommendation": {"recommendation_id"},
 }
 
 
@@ -208,6 +215,63 @@ class ToolRegistry:
         data = [x.model_dump(mode="json") for x in page.items]
         return result("get_wrong_answers", data, f"找到 {len(data)} 道错题。")
 
+    def _tool_get_knowledge_mastery(self, a, **_):
+        detail = AdaptiveLearningService(self.db, self.settings).detail(int(a["knowledge_point_id"]))
+        data = detail.model_dump(mode="json", exclude={"evidence", "snapshots", "recommendation", "review_schedule"})
+        data["主要依据"] = detail.evidence_summary
+        if detail.mastery_score is None:
+            summary = f"{detail.knowledge_point_title} 尚未评估，当前没有有效学习证据。"
+        else:
+            summary = f"{detail.knowledge_point_title}：掌握度 {detail.mastery_score:.0f}，置信度 {detail.confidence_score:.0f}，等级 {detail.mastery_level}。"
+        return result("get_knowledge_mastery", data, summary)
+
+    def _tool_list_weak_knowledge_points(self, a, **_):
+        items = AdaptiveLearningService(self.db, self.settings).weak_points(
+            course_id=a.get("course_id"), limit=min(int(a.get("limit", 10)), 100),
+            include_unassessed=bool(a.get("include_unassessed", False)),
+        )
+        data = [item.model_dump(mode="json") for item in items]
+        known = sum(item.classification == "weak" for item in items)
+        unassessed = sum(item.classification == "unassessed" for item in items)
+        return result("list_weak_knowledge_points", data, f"找到 {known} 个已知薄弱点和 {unassessed} 个未评估知识点。")
+
+    def _tool_list_due_reviews(self, a, **_):
+        start = date.fromisoformat(a["start_date"]) if a.get("start_date") else None
+        end = date.fromisoformat(a["end_date"]) if a.get("end_date") else None
+        rows = AdaptiveLearningService(self.db, self.settings).list_reviews(
+            status=a.get("status"), course_id=a.get("course_id"), start_date=start,
+            end_date=end, overdue=bool(a.get("overdue", False)),
+            limit=min(int(a.get("limit", 50)), 100),
+        )
+        data = [row.model_dump(mode="json") for row in rows]
+        return result("list_due_reviews", data, f"找到 {len(data)} 个复习项。")
+
+    def _tool_get_adaptive_recommendations(self, a, **_):
+        rows = AdaptiveLearningService(self.db, self.settings).list_recommendations(
+            status=a.get("status", "pending"), course_id=a.get("course_id"),
+            limit=min(int(a.get("limit", 20)), 100),
+        )
+        data = [row.model_dump(mode="json") for row in rows]
+        return result("get_adaptive_recommendations", data, f"当前有 {len(data)} 条待处理复习建议。")
+
+    def _tool_explain_mastery(self, a, **_):
+        detail = AdaptiveLearningService(self.db, self.settings).detail(int(a["knowledge_point_id"]))
+        data = {
+            "knowledge_point_id": detail.knowledge_point_id,
+            "mastery_score": detail.mastery_score,
+            "confidence_score": detail.confidence_score,
+            "mastery_level": detail.mastery_level,
+            "evidence_count": detail.evidence_count,
+            "evidence_summary": detail.evidence_summary,
+            "algorithm_version": detail.algorithm_version,
+        }
+        if detail.mastery_score is None:
+            summary = "该知识点没有有效证据，因此保持未评估，而不是记为 0 分。"
+        else:
+            kinds = "、".join(detail.evidence_summary.get("category_scores", {}).keys()) or "暂无分类摘要"
+            summary = f"掌握度由 {detail.evidence_count} 条真实证据按 {detail.algorithm_version} 计算，主要证据类别：{kinds}。"
+        return result("explain_mastery", data, summary)
+
     def _tool_create_daily_task(self, a, **_):
         payload = DailyTaskCreate.model_validate(a)
         get_or_404(self.db, LearningGoal, payload.learning_goal_id, "学习目标")
@@ -222,6 +286,14 @@ class ToolRegistry:
         status = str(a["status"])
         if status not in {"pending", "in_progress", "completed", "skipped"}: raise ValueError("invalid_status")
         apply_updates(task, DailyTaskUpdate(status=status).model_dump(exclude_unset=True)); self.db.commit(); self.db.refresh(task)
+        if task.status == "completed" and task.knowledge_point_id:
+            from app.services.adaptive_learning.lifecycle import try_refresh_adaptive_learning
+            from app.services.adaptive_learning.scheduler import ReviewScheduler
+            ReviewScheduler(self.db, self.settings).complete_for_task(task); self.db.commit()
+            try_refresh_adaptive_learning(
+                self.db, self.settings, task.knowledge_point_id,
+                trigger_type="task_completed", trigger_source_id=task.id,
+            )
         return result("update_daily_task_status", {"id": task.id, "status": task.status}, f"任务状态已更新为 {task.status}。", ids={"daily_task_id": task.id})
 
     def _tool_save_learning_note(self, a, **_):
@@ -230,6 +302,12 @@ class ToolRegistry:
         session = LearningSession(learning_goal_id=goal.id, course_id=a.get("course_id"), knowledge_point_id=a.get("knowledge_point_id"),
             started_at=now, ended_at=now, status="completed", notes=str(a["note"]).strip())
         self.db.add(session); self.db.commit(); self.db.refresh(session)
+        if session.knowledge_point_id:
+            from app.services.adaptive_learning.lifecycle import try_refresh_adaptive_learning
+            try_refresh_adaptive_learning(
+                self.db, self.settings, session.knowledge_point_id,
+                trigger_type="learning_session_completed", trigger_source_id=session.id,
+            )
         return result("save_learning_note", {"id": session.id}, "学习笔记已保存。", ids={"learning_session_id": session.id})
 
     def _tool_generate_learning_activity(self, a, *, request_id, **_):
@@ -256,12 +334,27 @@ class ToolRegistry:
         safe = {"id": attempt.id, "activity_id": attempt.activity_id, "status": attempt.status, "question_count": len(attempt.questions)}
         return result("start_quiz_attempt", safe, "测验已开始；答案与评分标准不会提前显示。", ids={"attempt_id": attempt.id})
 
+    def _tool_accept_review_recommendation(self, a, *, request_id, **_):
+        recommendation, task, replay = AdaptiveLearningService(self.db, self.settings).accept_recommendation(
+            int(a["recommendation_id"]), request_id=f"agent-{request_id}", confirmed=True
+        )
+        data = {
+            "recommendation_id": recommendation.id, "daily_task_id": task.id,
+            "scheduled_date": task.scheduled_date.isoformat(), "idempotent_replay": replay,
+        }
+        return result(
+            "accept_review_recommendation", data,
+            f"已按建议创建复习任务“{task.title}”。" if not replay else f"复习任务“{task.title}”已存在，没有重复创建。",
+            ids={"recommendation_id": recommendation.id, "daily_task_id": task.id},
+        )
+
 
 def confirmation_summary(tool_name: str, args: dict) -> str:
     labels = {
         "create_daily_task": "创建每日任务", "update_daily_task_status": "更新任务状态",
         "save_learning_note": "保存学习笔记", "generate_learning_activity": "生成测验草稿",
         "create_wrong_answer_review": "创建错题复习", "start_quiz_attempt": "开始测验",
+        "accept_review_recommendation": "接受复习建议并创建任务",
     }
     safe_args = {k: v for k, v in args.items() if k not in {"correct_answer", "reference_answer", "grading_rubric"}}
     return f"将执行：{labels.get(tool_name, tool_name)}。参数：{json.dumps(safe_args, ensure_ascii=False, default=str)}"

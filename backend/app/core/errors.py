@@ -3,6 +3,15 @@ from typing import Any
 from fastapi import status
 
 
+V6_ERROR_CODES = frozenset({
+    "mastery_not_found", "mastery_unassessed", "mastery_calculation_failed",
+    "mastery_evidence_invalid", "mastery_rebuild_failed", "self_assessment_invalid",
+    "review_schedule_not_found", "review_schedule_conflict", "review_already_completed",
+    "adaptive_recommendation_not_found", "adaptive_recommendation_expired",
+    "adaptive_recommendation_conflict", "adaptive_task_creation_failed",
+})
+
+
 class AppError(Exception):
     def __init__(
         self,
@@ -25,4 +34,3 @@ def not_found(resource: str, resource_id: int) -> AppError:
         status.HTTP_404_NOT_FOUND,
         {"id": resource_id},
     )
-

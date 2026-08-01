@@ -32,7 +32,7 @@ app = FastAPI(
     title=settings.app_name,
     version=settings.app_version,
     lifespan=lifespan,
-    description="PersonalLearning V5 LangGraph 单学习 Agent 与受控工具编排 API",
+    description="PersonalLearning V6 确定性掌握度、自适应复习与受控 Agent API",
 )
 app.add_middleware(
     CORSMiddleware,

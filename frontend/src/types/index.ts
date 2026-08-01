@@ -495,6 +495,96 @@ export interface AgentRun {
   idempotent_replay: boolean;
   confirmation: AgentConfirmation | null;
   tool_calls: AgentToolCall[];
+  performance: Record<string, number | boolean>;
   created_at: string;
   updated_at: string;
+}
+
+export interface MasteryListItem {
+  knowledge_point_id: number;
+  knowledge_point_title: string;
+  course_id: number;
+  course_title: string;
+  mastery_score: number | null;
+  confidence_score: number;
+  mastery_level: "unassessed" | "beginner" | "developing" | "proficient" | "strong";
+  evidence_count: number;
+  active_wrong_answers: number;
+  last_practiced_at: string | null;
+  next_review_at: string | null;
+}
+
+export interface MasteryPageData {
+  items: MasteryListItem[];
+  total: number;
+  page: number;
+  page_size: number;
+  pages: number;
+}
+
+export interface MasteryEvidence {
+  id: number;
+  evidence_type: string;
+  source_type: string;
+  source_id: string;
+  occurred_at: string;
+  normalized_score: number;
+  weight: number;
+  metadata: Record<string, unknown>;
+}
+
+export interface MasterySnapshot {
+  id: number;
+  mastery_score: number | null;
+  confidence_score: number;
+  mastery_level: string;
+  evidence_count: number;
+  trigger_type: string;
+  calculated_at: string;
+}
+
+export interface AdaptiveReview {
+  id: number;
+  knowledge_point_id: number;
+  knowledge_point_title: string;
+  status: "pending" | "scheduled" | "completed" | "dismissed" | "superseded";
+  priority_score: number;
+  recommended_at: string;
+  due_at: string;
+  overdue: boolean;
+  reason_code: string;
+  reason_summary: string;
+  completed_task_id: number | null;
+}
+
+export interface AdaptiveRecommendation {
+  id: number;
+  knowledge_point_id: number;
+  recommendation_type: "review_task";
+  status: "pending" | "accepted" | "rejected" | "executed" | "expired" | "superseded";
+  priority: "low" | "medium" | "high";
+  title: string;
+  reason_code: string;
+  reason_details: Record<string, unknown>;
+  suggested_date: string;
+  suggested_minutes: number;
+  created_task_id: number | null;
+}
+
+export interface MasteryDetail extends MasteryListItem {
+  algorithm_version: string;
+  calculated_at: string;
+  evidence_summary: Record<string, unknown>;
+  evidence: MasteryEvidence[];
+  snapshots: MasterySnapshot[];
+  review_schedule: AdaptiveReview | null;
+  recommendation: AdaptiveRecommendation | null;
+}
+
+export interface WeakPoint extends MasteryListItem {
+  classification: "weak" | "unassessed";
+  weakness_score: number | null;
+  recent_failure: boolean;
+  overdue: boolean;
+  review_status: string | null;
 }

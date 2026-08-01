@@ -87,6 +87,7 @@ class AgentRunRead(BaseModel):
     idempotent_replay: bool = False
     confirmation: AgentConfirmationRead | None = None
     tool_calls: list[AgentToolCallRead] = Field(default_factory=list)
+    performance: dict[str, Any] = Field(default_factory=dict)
     created_at: datetime
     updated_at: datetime
 
@@ -106,6 +107,8 @@ class IntentClassification(StrictModel):
         "answer_materials", "search_materials", "list_courses", "list_knowledge_points",
         "list_daily_tasks", "get_learning_progress", "list_learning_activities",
         "get_activity_summary", "list_quiz_attempts", "get_wrong_answers",
+        "get_knowledge_mastery", "list_weak_knowledge_points", "list_due_reviews",
+        "get_adaptive_recommendations", "explain_mastery", "accept_review_recommendation",
         "create_daily_task", "update_daily_task_status", "save_learning_note",
         "generate_learning_activity", "create_wrong_answer_review", "start_quiz_attempt",
         "compound", "clarification", "unsupported"

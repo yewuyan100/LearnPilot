@@ -31,10 +31,14 @@ answer_from_materials(question, top_k?, material_ids?); search_materials(query, 
 list_courses(limit?); list_knowledge_points(course_id?); list_daily_tasks(scheduled_date? YYYY-MM-DD);
 get_learning_progress(); list_learning_activities(status?); get_activity_summary(activity_id);
 list_quiz_attempts(activity_id?, limit?); get_wrong_answers(status?, course_id?, knowledge_point_id?, question_type?, limit?);
+get_knowledge_mastery(knowledge_point_id); list_weak_knowledge_points(course_id?, limit?, include_unassessed?);
+list_due_reviews(start_date?, end_date?, course_id?, status?, overdue?, limit?);
+get_adaptive_recommendations(status?, course_id?, limit?); explain_mastery(knowledge_point_id);
 create_daily_task(learning_goal_id, title, scheduled_date YYYY-MM-DD, estimated_minutes?, course_id?, knowledge_point_id?, activity_id?, task_type?, status?);
 update_daily_task_status(task_id, status); save_learning_note(learning_goal_id, note, course_id?, knowledge_point_id?);
 generate_learning_activity(title, material_ids, question_types, question_count, difficulty, course_id?, knowledge_point_id?);
 create_wrong_answer_review(wrong_answer_ids); start_quiz_attempt(activity_id, learning_session_id?).
+accept_review_recommendation(recommendation_id). This write still requires confirmation.
 Prompt version: {version}. Current local time: {now}."""
 
 
@@ -57,11 +61,17 @@ def _fallback_classification(text: str) -> IntentClassification:
         (("课程",), "list_courses"), (("知识点",), "list_knowledge_points"),
         (("进度",), "get_learning_progress"), (("学习活动", "活动列表"), "list_learning_activities"),
         (("测验记录", "答题记录"), "list_quiz_attempts"), (("错题",), "get_wrong_answers"),
+        (("薄弱", "弱项"), "list_weak_knowledge_points"),
+        (("到期复习", "复习到期", "复习计划"), "list_due_reviews"),
+        (("复习建议", "自适应建议"), "get_adaptive_recommendations"),
+        (("掌握度原因", "为什么掌握度"), "explain_mastery"),
+        (("掌握度",), "get_knowledge_mastery"),
         (("创建任务", "安排任务", "新增任务"), "create_daily_task"),
         (("任务状态", "完成任务"), "update_daily_task_status"),
         (("学习笔记", "保存笔记", "记录笔记"), "save_learning_note"),
         (("生成测验", "生成活动", "出题"), "generate_learning_activity"),
         (("错题复习",), "create_wrong_answer_review"), (("开始测验",), "start_quiz_attempt"),
+        (("接受复习建议", "按建议创建任务"), "accept_review_recommendation"),
         (("今日任务", "今天任务", "每日任务"), "list_daily_tasks"),
     ]
     for keys, intent in mapping:
@@ -83,6 +93,12 @@ def _fallback_plan(intent: str, entities: dict, text: str) -> AgentPlan:
         "create_daily_task": ("create_daily_task", entities), "update_daily_task_status": ("update_daily_task_status", entities),
         "save_learning_note": ("save_learning_note", entities), "generate_learning_activity": ("generate_learning_activity", entities),
         "create_wrong_answer_review": ("create_wrong_answer_review", entities), "start_quiz_attempt": ("start_quiz_attempt", entities),
+        "get_knowledge_mastery": ("get_knowledge_mastery", entities),
+        "list_weak_knowledge_points": ("list_weak_knowledge_points", entities),
+        "list_due_reviews": ("list_due_reviews", entities),
+        "get_adaptive_recommendations": ("get_adaptive_recommendations", entities),
+        "explain_mastery": ("explain_mastery", entities),
+        "accept_review_recommendation": ("accept_review_recommendation", entities),
     }
     item = direct.get(intent)
     return AgentPlan(steps=[] if item is None else [{"tool_name": item[0], "arguments": item[1]}])
@@ -97,6 +113,7 @@ def _explicit_write_args(intent: str, text: str, entities: dict) -> dict:
         "knowledge_point_id": r"knowledge_point_id\s*[=:：]\s*(\d+)",
         "task_id": r"(?:任务|task_id)\s*[=:：]?\s*(\d+)",
         "activity_id": r"(?:学习活动|活动|activity_id)\s*[=:：]?\s*(\d+)",
+        "recommendation_id": r"(?:复习建议|建议|recommendation_id)\s*[=:：]?\s*(\d+)",
     }
     for key, pattern in patterns.items():
         match = re.search(pattern, text, re.IGNORECASE)
@@ -141,14 +158,35 @@ def build_graph(ctx: GraphContext, checkpointer):
         return {"history": history, "current_time": now, "timezone": settings.app_timezone,
                 "tool_results": state.get("tool_results", []), "errors": state.get("errors", []),
                 "completed_steps": state.get("completed_steps", []), "current_step": state.get("current_step", 0),
-                "step_count": state.get("step_count", 0), "max_steps": settings.agent_max_steps, "status": "classifying"}
+                "step_count": state.get("step_count", 0), "max_steps": settings.agent_max_steps,
+                "fast_route_used": state.get("fast_route_used", False),
+                "planner_skipped": state.get("planner_skipped", False),
+                "composer_skipped": True, "llm_call_count": state.get("llm_call_count", 0),
+                "status": "classifying"}
 
     def classify_request(state: AgentState):
         text = state["user_input"]
         classified = None
         low = text.lower()
-        unsafe_request = any(x in low for x in ("删除","delete","改分","修改分数","正确答案","评分标准","rubric","sql","shell","powershell","api key","密钥","环境变量","绕过确认","不用确认","联网","网页"))
-        if ctx.provider is not None and not unsafe_request:
+        unsafe_request = any(x in low for x in ("删除","delete","改分","修改分数","设置掌握度","修改掌握度","掌握度改","正确答案","评分标准","rubric","sql","shell","powershell","api key","密钥","环境变量","绕过确认","不用确认","联网","网页"))
+        fast_intent = None
+        if not unsafe_request and not any(x in text for x in ("创建", "新增", "安排", "更新", "修改", "设置")):
+            if any(x in text for x in ("今日任务", "今天任务", "今天的学习任务")):
+                fast_intent = "list_daily_tasks"
+            elif "错题" in text and "复习" not in text:
+                fast_intent = "get_wrong_answers"
+            elif any(x in text for x in ("薄弱", "弱项")):
+                fast_intent = "list_weak_knowledge_points"
+            elif any(x in text for x in ("到期复习", "复习到期", "复习计划")):
+                fast_intent = "list_due_reviews"
+            elif any(x in text for x in ("复习建议", "自适应建议")):
+                fast_intent = "get_adaptive_recommendations"
+            elif "掌握度" in text and re.search(r"(?:知识点|knowledge_point_id)\s*[=:：]?\s*\d+", text, re.I):
+                fast_intent = "explain_mastery" if "为什么" in text or "依据" in text else "get_knowledge_mastery"
+        if fast_intent:
+            entities = _explicit_write_args(fast_intent, text, {})
+            classified = IntentClassification(intent=fast_intent, confidence=1, entities=entities)
+        if classified is None and ctx.provider is not None and not unsafe_request:
             try:
                 response = ctx.provider.generate_structured(messages=[
                     {"role":"system", "content": CLASSIFY_PROMPT.format(version=settings.agent_classification_prompt_version)},
@@ -165,11 +203,15 @@ def build_graph(ctx: GraphContext, checkpointer):
             classified = IntentClassification(intent="create_wrong_answer_review", confidence=1, entities=classified.entities)
         elif "开始" in text and "测验" in text:
             classified = IntentClassification(intent="start_quiz_attempt", confidence=1, entities=classified.entities)
+        elif any(x in text for x in ("接受复习建议", "按建议创建任务")):
+            classified = IntentClassification(intent="accept_review_recommendation", confidence=1, entities=classified.entities)
+        elif fast_intent:
+            pass
         elif "知识点" in text and not any(x in text for x in ("创建","更新","保存")):
             classified = IntentClassification(intent="list_knowledge_points", confidence=1, entities=classified.entities)
         elif any(x in text for x in ("今日任务","今天的学习任务","今天任务","每日任务")) and not any(x in text for x in ("创建","新增","安排","更新")):
             classified = IntentClassification(intent="list_daily_tasks", confidence=1, entities=classified.entities)
-        if classified.intent in {"create_daily_task","update_daily_task_status","save_learning_note","generate_learning_activity","create_wrong_answer_review","start_quiz_attempt"}:
+        if classified.intent in {"create_daily_task","update_daily_task_status","save_learning_note","generate_learning_activity","create_wrong_answer_review","start_quiz_attempt","accept_review_recommendation"}:
             explicit = _explicit_write_args(classified.intent, text, classified.entities)
             from app.services.agent.tools import REQUIRED_ARGS
             if not REQUIRED_ARGS[classified.intent].issubset(explicit):
@@ -177,11 +219,13 @@ def build_graph(ctx: GraphContext, checkpointer):
                     clarification_question="请补充要执行该操作所需的对象 ID、标题或日期等明确参数。", entities=explicit)
         return {"intent": classified.intent, "confidence": classified.confidence,
                 "clarification_question": classified.clarification_question, "entities": classified.entities,
+                "fast_route_used": bool(fast_intent),
+                "llm_call_count": state.get("llm_call_count", 0) + int(ctx.provider is not None and classified is not None and not fast_intent and not unsafe_request),
                 "status": "classified"}
 
     def plan_actions(state: AgentState):
         planned = None
-        if ctx.provider is not None:
+        if ctx.provider is not None and not state.get("fast_route_used"):
             try:
                 response = ctx.provider.generate_structured(messages=[
                     {"role":"system", "content": PLAN_PROMPT.format(reads=", ".join(tools.read_names), writes=", ".join(tools.write_names),
@@ -193,13 +237,18 @@ def build_graph(ctx: GraphContext, checkpointer):
                 planned = None
         planned = planned or _fallback_plan(state["intent"], state.get("entities", {}), state["user_input"])
         steps = [step.model_dump() for step in planned.steps]
-        write_intents = {"create_daily_task","update_daily_task_status","save_learning_note","generate_learning_activity","create_wrong_answer_review","start_quiz_attempt"}
+        write_intents = {"create_daily_task","update_daily_task_status","save_learning_note","generate_learning_activity","create_wrong_answer_review","start_quiz_attempt","accept_review_recommendation"}
         if state["intent"] in write_intents:
             explicit = _explicit_write_args(state["intent"], state["user_input"], state.get("entities", {}))
             matching = next((step for step in steps if step["tool_name"] == state["intent"]), None)
             if matching is None: steps = [{"tool_name":state["intent"],"arguments":explicit}]
             else: matching["arguments"] = {**matching["arguments"], **explicit}
-        return {"plan": steps, "current_step": 0, "status": "planning"}
+        return {
+            "plan": steps, "current_step": 0,
+            "planner_skipped": bool(state.get("fast_route_used")),
+            "llm_call_count": state.get("llm_call_count", 0) + int(ctx.provider is not None and not state.get("fast_route_used")),
+            "status": "planning",
+        }
 
     def validate_plan(state: AgentState):
         try:
@@ -287,6 +336,12 @@ def build_graph(ctx: GraphContext, checkpointer):
     def persist_result(state: AgentState):
         run=db.get(AgentRun,state["run_id"]); run.status=state["status"]; run.intent=state.get("intent")
         run.final_answer=state.get("final_answer"); run.citations=state.get("citations",[]); run.error_code=state.get("failure_code")
+        run.prompt_versions={**(run.prompt_versions or {}), "performance": {
+            "fast_route_used": bool(state.get("fast_route_used")),
+            "planner_skipped": bool(state.get("planner_skipped")),
+            "composer_skipped": True,
+            "llm_call_count": int(state.get("llm_call_count", 0)),
+        }}
         run.completed_at=datetime.now(timezone.utc)
         existing=db.scalar(select(AgentMessage).where(AgentMessage.run_id==run.id,AgentMessage.role=="assistant"))
         if existing is None:
