@@ -34,17 +34,84 @@ LearnPilot 是一个面向个人持续学习的 **Personal Learning Workspace**�
 
 ## 产品展示
 
-以下截图来自现有的最终视觉验收产物，没有为 README 重新制造演示数据。
+LearnPilot 不是独立功能的集合，而是一条持续学习工作流：从目标规划、资料沉淀，到基于证据的 AI 问答，再把学习过程重新沉淀为可继续使用的学习状态。
 
-| 学习规划 | Evidence-grounded RAG |
-| --- | --- |
-| ![LearnPilot learning plan overview](docs/screenshots/learning-plan-overview.png) | ![LearnPilot evidence-grounded RAG with citations](docs/screenshots/evidence-grounded-rag.png) |
+```text
+Learning Workspace
+→ Planning
+→ Knowledge Base
+→ Grounded RAG
+→ AI Collaboration / Learning Progress
+```
 
-<p align="center">
-  <img src="docs/screenshots/governed-ai-collaboration.png" width="82%" alt="LearnPilot governed AI collaboration" />
-  <br />
-  <sub>受能力边界约束的 AI 协作界面</sub>
-</p>
+### 01 · Learning Workspace
+
+![LearnPilot Workbench](docs/screenshots/learnpilot-01-workbench.png)
+
+Workbench 聚合当前学习目标、进行中的学习事项、近期活动和复习状态，让用户从一个统一入口继续当天的学习，而不是在资料、计划和 AI 对话之间反复切换。
+
+---
+
+### 02 · Plan Learning Goals and Curriculum
+
+![LearnPilot Planning](docs/screenshots/learnpilot-02-planning.png)
+
+从学习目标出发组织课程、知识点和学习计划。LearnPilot 将“我要学什么”转化为可持续推进的学习结构，同时保留用户对重要规划变更的最终确认权。
+
+---
+
+### 03 · Build a Personal Knowledge Base
+
+![LearnPilot Knowledge Base](docs/screenshots/learnpilot-03-knowledge-base.png)
+
+PDF、Markdown 和文本资料进入本地知识库后完成解析、切片、Embedding 与索引，并成为后续课程学习和 RAG 问答的真实 evidence source。
+
+```text
+Material
+→ Parse / Chunk
+→ BGE-M3 Embedding
+→ FAISS Index
+→ Learning & RAG Evidence
+```
+
+---
+
+### 04 · Ask Grounded Questions with Citations
+
+![LearnPilot RAG with Citations](docs/screenshots/learnpilot-04-rag-citations.png)
+
+LearnPilot 的知识问答不是直接把问题交给 LLM。系统先进行 Dense Retrieval，再使用 CUDA Cross-Encoder 对候选证据重新排序，从中选择 Final Top7 context 后生成回答，并保留可解析的来源引用。
+
+```text
+Question
+→ Dense Top18
+→ Cross-Encoder Reranker
+→ Final Top7
+→ Grounded Answer
+→ Citations
+```
+
+这使回答不仅需要“看起来合理”，还能够回到实际资料检查依据。
+
+---
+
+### 05 · Collaborate with AI and Continue Learning
+
+![LearnPilot AI Collaboration](docs/screenshots/learnpilot-05-ai-collaboration.png)
+
+AI Collaboration 将当前目标、课程位置、资料范围和学习状态带入一次受控的 AI 协作过程。Learning Runtime 负责 context、policy、routing 与 run lifecycle，再把请求交给 Tutor、Curriculum 或受控 Operations 能力。
+
+AI 的输出不会成为孤立聊天记录，而是继续连接到笔记、练习、掌握状态和后续学习动作：
+
+```text
+Learner Context
+→ AI Collaboration
+→ Explanation / Practice / Proposal
+→ Notes & Learning Records
+→ Next Learning Step
+```
+
+> LearnPilot 的目标不是让 Agent 自主替用户学习，而是让 **学习规划、个人资料、AI 能力和真实学习状态保持在同一个可追溯闭环中**。
 
 ## 架构概览
 
