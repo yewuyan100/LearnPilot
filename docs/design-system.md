@@ -67,7 +67,7 @@ LearnPilot 是面向单人用户的个人学习与知识工作空间。界面首
 
 ## Canonical source
 
-[`tokens.css`](tokens.css) 是唯一 Token 真源。页面样式只引用命名 Token，不在组件中临时发明颜色。
+[`tokens.css`](../tokens.css) 是唯一 Token 真源。页面样式只引用命名 Token，不在组件中临时发明颜色。
 
 ## Exports
 

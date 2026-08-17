@@ -1,0 +1,24 @@
+{
+  "project": "LearnPilot",
+  "backend_regression": "428/428 PASS",
+  "rag_evaluation_cases": 72,
+  "dense_fully_correct": "50/72",
+  "cross_encoder_fully_correct": "53/72",
+  "cpu_reranker_p50_ms": 7797.075,
+  "cuda_reranker_p50_ms": 469.872,
+  "cuda_p50_speedup": 16.594,
+  "candidate_top_k": 18,
+  "final_context_top_k": 7,
+  "final_product_audit": {
+    "p0": 0,
+    "p1": 0
+  },
+  "evidence": {
+    "rag_cases": "evals/rag_real_world_corpus/v1/gold/v1/distribution_audit.json",
+    "retrieval_quality": "evals/rag_real_world_corpus/v1/results/hybrid_rerank_phase4_v1_1/20260814T131417Z-04dfc031/unblinded_metrics.json",
+    "cuda_latency": "evals/rag_real_world_corpus/v1/results/c_v1_3b_cuda_fp32_full/20260816T050910Z-fbb5cec1/latency_results.json",
+    "top_k_decision": "evals/rag_real_world_corpus/v1/results/rag_candidate_final_depth_decoupling/20260816T101548Z-depthdecouple/top7_activation_validation.json",
+    "release_audit_git_commit": "99eba5c4809ff8c0fc573226bc7bb53a262edcac",
+    "release_audit_historical_path": "evals/final_product_audit/20260816T140758Z-finalproductaudit/LEARNPILOT_FINAL_PRODUCT_AUDIT.md"
+  }
+}

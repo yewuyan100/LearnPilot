@@ -2797,7 +2797,7 @@ progress::-moz-progress-bar { background: var(--color-accent); border-radius: va
   .top-ai-button, .activity-chart__track i { transition-duration: 50ms; }
 }
 
-/* Visual Redesign Batch 2A: planning ledger + knowledge desk, locked to design.md. */
+/* Visual Redesign Batch 2A: planning ledger + knowledge desk, locked to docs/design-system.md. */
 .planning-header,
 .knowledge-header {
   padding-block: var(--space-xs) var(--space-xl);

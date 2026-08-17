@@ -245,12 +245,11 @@ Dense fallback is degraded but functional; it does not claim equivalent ranking 
 - The current fixed model snapshot is machine-local and intentionally outside Git. Reproducibility comes from revision, required-file validation and `RAG_RERANKER_MODEL_PATH`, not an author-specific absolute path.
 - Discover is intentionally lightweight; no claim is made for a mature recommendation system.
 - The harness has specialized curriculum/tutor/operations capabilities but no autonomous supervisor, arbitrary inter-agent delegation, MCP, web search or long-term semantic memory platform.
-- Final generation closure was 4/5 on a small fixed set: one complex FastAPI question had all `3/3` required evidence groups in Top7 and valid citations, but the answer covered only `2/3` supported branches by omitting external-threadpool behavior. Final Product Audit classifies this as a documented generation nondeterminism limitation, not a stable P0/P1 and not evidence of a general 20% failure rate.
+- Final generation closure was 4/5 on a small fixed set: one complex FastAPI question had all `3/3` required evidence groups in Top7 and valid citations, but the answer covered only `2/3` supported branches by omitting external-threadpool behavior. The release review classifies this as a documented generation nondeterminism limitation, not a stable P0/P1 and not evidence of a general 20% failure rate.
 
-## 13. Canonical Evidence
+## 13. Public Evidence
 
-- [Final Product Audit](../evals/final_product_audit/20260816T140758Z-finalproductaudit/LEARNPILOT_FINAL_PRODUCT_AUDIT.md)
-- [Repository Cleanup canonical map](../evals/repository_cleanup/20260816T151918Z-repositorycleanupclosure/canonical_repository_map.json)
+- [Public release summary](../evidence/release-summary.json)
 - [Phase 4 blinded-review metrics](../evals/rag_real_world_corpus/v1/results/hybrid_rerank_phase4_v1_1/20260814T131417Z-04dfc031/unblinded_metrics.json)
 - [ONNX final decision evidence](../evals/rag_real_world_corpus/v1/results/c_v1_2_onnx_runtime_equivalence/20260814T145246Z-298674d5/final_decision_evidence.json)
 - [CUDA latency](../evals/rag_real_world_corpus/v1/results/c_v1_3b_cuda_fp32_full/20260816T050910Z-fbb5cec1/latency_results.json), [memory](../evals/rag_real_world_corpus/v1/results/c_v1_3b_cuda_fp32_full/20260816T050910Z-fbb5cec1/gpu_memory_results.json), and [equivalence](../evals/rag_real_world_corpus/v1/results/c_v1_3b_cuda_fp32_full/20260816T050910Z-fbb5cec1/equivalence_results.json)

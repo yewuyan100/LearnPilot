@@ -138,7 +138,7 @@ AI 协作会结合当前学习目标、课程位置和资料范围选择辅导�
 | Backend regression | `428/428 PASS` |
 | Final Product Audit | `P0=0 / P1=0` |
 
-曾验证 ONNX Runtime CPU 路径，但实际延迟比原 PyTorch CPU 更高，因此最终采用 CUDA。CUDA FP32 版本通过冻结排序与上下文等价性验证，没有为了速度改变 RAG 语义；完整结果见 [Evaluation](docs/evaluation.md)。
+曾验证 ONNX Runtime CPU 路径，但实际延迟比原 PyTorch CPU 更高，因此最终采用 CUDA。CUDA FP32 版本通过冻结排序与上下文等价性验证，没有为了速度改变 RAG 语义；完整方法见 [Evaluation](docs/evaluation.md)，最终指标见 [release summary](evidence/release-summary.json)。
 
 测试覆盖业务逻辑、API、前端交互和关键失败路径。RAG 方案则使用固定问题集比较检索质量、延迟和上下文边界，使“选择哪个方案”能够回到可重复的结果，而不是只依赖主观体验。
 
