@@ -48,6 +48,8 @@ class MaterialSearchResponse(BaseModel):
     index_version: str
     results: list[MaterialSearchResult]
     duration_ms: int
+    retrieved_count: int = 0
+    filtered_count: int = 0
 
 
 class MaterialIndexStatus(BaseModel):

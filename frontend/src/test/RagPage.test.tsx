@@ -88,8 +88,13 @@ function json(data: unknown, status = 200) {
 
 describe("可信资料问答页面", () => {
   beforeEach(() => {
-    vi.stubGlobal("fetch", vi.fn((input: string | URL) => {
+    vi.stubGlobal("fetch", vi.fn((input: string | URL, init?: RequestInit) => {
       const url = String(input);
+      if (url.endsWith("/notes") && init?.method === "POST") {
+        const body = JSON.parse(String(init.body));
+        return json({ id: 9, ...body, status: "active", archived_at: null, tags: [], links: [], sources: [], created_at: now, updated_at: now }, 201);
+      }
+      if (url.includes("/notes?")) return json({ items: [], total: 0, page: 1, page_size: 100, pages: 0 });
       if (url.endsWith("/rag/status")) {
         return json({
           llm_configured: true,
@@ -123,10 +128,22 @@ describe("可信资料问答页面", () => {
     await userEvent.click(screen.getByRole("button", { name: "S1" }));
     expect(screen.getByText("mcp.md")).toBeInTheDocument();
     expect(screen.getByText("Tools 允许模型请求受控动作。")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "资料问答" })).toBeInTheDocument();
+    await userEvent.click(screen.getByRole("button", { name: "只保存引用为新笔记" }));
+    await waitFor(() => expect(vi.mocked(fetch).mock.calls.some(([, init]) => {
+      if (init?.method !== "POST") return false;
+      const body = JSON.parse(String(init.body));
+      return body.note_type === "material" && body.sources?.[0]?.chunk_id === 2;
+    })).toBe(true));
+    await userEvent.click(screen.getByRole("button", { name: "保存回答到新笔记" }));
+    await waitFor(() => expect(vi.mocked(fetch).mock.calls.some(([, init]) => {
+      if (init?.method !== "POST") return false;
+      const body = JSON.parse(String(init.body));
+      return body.links?.[0]?.entity_type === "rag_message";
+    })).toBe(true));
+    expect(screen.getAllByRole("link", { name: "知识库" }).length).toBeGreaterThan(0);
   });
 
-  it("显示经过 SSE 传来的 delta 并可停止", async () => {
+  it("显示 SSE 完整答案事件且不依赖伪造 token", async () => {
     let closeStream: (() => void) | undefined;
     vi.stubGlobal("fetch", vi.fn((input: string | URL) => {
       const url = String(input);
@@ -146,9 +163,9 @@ describe("可信资料问答页面", () => {
         const encoder = new TextEncoder();
         const stream = new ReadableStream({
           start(controller) {
-            controller.enqueue(encoder.encode('event: accepted\ndata: {"request_id":"x"}\n\n'));
-            controller.enqueue(encoder.encode('event: message_start\ndata: {"message_id":3}\n\n'));
-            controller.enqueue(encoder.encode('event: delta\ndata: {"text":"已校验的流式回答"}\n\n'));
+            controller.enqueue(encoder.encode('event: run.started\ndata: {"request_id":"x"}\n\n'));
+            controller.enqueue(encoder.encode('event: retrieval.completed\ndata: {"source_count":1}\n\n'));
+            controller.enqueue(encoder.encode('event: answer.completed\ndata: {"message_id":3,"text":"已校验的完整回答"}\n\n'));
             closeStream = () => controller.close();
           },
         });
@@ -170,7 +187,7 @@ describe("可信资料问答页面", () => {
     const input = await screen.findByLabelText("向资料提问");
     await userEvent.type(input, "请解释 Tools");
     await userEvent.click(screen.getByRole("button", { name: "发送" }));
-    expect(await screen.findByText("已校验的流式回答")).toBeInTheDocument();
+    expect(await screen.findByText("已校验的完整回答")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "停止" })).toBeInTheDocument();
     closeStream?.();
     await waitFor(() => expect(screen.queryByRole("button", { name: "停止" })).not.toBeInTheDocument());

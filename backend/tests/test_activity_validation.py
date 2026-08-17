@@ -92,13 +92,6 @@ def test_short_answer_requires_balanced_rubric():
     "payload",
     [
         {
-            "title": "无资料",
-            "course_id": 1,
-            "question_types": ["single_choice"],
-            "question_count": 1,
-            "request_id": "request-no-material",
-        },
-        {
             "title": "题数不足",
             "material_ids": [1],
             "question_types": ["single_choice", "short_answer"],
@@ -117,6 +110,20 @@ def test_short_answer_requires_balanced_rubric():
 def test_generation_request_requires_bounded_material_scope(payload):
     with pytest.raises(ValidationError):
         ActivityGenerateRequest.model_validate(payload)
+
+
+def test_generation_request_accepts_a_course_as_material_scope():
+    request = ActivityGenerateRequest.model_validate(
+        {
+            "title": "课程范围",
+            "course_id": 1,
+            "question_types": ["single_choice"],
+            "question_count": 1,
+            "request_id": "request-course-scope",
+        }
+    )
+    assert request.course_id == 1
+    assert request.material_ids is None
 
 
 @pytest.mark.parametrize(

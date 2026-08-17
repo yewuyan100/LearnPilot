@@ -1,14 +1,14 @@
 import json
-from datetime import date, datetime, timezone
+from datetime import date
 from hashlib import sha256
 from time import perf_counter
 from typing import Any, Callable
-from zoneinfo import ZoneInfo
 
 from pydantic import ValidationError
 from sqlalchemy import func, select
 
 from app.core.errors import AppError
+from app.core.clock import Clock, clock_from_settings
 from app.models import (
     Course, DailyTask, KnowledgePoint, LearningActivity, LearningGoal,
     LearningSession, QuizAttempt, WrongAnswer,
@@ -16,14 +16,17 @@ from app.models import (
 from app.services.adaptive_learning.service import AdaptiveLearningService
 from app.schemas.daily_task import DailyTaskCreate, DailyTaskUpdate
 from app.schemas.learning_activity import ActivityGenerateRequest
+from app.schemas.agent import AgentPlan
 from app.services.crud import apply_updates, get_or_404
 from app.services.learning_activities.service import ActivityGenerationService
-from app.services.llm.schemas import RagModelAnswer
 from app.services.quiz_attempts import QuizAttemptService
-from app.services.rag.prompts import REPAIR_SYSTEM_PROMPT, answer_messages
-from app.services.llm.errors import LLMOutputInvalidError
+from app.services.llm.errors import LLMError
+from app.services.rag.grounding import (
+    GroundedAnswerInvalidError,
+    generate_grounded_answer,
+)
 from app.services.rag.retrieval import retrieve_sources
-from app.services.rag.validation import is_prompt_injection_request, validate_answer
+from app.services.rag.validation import is_prompt_injection_request
 from app.services.vector_store.service import MaterialIndexService
 from app.services.wrong_answers import WrongAnswerService
 
@@ -34,16 +37,12 @@ READ_TOOLS = (
     "get_activity_summary", "list_quiz_attempts", "get_wrong_answers",
     "get_knowledge_mastery", "list_weak_knowledge_points", "list_due_reviews",
     "get_adaptive_recommendations", "explain_mastery",
+    "get_next_learning_action",
 )
 WRITE_TOOLS = (
     "create_daily_task", "update_daily_task_status", "save_learning_note",
     "generate_learning_activity", "create_wrong_answer_review", "start_quiz_attempt",
     "accept_review_recommendation",
-)
-FORBIDDEN_TOKENS = (
-    "delete", "drop ", "truncate", "shell", "powershell", "cmd.exe", "python",
-    "sql", "filesystem", "file_path", "api_key", "environment", "score_percentage",
-    "correct_answer", "grading_rubric", "reference_answer",
 )
 REQUIRED_ARGS = {
     "answer_from_materials": {"question"}, "search_materials": {"query"},
@@ -53,6 +52,31 @@ REQUIRED_ARGS = {
     "create_wrong_answer_review": {"wrong_answer_ids"}, "start_quiz_attempt": {"activity_id"},
     "get_knowledge_mastery": {"knowledge_point_id"},
     "explain_mastery": {"knowledge_point_id"},
+    "accept_review_recommendation": {"recommendation_id"},
+}
+ALLOWED_ARGS = {
+    "answer_from_materials": {"question", "top_k", "material_ids"},
+    "search_materials": {"query", "top_k", "material_ids", "min_score"},
+    "list_courses": {"limit"},
+    "list_knowledge_points": {"course_id"},
+    "list_daily_tasks": {"scheduled_date"},
+    "get_learning_progress": set(),
+    "list_learning_activities": {"status"},
+    "get_activity_summary": {"activity_id"},
+    "list_quiz_attempts": {"activity_id", "limit"},
+    "get_wrong_answers": {"status", "course_id", "knowledge_point_id", "question_type", "limit"},
+    "get_knowledge_mastery": {"knowledge_point_id"},
+    "list_weak_knowledge_points": {"course_id", "limit", "include_unassessed"},
+    "list_due_reviews": {"start_date", "end_date", "course_id", "status", "overdue", "limit"},
+    "get_adaptive_recommendations": {"status", "course_id", "limit"},
+    "explain_mastery": {"knowledge_point_id"},
+    "get_next_learning_action": {"available_minutes"},
+    "create_daily_task": {"learning_goal_id", "title", "scheduled_date", "estimated_minutes", "course_id", "knowledge_point_id", "activity_id", "task_type", "status"},
+    "update_daily_task_status": {"task_id", "status"},
+    "save_learning_note": {"learning_goal_id", "note", "course_id", "knowledge_point_id"},
+    "generate_learning_activity": {"title", "material_ids", "question_types", "question_count", "difficulty", "course_id", "knowledge_point_id"},
+    "create_wrong_answer_review": {"wrong_answer_ids"},
+    "start_quiz_attempt": {"activity_id", "learning_session_id"},
     "accept_review_recommendation": {"recommendation_id"},
 }
 
@@ -71,8 +95,9 @@ def result(tool: str, data: Any = None, summary: str = "", *, ids: dict | None =
 
 
 class ToolRegistry:
-    def __init__(self, db, settings, embedder, provider):
+    def __init__(self, db, settings, embedder, provider, clock: Clock | None = None):
         self.db, self.settings, self.embedder, self.provider = db, settings, embedder, provider
+        self.clock = clock or clock_from_settings(settings)
 
     @property
     def read_names(self) -> list[str]:
@@ -85,19 +110,17 @@ class ToolRegistry:
     def validate_plan(self, steps: list[dict]) -> list[dict]:
         if len(steps) > self.settings.agent_max_steps:
             raise ValueError("plan_too_many_steps")
+        try:
+            typed_steps = AgentPlan.model_validate({"steps": steps}).steps
+        except ValidationError as exc:
+            raise ValueError("tool_arguments_invalid") from exc
         reads = writes = 0
         normalized = []
         write_seen = False
-        for raw in steps:
-            name = str(raw.get("tool_name", ""))
-            args = raw.get("arguments") or {}
-            if name not in READ_TOOLS + WRITE_TOOLS or not isinstance(args, dict):
-                raise ValueError("tool_not_allowed")
-            if not REQUIRED_ARGS.get(name, set()).issubset(args):
-                raise ValueError("tool_arguments_invalid")
-            unsafe = json.dumps({"name": name, "arguments": args}, ensure_ascii=False).lower()
-            if any(token in unsafe for token in FORBIDDEN_TOKENS):
-                raise ValueError("unsafe_tool_arguments")
+        for step in typed_steps:
+            raw = step.model_dump(mode="json", exclude_none=True)
+            name = raw["tool_name"]
+            args = raw["arguments"]
             if name in WRITE_TOOLS:
                 writes += 1
                 write_seen = True
@@ -133,35 +156,42 @@ class ToolRegistry:
         if is_prompt_injection_request(question):
             return result("answer_from_materials", summary="不能泄露或绕过内部提示与安全规则。", error_code="security_rejection")
         retrieval = retrieve_sources(db=self.db, settings=self.settings, embedder=self.embedder,
-            query=question, top_k=min(int(a.get("top_k", self.settings.rag_top_k_default)), self.settings.rag_top_k_max),
+            query=question, top_k=min(int(a.get("top_k", self.settings.rag_final_context_top_k)), self.settings.rag_top_k_max),
             material_ids=a.get("material_ids"))
         if not retrieval.sources:
             return result("answer_from_materials", {"answer":"当前资料不足以可靠回答。"}, "当前资料不足以可靠回答。")
         if self.provider is None:
             return result("answer_from_materials", summary="LLM 尚未配置。", error_code="llm_not_configured")
-        reason = "llm_output_invalid"
         try:
-            answer = self.provider.generate_structured(messages=answer_messages(question, retrieval.sources), schema=RagModelAnswer).value
-            valid, reason = validate_answer(answer, retrieval.sources)
-        except LLMOutputInvalidError:
-            valid = False
-            answer = None
-        if not valid:
-            allowed = ", ".join(source.source_label for source in retrieval.sources)
-            repaired = self.provider.generate_structured(messages=[
-                {"role":"system","content":REPAIR_SYSTEM_PROMPT},
-                {"role":"user","content":f"问题：{question}\n校验失败原因：{reason}\n允许来源：{allowed}\n请重新依据资料生成合规答案。"},
-                *answer_messages(question,retrieval.sources)[1:2],
-            ],schema=RagModelAnswer)
-            answer = repaired.value
-            valid, reason = validate_answer(answer,retrieval.sources)
-        if not valid:
-            return result("answer_from_materials", summary="资料回答的引用校验失败。", error_code=reason or "citation_invalid")
+            grounded = generate_grounded_answer(
+                provider=self.provider,
+                question=question,
+                sources=retrieval.sources,
+            )
+        except GroundedAnswerInvalidError:
+            return result(
+                "answer_from_materials",
+                summary="资料回答暂时无法可靠生成，请重试。",
+                error_code="grounded_answer_invalid",
+                retryable=True,
+            )
+        except LLMError as exc:
+            return result(
+                "answer_from_materials",
+                summary="模型服务暂时不可用，请稍后重试。",
+                error_code=exc.code,
+                retryable=True,
+            )
+        answer = grounded.answer
+        if not answer.answerable:
+            summary = "当前资料不足以可靠回答。"
+            return result("answer_from_materials", {"answer": summary}, summary)
+        allowed = {source.source_label: source for source in retrieval.sources}
         citations = [{
             "source_label": s.source_label, "material_id": s.material_id, "chunk_id": s.chunk_id,
             "original_filename": s.original_filename, "page_number": s.page_number,
             "section_title": s.section_title, "content_excerpt": s.content[:self.settings.rag_citation_excerpt_chars],
-        } for s in retrieval.sources if s.source_label in answer.cited_source_ids]
+        } for source_id in answer.cited_source_ids for s in [allowed[source_id]]]
         return result("answer_from_materials", {"answer": answer.answer_markdown}, answer.answer_markdown, citations=citations)
 
     def _tool_list_courses(self, a, **_):
@@ -177,7 +207,7 @@ class ToolRegistry:
         return result("list_knowledge_points", data, f"共有 {len(data)} 个知识点。")
 
     def _tool_list_daily_tasks(self, a, **_):
-        target = date.fromisoformat(a["scheduled_date"]) if a.get("scheduled_date") else datetime.now(ZoneInfo(self.settings.app_timezone)).date()
+        target = date.fromisoformat(a["scheduled_date"]) if a.get("scheduled_date") else self.clock.today()
         stmt = select(DailyTask).where(DailyTask.scheduled_date == target).order_by(DailyTask.id)
         rows = self.db.scalars(stmt).all()
         data = [{"id": x.id, "title": x.title, "status": x.status, "scheduled_date": x.scheduled_date.isoformat(), "estimated_minutes": x.estimated_minutes} for x in rows]
@@ -272,6 +302,24 @@ class ToolRegistry:
             summary = f"掌握度由 {detail.evidence_count} 条真实证据按 {detail.algorithm_version} 计算，主要证据类别：{kinds}。"
         return result("explain_mastery", data, summary)
 
+    def _tool_get_next_learning_action(self, a, **_):
+        from app.services.next_learning_action import NextLearningActionService
+
+        action = NextLearningActionService(self.db, self.settings, self.clock).get(
+            int(a["available_minutes"]) if a.get("available_minutes") else None
+        )
+        data = action.model_dump(mode="json")
+        return result(
+            "get_next_learning_action",
+            data,
+            f"建议下一步：{action.title}。{action.reason}",
+            ids={
+                "target_id": action.target_id,
+                "course_id": action.course_id,
+                "knowledge_point_id": action.knowledge_point_id,
+            },
+        )
+
     def _tool_create_daily_task(self, a, **_):
         payload = DailyTaskCreate.model_validate(a)
         get_or_404(self.db, LearningGoal, payload.learning_goal_id, "学习目标")
@@ -298,7 +346,7 @@ class ToolRegistry:
 
     def _tool_save_learning_note(self, a, **_):
         goal = get_or_404(self.db, LearningGoal, int(a["learning_goal_id"]), "学习目标")
-        now = datetime.now(timezone.utc)
+        now = self.clock.now()
         session = LearningSession(learning_goal_id=goal.id, course_id=a.get("course_id"), knowledge_point_id=a.get("knowledge_point_id"),
             started_at=now, ended_at=now, status="completed", notes=str(a["note"]).strip())
         self.db.add(session); self.db.commit(); self.db.refresh(session)

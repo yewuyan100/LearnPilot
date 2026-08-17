@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://learnpilot.local/schemas/rag-hybrid-rerank-ablation-design-v1-1.json",
+  "title": "LearnPilot RAG Hybrid and Reranker Ablation Design V1.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "design_id",
+    "design_version",
+    "status",
+    "ready_for_hybrid_rerank_implementation",
+    "supersession",
+    "scope_declarations",
+    "frozen_inputs",
+    "arms",
+    "admission_contract",
+    "candidate_budget",
+    "score_contract",
+    "rrf_contract",
+    "reranker_contract",
+    "governance_contract",
+    "unchanged_v1_contract",
+    "target_case_sets",
+    "production_seam_contract",
+    "implementation_binding"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.1.0" },
+    "design_id": { "const": "learnpilot-rag-hybrid-rerank-ablation-design-v1-1" },
+    "design_version": { "const": "V1.1" },
+    "status": { "const": "COMPLETE" },
+    "ready_for_hybrid_rerank_implementation": { "const": true },
+    "supersession": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scope", "predecessor", "audit_authority", "unrelated_v1_fields_changed"],
+      "properties": {
+        "scope": { "const": "eligibility placement / candidate-admission ordering only" },
+        "predecessor": { "$ref": "#/$defs/artifact" },
+        "audit_authority": { "$ref": "#/$defs/artifact" },
+        "unrelated_v1_fields_changed": { "const": false }
+      }
+    },
+    "scope_declarations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "design_only",
+        "hybrid_implemented",
+        "reranker_implemented",
+        "experimental_llm_calls",
+        "model_downloads",
+        "reranker_instantiations",
+        "reranker_inference_calls",
+        "embedding_executions",
+        "faiss_experimental_executions",
+        "bm25_executions",
+        "baseline_rerun",
+        "production_rag_modified",
+        "gold_modified",
+        "corpus_modified",
+        "parameter_tuning_performed"
+      ],
+      "properties": {
+        "design_only": { "const": true },
+        "hybrid_implemented": { "const": false },
+        "reranker_implemented": { "const": false },
+        "experimental_llm_calls": { "const": 0 },
+        "model_downloads": { "const": 0 },
+        "reranker_instantiations": { "const": 0 },
+        "reranker_inference_calls": { "const": 0 },
+        "embedding_executions": { "const": 0 },
+        "faiss_experimental_executions": { "const": 0 },
+        "bm25_executions": { "const": 0 },
+        "baseline_rerun": { "const": false },
+        "production_rag_modified": { "const": false },
+        "gold_modified": { "const": false },
+        "corpus_modified": { "const": false },
+        "parameter_tuning_performed": { "const": false }
+      }
+    },
+    "frozen_inputs": { "$ref": "#/$defs/object" },
+    "arms": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dense_only", "hybrid", "dense_rerank", "hybrid_rerank"],
+      "properties": {
+        "dense_only": { "$ref": "#/$defs/arm" },
+        "hybrid": { "$ref": "#/$defs/arm" },
+        "dense_rerank": { "$ref": "#/$defs/arm" },
+        "hybrid_rerank": { "$ref": "#/$defs/arm" }
+      }
+    },
+    "admission_contract": { "$ref": "#/$defs/object" },
+    "candidate_budget": { "$ref": "#/$defs/object" },
+    "score_contract": { "$ref": "#/$defs/object" },
+    "rrf_contract": { "$ref": "#/$defs/object" },
+    "reranker_contract": { "$ref": "#/$defs/object" },
+    "governance_contract": { "$ref": "#/$defs/object" },
+    "unchanged_v1_contract": { "$ref": "#/$defs/object" },
+    "target_case_sets": { "$ref": "#/$defs/object" },
+    "production_seam_contract": { "$ref": "#/$defs/object" },
+    "implementation_binding": { "$ref": "#/$defs/object" }
+  },
+  "$defs": {
+    "object": { "type": "object" },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      }
+    },
+    "arm": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "stage_order",
+        "raw_dense_limit",
+        "raw_bm25_limit",
+        "union_identity_limit",
+        "fused_limit",
+        "reranker_input_limit",
+        "no_padding_or_refill",
+        "governance_ref"
+      ],
+      "properties": {
+        "role": { "type": "string" },
+        "stage_order": {
+          "type": "array",
+          "minItems": 6,
+          "uniqueItems": true,
+          "items": { "type": "string" }
+        },
+        "raw_dense_limit": { "type": ["integer", "null"], "maximum": 18 },
+        "raw_bm25_limit": { "type": ["integer", "null"], "maximum": 18 },
+        "union_identity_limit": { "type": ["integer", "null"], "maximum": 36 },
+        "fused_limit": { "type": ["integer", "null"], "maximum": 18 },
+        "reranker_input_limit": { "type": ["integer", "null"], "maximum": 18 },
+        "no_padding_or_refill": { "const": true },
+        "governance_ref": { "const": "#/governance_contract" }
+      }
+    }
+  }
+}

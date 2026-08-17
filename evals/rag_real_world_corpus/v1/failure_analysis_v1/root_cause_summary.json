@@ -1,0 +1,609 @@
+{
+  "analysis_id": "learnpilot-rag-real-world-root-cause-summary-v1",
+  "anchor_diagnostic": {
+    "candidate_anchor_miss": 13,
+    "candidate_anchor_pass": 59,
+    "interpretation": "Anchor coverage is runtime-chunk mapping telemetry and is not used alone as a product-failure label.",
+    "selected_anchor_false_positive_cases": [
+      "rw-gold-v1-stress-cross-embedding-api-concurrency"
+    ],
+    "selected_anchor_miss": 31,
+    "selected_anchor_pass": 41,
+    "selected_miss_semantic_equivalent_or_mapping_count": 13,
+    "selected_miss_verified_upstream_count": 18
+  },
+  "breakdowns": {
+    "case_type": {
+      "cross_topic_multi_doc": {
+        "case_count": 4,
+        "case_verdict_counts": {
+          "INCORRECT_REFUSAL": 2,
+          "PARTIAL_PASS": 2
+        },
+        "full_pass_count": 0,
+        "full_pass_rate": 0.0,
+        "primary_root_cause_counts": {
+          "RETRIEVAL_MISS": 4
+        }
+      },
+      "deep_long_doc_localization": {
+        "case_count": 4,
+        "case_verdict_counts": {
+          "FULL_PASS": 4
+        },
+        "full_pass_count": 4,
+        "full_pass_rate": 1.0,
+        "primary_root_cause_counts": {
+          "EVAL_MAPPING_DIAGNOSTIC": 2,
+          "NO_FAILURE": 2
+        }
+      },
+      "high_overlap_source_conflict": {
+        "case_count": 4,
+        "case_verdict_counts": {
+          "FULL_PASS": 3,
+          "PARTIAL_PASS": 1
+        },
+        "full_pass_count": 3,
+        "full_pass_rate": 0.75,
+        "primary_root_cause_counts": {
+          "EVAL_MAPPING_DIAGNOSTIC": 1,
+          "GENERATION_OMISSION": 1,
+          "NO_FAILURE": 2
+        }
+      },
+      "long_doc_localization": {
+        "case_count": 10,
+        "case_verdict_counts": {
+          "FULL_PASS": 3,
+          "INCORRECT_REFUSAL": 3,
+          "PARTIAL_PASS": 4
+        },
+        "full_pass_count": 3,
+        "full_pass_rate": 0.3,
+        "primary_root_cause_counts": {
+          "ANSWERABILITY_FALSE_NEGATIVE": 1,
+          "EVAL_MAPPING_DIAGNOSTIC": 1,
+          "GENERATION_OMISSION": 2,
+          "NO_FAILURE": 2,
+          "SELECTION_DIVERSITY_MISS": 4
+        }
+      },
+      "multi_doc_synthesis": {
+        "case_count": 10,
+        "case_verdict_counts": {
+          "FULL_PASS": 4,
+          "INCORRECT_REFUSAL": 3,
+          "PARTIAL_PASS": 3
+        },
+        "full_pass_count": 4,
+        "full_pass_rate": 0.4,
+        "primary_root_cause_counts": {
+          "CITATION_ONLY_FAILURE": 1,
+          "EVAL_MAPPING_DIAGNOSTIC": 2,
+          "NO_FAILURE": 1,
+          "RETRIEVAL_MISS": 4,
+          "SELECTION_DIVERSITY_MISS": 2
+        }
+      },
+      "semantic_paraphrase": {
+        "case_count": 10,
+        "case_verdict_counts": {
+          "FULL_PASS": 9,
+          "PARTIAL_PASS": 1
+        },
+        "full_pass_count": 9,
+        "full_pass_rate": 0.9,
+        "primary_root_cause_counts": {
+          "CITATION_ONLY_FAILURE": 1,
+          "EVAL_MAPPING_DIAGNOSTIC": 2,
+          "NO_FAILURE": 6,
+          "SELECTION_DIVERSITY_MISS": 1
+        }
+      },
+      "single_doc_fact": {
+        "case_count": 10,
+        "case_verdict_counts": {
+          "FULL_PASS": 9,
+          "INCORRECT_REFUSAL": 1
+        },
+        "full_pass_count": 9,
+        "full_pass_rate": 0.9,
+        "primary_root_cause_counts": {
+          "EVAL_MAPPING_DIAGNOSTIC": 2,
+          "NO_FAILURE": 7,
+          "RETRIEVAL_MISS": 1
+        }
+      },
+      "source_disambiguation": {
+        "case_count": 10,
+        "case_verdict_counts": {
+          "FULL_PASS": 5,
+          "INCORRECT_REFUSAL": 3,
+          "PARTIAL_PASS": 2
+        },
+        "full_pass_count": 5,
+        "full_pass_rate": 0.5,
+        "primary_root_cause_counts": {
+          "ANSWERABILITY_FALSE_NEGATIVE": 2,
+          "EVAL_MAPPING_DIAGNOSTIC": 2,
+          "NO_FAILURE": 3,
+          "SELECTION_DIVERSITY_MISS": 1,
+          "SELECTION_RANKING_MISS": 2
+        }
+      },
+      "unanswerable_near_boundary": {
+        "case_count": 10,
+        "case_verdict_counts": {
+          "CORRECT_REFUSAL": 10
+        },
+        "full_pass_count": 0,
+        "full_pass_rate": 0.0,
+        "primary_root_cause_counts": {
+          "NO_FAILURE": 10
+        }
+      }
+    },
+    "difficulty": {
+      "easy": {
+        "case_count": 10,
+        "case_verdict_counts": {
+          "FULL_PASS": 9,
+          "INCORRECT_REFUSAL": 1
+        },
+        "full_pass_count": 9,
+        "full_pass_rate": 0.9,
+        "primary_root_cause_counts": {
+          "EVAL_MAPPING_DIAGNOSTIC": 2,
+          "NO_FAILURE": 7,
+          "RETRIEVAL_MISS": 1
+        }
+      },
+      "hard": {
+        "case_count": 31,
+        "case_verdict_counts": {
+          "CORRECT_REFUSAL": 4,
+          "FULL_PASS": 11,
+          "INCORRECT_REFUSAL": 7,
+          "PARTIAL_PASS": 9
+        },
+        "full_pass_count": 11,
+        "full_pass_rate": 0.3548,
+        "primary_root_cause_counts": {
+          "ANSWERABILITY_FALSE_NEGATIVE": 2,
+          "CITATION_ONLY_FAILURE": 1,
+          "EVAL_MAPPING_DIAGNOSTIC": 5,
+          "GENERATION_OMISSION": 2,
+          "NO_FAILURE": 9,
+          "RETRIEVAL_MISS": 4,
+          "SELECTION_DIVERSITY_MISS": 6,
+          "SELECTION_RANKING_MISS": 2
+        }
+      },
+      "medium": {
+        "case_count": 19,
+        "case_verdict_counts": {
+          "CORRECT_REFUSAL": 6,
+          "FULL_PASS": 10,
+          "INCORRECT_REFUSAL": 2,
+          "PARTIAL_PASS": 1
+        },
+        "full_pass_count": 10,
+        "full_pass_rate": 0.5263,
+        "primary_root_cause_counts": {
+          "ANSWERABILITY_FALSE_NEGATIVE": 1,
+          "CITATION_ONLY_FAILURE": 1,
+          "EVAL_MAPPING_DIAGNOSTIC": 2,
+          "NO_FAILURE": 13,
+          "SELECTION_DIVERSITY_MISS": 2
+        }
+      },
+      "stress": {
+        "case_count": 12,
+        "case_verdict_counts": {
+          "FULL_PASS": 7,
+          "INCORRECT_REFUSAL": 2,
+          "PARTIAL_PASS": 3
+        },
+        "full_pass_count": 7,
+        "full_pass_rate": 0.5833,
+        "primary_root_cause_counts": {
+          "EVAL_MAPPING_DIAGNOSTIC": 3,
+          "GENERATION_OMISSION": 1,
+          "NO_FAILURE": 4,
+          "RETRIEVAL_MISS": 4
+        }
+      }
+    },
+    "query_language": {
+      "en": {
+        "case_count": 18,
+        "case_verdict_counts": {
+          "CORRECT_REFUSAL": 6,
+          "FULL_PASS": 8,
+          "INCORRECT_REFUSAL": 1,
+          "PARTIAL_PASS": 3
+        },
+        "full_pass_count": 8,
+        "full_pass_rate": 0.4444,
+        "primary_root_cause_counts": {
+          "EVAL_MAPPING_DIAGNOSTIC": 3,
+          "NO_FAILURE": 11,
+          "RETRIEVAL_MISS": 3,
+          "SELECTION_DIVERSITY_MISS": 1
+        }
+      },
+      "zh-CN": {
+        "case_count": 54,
+        "case_verdict_counts": {
+          "CORRECT_REFUSAL": 4,
+          "FULL_PASS": 29,
+          "INCORRECT_REFUSAL": 11,
+          "PARTIAL_PASS": 10
+        },
+        "full_pass_count": 29,
+        "full_pass_rate": 0.537,
+        "primary_root_cause_counts": {
+          "ANSWERABILITY_FALSE_NEGATIVE": 3,
+          "CITATION_ONLY_FAILURE": 2,
+          "EVAL_MAPPING_DIAGNOSTIC": 9,
+          "GENERATION_OMISSION": 3,
+          "NO_FAILURE": 22,
+          "RETRIEVAL_MISS": 6,
+          "SELECTION_DIVERSITY_MISS": 7,
+          "SELECTION_RANKING_MISS": 2
+        }
+      }
+    },
+    "tier": {
+      "CORE": {
+        "case_count": 60,
+        "case_verdict_counts": {
+          "CORRECT_REFUSAL": 10,
+          "FULL_PASS": 30,
+          "INCORRECT_REFUSAL": 10,
+          "PARTIAL_PASS": 10
+        },
+        "full_pass_count": 30,
+        "full_pass_rate": 0.5,
+        "primary_root_cause_counts": {
+          "ANSWERABILITY_FALSE_NEGATIVE": 3,
+          "CITATION_ONLY_FAILURE": 2,
+          "EVAL_MAPPING_DIAGNOSTIC": 9,
+          "GENERATION_OMISSION": 2,
+          "NO_FAILURE": 29,
+          "RETRIEVAL_MISS": 5,
+          "SELECTION_DIVERSITY_MISS": 8,
+          "SELECTION_RANKING_MISS": 2
+        }
+      },
+      "STRESS": {
+        "case_count": 12,
+        "case_verdict_counts": {
+          "FULL_PASS": 7,
+          "INCORRECT_REFUSAL": 2,
+          "PARTIAL_PASS": 3
+        },
+        "full_pass_count": 7,
+        "full_pass_rate": 0.5833,
+        "primary_root_cause_counts": {
+          "EVAL_MAPPING_DIAGNOSTIC": 3,
+          "GENERATION_OMISSION": 1,
+          "NO_FAILURE": 4,
+          "RETRIEVAL_MISS": 4
+        }
+      }
+    },
+    "topic": {
+      "agent_engineering": {
+        "case_count": 18,
+        "case_verdict_counts": {
+          "CORRECT_REFUSAL": 2,
+          "FULL_PASS": 10,
+          "INCORRECT_REFUSAL": 3,
+          "PARTIAL_PASS": 3
+        },
+        "full_pass_count": 10,
+        "full_pass_rate": 0.5556,
+        "primary_root_cause_counts": {
+          "ANSWERABILITY_FALSE_NEGATIVE": 1,
+          "CITATION_ONLY_FAILURE": 2,
+          "EVAL_MAPPING_DIAGNOSTIC": 4,
+          "GENERATION_OMISSION": 2,
+          "NO_FAILURE": 6,
+          "RETRIEVAL_MISS": 1,
+          "SELECTION_DIVERSITY_MISS": 2
+        }
+      },
+      "ai_app_backend": {
+        "case_count": 18,
+        "case_verdict_counts": {
+          "CORRECT_REFUSAL": 2,
+          "FULL_PASS": 8,
+          "INCORRECT_REFUSAL": 3,
+          "PARTIAL_PASS": 5
+        },
+        "full_pass_count": 8,
+        "full_pass_rate": 0.4444,
+        "primary_root_cause_counts": {
+          "ANSWERABILITY_FALSE_NEGATIVE": 1,
+          "EVAL_MAPPING_DIAGNOSTIC": 2,
+          "NO_FAILURE": 8,
+          "RETRIEVAL_MISS": 4,
+          "SELECTION_DIVERSITY_MISS": 2,
+          "SELECTION_RANKING_MISS": 1
+        }
+      },
+      "evaluation_reliability": {
+        "case_count": 19,
+        "case_verdict_counts": {
+          "CORRECT_REFUSAL": 3,
+          "FULL_PASS": 9,
+          "INCORRECT_REFUSAL": 3,
+          "PARTIAL_PASS": 4
+        },
+        "full_pass_count": 9,
+        "full_pass_rate": 0.4737,
+        "primary_root_cause_counts": {
+          "EVAL_MAPPING_DIAGNOSTIC": 2,
+          "GENERATION_OMISSION": 1,
+          "NO_FAILURE": 10,
+          "RETRIEVAL_MISS": 3,
+          "SELECTION_DIVERSITY_MISS": 2,
+          "SELECTION_RANKING_MISS": 1
+        }
+      },
+      "rag_retrieval": {
+        "case_count": 17,
+        "case_verdict_counts": {
+          "CORRECT_REFUSAL": 3,
+          "FULL_PASS": 10,
+          "INCORRECT_REFUSAL": 3,
+          "PARTIAL_PASS": 1
+        },
+        "full_pass_count": 10,
+        "full_pass_rate": 0.5882,
+        "primary_root_cause_counts": {
+          "ANSWERABILITY_FALSE_NEGATIVE": 1,
+          "EVAL_MAPPING_DIAGNOSTIC": 4,
+          "NO_FAILURE": 9,
+          "RETRIEVAL_MISS": 1,
+          "SELECTION_DIVERSITY_MISS": 2
+        }
+      }
+    }
+  },
+  "case_count": 72,
+  "case_verdict_counts": {
+    "CORRECT_REFUSAL": 10,
+    "FULL_PASS": 37,
+    "INCORRECT_REFUSAL": 12,
+    "PARTIAL_PASS": 13
+  },
+  "combined_claim_result": {
+    "by_evaluation_mode": {
+      "ANSWERABILITY_ONLY": {
+        "FAIL": 0,
+        "PARTIAL": 0,
+        "PASS": 10,
+        "claim_count": 10
+      },
+      "IDENTIFIER_EXACT": {
+        "FAIL": 0,
+        "PARTIAL": 0,
+        "PASS": 5,
+        "claim_count": 5
+      },
+      "NUMERIC_EXACT": {
+        "FAIL": 2,
+        "PARTIAL": 0,
+        "PASS": 5,
+        "claim_count": 7
+      },
+      "SEMANTIC_REVIEW": {
+        "FAIL": 26,
+        "PARTIAL": 15,
+        "PASS": 63,
+        "claim_count": 104
+      },
+      "STRUCTURED_EXACT": {
+        "FAIL": 1,
+        "PARTIAL": 0,
+        "PASS": 5,
+        "claim_count": 6
+      }
+    },
+    "claim_count": 132,
+    "final_status_counts": {
+      "FAIL": 29,
+      "PARTIAL": 15,
+      "PASS": 88
+    }
+  },
+  "false_refusal_attribution": [
+    {
+      "case_id": "rw-gold-v1-single-dependency-defaults",
+      "primary_root_cause": "RETRIEVAL_MISS",
+      "reason": "The candidate pool contains a boundary fragment stating limit=100 but no candidate contains the required skip=0 fact; the selected context is therefore insufficient before the model refuses."
+    },
+    {
+      "case_id": "rw-gold-v1-long-bge-score-mix",
+      "primary_root_cause": "ANSWERABILITY_FALSE_NEGATIVE",
+      "reason": "The score-weight evidence is selected at rank 1, including the required dense/sparse weighting example, yet the model says the context does not explain score combination and refuses."
+    },
+    {
+      "case_id": "rw-gold-v1-long-bge-training",
+      "primary_root_cause": "SELECTION_DIVERSITY_MISS",
+      "reason": "The required BGE-M3 training passage is candidate rank 15 but diversity-deferred; the six selected chunks cover capabilities and usage rather than the training obligations, so the refusal has an upstream selection cause."
+    },
+    {
+      "case_id": "rw-gold-v1-long-deps-hierarchy",
+      "primary_root_cause": "SELECTION_DIVERSITY_MISS",
+      "reason": "Hierarchy/OpenAPI evidence exists in candidates, but the semantically complete hierarchy and OpenAPI chunks at ranks 7, 12, and 14 are diversity-deferred; the selected boundary-mapped chunk covers only the OpenAPI half."
+    },
+    {
+      "case_id": "rw-gold-v1-multi-eval-stack",
+      "primary_root_cause": "SELECTION_DIVERSITY_MISS",
+      "reason": "Workflow fields are available through a selected boundary fragment, but the reference-based and without-reference context-precision examples are candidates at ranks 10-13 and diversity-deferred; selected context is incomplete before refusal."
+    },
+    {
+      "case_id": "rw-gold-v1-multi-rag-tracing",
+      "primary_root_cause": "RETRIEVAL_MISS",
+      "reason": "This is the sole document-group candidate miss: required Ragas workflow groups are absent from all 18 candidates, while only OpenTelemetry trace material is selected, so the refusal is upstream of answerability."
+    },
+    {
+      "case_id": "rw-gold-v1-multi-retrieval-eval",
+      "primary_root_cause": "RETRIEVAL_MISS",
+      "reason": "Faiss and context-precision roles are present, but no candidate contains the required Ragas data-collection record that supplies retrieved_contexts for each user_input; selected evaluation context is therefore incomplete."
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-agent-persist-interrupt",
+      "primary_root_cause": "ANSWERABILITY_FALSE_NEGATIVE",
+      "reason": "Both required persistence and interrupt/resume groups are selected with their anchors, yet the model claims the supplied documents do not explain the distinction and refuses."
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-fastapi-errors",
+      "primary_root_cause": "ANSWERABILITY_FALSE_NEGATIVE",
+      "reason": "The required HTTPException passage is selected at rank 4 and directly states raise/terminate/client-error behavior, but the model says the material is insufficient and refuses."
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-interrupt-static",
+      "primary_root_cause": "SELECTION_DIVERSITY_MISS",
+      "reason": "The static-breakpoint and runtime-static chunks are candidates at ranks 13 and 14 but diversity-deferred; final context contains dynamic interrupt material instead, so refusal is selection-driven."
+    },
+    {
+      "case_id": "rw-gold-v1-stress-cross-agent-api-replay",
+      "primary_root_cause": "RETRIEVAL_MISS",
+      "reason": "Node-restart evidence is selected, but no candidate contains the non-idempotent side-effect mitigation or HTTPException client-boundary passage required to complete the cross-topic answer."
+    },
+    {
+      "case_id": "rw-gold-v1-stress-cross-retrieval-evaluation",
+      "primary_root_cause": "RETRIEVAL_MISS",
+      "reason": "Selected context contains partial hybrid, Faiss trade-off, and score-example fragments, but candidates omit the full BGE hybrid-plus-reranking and context-precision definition obligations; refusal is upstream."
+    }
+  ],
+  "machine_deterministic_result": {
+    "claim_count": 28,
+    "fail_count": 4,
+    "pass_count": 24,
+    "pass_rate": 0.8571
+  },
+  "primary_root_cause_case_ids": {
+    "ANSWERABILITY_FALSE_NEGATIVE": [
+      "rw-gold-v1-long-bge-score-mix",
+      "rw-gold-v1-disambig-agent-persist-interrupt",
+      "rw-gold-v1-disambig-fastapi-errors"
+    ],
+    "CITATION_ONLY_FAILURE": [
+      "rw-gold-v1-semantic-checkpointer-store",
+      "rw-gold-v1-multi-agent-resume"
+    ],
+    "EVAL_MAPPING_DIAGNOSTIC": [
+      "rw-gold-v1-single-bge-shape",
+      "rw-gold-v1-single-langgraph-js",
+      "rw-gold-v1-semantic-context-order",
+      "rw-gold-v1-semantic-faiss-compression",
+      "rw-gold-v1-long-precision-nonllm",
+      "rw-gold-v1-multi-agent-memory-hitl",
+      "rw-gold-v1-multi-async-dependency",
+      "rw-gold-v1-disambig-agent-memory",
+      "rw-gold-v1-disambig-bge-faiss",
+      "rw-gold-v1-stress-deep-bge-mldr-comparison",
+      "rw-gold-v1-stress-deep-interrupt-side-effects",
+      "rw-gold-v1-stress-conflict-fastapi-handler-type"
+    ],
+    "GENERATION_OMISSION": [
+      "rw-gold-v1-long-interrupt-validation",
+      "rw-gold-v1-long-langgraph-positioning",
+      "rw-gold-v1-stress-conflict-ragas-reference-mode"
+    ],
+    "NO_FAILURE": [
+      "rw-gold-v1-single-error-response",
+      "rw-gold-v1-single-faiss-cosine",
+      "rw-gold-v1-single-interrupt-status",
+      "rw-gold-v1-single-otel-status",
+      "rw-gold-v1-single-persist-thread-id",
+      "rw-gold-v1-single-precision-id",
+      "rw-gold-v1-single-ragas-dataset",
+      "rw-gold-v1-semantic-bge-functions",
+      "rw-gold-v1-semantic-error-raise",
+      "rw-gold-v1-semantic-fastapi-blocking",
+      "rw-gold-v1-semantic-interrupt-replay",
+      "rw-gold-v1-semantic-ragas-data",
+      "rw-gold-v1-semantic-trace-correlation",
+      "rw-gold-v1-long-async-threadpool",
+      "rw-gold-v1-long-bge-query-instruction",
+      "rw-gold-v1-multi-faiss-context-precision",
+      "rw-gold-v1-disambig-bge-long",
+      "rw-gold-v1-disambig-fastapi-exceptions",
+      "rw-gold-v1-disambig-ragas-otel",
+      "rw-gold-v1-unanswerable-bge-language-counts",
+      "rw-gold-v1-unanswerable-bge-optimal-weights",
+      "rw-gold-v1-unanswerable-checkpoint-encryption",
+      "rw-gold-v1-unanswerable-dependency-depth",
+      "rw-gold-v1-unanswerable-faiss-p95-latency",
+      "rw-gold-v1-unanswerable-interrupt-timeout",
+      "rw-gold-v1-unanswerable-precision-pass-threshold",
+      "rw-gold-v1-unanswerable-ragas-minimum-score",
+      "rw-gold-v1-unanswerable-threadpool-workers",
+      "rw-gold-v1-unanswerable-trace-retention",
+      "rw-gold-v1-stress-deep-async-call-kinds",
+      "rw-gold-v1-stress-deep-precision-id-versus-content",
+      "rw-gold-v1-stress-conflict-bge-faiss-compression",
+      "rw-gold-v1-stress-conflict-interrupt-persistence-resume"
+    ],
+    "RETRIEVAL_MISS": [
+      "rw-gold-v1-single-dependency-defaults",
+      "rw-gold-v1-multi-backend-control",
+      "rw-gold-v1-multi-error-observability",
+      "rw-gold-v1-multi-rag-tracing",
+      "rw-gold-v1-multi-retrieval-eval",
+      "rw-gold-v1-stress-cross-agent-api-replay",
+      "rw-gold-v1-stress-cross-embedding-api-concurrency",
+      "rw-gold-v1-stress-cross-persistence-tracing",
+      "rw-gold-v1-stress-cross-retrieval-evaluation"
+    ],
+    "SELECTION_DIVERSITY_MISS": [
+      "rw-gold-v1-semantic-deps-automatic",
+      "rw-gold-v1-long-bge-training",
+      "rw-gold-v1-long-deps-hierarchy",
+      "rw-gold-v1-long-interrupt-static",
+      "rw-gold-v1-long-otel-links",
+      "rw-gold-v1-multi-eval-stack",
+      "rw-gold-v1-multi-hybrid-index",
+      "rw-gold-v1-disambig-interrupt-static"
+    ],
+    "SELECTION_RANKING_MISS": [
+      "rw-gold-v1-disambig-fastapi-async-deps",
+      "rw-gold-v1-disambig-ragas-metrics"
+    ]
+  },
+  "primary_root_cause_counts": {
+    "ANSWERABILITY_FALSE_NEGATIVE": 3,
+    "CITATION_ONLY_FAILURE": 2,
+    "EVAL_MAPPING_DIAGNOSTIC": 12,
+    "GENERATION_OMISSION": 3,
+    "NO_FAILURE": 33,
+    "RETRIEVAL_MISS": 9,
+    "SELECTION_DIVERSITY_MISS": 8,
+    "SELECTION_RANKING_MISS": 2
+  },
+  "reviewed_deterministic_result": {
+    "claim_count": 28,
+    "fail_count": 3,
+    "pass_count": 25,
+    "pass_rate": 0.8929
+  },
+  "schema_version": "1.0.0",
+  "semantic_claim_result": {
+    "case_count": 54,
+    "coverage_complete": true,
+    "semantic_claim_count": 104,
+    "verdict_counts": {
+      "AMBIGUOUS": 0,
+      "PARTIALLY_SUPPORTED": 15,
+      "SUPPORTED": 63,
+      "UNSUPPORTED": 26
+    }
+  }
+}

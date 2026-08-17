@@ -1,0 +1,50 @@
+{
+  "run_id": "20260816T050910Z-fbb5cec1",
+  "created_at": "2026-08-16T05:17:13.614194+00:00",
+  "status": "PASS",
+  "gpu_memory": "PASS",
+  "before_model_load": {
+    "torch_allocated_mib": 0.0,
+    "torch_reserved_mib": 0.0,
+    "nvidia_smi_free_mib": 7957
+  },
+  "after_model_load": {
+    "torch_allocated_mib": 2165.943,
+    "torch_reserved_mib": 2182.0,
+    "nvidia_smi_process": {
+      "available": false,
+      "raw": "20916, [N/A]"
+    },
+    "nvidia_smi_free_mib": 5685
+  },
+  "model_loaded_vram_mib": 2165.943,
+  "warm_peak_allocated_mib": {
+    "count": 72,
+    "p50": 2407.115,
+    "p75": 2426.93625,
+    "p90": 2454.043,
+    "p95": 2461.39455,
+    "p99": 2469.21294,
+    "mean": 2408.010444444,
+    "min": 2339.617,
+    "max": 2469.771,
+    "standard_deviation": 31.645471299
+  },
+  "warm_peak_reserved_mib": {
+    "count": 72,
+    "p50": 2896.0,
+    "p75": 2896.0,
+    "p90": 2896.0,
+    "p95": 2896.0,
+    "p99": 2896.0,
+    "mean": 2896.0,
+    "min": 2896.0,
+    "max": 2896.0,
+    "standard_deviation": 0.0
+  },
+  "oom_count": 0,
+  "allocator_error_count": 0,
+  "cpu_offload_observed": false,
+  "disk_offload_observed": false,
+  "unexpected_device_placement": false
+}

@@ -90,6 +90,10 @@ const indexedMaterial: Material = {
   processed_at: now,
   indexed_at: now,
   error_message: null,
+  deletion_status: "active",
+  deletion_error: null,
+  deletion_requested_at: null,
+  deletion_attempts: 0,
   created_at: now,
   updated_at: now,
 };
@@ -115,6 +119,7 @@ const attemptBase: QuizAttempt = {
   activity_id: 1,
   activity_title: "MCP 测验",
   learning_session_id: null,
+  request_id: null,
   status: "in_progress",
   started_at: now,
   submitted_at: null,

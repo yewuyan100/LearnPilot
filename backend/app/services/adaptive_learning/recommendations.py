@@ -3,6 +3,7 @@ from zoneinfo import ZoneInfo
 
 from sqlalchemy import select
 
+from app.core.clock import clock_from_settings
 from app.core.errors import AppError
 from app.models import (
     AdaptiveRecommendation, Course, DailyTask, KnowledgePoint, LearningGoal,
@@ -14,7 +15,7 @@ class AdaptiveRecommendationService:
     def __init__(self, db, settings, *, now: datetime | None = None):
         self.db = db
         self.settings = settings
-        self.now = now or settings.adaptive_fixed_now or datetime.now(timezone.utc)
+        self.now = now or clock_from_settings(settings).now()
 
     def generate(self, mastery, schedule: ReviewSchedule | None) -> tuple[AdaptiveRecommendation | None, bool]:
         if schedule is None or mastery.mastery_score is None:

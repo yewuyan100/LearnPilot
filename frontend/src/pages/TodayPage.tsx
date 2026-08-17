@@ -1,8 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { BookOpen, CalendarDays, Clock3, Flag, Play, Plus, RotateCcw } from "lucide-react";
-import { useState } from "react";
+import { BookOpen, CalendarDays, Clock3, Flag, NotebookPen, Play, Plus, RotateCcw, Route } from "lucide-react";
+import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { dashboardApi, sessionsApi, tasksApi } from "../api/resources";
+import { dashboardApi, nextActionApi, sessionsApi, tasksApi } from "../api/resources";
 import { Dialog } from "../components/Dialog";
 import { GoalForm } from "../components/GoalForm";
 import { EmptyState, ErrorState, LoadingState } from "../components/States";
@@ -16,6 +16,12 @@ export function TodayPage() {
   const queryClient = useQueryClient();
   const { showToast } = useToast();
   const today = useQuery({ queryKey: ["today"], queryFn: dashboardApi.today });
+  const nextAction = useQuery({
+    queryKey: ["next-learning-action", today.data?.current_goal?.daily_minutes],
+    queryFn: () => nextActionApi.get(today.data?.current_goal?.daily_minutes),
+    enabled: today.isSuccess,
+  });
+  const acceptRequest = useRef({ signature: "", requestId: crypto.randomUUID() });
   const startMutation = useMutation({
     mutationFn: (task: DailyTask) =>
       sessionsApi.create({
@@ -26,7 +32,9 @@ export function TodayPage() {
       }),
     onSuccess: (session) => {
       queryClient.invalidateQueries({ queryKey: ["today"] });
-      navigate(`/learning-sessions/${session.id}`);
+      navigate(session.lesson_id
+        ? `/lessons/${session.lesson_id}?session=${session.id}`
+        : `/learning-sessions/${session.id}`);
     },
     onError: (error: Error) => showToast(error.message, "error"),
   });
@@ -34,6 +42,30 @@ export function TodayPage() {
     mutationFn: ({ id, status }: { id: number; status: string }) => tasksApi.update(id, { status }),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["today"] }),
     onError: (error: Error) => showToast(error.message, "error"),
+  });
+  const acceptNext = useMutation({
+    mutationFn: async () => {
+      const action = nextAction.data!;
+      if (acceptRequest.current.signature !== action.action_signature) {
+        acceptRequest.current = { signature: action.action_signature, requestId: crypto.randomUUID() };
+      }
+      return nextActionApi.accept(
+        action.action_signature,
+        acceptRequest.current.requestId,
+        today.data?.current_goal?.daily_minutes,
+      );
+    },
+    onSuccess: async (result) => {
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ["today"] }),
+        queryClient.invalidateQueries({ queryKey: ["next-learning-action"] }),
+      ]);
+      navigate(result.next_url);
+    },
+    onError: async (error: Error) => {
+      showToast(error.message, "error");
+      await nextAction.refetch();
+    },
   });
 
   if (today.isLoading) return <LoadingState label="正在读取今日安排" />;
@@ -49,12 +81,17 @@ export function TodayPage() {
           <p>把目标、课程和今天的一次专注学习连接起来。</p>
         </div>
         {data.current_goal && (
-          <div className="time-budget">
+          <div className="button-row"><Link className="button button--secondary" to={`/notes?new=1&entity_type=learning_goal&entity_id=${data.current_goal.id}`}><NotebookPen size={16}/>记录笔记</Link><div className="time-budget">
             <Clock3 size={20} />
             <div><span>每日计划</span><strong>{data.current_goal.daily_minutes} 分钟</strong></div>
-          </div>
+          </div></div>
         )}
       </header>
+
+      <section className="next-action-card" aria-label="建议下一步">
+        <div className="next-action-card__icon"><Route size={22} /></div>
+        {nextAction.isLoading ? <div><span className="page-kicker">建议下一步</span><strong>正在读取当前学习状态…</strong></div> : nextAction.isError ? <div><span className="page-kicker">建议下一步</span><strong>暂时无法生成建议</strong><p>{nextAction.error.message}</p><button className="button button--quiet" onClick={() => nextAction.refetch()}>重新加载</button></div> : nextAction.data ? <><div className="next-action-card__body"><span className="page-kicker">建议下一步</span><h2>{nextAction.data.title}</h2><p>{nextAction.data.reason}</p><div className="next-action-meta">{nextAction.data.course_title && <span>{nextAction.data.course_title}</span>}{nextAction.data.knowledge_point_title && <span>{nextAction.data.knowledge_point_title}</span>}{nextAction.data.estimated_minutes > 0 && <span><Clock3 size={14} />{nextAction.data.estimated_minutes} 分钟</span>}{nextAction.data.from_formal_plan && <span>来自当前计划</span>}{nextAction.data.is_due_review && <span>到期复习</span>}</div></div><button className="button button--primary" disabled={acceptNext.isPending} onClick={() => acceptNext.mutate()}><Play size={16} />{acceptNext.isPending ? "正在进入…" : nextAction.data.cta_label}</button></> : null}
+      </section>
 
       {!data.current_goal ? (
         <EmptyState
@@ -77,7 +114,7 @@ export function TodayPage() {
             <div className="section-heading">
               <div>
                 <h2>今日任务</h2>
-                <p>{data.pending_count > 0 ? `还有 ${data.pending_count} 项待完成` : "今天的任务已经完成"}</p>
+                <p>{data.pending_count > 0 ? `还有 ${data.pending_count} 项待完成` : "今天没有可继续执行的任务"}{data.blocked_count > 0 ? ` · ${data.blocked_count} 项需要重新规划` : ""}</p>
               </div>
               <Link className="button button--secondary" to="/reviews"><RotateCcw size={16} />查看复习</Link>
             </div>
@@ -97,7 +134,8 @@ export function TodayPage() {
                     </div>
                     <h3>{task.title}</h3>
                     <p>{task.task_type === "review" ? "手动复习任务" : "新知识学习"}</p>
-                    <div className="task-card__actions">
+                    {task.blocked_at && <div className="notice notice--warning"><strong>该任务对应课程内容已变化，需要重新规划</strong>{task.blocked_reason && task.blocked_reason !== "该任务对应课程内容已变化，需要重新规划" && <p>{task.blocked_reason}</p>}<Link to="/goals">调整学习计划</Link></div>}
+                    {!task.blocked_at && <div className="task-card__actions">
                       {task.status !== "completed" && (
                         <button
                           className="button button--primary"
@@ -112,7 +150,7 @@ export function TodayPage() {
                           今天跳过
                         </button>
                       )}
-                    </div>
+                    </div>}
                   </article>
                 ))}
               </div>
@@ -136,8 +174,14 @@ export function TodayPage() {
         </article>
       </section>
 
-      <Dialog open={goalOpen} title="创建学习目标" onClose={() => setGoalOpen(false)}>
-        <GoalForm onDone={() => setGoalOpen(false)} />
+      <Dialog open={goalOpen} title="创建事项" onClose={() => setGoalOpen(false)}>
+        <GoalForm
+          onCancel={() => setGoalOpen(false)}
+          onCreated={(goal) => {
+            setGoalOpen(false);
+            navigate(`/items/${goal.id}`);
+          }}
+        />
       </Dialog>
     </div>
   );

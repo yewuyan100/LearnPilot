@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "case_count": 72,
+  "reviewed_case_count": 72,
+  "independent_review_verification_scope": {
+    "structural_contract_validation": true,
+    "frozen_corpus_locator_revalidation": true,
+    "anchor_hash_recomputation": true,
+    "independent_semantic_rejudgment_performed": false
+  },
+  "independent_semantic_rejudgment_count": 0,
+  "tier_distribution": {
+    "CORE": 60,
+    "STRESS": 12
+  },
+  "case_type_distribution": {
+    "cross_topic_multi_doc": 4,
+    "deep_long_doc_localization": 4,
+    "high_overlap_source_conflict": 4,
+    "long_doc_localization": 10,
+    "multi_doc_synthesis": 10,
+    "semantic_paraphrase": 10,
+    "single_doc_fact": 10,
+    "source_disambiguation": 10,
+    "unanswerable_near_boundary": 10
+  },
+  "query_language_distribution": {
+    "en": 18,
+    "zh-CN": 54
+  },
+  "topic_distribution": {
+    "agent_engineering": 18,
+    "ai_app_backend": 18,
+    "evaluation_reliability": 19,
+    "rag_retrieval": 17
+  },
+  "difficulty_distribution": {
+    "easy": 10,
+    "hard": 31,
+    "medium": 19,
+    "stress": 12
+  },
+  "anchor_count": 89,
+  "unresolved_document_reference_count": 0,
+  "unresolved_evidence_anchor_count": 0,
+  "invalid_claim_reference_count": 0,
+  "unverified_case_count": 0,
+  "duplicate_case_id_count": 0,
+  "immutable_scope_mismatch_count": {
+    "frozen_real_world_corpus": 0,
+    "controlled_corpus_v2": 0,
+    "production_rag": 0
+  },
+  "v2_helper_compatibility": "PASS",
+  "llm_or_baseline_execution_count": 0,
+  "errors": []
+}

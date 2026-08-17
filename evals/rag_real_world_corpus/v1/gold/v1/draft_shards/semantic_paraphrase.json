@@ -1,0 +1,648 @@
+{
+  "schema_version": "1.0.0",
+  "schema_ref": "draft_shard.schema.json",
+  "draft_status": "UNVERIFIED",
+  "case_type": "semantic_paraphrase",
+  "expected_case_count": 10,
+  "cases": [
+    {
+      "case_id": "rw-gold-v1-semantic-bge-functions",
+      "tier": "CORE",
+      "case_type": "semantic_paraphrase",
+      "information_need_key": "semantic-bge-functions",
+      "question": "如果我想让同一个 embedding 模型同时做语义向量、词项匹配和细粒度多向量交互，BGE-M3 是否覆盖这三类能力？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "rag_retrieval",
+      "secondary_topics": [],
+      "difficulty": "medium",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-semantic-bge-functions-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-rag-bge-m3"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-bge-capabilities",
+            "ev-rw-bge-methods"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-semantic-bge-functions-claim-01",
+          "canonical_claim": "BGE-M3 supports dense retrieval, sparse retrieval, and multi-vector retrieval.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-semantic-bge-functions-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-semantic-bge-functions-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-semantic-faiss-compression",
+      "tier": "CORE",
+      "case_type": "semantic_paraphrase",
+      "information_need_key": "semantic-faiss-compression",
+      "question": "为了把十亿级向量装进单机内存，Faiss 的某些索引会牺牲什么，并且可以不保留什么？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "rag_retrieval",
+      "secondary_topics": [],
+      "difficulty": "medium",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-semantic-faiss-compression-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-rag-faiss-overview"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-faiss-distance"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-semantic-faiss-compression-claim-01",
+          "canonical_claim": "Some compressed Faiss methods do not keep the original vectors.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-semantic-faiss-compression-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-semantic-faiss-compression-claim-02",
+          "canonical_claim": "The compression/scaling trade-off is less precise search.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-semantic-faiss-compression-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-semantic-faiss-compression-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-semantic-checkpointer-store",
+      "tier": "CORE",
+      "case_type": "semantic_paraphrase",
+      "information_need_key": "semantic-checkpointer-store",
+      "question": "为什么长期运行的 agent 既要有 durable execution 与 memory 能力，又要区分 thread-scoped checkpoint 和跨 thread store？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "agent_engineering",
+      "secondary_topics": [],
+      "difficulty": "medium",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-semantic-checkpointer-store-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-langgraph-overview"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-agent-overview-capabilities"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-semantic-checkpointer-store-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-persistence"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-persist-comparison"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-semantic-checkpointer-store-03",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-persistence"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-persist-overview"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-semantic-checkpointer-store-claim-01",
+          "canonical_claim": "LangGraph's high-level capabilities and persistence guide both support durable continuity and memory for long-running agents.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-semantic-checkpointer-store-01",
+            "eg-rw-semantic-checkpointer-store-03"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-semantic-checkpointer-store-claim-02",
+          "canonical_claim": "A checkpointer holds thread-scoped graph state, while a store holds application-defined cross-thread data such as preferences.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-semantic-checkpointer-store-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-semantic-checkpointer-store-01",
+          "eg-rw-semantic-checkpointer-store-02",
+          "eg-rw-semantic-checkpointer-store-03"
+        ],
+        "minimum_distinct_required_documents": 2,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-semantic-interrupt-replay",
+      "tier": "CORE",
+      "case_type": "semantic_paraphrase",
+      "information_need_key": "semantic-interrupt-replay",
+      "question": "暂停后继续执行时，为什么节点开头的代码可能再次运行，而不是从 interrupt 调用的下一行原地继续？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "agent_engineering",
+      "secondary_topics": [],
+      "difficulty": "medium",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-semantic-interrupt-replay-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-interrupts"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-interrupt-restart-rule"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-semantic-interrupt-replay-claim-01",
+          "canonical_claim": "Resuming restarts the entire node from the beginning rather than continuing at the call site.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-semantic-interrupt-replay-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-semantic-interrupt-replay-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-semantic-fastapi-blocking",
+      "tier": "CORE",
+      "case_type": "semantic_paraphrase",
+      "information_need_key": "semantic-fastapi-blocking",
+      "question": "第三方数据库库没有 await 接口时，FastAPI endpoint 应该写成普通 def 还是 async def？这种写法会不会让整个应用失去异步能力？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "ai_app_backend",
+      "secondary_topics": [],
+      "difficulty": "medium",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-semantic-fastapi-blocking-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-async"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-async-tldr"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-semantic-fastapi-blocking-claim-01",
+          "canonical_claim": "A blocking third-party library should be used from a normal def path operation function.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-semantic-fastapi-blocking-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-semantic-fastapi-blocking-claim-02",
+          "canonical_claim": "FastAPI still works asynchronously and can mix def with async def.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-semantic-fastapi-blocking-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-semantic-fastapi-blocking-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-semantic-deps-automatic",
+      "tier": "CORE",
+      "case_type": "semantic_paraphrase",
+      "information_need_key": "semantic-deps-automatic",
+      "question": "为什么 endpoint 不必手动调用每个依赖函数，仍能拿到它们的返回结果？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "ai_app_backend",
+      "secondary_topics": [],
+      "difficulty": "medium",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-semantic-deps-automatic-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-dependencies"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-deps-call"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-semantic-deps-automatic-claim-01",
+          "canonical_claim": "The endpoint declares a dependency by passing the callable to Depends without calling it.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-semantic-deps-automatic-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-semantic-deps-automatic-claim-02",
+          "canonical_claim": "FastAPI calls it with parameters and injects its result into the path operation parameter.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-semantic-deps-automatic-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-semantic-deps-automatic-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-semantic-error-raise",
+      "tier": "CORE",
+      "case_type": "semantic_paraphrase",
+      "information_need_key": "semantic-error-raise",
+      "question": "在深层 utility function 里发现资源不存在时，抛出 HTTPException 为什么能立即终止当前请求？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "ai_app_backend",
+      "secondary_topics": [],
+      "difficulty": "medium",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-semantic-error-raise-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-errors"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-errors-http-exception"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-semantic-error-raise-claim-01",
+          "canonical_claim": "HTTPException is raised as a Python exception, so remaining path operation code is not executed.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-semantic-error-raise-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-semantic-error-raise-claim-02",
+          "canonical_claim": "FastAPI sends the HTTP error carried by the exception to the client.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-semantic-error-raise-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-semantic-error-raise-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-semantic-context-order",
+      "tier": "CORE",
+      "case_type": "semantic_paraphrase",
+      "information_need_key": "semantic-context-order",
+      "question": "两个检索片段一个相关、一个无关，仅交换它们的先后顺序，为什么 context precision 会下降？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "evaluation_reliability",
+      "secondary_topics": [],
+      "difficulty": "medium",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-semantic-context-order-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-context-precision"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-precision-definition"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-semantic-context-order-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-context-precision"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-precision-rank-effect"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-semantic-context-order-claim-01",
+          "canonical_claim": "Context precision rewards relevant chunks appearing earlier in the ranking.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-semantic-context-order-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-semantic-context-order-claim-02",
+          "canonical_claim": "Putting the irrelevant chunk first lowers the example score from about 1.0 to about 0.5.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-semantic-context-order-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-semantic-context-order-01",
+          "eg-rw-semantic-context-order-02"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-semantic-trace-correlation",
+      "tier": "CORE",
+      "case_type": "semantic_paraphrase",
+      "information_need_key": "semantic-trace-correlation",
+      "question": "服务链路里的 span 分散在不同进程生成时，靠什么机制把它们重新拼成一条 trace？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "evaluation_reliability",
+      "secondary_topics": [],
+      "difficulty": "medium",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-semantic-trace-correlation-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-otel-traces"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-otel-propagation-span"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-semantic-trace-correlation-claim-01",
+          "canonical_claim": "Context propagation correlates spans and assembles them into a trace across generation locations.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-semantic-trace-correlation-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-semantic-trace-correlation-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-semantic-ragas-data",
+      "tier": "CORE",
+      "case_type": "semantic_paraphrase",
+      "information_need_key": "semantic-ragas-data",
+      "question": "What four fields does the tutorial collect per query before building an EvaluationDataset, and which one can come from a prepared gold answer?",
+      "query_language": "en",
+      "expected_answer_language": "en",
+      "primary_topic": "evaluation_reliability",
+      "secondary_topics": [],
+      "difficulty": "medium",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-semantic-ragas-data-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-ragas-workflow"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-ragas-collect-data"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-semantic-ragas-data-claim-01",
+          "canonical_claim": "Each record contains user_input, retrieved_contexts, response, and reference.",
+          "required": true,
+          "evaluation_mode": "STRUCTURED_EXACT",
+          "evidence_group_ids": [
+            "eg-rw-semantic-ragas-data-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups.",
+          "deterministic_match": {
+            "all_terms": [
+              "user_input",
+              "retrieved_contexts",
+              "response",
+              "reference"
+            ]
+          }
+        },
+        {
+          "claim_id": "rw-gold-v1-semantic-ragas-data-claim-02",
+          "canonical_claim": "The optional prepared golden answer becomes the reference.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-semantic-ragas-data-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-semantic-ragas-data-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    }
+  ]
+}

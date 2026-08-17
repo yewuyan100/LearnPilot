@@ -23,6 +23,15 @@ class RetrievalResult:
     index_version: str | None
     duration_ms: int
     unavailable_reason: str | None = None
+    retrieved_count: int = 0
+    filtered_count: int = 0
+    final_count: int = 0
+    retrieval_mode: str = "dense_only"
+    reranker_status: str = "disabled"
+    reranker_device: str | None = None
+    reranker_dtype: str | None = None
+    reranker_batch_count: int = 0
+    reranker_fallback_reason: str | None = None
 
 
 @dataclass(frozen=True)
@@ -30,4 +39,3 @@ class RewriteResult:
     query: str
     used_history_messages: int
     rewritten: bool
-

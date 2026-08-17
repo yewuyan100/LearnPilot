@@ -48,7 +48,7 @@ class GeneratedQuestion(StrictModel):
     explanation: str = Field(min_length=1, max_length=8000)
     difficulty: QuestionDifficulty
     points: float = Field(gt=0, le=1000)
-    cited_source_ids: list[str] = Field(min_length=1, max_length=8)
+    cited_source_ids: list[str] = Field(default_factory=list, max_length=8)
 
     @model_validator(mode="after")
     def validate_type_fields(self) -> "GeneratedQuestion":
@@ -102,7 +102,9 @@ class ActivityGenerateRequest(StrictModel):
     description: str = Field(default="", max_length=5000)
     course_id: int | None = Field(default=None, gt=0)
     knowledge_point_id: int | None = Field(default=None, gt=0)
-    material_ids: list[int] = Field(min_length=1, max_length=50)
+    learning_goal_id: int | None = Field(default=None, gt=0)
+    material_ids: list[int] | None = Field(default=None, max_length=50)
+    source_mode: Literal["materials", "without_materials"] = "materials"
     question_types: list[QuestionType] = Field(min_length=1, max_length=4)
     question_count: int = Field(default=8, ge=1)
     difficulty: Literal["easy", "medium", "hard", "mixed"] = "mixed"
@@ -110,10 +112,20 @@ class ActivityGenerateRequest(StrictModel):
 
     @model_validator(mode="after")
     def validate_scope(self) -> "ActivityGenerateRequest":
-        if len(set(self.material_ids)) != len(self.material_ids):
+        if self.material_ids is not None and len(set(self.material_ids)) != len(self.material_ids):
             raise ValueError("资料范围不能包含重复 ID")
-        if any(item <= 0 for item in self.material_ids):
+        if self.material_ids is not None and any(item <= 0 for item in self.material_ids):
             raise ValueError("资料 ID 必须大于 0")
+        has_scope = any((
+            self.learning_goal_id,
+            self.course_id,
+            self.knowledge_point_id,
+            self.material_ids is not None,
+        ))
+        if self.source_mode == "materials" and not has_scope:
+            raise ValueError("资料生成模式必须指定学习范围或资料范围")
+        if self.source_mode == "without_materials" and self.material_ids:
+            raise ValueError("无资料生成模式不能指定资料 ID")
         if len(set(self.question_types)) != len(self.question_types):
             raise ValueError("题型不能重复")
         if self.question_count < len(self.question_types):
@@ -193,6 +205,7 @@ class ActivityListItem(Timestamped):
     total_points: float
     published_at: datetime | None
     completed_attempt_count: int
+    source_scope: dict
 
 
 class ActivityDetail(ActivityListItem):
@@ -264,6 +277,7 @@ class QuizAttemptRead(Timestamped):
     activity_id: int
     activity_title: str
     learning_session_id: int | None
+    request_id: str | None
     status: str
     started_at: datetime
     submitted_at: datetime | None

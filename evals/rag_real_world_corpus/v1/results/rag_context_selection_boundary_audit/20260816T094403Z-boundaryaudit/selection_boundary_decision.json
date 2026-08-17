@@ -1,0 +1,29 @@
+{
+  "run_id": "20260816T094403Z-boundaryaudit",
+  "status": "PASS",
+  "selection_boundary_signal": "TOP7_SUPPORTED",
+  "next_action": "MINIMAL_TOP7_PRODUCTION_CHANGE",
+  "top6_full_required_coverage": "57/72",
+  "top7_full_required_coverage": "59/72",
+  "top8_full_required_coverage": "59/72",
+  "fastapi_async_deps_required_chunk_rank": 7,
+  "fastapi_async_deps_fixed_at_top7": true,
+  "fastapi_gap_6_7": 0.03435874,
+  "top7_unique_required_fix_count": 2,
+  "top8_unique_required_fix_count": 0,
+  "top7_context_budget_violations": 0,
+  "top8_context_budget_violations": 0,
+  "top7_additions": {
+    "REQUIRED": 6,
+    "ACCEPTABLE": 1,
+    "NON_GOLD": 65
+  },
+  "potential_redundancy_displacement_case_ids": [
+    "rw-gold-v1-disambig-fastapi-async-deps",
+    "rw-gold-v1-multi-agent-resume",
+    "rw-gold-v1-multi-retrieval-eval"
+  ],
+  "production_code_changed": false,
+  "production_dependency_changed": false,
+  "rag_status": "NOT_CLOSED"
+}

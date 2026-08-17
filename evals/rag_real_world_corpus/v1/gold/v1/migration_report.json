@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "source": "author_gold.py",
+  "source_case_count": 50,
+  "source_anchor_spec_count": 89,
+  "migrated_case_count": 50,
+  "shards": [
+    {
+      "case_type": "single_doc_fact",
+      "case_count": 10,
+      "validation": "PASS"
+    },
+    {
+      "case_type": "semantic_paraphrase",
+      "case_count": 10,
+      "validation": "PASS"
+    },
+    {
+      "case_type": "long_doc_localization",
+      "case_count": 10,
+      "validation": "PASS"
+    },
+    {
+      "case_type": "multi_doc_synthesis",
+      "case_count": 10,
+      "validation": "PASS"
+    },
+    {
+      "case_type": "source_disambiguation",
+      "case_count": 10,
+      "validation": "PASS"
+    }
+  ],
+  "backup_observed": false,
+  "notes": "No backup file existed; the repaired source remains as an auditable migration input."
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "audited_contract": "evals/rag_demo_corpus/v1/gold_cases.schema.json",
+  "case_count": 48,
+  "findings": [
+    {"field": "expected_document_ids", "can_express": "one flat exact-label set", "cannot_express": "required versus supporting evidence, document alternatives, or AND-of-OR evidence groups", "observed_effect": "GOLD_EXPECTATION_TOO_STRICT and inflated wrong-document citation counts"},
+    {"field": "key_facts", "can_express": "unordered text facts", "cannot_express": "required versus optional claims, claim IDs, evidence bindings, or evaluation modes", "observed_effect": "LEXICAL_PROXY_FALSE_NEGATIVE and out-of-scope details failing whole cases"},
+    {"field": "citation_expectations", "can_express": "minimum count, exact must-cite IDs, citation prohibition", "cannot_express": "semantically valid alternative/supporting citations or claim-level citation coverage", "observed_effect": "valid non-gold supporting citations labeled wrong"},
+    {"field": "answerable", "can_express": "binary expected answerability", "cannot_express": "genuinely absent knowledge versus retrieval failure for present knowledge", "observed_effect": "failure stage must be inferred outside Gold"},
+    {"field": "type", "can_express": "six benchmark scenario families", "cannot_express": "evaluation mode per claim", "observed_effect": "semantic and exact facts share one scoring algorithm"},
+    {"field": "difficulty", "can_express": "easy/medium/hard stratification", "cannot_express": "claim obligation or evidence composition", "observed_effect": "none; retained as descriptive metadata"}
+  ],
+  "causal_summary": {
+    "GOLD_EXPECTATION_TOO_STRICT": "Flat exact documents and uniformly mandatory key_facts overconstrained otherwise correct answers.",
+    "GOLD_EXPECTATION_AMBIGUOUS": "One coarse fact mixed stale-index semantics at different runtime/interface layers.",
+    "LEXICAL_PROXY_FALSE_NEGATIVE": "Semantic claims silently used 0.35 term-overlap as ground truth."
+  }
+}

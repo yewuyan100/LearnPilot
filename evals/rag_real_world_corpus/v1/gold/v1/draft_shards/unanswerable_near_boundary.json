@@ -1,0 +1,542 @@
+{
+  "schema_version": "1.0.0",
+  "schema_ref": "draft_shard.schema.json",
+  "draft_status": "UNVERIFIED",
+  "case_type": "unanswerable_near_boundary",
+  "expected_case_count": 10,
+  "cases": [
+    {
+      "case_id": "rw-gold-v1-unanswerable-bge-language-counts",
+      "tier": "CORE",
+      "case_type": "unanswerable_near_boundary",
+      "information_need_key": "unanswerable-bge-language-counts",
+      "question": "BGE-M3 支持的 100 多种语言分别有哪些？每种语言用了多少训练样本？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "rag_retrieval",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": false,
+      "localization_region": "not_applicable",
+      "evidence_groups": [],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [
+        {
+          "document_id": "rw-rag-bge-m3",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "Topically close but it states only that more than 100 languages are supported."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-unanswerable-bge-language-counts-claim-01",
+          "canonical_claim": "The frozen corpus does not enumerate every supported language or provide per-language training-sample counts.",
+          "required": true,
+          "evaluation_mode": "ANSWERABILITY_ONLY",
+          "evidence_group_ids": [],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": false,
+        "required_evidence_group_ids": [],
+        "minimum_distinct_required_documents": 0,
+        "acceptable_support_policy": "NO_CORPUS_CITATIONS",
+        "forbid_citations": true,
+        "notes": "Do not cite near-boundary passages as if they contained the absent answer."
+      },
+      "unanswerable_contract": {
+        "near_boundary_document_ids": [
+          "rw-rag-bge-m3"
+        ],
+        "near_boundary_evidence_ids": [
+          "ev-rw-bge-capabilities"
+        ],
+        "absent_information": "An exhaustive supported-language list and per-language training-sample counts are absent.",
+        "unsupported_factual_answer_forbidden": true,
+        "fabricated_citation_forbidden": true
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-unanswerable-faiss-p95-latency",
+      "tier": "CORE",
+      "case_type": "unanswerable_near_boundary",
+      "information_need_key": "unanswerable-faiss-p95-latency",
+      "question": "What p95 query latency does the frozen Faiss overview guarantee for a one-billion-vector CPU index?",
+      "query_language": "en",
+      "expected_answer_language": "en",
+      "primary_topic": "rag_retrieval",
+      "secondary_topics": [],
+      "difficulty": "medium",
+      "answerable": false,
+      "localization_region": "not_applicable",
+      "evidence_groups": [],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [
+        {
+          "document_id": "rw-rag-faiss-overview",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "It discusses search-time trade-offs without a one-billion-vector p95 guarantee."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-unanswerable-faiss-p95-latency-claim-01",
+          "canonical_claim": "The frozen Faiss overview gives no guaranteed p95 latency for that hardware and scale.",
+          "required": true,
+          "evaluation_mode": "ANSWERABILITY_ONLY",
+          "evidence_group_ids": [],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": false,
+        "required_evidence_group_ids": [],
+        "minimum_distinct_required_documents": 0,
+        "acceptable_support_policy": "NO_CORPUS_CITATIONS",
+        "forbid_citations": true,
+        "notes": "Do not cite near-boundary passages as if they contained the absent answer."
+      },
+      "unanswerable_contract": {
+        "near_boundary_document_ids": [
+          "rw-rag-faiss-overview"
+        ],
+        "near_boundary_evidence_ids": [
+          "ev-rw-faiss-tradeoffs"
+        ],
+        "absent_information": "A hardware-specific p95 query-latency guarantee is absent.",
+        "unsupported_factual_answer_forbidden": true,
+        "fabricated_citation_forbidden": true
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-unanswerable-bge-optimal-weights",
+      "tier": "CORE",
+      "case_type": "unanswerable_near_boundary",
+      "information_need_key": "unanswerable-bge-optimal-weights",
+      "question": "Which dense-to-sparse weighting does BGE-M3 guarantee will be optimal for every hybrid-retrieval dataset?",
+      "query_language": "en",
+      "expected_answer_language": "en",
+      "primary_topic": "rag_retrieval",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": false,
+      "localization_region": "not_applicable",
+      "evidence_groups": [],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [
+        {
+          "document_id": "rw-rag-bge-m3",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "Example score weights must not be promoted into a universal optimum."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-unanswerable-bge-optimal-weights-claim-01",
+          "canonical_claim": "The corpus provides examples and pipeline suggestions, not a universally optimal weighting guarantee.",
+          "required": true,
+          "evaluation_mode": "ANSWERABILITY_ONLY",
+          "evidence_group_ids": [],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": false,
+        "required_evidence_group_ids": [],
+        "minimum_distinct_required_documents": 0,
+        "acceptable_support_policy": "NO_CORPUS_CITATIONS",
+        "forbid_citations": true,
+        "notes": "Do not cite near-boundary passages as if they contained the absent answer."
+      },
+      "unanswerable_contract": {
+        "near_boundary_document_ids": [
+          "rw-rag-bge-m3"
+        ],
+        "near_boundary_evidence_ids": [
+          "ev-rw-bge-pipeline",
+          "ev-rw-bge-score-weights"
+        ],
+        "absent_information": "A dataset-independent optimal dense/sparse weighting is absent.",
+        "unsupported_factual_answer_forbidden": true,
+        "fabricated_citation_forbidden": true
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-unanswerable-checkpoint-encryption",
+      "tier": "CORE",
+      "case_type": "unanswerable_near_boundary",
+      "information_need_key": "unanswerable-checkpoint-encryption",
+      "question": "LangGraph persistence 文档规定 checkpoint 必须使用哪种静态加密算法？密钥轮换周期是多少？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "agent_engineering",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": false,
+      "localization_region": "not_applicable",
+      "evidence_groups": [],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [
+        {
+          "document_id": "rw-agent-persistence",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "It describes checkpoint storage choices but not that security policy."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-unanswerable-checkpoint-encryption-claim-01",
+          "canonical_claim": "The frozen persistence material states no mandatory at-rest encryption algorithm or key-rotation interval.",
+          "required": true,
+          "evaluation_mode": "ANSWERABILITY_ONLY",
+          "evidence_group_ids": [],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": false,
+        "required_evidence_group_ids": [],
+        "minimum_distinct_required_documents": 0,
+        "acceptable_support_policy": "NO_CORPUS_CITATIONS",
+        "forbid_citations": true,
+        "notes": "Do not cite near-boundary passages as if they contained the absent answer."
+      },
+      "unanswerable_contract": {
+        "near_boundary_document_ids": [
+          "rw-agent-persistence"
+        ],
+        "near_boundary_evidence_ids": [
+          "ev-rw-persist-memorysaver",
+          "ev-rw-persist-comparison"
+        ],
+        "absent_information": "A mandatory encryption algorithm and key-rotation interval are absent.",
+        "unsupported_factual_answer_forbidden": true,
+        "fabricated_citation_forbidden": true
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-unanswerable-interrupt-timeout",
+      "tier": "CORE",
+      "case_type": "unanswerable_near_boundary",
+      "information_need_key": "unanswerable-interrupt-timeout",
+      "question": "After how many minutes does a LangGraph approval interrupt automatically time out and route to cancel by default?",
+      "query_language": "en",
+      "expected_answer_language": "en",
+      "primary_topic": "agent_engineering",
+      "secondary_topics": [],
+      "difficulty": "medium",
+      "answerable": false,
+      "localization_region": "not_applicable",
+      "evidence_groups": [],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [
+        {
+          "document_id": "rw-agent-interrupts",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "The approval example has proceed/cancel branches but no elapsed-time rule."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-unanswerable-interrupt-timeout-claim-01",
+          "canonical_claim": "The interrupts material defines resume routing but no default timeout or automatic cancellation interval.",
+          "required": true,
+          "evaluation_mode": "ANSWERABILITY_ONLY",
+          "evidence_group_ids": [],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": false,
+        "required_evidence_group_ids": [],
+        "minimum_distinct_required_documents": 0,
+        "acceptable_support_policy": "NO_CORPUS_CITATIONS",
+        "forbid_citations": true,
+        "notes": "Do not cite near-boundary passages as if they contained the absent answer."
+      },
+      "unanswerable_contract": {
+        "near_boundary_document_ids": [
+          "rw-agent-interrupts"
+        ],
+        "near_boundary_evidence_ids": [
+          "ev-rw-interrupt-approval"
+        ],
+        "absent_information": "A default approval timeout and automatic-cancel interval are absent.",
+        "unsupported_factual_answer_forbidden": true,
+        "fabricated_citation_forbidden": true
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-unanswerable-dependency-depth",
+      "tier": "CORE",
+      "case_type": "unanswerable_near_boundary",
+      "information_need_key": "unanswerable-dependency-depth",
+      "question": "FastAPI 对 sub-dependency 的最大嵌套层数是多少，超过后会返回哪个状态码？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "ai_app_backend",
+      "secondary_topics": [],
+      "difficulty": "medium",
+      "answerable": false,
+      "localization_region": "not_applicable",
+      "evidence_groups": [],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [
+        {
+          "document_id": "rw-backend-fastapi-dependencies",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "It explains arbitrary dependency hierarchies without a numeric ceiling."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-unanswerable-dependency-depth-claim-01",
+          "canonical_claim": "The frozen dependency documentation gives no maximum nesting depth or overflow status code.",
+          "required": true,
+          "evaluation_mode": "ANSWERABILITY_ONLY",
+          "evidence_group_ids": [],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": false,
+        "required_evidence_group_ids": [],
+        "minimum_distinct_required_documents": 0,
+        "acceptable_support_policy": "NO_CORPUS_CITATIONS",
+        "forbid_citations": true,
+        "notes": "Do not cite near-boundary passages as if they contained the absent answer."
+      },
+      "unanswerable_contract": {
+        "near_boundary_document_ids": [
+          "rw-backend-fastapi-dependencies"
+        ],
+        "near_boundary_evidence_ids": [
+          "ev-rw-deps-hierarchy"
+        ],
+        "absent_information": "A numeric sub-dependency nesting limit and overflow response are absent.",
+        "unsupported_factual_answer_forbidden": true,
+        "fabricated_citation_forbidden": true
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-unanswerable-threadpool-workers",
+      "tier": "CORE",
+      "case_type": "unanswerable_near_boundary",
+      "information_need_key": "unanswerable-threadpool-workers",
+      "question": "What exact default worker count does FastAPI guarantee for the external threadpool used by normal def dependencies?",
+      "query_language": "en",
+      "expected_answer_language": "en",
+      "primary_topic": "ai_app_backend",
+      "secondary_topics": [],
+      "difficulty": "medium",
+      "answerable": false,
+      "localization_region": "not_applicable",
+      "evidence_groups": [],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [
+        {
+          "document_id": "rw-backend-fastapi-async",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "It describes where normal def callables run, not the pool's configured size."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-unanswerable-threadpool-workers-claim-01",
+          "canonical_claim": "The async material describes external-threadpool execution but guarantees no exact default worker count.",
+          "required": true,
+          "evaluation_mode": "ANSWERABILITY_ONLY",
+          "evidence_group_ids": [],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": false,
+        "required_evidence_group_ids": [],
+        "minimum_distinct_required_documents": 0,
+        "acceptable_support_policy": "NO_CORPUS_CITATIONS",
+        "forbid_citations": true,
+        "notes": "Do not cite near-boundary passages as if they contained the absent answer."
+      },
+      "unanswerable_contract": {
+        "near_boundary_document_ids": [
+          "rw-backend-fastapi-async"
+        ],
+        "near_boundary_evidence_ids": [
+          "ev-rw-async-threadpool"
+        ],
+        "absent_information": "An exact guaranteed default external-threadpool worker count is absent.",
+        "unsupported_factual_answer_forbidden": true,
+        "fabricated_citation_forbidden": true
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-unanswerable-precision-pass-threshold",
+      "tier": "CORE",
+      "case_type": "unanswerable_near_boundary",
+      "information_need_key": "unanswerable-precision-pass-threshold",
+      "question": "What context-precision score does Ragas prescribe as the universal production pass/fail threshold?",
+      "query_language": "en",
+      "expected_answer_language": "en",
+      "primary_topic": "evaluation_reliability",
+      "secondary_topics": [],
+      "difficulty": "medium",
+      "answerable": false,
+      "localization_region": "not_applicable",
+      "evidence_groups": [],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [
+        {
+          "document_id": "rw-eval-context-precision",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "Example scores are not a normative pass/fail threshold."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-unanswerable-precision-pass-threshold-claim-01",
+          "canonical_claim": "The context-precision material defines and illustrates the metric but prescribes no universal production threshold.",
+          "required": true,
+          "evaluation_mode": "ANSWERABILITY_ONLY",
+          "evidence_group_ids": [],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": false,
+        "required_evidence_group_ids": [],
+        "minimum_distinct_required_documents": 0,
+        "acceptable_support_policy": "NO_CORPUS_CITATIONS",
+        "forbid_citations": true,
+        "notes": "Do not cite near-boundary passages as if they contained the absent answer."
+      },
+      "unanswerable_contract": {
+        "near_boundary_document_ids": [
+          "rw-eval-context-precision"
+        ],
+        "near_boundary_evidence_ids": [
+          "ev-rw-precision-definition",
+          "ev-rw-precision-rank-effect"
+        ],
+        "absent_information": "A universal production pass/fail score is absent.",
+        "unsupported_factual_answer_forbidden": true,
+        "fabricated_citation_forbidden": true
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-unanswerable-trace-retention",
+      "tier": "CORE",
+      "case_type": "unanswerable_near_boundary",
+      "information_need_key": "unanswerable-trace-retention",
+      "question": "For how many days must an OpenTelemetry backend retain the traces described in the frozen document?",
+      "query_language": "en",
+      "expected_answer_language": "en",
+      "primary_topic": "evaluation_reliability",
+      "secondary_topics": [],
+      "difficulty": "medium",
+      "answerable": false,
+      "localization_region": "not_applicable",
+      "evidence_groups": [],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [
+        {
+          "document_id": "rw-eval-otel-traces",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "The document is about trace semantics, not storage retention policy."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-unanswerable-trace-retention-claim-01",
+          "canonical_claim": "The trace concepts document defines trace structure, not a required backend retention period.",
+          "required": true,
+          "evaluation_mode": "ANSWERABILITY_ONLY",
+          "evidence_group_ids": [],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": false,
+        "required_evidence_group_ids": [],
+        "minimum_distinct_required_documents": 0,
+        "acceptable_support_policy": "NO_CORPUS_CITATIONS",
+        "forbid_citations": true,
+        "notes": "Do not cite near-boundary passages as if they contained the absent answer."
+      },
+      "unanswerable_contract": {
+        "near_boundary_document_ids": [
+          "rw-eval-otel-traces"
+        ],
+        "near_boundary_evidence_ids": [
+          "ev-rw-otel-trace-overview"
+        ],
+        "absent_information": "A mandatory trace-retention duration is absent.",
+        "unsupported_factual_answer_forbidden": true,
+        "fabricated_citation_forbidden": true
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-unanswerable-ragas-minimum-score",
+      "tier": "CORE",
+      "case_type": "unanswerable_near_boundary",
+      "information_need_key": "unanswerable-ragas-minimum-score",
+      "question": "Ragas 教程承诺这个示例 RAG 在生产环境至少能达到多少总体评估分数？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "evaluation_reliability",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": false,
+      "localization_region": "not_applicable",
+      "evidence_groups": [],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [
+        {
+          "document_id": "rw-eval-ragas-workflow",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "Running an example evaluation does not establish a guaranteed production score."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-unanswerable-ragas-minimum-score-claim-01",
+          "canonical_claim": "The tutorial explains evaluation execution but makes no minimum production-score guarantee.",
+          "required": true,
+          "evaluation_mode": "ANSWERABILITY_ONLY",
+          "evidence_group_ids": [],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": false,
+        "required_evidence_group_ids": [],
+        "minimum_distinct_required_documents": 0,
+        "acceptable_support_policy": "NO_CORPUS_CITATIONS",
+        "forbid_citations": true,
+        "notes": "Do not cite near-boundary passages as if they contained the absent answer."
+      },
+      "unanswerable_contract": {
+        "near_boundary_document_ids": [
+          "rw-eval-ragas-workflow"
+        ],
+        "near_boundary_evidence_ids": [
+          "ev-rw-ragas-evaluate"
+        ],
+        "absent_information": "A guaranteed minimum production evaluation score is absent.",
+        "unsupported_factual_answer_forbidden": true,
+        "fabricated_citation_forbidden": true
+      }
+    }
+  ]
+}

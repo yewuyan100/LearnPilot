@@ -1,7 +1,13 @@
-# Agent 架构
+# LearnPilot AI Orchestration
 
-V6 保留 V5 单一显式 LangGraph StateGraph，不引入多 Agent 或 Supervisor。标准路径仍是上下文加载、分类、有限计划、校验、只读执行、结果评估、确认准备、interrupt、恢复写入、模板响应和持久化；最多四步、三次读取、一次写入，禁止写后读取。
+AI / Agent 的 canonical 说明已合并到 [LearnPilot Architecture](architecture.md)，本文件只保留入口，避免维护第二份架构事实。
 
-明确的今日任务、错题、知识点掌握度、薄弱点、到期复习和建议查询可走确定性快速路由：先匹配小型稳定模式，仍生成合法意图和参数，再经过同一个计划校验与 ToolRegistry 执行；Planner 跳过，简单结果用模板组合。模糊请求继续调用模型，写请求绝不命中快速路径。
+当前 production 不是单一“万能 Agent”，也不是自主 multi-agent supervisor：
 
-每个 Run 将 `fast_route_used`、`planner_skipped`、`composer_skipped`、`llm_call_count`、总延迟和工具耗时作为可观测性能信息返回/聚合。Checkpoint 与业务库继续分离，V6 掌握度数据库记录不是 Graph State。
+- Learning Runtime 装载带版本的 Learner Context，执行 policy checks，并以确定性 Router 选择 curriculum、tutor 或 operations capability；
+- Curriculum 只产生等待审查的 proposal；Tutor 只在当前资料 scope 内检索、解释并校验引用；
+- Operations Adapter 委托既有 LangGraph workflow，最多 4 steps / 3 reads / 1 write，写入通过 `interrupt` 等待人工确认；
+- Harness Run、Learning Event、request ID、thread lock 与 SQLite checkpoint 支持幂等、审计和 resume；
+- 不提供 Supervisor、MCP、任意 shell / SQL / 文件 / secret / web tools。
+
+接口、Seam、失败策略和状态所有权以 [Architecture](architecture.md) 为准。

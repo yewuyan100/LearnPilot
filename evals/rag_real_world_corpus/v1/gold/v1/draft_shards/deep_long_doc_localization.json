@@ -1,0 +1,290 @@
+{
+  "schema_version": "1.0.0",
+  "schema_ref": "draft_shard.schema.json",
+  "draft_status": "UNVERIFIED",
+  "case_type": "deep_long_doc_localization",
+  "expected_case_count": 4,
+  "cases": [
+    {
+      "case_id": "rw-gold-v1-stress-deep-bge-mldr-comparison",
+      "tier": "STRESS",
+      "case_type": "deep_long_doc_localization",
+      "information_need_key": "stress-deep-bge-mldr-comparison",
+      "question": "BGE-M3 深部评测段为何认为 MLDR 基线应与 Dense w.o.long 比较，MLDR 覆盖哪些数据划分与语言范围？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "rag_retrieval",
+      "secondary_topics": [],
+      "difficulty": "stress",
+      "answerable": true,
+      "localization_region": "deep",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-stress-deep-bge-mldr-comparison-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-rag-bge-m3"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-bge-long-eval"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-stress-deep-bge-mldr-comparison-claim-01",
+          "canonical_claim": "MLDR covers 13 languages and includes test, validation, and training sets.",
+          "required": true,
+          "evaluation_mode": "STRUCTURED_EXACT",
+          "evidence_group_ids": [
+            "eg-rw-stress-deep-bge-mldr-comparison-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups.",
+          "deterministic_match": {
+            "all_terms": [
+              "13",
+              "test",
+              "validation",
+              "training"
+            ]
+          }
+        },
+        {
+          "claim_id": "rw-gold-v1-stress-deep-bge-mldr-comparison-claim-02",
+          "canonical_claim": "Because MLDR training data enhanced BGE-M3's long-document retrieval, the document says comparison with Dense w.o.long is more equitable.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-stress-deep-bge-mldr-comparison-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-stress-deep-bge-mldr-comparison-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-stress-deep-interrupt-side-effects",
+      "tier": "STRESS",
+      "case_type": "deep_long_doc_localization",
+      "information_need_key": "stress-deep-interrupt-side-effects",
+      "question": "Why can creating a record before interrupt() duplicate data after resume, and which two structural remedies does the interrupts guide recommend?",
+      "query_language": "en",
+      "expected_answer_language": "en",
+      "primary_topic": "agent_engineering",
+      "secondary_topics": [],
+      "difficulty": "stress",
+      "answerable": true,
+      "localization_region": "deep",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-stress-deep-interrupt-side-effects-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-interrupts"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-interrupt-side-effects",
+            "ev-rw-interrupt-duplicate-risk"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-stress-deep-interrupt-side-effects-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-interrupts"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-interrupt-side-effects-nodes"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-stress-deep-interrupt-side-effects-claim-01",
+          "canonical_claim": "Resume restarts the node, so a non-idempotent write before interrupt can execute again and create duplicates.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-stress-deep-interrupt-side-effects-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-stress-deep-interrupt-side-effects-claim-02",
+          "canonical_claim": "The write should be idempotent or moved into a separate node that is not replayed with the interrupting node.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-stress-deep-interrupt-side-effects-01",
+            "eg-rw-stress-deep-interrupt-side-effects-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-stress-deep-interrupt-side-effects-01",
+          "eg-rw-stress-deep-interrupt-side-effects-02"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-stress-deep-async-call-kinds",
+      "tier": "STRESS",
+      "case_type": "deep_long_doc_localization",
+      "information_need_key": "stress-deep-async-call-kinds",
+      "question": "FastAPI 的技术细节中，普通 def 路由、普通 def 依赖，以及业务代码直接调用的普通工具函数，三者的执行方式有何不同？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "ai_app_backend",
+      "secondary_topics": [],
+      "difficulty": "stress",
+      "answerable": true,
+      "localization_region": "deep",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-stress-deep-async-call-kinds-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-async"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-async-threadpool"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-stress-deep-async-call-kinds-claim-01",
+          "canonical_claim": "Normal def path operations run in an external threadpool and are awaited.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-stress-deep-async-call-kinds-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-stress-deep-async-call-kinds-claim-02",
+          "canonical_claim": "Normal def dependencies also run in that external threadpool.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-stress-deep-async-call-kinds-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-stress-deep-async-call-kinds-claim-03",
+          "canonical_claim": "A normal utility function called directly by application code is called directly rather than automatically moved to the threadpool.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-stress-deep-async-call-kinds-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-stress-deep-async-call-kinds-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-stress-deep-precision-id-versus-content",
+      "tier": "STRESS",
+      "case_type": "deep_long_doc_localization",
+      "information_need_key": "stress-deep-precision-id-versus-content",
+      "question": "How does the ID-based context-precision variant decide relevance without comparing text, and what limitation follows from that input contract?",
+      "query_language": "en",
+      "expected_answer_language": "en",
+      "primary_topic": "evaluation_reliability",
+      "secondary_topics": [],
+      "difficulty": "stress",
+      "answerable": true,
+      "localization_region": "deep",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-stress-deep-precision-id-versus-content-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-context-precision"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-precision-id-based"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-stress-deep-precision-id-versus-content-claim-01",
+          "canonical_claim": "It compares retrieved context IDs directly with reference context IDs.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-stress-deep-precision-id-versus-content-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-stress-deep-precision-id-versus-content-claim-02",
+          "canonical_claim": "It requires a meaningful unique-ID system and cannot infer semantic equivalence between differently identified passages.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-stress-deep-precision-id-versus-content-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-stress-deep-precision-id-versus-content-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    }
+  ]
+}

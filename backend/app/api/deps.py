@@ -1,9 +1,10 @@
 from typing import Annotated
 
-from fastapi import Depends
+from fastapi import Depends, Request
 from sqlalchemy.orm import Session
 
 from app.core.config import Settings, get_settings
+from app.core.clock import Clock, clock_from_settings
 from app.db.session import get_db
 from app.services.embedding.base import Embedder
 from app.services.embedding.service import build_embedder
@@ -12,6 +13,13 @@ from app.services.llm.openai_compatible import OpenAICompatibleProvider
 
 DbSession = Annotated[Session, Depends(get_db)]
 AppSettings = Annotated[Settings, Depends(get_settings)]
+
+
+def get_clock(request: Request, settings: AppSettings) -> Clock:
+    return getattr(request.app.state, "clock", None) or clock_from_settings(settings)
+
+
+AppClock = Annotated[Clock, Depends(get_clock)]
 
 
 def get_embedder(settings: AppSettings) -> Embedder:

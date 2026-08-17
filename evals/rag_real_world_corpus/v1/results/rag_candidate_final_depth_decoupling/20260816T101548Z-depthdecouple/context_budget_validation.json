@@ -1,0 +1,16 @@
+{
+  "run_id": "20260816T101548Z-depthdecouple",
+  "status": "PASS",
+  "max_context_chars": 12000,
+  "violations": "0/72",
+  "serialized_chars": {
+    "p50": 5837.0,
+    "p95": 6725.75,
+    "max": 7146
+  },
+  "authoritative_counterfactual": {
+    "p50": 5837.0,
+    "p95": 6725.75,
+    "max": 7146
+  }
+}

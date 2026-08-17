@@ -1,0 +1,687 @@
+{
+  "schema_version": "1.0.0",
+  "design_id": "learnpilot-rag-hybrid-rerank-ablation-design-v1",
+  "status": "COMPLETE",
+  "ready_for_hybrid_rerank_implementation": true,
+  "scope_declarations": {
+    "design_only": true,
+    "hybrid_implemented": false,
+    "reranker_implemented": false,
+    "experimental_llm_calls": 0,
+    "embedding_executions": 0,
+    "faiss_retrieval_executions": 0,
+    "baseline_rerun": false,
+    "production_rag_modified": false,
+    "gold_modified": false,
+    "corpus_modified": false,
+    "parameter_tuning_performed": false
+  },
+  "frozen_inputs": {
+    "manifest_schema": {
+      "path": "evals/rag_real_world_corpus/v1/ablation_design_v1/ablation_design_manifest.schema.json",
+      "sha256": "73c4dff4082d85f3aec383a59e4e18eaeff8eb65f467e8dcbd587085a054e626"
+    },
+    "gold": {
+      "path": "evals/rag_real_world_corpus/v1/gold/v1/gold_cases.json",
+      "sha256": "33a0b69901fa47e3fe45be0277228cd4a5519fe780fe5b9d2c52b1bfe614927a",
+      "case_count": 72,
+      "claim_count": 132
+    },
+    "freeze_manifest": {
+      "path": "evals/rag_real_world_corpus/v1/gold/v1/gold_dataset_v1_freeze_manifest.json",
+      "sha256": "d979079be4eb901a825ab29414dd7b5124d030182e09b55eea1e93749c12a5c2"
+    },
+    "corpus_manifest": {
+      "path": "evals/rag_real_world_corpus/v1/corpus_manifest.json",
+      "sha256": "6f67d510cd35197f107400d33033972c0c3c84478174e4991e491f6c8e4ab563",
+      "document_count": 11,
+      "runtime_chunk_count": 442
+    },
+    "chunk_inventory": {
+      "path": "evals/rag_real_world_corpus/v1/results/ingestion_v1/20260813T131304Z-ac0a8cee/chunk_inventory.json",
+      "sha256": "7eb626dfaa0706bfd7e5fad02af8b94a3925e37ce212c3218973e58cadf03616",
+      "chunk_count": 442,
+      "chunk_char_min": 63,
+      "chunk_char_max": 850,
+      "chunk_char_mean": 427.34
+    },
+    "dense_control": {
+      "run_id": "20260814T052007Z-593cd2ac",
+      "run_manifest_path": "evals/rag_real_world_corpus/v1/results/dense_only_baseline_v1/20260814T052007Z-593cd2ac/run_manifest.json",
+      "run_manifest_sha256": "9b19c9c223d10d8bb7e81087adcf1a394874d8c7f89304cf0a847be8169c37b0",
+      "raw_results_path": "evals/rag_real_world_corpus/v1/results/dense_only_baseline_v1/20260814T052007Z-593cd2ac/raw_results.json",
+      "raw_results_sha256": "bf718aed08e226149c9310cbf20bf25c403708217e2908789120178ac5574e28",
+      "reuse_without_rerun": true,
+      "rerun_only_if_execution_is_proven_invalid": true
+    },
+    "failure_analysis": {
+      "manifest_path": "evals/rag_real_world_corpus/v1/failure_analysis_v1/failure_analysis_manifest.json",
+      "manifest_sha256": "e869fd73e2570413595c1af194b6ec6876e8b822fbd4eac279541a03cac27fb8",
+      "ablation_hypotheses_path": "evals/rag_real_world_corpus/v1/failure_analysis_v1/ablation_hypotheses.json",
+      "ablation_hypotheses_sha256": "27184ff8ddbf628f78767ede545e202ee66cb9ff17f56728961a8ce2d801f610",
+      "addressability_matrix_path": "evals/rag_real_world_corpus/v1/failure_analysis_v1/optimization_addressability_matrix.json",
+      "addressability_matrix_sha256": "877d2ba3948e5bdcf530307b4719cd46df74ae5c4680547fab7fa09374f31726",
+      "case_analysis_path": "evals/rag_real_world_corpus/v1/failure_analysis_v1/case_failure_analysis.json",
+      "case_analysis_sha256": "406527bcb6b7efeea885175bb9ea5f99af1b3bf91ccc0c79711d88854bc57b1e"
+    },
+    "production_code_binding": {
+      "source_manifest_path": "evals/rag_real_world_corpus/v1/failure_analysis_v1/failure_analysis_manifest.json",
+      "binding_field": "frozen_bindings.production_code.baseline_sha256",
+      "file_count": 15,
+      "all_files_match_on_design_freeze": true
+    },
+    "existing_dependency_contract": {
+      "requirements_path": "backend/requirements.txt",
+      "requirements_sha256": "e08fd5128623a834b74d12bf11471dd4af1f64bbcffbc58ed3b4d17ad1c8d26e",
+      "rrf_implementation_present": false,
+      "bm25_implementation_present": false,
+      "sentence_transformers_version": "5.6.0"
+    }
+  },
+  "current_pipeline_contract": {
+    "contract_id": "CURRENT_PIPELINE_CONTRACT",
+    "verified_against_real_production_implementation": true,
+    "stage_order": [
+      "original query",
+      "optional production query rewrite",
+      "BGE-M3 query embedding",
+      "FAISS IndexFlatIP search",
+      "material-scope filtering and dense Top 18 truncation",
+      "deterministic dense sort",
+      "dense score eligibility threshold 0.35",
+      "same-material adjacent substantial-overlap deduplication",
+      "document diversity first pass",
+      "rank-ordered backfill",
+      "final Top 6 selection",
+      "per-chunk 2200-character cap and total 12000-character context budget",
+      "DeepSeek structured grounded generation",
+      "evidence-bound citation validation and persistence"
+    ],
+    "source_locations": [
+      {
+        "stage": "optional query rewrite",
+        "path": "backend/app/services/rag/service.py",
+        "lines": "164-191",
+        "detail": "Production history is loaded, rewrite_query is called, and the resulting query is passed unchanged to retrieval."
+      },
+      {
+        "stage": "rewrite guard",
+        "path": "backend/app/services/rag/query_rewriter.py",
+        "lines": "16-54",
+        "detail": "Fresh conversations have no history and therefore return the original question without an LLM rewrite."
+      },
+      {
+        "stage": "candidate budget",
+        "path": "backend/app/services/rag/retrieval.py",
+        "lines": "24-40",
+        "detail": "candidate_limit=min(search_top_k_max, max(top_k*3, top_k)); frozen top_k=6 and search_top_k_max=20 produce 18."
+      },
+      {
+        "stage": "dense embedding and search",
+        "path": "backend/app/services/vector_store/service.py",
+        "lines": "199-290",
+        "detail": "The cleaned query is embedded, FAISS is searched, material scope is applied, dense hits are sorted, and the response is truncated to the requested candidate limit."
+      },
+      {
+        "stage": "FAISS implementation",
+        "path": "backend/app/services/vector_store/faiss_store.py",
+        "lines": "123-125,166-195",
+        "detail": "The index is IndexFlatIP and query search returns inner-product scores."
+      },
+      {
+        "stage": "threshold",
+        "path": "backend/app/services/rag/retrieval.py",
+        "lines": "52-56",
+        "detail": "Dense candidates are deterministically sorted and then filtered by rag_min_score=0.35."
+      },
+      {
+        "stage": "overlap deduplication",
+        "path": "backend/app/services/rag/retrieval.py",
+        "lines": "10-21,57-66",
+        "detail": "Adjacent chunks from the same material are rejected when substantial overlap is detected."
+      },
+      {
+        "stage": "document diversity and backfill",
+        "path": "backend/app/services/rag/retrieval.py",
+        "lines": "67-83",
+        "detail": "First pass caps each material at ceil(max_sources/2)=3; second pass backfills in rank order."
+      },
+      {
+        "stage": "final selection and context budget",
+        "path": "backend/app/services/rag/retrieval.py",
+        "lines": "75-108",
+        "detail": "Selection stops at Top 6, chunks are capped at 2200 characters, and total context is capped at 12000 characters."
+      },
+      {
+        "stage": "generation and citation",
+        "path": "backend/app/services/rag/service.py",
+        "lines": "232-304",
+        "detail": "The selected evidence enters grounded generation; answerability and evidence-bound citations are then persisted."
+      }
+    ],
+    "effective_parameters": {
+      "diagnostic_candidate_limit": 18,
+      "production_final_top_k": 6,
+      "minimum_dense_score": 0.35,
+      "max_sources": 6,
+      "per_material_first_pass_cap": 3,
+      "max_chunk_chars": 2200,
+      "context_budget_chars": 12000
+    },
+    "implementation_seam_assessment": {
+      "current_state": "retrieve_sources currently combines candidate generation, thresholding, deduplication, diversity, and context budgeting in one function.",
+      "required_seam": "Expose one ordered CandidatePool between retrieval/fusion/reranking and evidence governance.",
+      "candidate_pool_interface": "build_candidate_pool(query, scope, arm_config) -> ordered candidates with identity and score provenance",
+      "evidence_governance_interface": "govern_evidence(ordered_candidates, frozen_policy) -> final evidence plus rejection reasons",
+      "implementation_guidance": "Extract the existing governance implementation once and call it for all four arms; do not copy it into arm-specific paths."
+    }
+  },
+  "arms": {
+    "dense_only": {
+      "role": "Frozen control; reuse run 20260814T052007Z-593cd2ac without rerun.",
+      "retrieval": "dense_bge_m3_faiss",
+      "fusion": null,
+      "reranker": null,
+      "candidate_pool_limit": 18,
+      "ordering_score": "dense_score",
+      "eligibility_gate": "dense_score >= 0.35",
+      "allowed_changes": [],
+      "forbidden_changes": ["hybrid", "fusion", "reranker", "governance", "generation", "citation"],
+      "shared_contract_ref": "#/shared"
+    },
+    "hybrid": {
+      "role": "Measure lexical complement to dense candidate recall.",
+      "retrieval": "dense_bge_m3_faiss_plus_bm25_okapi",
+      "fusion": "rrf_k_60",
+      "reranker": null,
+      "candidate_pool_limit": 18,
+      "ordering_score": "fusion_score",
+      "eligibility_gate": "dense_score >= 0.35 OR bm25_rank IS NOT NULL",
+      "allowed_changes": ["candidate retrieval", "fusion"],
+      "forbidden_changes": ["reranker", "dedup", "diversity", "context budget", "generation", "prompt", "citation"],
+      "shared_contract_ref": "#/shared"
+    },
+    "dense_rerank": {
+      "role": "Measure independent query-chunk ordering on the unchanged dense candidate pool.",
+      "retrieval": "dense_bge_m3_faiss",
+      "fusion": null,
+      "reranker": "preferred_frozen_reranker",
+      "candidate_pool_limit": 18,
+      "ordering_score": "reranker_score",
+      "eligibility_gate": "dense_score >= 0.35",
+      "allowed_changes": ["reranker ordering"],
+      "forbidden_changes": ["BM25", "fusion", "dedup", "diversity", "context budget", "generation", "prompt", "citation"],
+      "shared_contract_ref": "#/shared"
+    },
+    "hybrid_rerank": {
+      "role": "Measure complementarity; this arm is not presumed best.",
+      "retrieval": "dense_bge_m3_faiss_plus_bm25_okapi",
+      "fusion": "rrf_k_60",
+      "reranker": "preferred_frozen_reranker",
+      "candidate_pool_limit": 18,
+      "ordering_score": "reranker_score",
+      "eligibility_gate": "dense_score >= 0.35 OR bm25_rank IS NOT NULL",
+      "allowed_changes": ["candidate retrieval", "fusion", "reranker ordering"],
+      "forbidden_changes": ["dedup", "diversity", "context budget", "generation", "prompt", "citation"],
+      "shared_contract_ref": "#/shared"
+    }
+  },
+  "candidate_budget": {
+    "final_ablation_candidate_pool": 18,
+    "downstream_limit_is_maximum_not_padding_requirement": true,
+    "dense_only": {
+      "dense_branch_limit": 18,
+      "pre_governance_limit": 18
+    },
+    "hybrid": {
+      "dense_branch_limit": 18,
+      "bm25_branch_limit": 18,
+      "maximum_union_before_identity_dedup": 36,
+      "fused_pre_governance_limit": 18
+    },
+    "dense_rerank": {
+      "dense_branch_limit": 18,
+      "reranker_input_limit": 18,
+      "pre_governance_limit": 18
+    },
+    "hybrid_rerank": {
+      "dense_branch_limit": 18,
+      "bm25_branch_limit": 18,
+      "maximum_union_before_identity_dedup": 36,
+      "fused_limit": 18,
+      "reranker_input_limit": 18,
+      "pre_governance_limit": 18
+    },
+    "forbidden_depths_in_v1": [50, 100, 200],
+    "rationale": "The production control exposes 18 diagnostic candidates. Keeping every pre-governance pool at at most 18 isolates retrieval method and ordering from recall-depth changes."
+  },
+  "candidate_identity": {
+    "lexical_unit": "Exactly the same 442 post-ingestion runtime chunks used by dense retrieval.",
+    "whole_document_bm25_forbidden": true,
+    "stable_document_identity": "corpus_manifest.documents[].document_id",
+    "stable_runtime_chunk_identity": "document_id + ':' + chunk_index + ':' + content_hash",
+    "run_local_identity": ["material_id", "chunk_id"],
+    "source_locator": ["original_filename", "page_number", "section_title", "chunk_index"],
+    "required_candidate_fields": [
+      "document_id",
+      "stable_chunk_id",
+      "material_id",
+      "chunk_id",
+      "chunk_index",
+      "content_hash",
+      "source_locator",
+      "content"
+    ],
+    "identity_dedup_precedes_fusion": true,
+    "identity_collision_rule": "Fail the run; never merge candidates with the same stable_chunk_id but different content hashes."
+  },
+  "hybrid": {
+    "dense_branch": {
+      "retriever": "existing BAAI/bge-m3 plus FAISS IndexFlatIP",
+      "limit": 18,
+      "rank_start": 1,
+      "raw_score_field": "dense_score"
+    },
+    "bm25_branch": {
+      "algorithm": "BM25Okapi",
+      "index_scope": "the frozen 442 runtime chunks",
+      "limit": 18,
+      "rank_start": 1,
+      "raw_score_field": "bm25_score",
+      "parameters": {
+        "k1": 1.5,
+        "b": 0.75,
+        "epsilon": 0.25,
+        "parameter_source": "rank_bm25 BM25Okapi published defaults",
+        "tuning_in_v1": false
+      },
+      "tokenizer_contract": {
+        "normalization": "Unicode NFKC then casefold",
+        "latin_and_identifier_tokens": "Emit contiguous alphanumeric identifiers; preserve underscore, dot, slash, colon, and hyphen inside identifiers and also emit their alphanumeric parts.",
+        "cjk_tokens": "Emit overlapping CJK character bigrams; emit a unigram only for a one-character CJK run.",
+        "stopword_removal": false,
+        "stemming": false,
+        "synonym_expansion": false,
+        "query_expansion": false,
+        "same_processing_for_query_and_chunks": true,
+        "tuning_in_v1": false
+      },
+      "implementation_dependency_status": "Not installed and not added in this design-only round; Phase 1 may add an experiment-only pinned dependency after ABALATION_DESIGN_SHA256 binding."
+    },
+    "fusion": {
+      "method": "Reciprocal Rank Fusion",
+      "formula": "fusion_score(d) = sum(1 / (60 + branch_rank(d))) over branches containing d",
+      "rrf_constant": 60,
+      "branch_weights": { "dense": 1.0, "bm25": 1.0 },
+      "missing_branch_contribution": 0.0,
+      "limit_after_fusion": 18,
+      "tie_break_order": ["best branch rank ascending", "dense rank ascending with null last", "bm25 rank ascending with null last", "stable_chunk_id ascending"],
+      "score_calibration": false,
+      "rationale": "Dense similarity and BM25 scores do not share a calibrated numeric space. RRF uses ranks; k=60 is the value frozen in the original RRF study and is not tuned on the 72 cases.",
+      "tuning_in_v1": false
+    },
+    "threshold_contract": {
+      "selected_option": "A_BRANCH_TYPED_ELIGIBILITY_GATE",
+      "placement": "After optional reranker ordering and before overlap deduplication.",
+      "dense_candidate_rule": "A candidate with dense provenance is dense-eligible only when dense_score >= 0.35.",
+      "bm25_candidate_rule": "A candidate in BM25 Top 18 is lexical-eligible by bounded rank; there is no BM25 relevance threshold.",
+      "hybrid_union_rule": "Eligible when dense-eligible OR bm25_rank is not null.",
+      "reranker_rule": "Reranker score orders candidates only and is never compared with 0.35.",
+      "fusion_rule": "RRF score orders candidates only and is never compared with 0.35.",
+      "no_cross_space_comparisons": true,
+      "rejected_options": {
+        "B_NO_RELEVANCE_THRESHOLD": "Rejected because it silently removes the frozen dense 0.35 admission policy.",
+        "C_NORMALIZED_COMMON_SCORE": "Rejected because calibration would require a new tuning experiment and would mix unrelated score semantics."
+      }
+    }
+  },
+  "reranker": {
+    "placement": "After dense retrieval or hybrid fusion and before threshold eligibility, overlap deduplication, document diversity, final Top K, and context budgeting.",
+    "responsibility_split": {
+      "retriever": "High-recall candidate generation.",
+      "reranker": "Independent query-chunk relevance ordering.",
+      "evidence_governance": "Frozen final-context policy."
+    },
+    "candidate_limit": 18,
+    "input_contract": {
+      "pair": ["effective retrieval query", "raw chunk text"],
+      "document_title_included": false,
+      "section_title_included": false,
+      "metadata_included": false,
+      "rationale": "Titles and section metadata are not uniformly present across Markdown, text, and PDF chunks; the minimum pair contract avoids a metadata-availability confound.",
+      "preferred_model_pair_token_limit": 1024,
+      "truncation": "Preserve the complete query and truncate only the chunk tail when the pair exceeds 1024 model tokens; record truncation telemetry.",
+      "query_too_long_rule": "Fail the case before scoring if the query alone cannot fit with required special tokens.",
+      "frozen_for_v1": true
+    },
+    "score_contract": {
+      "value": "raw single-logit relevance score",
+      "normalization": null,
+      "threshold": null,
+      "higher_is_better": true,
+      "use": "ordering only",
+      "tie_break_order": ["upstream candidate rank ascending", "stable_chunk_id ascending"],
+      "never_compare_to_dense_or_bm25_or_rrf_scores": true
+    },
+    "preferred_model": {
+      "model_id": "BAAI/bge-reranker-v2-m3",
+      "revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+      "architecture": "XLM-RoBERTa sequence classification cross-encoder",
+      "parameter_count": "approximately 0.6B",
+      "artifact_size": "approximately 2.29 GB repository / 2.27 GB primary safetensors",
+      "languages": "multilingual, including Chinese and English",
+      "license": "Apache-2.0",
+      "expected_pair_limit": 1024,
+      "expected_candidate_count": 18,
+      "deployment": "CPU-capable through the already-pinned sentence-transformers/transformers stack, but expected to add material latency; Phase 2 must measure it before any LLM run.",
+      "selection_rationale": "Strong multilingual query-passage scoring, explicit reranker architecture, supports the bilingual technical corpus, and has a commercially usable license. It is a separate scoring model and does not reuse BGE-M3 embedding vectors."
+    },
+    "backup_model": {
+      "model_id": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+      "revision": "1427fd652930e4ba29e8149678df786c240d8825",
+      "architecture": "multilingual MiniLM/XLM-R cross-encoder",
+      "artifact_size": "approximately 471 MB primary safetensors",
+      "languages": "15 languages, including the benchmark's Chinese-English use case",
+      "license": "Apache-2.0",
+      "model_max_length": 512,
+      "expected_candidate_count": 18,
+      "deployment": "Lower CPU memory and likely lower latency than the preferred 0.6B model; quality on this technical corpus is unverified.",
+      "selection_rationale": "Operationally cheaper multilingual cross-encoder available through the existing sentence-transformers dependency."
+    },
+    "model_switch_rule": "The backup is documentation only. Replacing the preferred model, revision, token limit, or score contract requires a new design version and hash before executing any V1 arm.",
+    "downloaded_in_this_round": false,
+    "executed_in_this_round": false,
+    "diversity_policy_change_allowed": false
+  },
+  "shared": {
+    "query_rewrite": {
+      "enabled": true,
+      "prompt_version": "rag-rewrite-v1",
+      "behavior": "Current production behavior; no hybrid-only query expansion or BM25 keyword rewrite.",
+      "fresh_conversation_effect": "No history means no rewrite occurs."
+    },
+    "evidence_governance": {
+      "eligibility_gate": "Arm-typed score contract; this is not a unified numeric threshold.",
+      "overlap_dedup": "Current _substantial_overlap policy for adjacent chunks in the same material.",
+      "document_diversity": "Current two-pass policy: first pass cap 3 per material, then rank-ordered backfill.",
+      "diversity_change_allowed": false,
+      "max_sources": 6,
+      "final_top_k": 6,
+      "max_chunk_chars": 2200,
+      "context_budget_chars": 12000
+    },
+    "generation": {
+      "provider": "openai_compatible",
+      "model": "deepseek-v4-flash",
+      "structured_model": "deepseek-v4-flash",
+      "temperature": 0.1,
+      "reasoning_enabled": false,
+      "structured_output_token_limit": 2400,
+      "timeout_seconds": 60,
+      "max_retries": 2,
+      "prompt_version": "rag-answer-v2-evidence-binding",
+      "grounding_repair_limit": 1,
+      "frozen_across_arms": true
+    },
+    "citation": {
+      "pipeline": "Current evidence-block validation, deterministic rendering, allowed-source enforcement, and persistence.",
+      "frozen_across_arms": true
+    }
+  },
+  "score_provenance": {
+    "required_fields": {
+      "dense_score": "number or null",
+      "dense_rank": "integer or null",
+      "bm25_score": "number or null",
+      "bm25_rank": "integer or null",
+      "fusion_score": "number or null",
+      "fusion_rank": "integer or null",
+      "reranker_score": "number or null",
+      "reranker_rank": "integer or null",
+      "final_selection_status": "SELECTED or REJECTED",
+      "selection_rejection_reason": "enum or null"
+    },
+    "null_rule": "A score or rank absent for an arm or branch must be null; values must never be synthesized.",
+    "rejection_reason_enum": [
+      "INELIGIBLE_DENSE_THRESHOLD",
+      "OUTSIDE_FUSED_TOP_18",
+      "OVERLAP_DUPLICATE",
+      "DIVERSITY_DEFERRED_NOT_BACKFILLED",
+      "FINAL_TOP_K_LIMIT",
+      "CONTEXT_BUDGET_EXHAUSTED",
+      "EMPTY_CONTENT",
+      "NOT_APPLICABLE"
+    ],
+    "additional_telemetry": [
+      "stable_chunk_id",
+      "pre_governance_rank",
+      "reranker_input_truncated",
+      "reranker_input_tokens",
+      "stage_latency_ms"
+    ]
+  },
+  "metrics": {
+    "retrieval_primary": {
+      "name": "claim_required_evidence_candidate_coverage",
+      "target_arm": "hybrid",
+      "target_case_count": 9,
+      "case_repaired_definition": "A target case that lacked complete claim-required evidence in A has all required evidence groups represented in the arm's Top-18 candidate pool.",
+      "required_reporting": ["fixed target cases", "unchanged target failures", "new candidate-coverage regressions"]
+    },
+    "reranker_primary": {
+      "name": "claim_required_evidence_selected_context_coverage",
+      "target_arms": ["dense_rerank", "hybrid_rerank"],
+      "target_case_count": 10,
+      "case_repaired_definition": "A target case that lacked complete selected evidence in A has all required evidence groups in the final governed context.",
+      "required_subgroups": { "SELECTION_RANKING_MISS": 2, "SELECTION_DIVERSITY_MISS": 8 },
+      "aggregate_only_reporting_forbidden": true
+    },
+    "end_to_end": {
+      "reviewed_claim_correctness_count": 132,
+      "case_count": 72,
+      "case_verdicts": ["FULL_PASS", "PARTIAL_PASS", "FAIL", "CORRECT_REFUSAL", "INCORRECT_REFUSAL"],
+      "required_dimensions": ["citation semantic support", "answerability", "CORE versus STRESS", "case type", "query language"],
+      "causal_trace": "retrieval change -> candidate/evidence change -> generation output change"
+    },
+    "secondary": [
+      "candidate document-group coverage",
+      "selected document-group coverage",
+      "diagnostic runtime anchor coverage",
+      "document Hit@K",
+      "citation validity and required-group coverage"
+    ],
+    "regression_transitions": ["FIXED_FAILURE", "UNCHANGED_FAILURE", "NEW_REGRESSION", "UNCHANGED_PASS"],
+    "semantic_review_required": true,
+    "overall_accuracy_as_sole_decision_metric_forbidden": true
+  },
+  "target_case_sets": {
+    "source": {
+      "path": "evals/rag_real_world_corpus/v1/failure_analysis_v1/ablation_hypotheses.json",
+      "sha256": "27184ff8ddbf628f78767ede545e202ee66cb9ff17f56728961a8ce2d801f610"
+    },
+    "dense_only": [],
+    "hybrid": [
+      "rw-gold-v1-single-dependency-defaults",
+      "rw-gold-v1-multi-backend-control",
+      "rw-gold-v1-multi-error-observability",
+      "rw-gold-v1-multi-rag-tracing",
+      "rw-gold-v1-multi-retrieval-eval",
+      "rw-gold-v1-stress-cross-agent-api-replay",
+      "rw-gold-v1-stress-cross-embedding-api-concurrency",
+      "rw-gold-v1-stress-cross-persistence-tracing",
+      "rw-gold-v1-stress-cross-retrieval-evaluation"
+    ],
+    "dense_rerank": [
+      "rw-gold-v1-semantic-deps-automatic",
+      "rw-gold-v1-long-bge-training",
+      "rw-gold-v1-long-deps-hierarchy",
+      "rw-gold-v1-long-interrupt-static",
+      "rw-gold-v1-long-otel-links",
+      "rw-gold-v1-multi-eval-stack",
+      "rw-gold-v1-multi-hybrid-index",
+      "rw-gold-v1-disambig-fastapi-async-deps",
+      "rw-gold-v1-disambig-interrupt-static",
+      "rw-gold-v1-disambig-ragas-metrics"
+    ],
+    "reranker_ranking_miss": [
+      "rw-gold-v1-disambig-fastapi-async-deps",
+      "rw-gold-v1-disambig-ragas-metrics"
+    ],
+    "reranker_diversity_miss": [
+      "rw-gold-v1-semantic-deps-automatic",
+      "rw-gold-v1-long-bge-training",
+      "rw-gold-v1-long-deps-hierarchy",
+      "rw-gold-v1-long-interrupt-static",
+      "rw-gold-v1-long-otel-links",
+      "rw-gold-v1-multi-eval-stack",
+      "rw-gold-v1-multi-hybrid-index",
+      "rw-gold-v1-disambig-interrupt-static"
+    ],
+    "hybrid_rerank": [
+      "rw-gold-v1-disambig-fastapi-async-deps",
+      "rw-gold-v1-disambig-interrupt-static",
+      "rw-gold-v1-disambig-ragas-metrics",
+      "rw-gold-v1-long-bge-training",
+      "rw-gold-v1-long-deps-hierarchy",
+      "rw-gold-v1-long-interrupt-static",
+      "rw-gold-v1-long-otel-links",
+      "rw-gold-v1-multi-backend-control",
+      "rw-gold-v1-multi-error-observability",
+      "rw-gold-v1-multi-eval-stack",
+      "rw-gold-v1-multi-hybrid-index",
+      "rw-gold-v1-multi-rag-tracing",
+      "rw-gold-v1-multi-retrieval-eval",
+      "rw-gold-v1-semantic-deps-automatic",
+      "rw-gold-v1-single-dependency-defaults",
+      "rw-gold-v1-stress-cross-agent-api-replay",
+      "rw-gold-v1-stress-cross-embedding-api-concurrency",
+      "rw-gold-v1-stress-cross-persistence-tracing",
+      "rw-gold-v1-stress-cross-retrieval-evaluation"
+    ],
+    "hybrid_rerank_requires_both": [],
+    "regression_reference": {
+      "root_cause": "NO_FAILURE",
+      "case_count": 33,
+      "source_path": "evals/rag_real_world_corpus/v1/failure_analysis_v1/root_cause_summary.json",
+      "source_sha256": "03d7d9a89f5d62fd3c69c41a1f7f335f74bdba022d33b39c6f9ebbaafdaa9cd4"
+    },
+    "mutation_after_results_forbidden": true
+  },
+  "latency": {
+    "dense_baseline_ms": {
+      "http_mean": 2632.35,
+      "http_p50": 2493.84,
+      "http_p95": 3728.66,
+      "generation_p50": 2291.73
+    },
+    "required_per_arm_stages": [
+      "dense retrieval",
+      "BM25 retrieval",
+      "fusion",
+      "reranker",
+      "eligibility and selection",
+      "generation",
+      "total"
+    ],
+    "required_aggregates": ["mean", "P50", "P95", "max"],
+    "quality_cost_report": "Report target-case recovery and regression counts beside incremental retrieval/reranker P50 and P95 latency.",
+    "timeout_and_error_counts_required": true
+  },
+  "execution_isolation": {
+    "per_experimental_arm": [
+      "independent SQLite database",
+      "independent BM25 index when applicable",
+      "independent FAISS runtime state",
+      "independent conversations and request IDs",
+      "independent uploads and checkpoints",
+      "independent results directory"
+    ],
+    "shared_frozen_inputs": [
+      "same 11 documents",
+      "same 442-chunk projection",
+      "same Gold SHA-256",
+      "same target-case-set artifact hashes"
+    ],
+    "dense_control_execution": "Reuse the frozen A artifacts; do not create a new A generation run unless a documented validity audit fails.",
+    "maximum_new_generation_requests": 216,
+    "request_calculation": "72 cases x 3 experimental arms",
+    "raw_result_protocol": ["freeze raw answers", "derive machine metrics", "perform semantic review", "compare root causes"]
+  },
+  "production_decision_rule": {
+    "rule_id": "PRE_REGISTERED_MULTI_DIMENSION_GATE_V1",
+    "automatic_best_overall_score_selection_forbidden": true,
+    "hard_reject_conditions": [
+      "Any frozen Gold, corpus, baseline, target-case-set, model revision, or design hash mismatch.",
+      "No positive change on the arm's primary target metric.",
+      "Any severe regression among the 33 frozen NO_FAILURE cases: correct answer/refusal becomes incorrect, or a previously supported required claim becomes unsupported.",
+      "Any new semantically invalid citation, unsupported factual claim, or answerability error attributable to the arm.",
+      "Incomplete telemetry, non-isolated state, execution errors, or unreviewed semantic outputs.",
+      "Latency, memory, or operational behavior cannot be measured reproducibly."
+    ],
+    "advance_to_production_review_requires": [
+      "Target fixed-case count is greater than target regression count and every target transition is semantically reviewed.",
+      "All regressions outside target sets are enumerated; no severe frozen-pass regression exists.",
+      "Citation semantic support and answerability do not materially regress.",
+      "Retrieval, reranker, selection, total P50, and total P95 latency plus memory cost are reported against A.",
+      "The smallest architecture on the quality-latency-complexity Pareto frontier is selected."
+    ],
+    "minimal_complexity_rules": {
+      "hybrid": "B may advance only for verified candidate-coverage recovery on RETRIEVAL_MISS cases.",
+      "dense_rerank": "C may advance only for verified selected-context recovery; ranking and diversity subgroups must be reported separately.",
+      "hybrid_rerank": "D may advance over B or C only if it fixes at least one target case neither single intervention fixes, while satisfying every hard gate.",
+      "tie": "If quality outcomes are equivalent within reviewed case transitions, choose the lower-latency, lower-memory, lower-operational-burden arm."
+    },
+    "research_effective_but_not_production_worthy": "An arm is recorded as technically effective but rejected for production when it improves its target metric yet fails a hard gate, is dominated by a simpler arm, or D shows no complementary recovery beyond B/C.",
+    "numeric_latency_gate": null,
+    "numeric_latency_gate_rationale": "No product latency SLO or hardware-normalized reranker measurement exists. Inventing a percentage would bias the gate; production advancement therefore requires explicit human acceptance of the fully reported measured trade-off.",
+    "final_authority": "Production review after semantic comparison; this design never authorizes automatic deployment."
+  },
+  "implementation_staging": {
+    "phase_1": "Implement experiment-only Hybrid and Reranker infrastructure plus offline unit tests; bind ABALATION_DESIGN_SHA256.",
+    "phase_2": "Run retrieval-only/no-LLM dry runs to validate identity, fusion, reranking, null score fields, rejection reasons, isolation, latency, and determinism.",
+    "phase_3": "After Phase 2 passes, execute the three experimental 72-case arms; do not rerun A.",
+    "phase_4": "Freeze raw answers, compute machine metrics, perform semantic review, and compare root causes and regressions.",
+    "phase_5": "Apply the pre-registered production decision rule.",
+    "phase_order_mandatory": true,
+    "direct_implementation_to_216_llm_calls_forbidden": true
+  },
+  "unavoidable_arm_differences": [
+    {
+      "label": "UNAVOIDABLE_ARM_DIFFERENCE",
+      "difference": "Hybrid arms admit BM25 Top-18 members without applying the dense 0.35 threshold.",
+      "reason": "BM25 and dense scores are not comparable; lexical admission is rank-bounded and fusion is rank-based."
+    },
+    {
+      "label": "UNAVOIDABLE_ARM_DIFFERENCE",
+      "difference": "Reranker arms order candidates before the frozen eligibility/dedup/diversity governance sequence.",
+      "reason": "The experiment tests whether independent relevance ordering changes which evidence survives unchanged governance."
+    },
+    {
+      "label": "UNAVOIDABLE_ARM_DIFFERENCE",
+      "difference": "B, C, and D require new generation requests while A reuses frozen raw answers.",
+      "reason": "Retrieval evidence can change generated output; rerunning A would add cost and uncontrolled provider-time variance without changing the control definition."
+    }
+  ],
+  "external_references": [
+    {
+      "topic": "RRF",
+      "url": "https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf",
+      "used_for": "RRF formula and the pre-validation fixed constant k=60."
+    },
+    {
+      "topic": "preferred reranker",
+      "url": "https://huggingface.co/BAAI/bge-reranker-v2-m3/commit/953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+      "used_for": "Pinned model revision, multilingual query-passage scoring, model shape, and Apache-2.0 license."
+    },
+    {
+      "topic": "backup reranker",
+      "url": "https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/commit/1427fd652930e4ba29e8149678df786c240d8825",
+      "used_for": "Pinned backup revision, multilingual CrossEncoder interface, and Apache-2.0 license."
+    },
+    {
+      "topic": "BM25 defaults",
+      "url": "https://github.com/dorianbrown/rank_bm25/blob/master/rank_bm25.py",
+      "used_for": "Published BM25Okapi defaults k1=1.5, b=0.75, epsilon=0.25; no dependency was installed."
+    }
+  ]
+}

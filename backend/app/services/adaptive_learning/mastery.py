@@ -4,6 +4,7 @@ from decimal import Decimal, ROUND_HALF_UP
 
 from sqlalchemy import select
 
+from app.core.clock import clock_from_settings
 from app.models import KnowledgeMastery, MasteryEvidence, MasterySnapshot
 from app.services.adaptive_learning.confidence import calculate_confidence
 from app.services.adaptive_learning.enums import EvidenceType, MasteryLevel
@@ -13,6 +14,7 @@ SCORED_TYPES = (
     EvidenceType.objective_quiz, EvidenceType.short_answer_quiz,
     EvidenceType.successful_review, EvidenceType.task_completion,
     EvidenceType.learning_session, EvidenceType.self_assessment,
+    EvidenceType.diagnostic_assessment, EvidenceType.diagnostic_adjustment,
 )
 
 
@@ -28,7 +30,7 @@ class KnowledgeMasteryService:
     def __init__(self, db, settings, *, now: datetime | None = None):
         self.db = db
         self.settings = settings
-        self.now = now or settings.adaptive_fixed_now or datetime.now(timezone.utc)
+        self.now = now or clock_from_settings(settings).now()
 
     def level(self, score: float | None) -> str:
         if score is None:

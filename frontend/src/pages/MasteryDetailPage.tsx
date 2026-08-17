@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, CalendarClock, History, Layers3 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
-import { masteryApi } from "../api/resources";
+import { adaptiveApi, masteryApi } from "../api/resources";
 import { EmptyState, ErrorState, LoadingState } from "../components/States";
 
 const evidenceLabel: Record<string, string> = {
@@ -14,11 +14,19 @@ export function MasteryDetailPage() {
   const id = Number(useParams().id);
   const queryClient = useQueryClient();
   const detail = useQuery({ queryKey: ["mastery", id], queryFn: () => masteryApi.get(id), enabled: Number.isInteger(id) });
+  const refresh = useQuery({ queryKey: ["adaptive-refresh", id], queryFn: () => adaptiveApi.refreshStatus(id), enabled: Number.isInteger(id) });
   const assess = useMutation({
     mutationFn: (rating: number) => masteryApi.selfAssessment(id, rating),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["mastery", id] });
       queryClient.invalidateQueries({ queryKey: ["mastery"] });
+    },
+  });
+  const retryRefresh = useMutation({
+    mutationFn: (taskId: number) => adaptiveApi.retryRefresh(taskId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["adaptive-refresh", id] });
+      queryClient.invalidateQueries({ queryKey: ["mastery", id] });
     },
   });
   if (detail.isLoading) return <main className="page"><LoadingState label="正在读取掌握度依据…" /></main>;
@@ -27,11 +35,11 @@ export function MasteryDetailPage() {
   const categoryScores = (data.evidence_summary.category_scores ?? {}) as Record<string, number>;
   return (
     <main className="page mastery-detail-page">
-      <Link className="button button--quiet mastery-back" to="/mastery"><ArrowLeft size={16} />返回掌握度</Link>
+      <Link className="button button--quiet mastery-back" to="/review?tab=mastery"><ArrowLeft size={16} />返回掌握情况</Link>
       <header className="page-header">
         <p className="page-kicker">{data.course_title}</p>
         <h1>{data.knowledge_point_title}</h1>
-        <p>算法版本 {data.algorithm_version} · 最近计算 {new Date(data.calculated_at).toLocaleString("zh-CN")}</p>
+        <p>最近更新 {new Date(data.calculated_at).toLocaleString("zh-CN")}</p>
       </header>
       <section className="mastery-hero">
         <article><span>当前掌握度</span><strong>{data.mastery_score === null ? "未评估" : Math.round(data.mastery_score)}</strong><small>{data.mastery_score === null ? "没有有效证据" : "/ 100"}</small></article>
@@ -39,6 +47,8 @@ export function MasteryDetailPage() {
         <article><span>证据数量</span><strong>{data.evidence_count}</strong><small>条真实记录</small></article>
       </section>
       {data.mastery_score !== null && data.confidence_score < 45 && <div className="notice notice--warning">当前表现可能较好，但证据仍较少，请结合后续测验继续观察。</div>}
+      {refresh.data?.status === "running" || refresh.data?.status === "pending" ? <div className="notice">掌握状态正在更新。</div> : null}
+      {refresh.data?.status === "failed" && <div className="notice notice--warning">掌握状态更新失败，可重新尝试。<button className="button button--secondary" disabled={retryRefresh.isPending} onClick={() => refresh.data?.id && retryRefresh.mutate(refresh.data.id)}>重新尝试</button></div>}
       <section className="adaptive-grid">
         <article className="adaptive-panel">
           <header><Layers3 size={18} /><h2>证据组成</h2></header>
@@ -56,11 +66,11 @@ export function MasteryDetailPage() {
       </section>
       <section className="adaptive-panel">
         <header><History size={18} /><h2>掌握度历史</h2></header>
-        {data.snapshots.length === 0 ? <p className="muted">还没有快照。</p> : <div className="snapshot-list">{data.snapshots.map((snapshot) => <div key={snapshot.id}><time>{new Date(snapshot.calculated_at).toLocaleString("zh-CN")}</time><strong>{snapshot.mastery_score === null ? "未评估" : Math.round(snapshot.mastery_score)}</strong><span>置信度 {Math.round(snapshot.confidence_score)} · {snapshot.trigger_type}</span></div>)}</div>}
+        {data.snapshots.length === 0 ? <p className="muted">还没有历史记录。</p> : <div className="snapshot-list">{data.snapshots.map((snapshot) => <div key={snapshot.id}><time>{new Date(snapshot.calculated_at).toLocaleString("zh-CN")}</time><strong>{snapshot.mastery_score === null ? "未评估" : Math.round(snapshot.mastery_score)}</strong><span>置信度 {Math.round(snapshot.confidence_score)}</span></div>)}</div>}
       </section>
       <section className="adaptive-panel">
         <header><Layers3 size={18} /><h2>最近证据</h2></header>
-        <div className="evidence-list">{data.evidence.map((item) => <div key={item.id}><strong>{evidenceLabel[item.evidence_type] ?? item.evidence_type}</strong><span>{new Date(item.occurred_at).toLocaleString("zh-CN")}</span><span>归一化 {Math.round(item.normalized_score)} · 类别权重 {item.weight}</span><small>来源 {item.source_type} #{item.source_id}</small></div>)}</div>
+        <div className="evidence-list">{data.evidence.map((item) => <div key={item.id}><strong>{evidenceLabel[item.evidence_type] ?? "学习记录"}</strong><span>{new Date(item.occurred_at).toLocaleString("zh-CN")}</span><span>本次证据得分 {Math.round(item.normalized_score)}</span></div>)}</div>
       </section>
       <p className="mastery-disclaimer">掌握度是根据当前学习记录计算的项目规则分数，不代表正式教育测评结果。</p>
     </main>

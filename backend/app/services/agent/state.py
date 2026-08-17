@@ -7,6 +7,7 @@ class AgentState(TypedDict, total=False):
     thread_id: str
     request_id: str
     user_input: str
+    conversation_context: dict[str, Any]
     history: list[dict[str, str]]
     current_time: str
     timezone: str
@@ -34,3 +35,4 @@ class AgentState(TypedDict, total=False):
     planner_skipped: bool
     composer_skipped: bool
     llm_call_count: int
+    plan_repair_attempted: bool

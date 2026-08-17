@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "errors": [],
+  "document_count": 11,
+  "unique_document_ids": 11,
+  "format_counts": {
+    "md": 8,
+    "pdf": 2,
+    "txt": 1
+  },
+  "topic_counts": {
+    "agent_engineering": 3,
+    "ai_app_backend": 3,
+    "evaluation_reliability": 3,
+    "rag_retrieval": 2
+  },
+  "projected_chunk_count": 442,
+  "exact_duplicates": 0,
+  "near_duplicates": 0,
+  "all_licenses_verified": true
+}

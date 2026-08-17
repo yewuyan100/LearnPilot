@@ -1,0 +1,47 @@
+{
+  "run_id": "20260816T151918Z-repositorycleanupclosure",
+  "status": "VERIFIED",
+  "production": {
+    "backend": "backend/app",
+    "frontend": "frontend/src"
+  },
+  "canonical_tests": {
+    "backend": "backend/tests",
+    "frontend": "frontend/src (co-located test files)"
+  },
+  "database_and_migrations": "backend/alembic",
+  "canonical_rag": {
+    "corpus_root": "evals/rag_real_world_corpus/v1",
+    "gold": "evals/rag_real_world_corpus/v1/gold",
+    "evidence": {
+      "dense_baseline": "results/dense_only_baseline_v1/20260814T052007Z-593cd2ac",
+      "failure_analysis": "failure_analysis_v1",
+      "preregistered_ablation": "results/hybrid_rerank_phase2_v1_1/20260814T095542Z-1317c6a7",
+      "phase4_review": "results/hybrid_rerank_phase4_v1_1/20260814T131417Z-04dfc031",
+      "onnx_negative": "results/c_v1_2_onnx_runtime_equivalence/20260814T145246Z-298674d5",
+      "cuda_full": "results/c_v1_3b_cuda_fp32_full/20260816T050910Z-fbb5cec1",
+      "lexical_stress": "results/c_v1_4_lexical_domain_shift/20260816T061649Z-3dc82771",
+      "production_integration": "results/c_production_integration_p1_resume/20260816T072424Z-p1resume",
+      "top7_boundary": "results/rag_context_selection_boundary_audit/20260816T094403Z-boundaryaudit",
+      "depth_decoupling": "results/rag_candidate_final_depth_decoupling/20260816T101548Z-depthdecouple",
+      "generation_limitation": "results/rag_one_final_closure/20260816T130718Z-onefinalclosure"
+    }
+  },
+  "final_product_audit": "evals/final_product_audit/20260816T140758Z-finalproductaudit",
+  "runtime_scripts": "backend/scripts",
+  "cuda_venv": ".venv-cuda",
+  "stable_reranker": {
+    "path": "D:/AIModels/bge-reranker-v2-m3/953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+    "configuration": "RAG_RERANKER_MODEL_PATH",
+    "file_count": 8
+  },
+  "historical_tmp_snapshot": {
+    "status": "DELETED",
+    "required": false
+  },
+  "nonblocking_retention": {
+    "onnx_binary": "DEFERRED",
+    "historical_evaluation_runs": "KEEP_FOR_NOW"
+  },
+  "READY_FOR_README_ARCHITECTURE": "YES"
+}

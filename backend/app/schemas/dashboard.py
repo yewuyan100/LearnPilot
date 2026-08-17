@@ -28,6 +28,12 @@ class MetaResponse(BaseModel):
     max_file_size_mb: int
     app_version: str
     demo_data_enabled: bool
+    llm_configured: bool
+    llm_model: str | None
+    embedding_model: str
+    embedding_device: str
+    embedding_local_only: bool
+    index_ready: bool
+    index_directory: str
     server_date: date
     server_time: datetime
-

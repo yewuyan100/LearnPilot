@@ -1,11 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AlertCircle, ArrowLeft, Check, Send } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { attemptsApi } from "../api/resources";
 import { ErrorState, LoadingState } from "../components/States";
 import { useToast } from "../components/toast-context";
 import type { AttemptQuestion } from "../types";
+import { parseQuizNavigation } from "../utils/quizNavigation";
 
 type DraftAnswer = {
   answer?: Array<string | boolean> | null;
@@ -23,10 +24,12 @@ export function QuizAttemptPage() {
   const { id } = useParams();
   const attemptId = Number(id);
   const navigate = useNavigate();
+  const location = useLocation();
+  const navigation = parseQuizNavigation(location.search);
   const queryClient = useQueryClient();
   const { showToast } = useToast();
   const [answers, setAnswers] = useState<Record<number, DraftAnswer>>({});
-  const submitRequestId = useRef(crypto.randomUUID());
+  const submitRequestId = useRef<string>(crypto.randomUUID());
   const attempt = useQuery({
     queryKey: ["quiz-attempt", attemptId],
     queryFn: () => attemptsApi.get(attemptId),
@@ -34,6 +37,9 @@ export function QuizAttemptPage() {
   });
   useEffect(() => {
     if (!attempt.data) return;
+    if (attempt.data.request_id) {
+      submitRequestId.current = attempt.data.request_id;
+    }
     setAnswers(
       Object.fromEntries(
         attempt.data.questions.map((question) => [
@@ -48,9 +54,9 @@ export function QuizAttemptPage() {
   }, [attempt.data]);
   useEffect(() => {
     if (attempt.data?.status === "completed") {
-      navigate(`/quiz-attempts/${attempt.data.id}/result`, { replace: true });
+      navigate(`/quiz-attempts/${attempt.data.id}/result${location.search}`, { replace: true });
     }
-  }, [attempt.data?.id, attempt.data?.status, navigate]);
+  }, [attempt.data?.id, attempt.data?.status, location.search, navigate]);
   const save = useMutation({
     mutationFn: ({
       questionId,
@@ -72,9 +78,17 @@ export function QuizAttemptPage() {
           ...value,
         })),
       }),
-    onSuccess: (result) => {
+    onSuccess: async (result) => {
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ["quiz-attempt", attemptId] }),
+        queryClient.invalidateQueries({ queryKey: ["mastery"] }),
+        queryClient.invalidateQueries({ queryKey: ["next-learning-action"] }),
+        queryClient.invalidateQueries({ queryKey: ["plan-adjustment"] }),
+        queryClient.invalidateQueries({ queryKey: ["today"] }),
+        queryClient.invalidateQueries({ queryKey: ["progress"] }),
+      ]);
       if (result.status === "completed") {
-        navigate(`/quiz-attempts/${result.id}/result`);
+        navigate(`/quiz-attempts/${result.id}/result${location.search}`);
       }
     },
     onError: (error: Error) => {
@@ -110,11 +124,11 @@ export function QuizAttemptPage() {
   return (
     <div className="quiz-shell">
       <header className="quiz-header">
-        <button className="text-button" onClick={() => navigate("/activities")}>
+        <button className="text-button" onClick={() => navigate(navigation.returnHref)}>
           <ArrowLeft size={16} />退出测验
         </button>
         <div>
-          <span className="eyebrow">进行中的测验</span>
+          <span className="eyebrow">检查理解</span>
           <h1>{attempt.data.activity_title}</h1>
         </div>
         <div className="quiz-progress">
@@ -250,7 +264,7 @@ export function QuizAttemptPage() {
             }
           }}
         >
-          <Send size={16} />{submit.isPending ? "正在批改…" : "提交测验"}
+          <Send size={16} />{submit.isPending ? "正在批改…" : attempt.data.status === "failed" ? "重试批改" : "提交测验"}
         </button>
       </footer>
     </div>

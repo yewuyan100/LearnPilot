@@ -1,0 +1,31 @@
+{
+  "$id": "learnpilot://rag-real-world/failure-analysis-v1/citation-semantic-reviews.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "case_summaries": {
+      "maxItems": 72,
+      "minItems": 72,
+      "type": "array"
+    },
+    "citation_reviews": {
+      "maxItems": 97,
+      "minItems": 97,
+      "type": "array"
+    },
+    "missing_required_evidence_groups": {
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    }
+  },
+  "required": [
+    "schema_version",
+    "review_id",
+    "summary",
+    "citation_reviews",
+    "missing_required_evidence_groups",
+    "case_summaries"
+  ],
+  "type": "object"
+}

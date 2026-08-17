@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://learnpilot.local/schemas/rag-hybrid-rerank-ablation-design-v1.json",
+  "title": "LearnPilot RAG Hybrid and Reranker Ablation Design V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "design_id",
+    "status",
+    "ready_for_hybrid_rerank_implementation",
+    "scope_declarations",
+    "frozen_inputs",
+    "current_pipeline_contract",
+    "arms",
+    "candidate_budget",
+    "candidate_identity",
+    "hybrid",
+    "reranker",
+    "shared",
+    "score_provenance",
+    "metrics",
+    "target_case_sets",
+    "latency",
+    "execution_isolation",
+    "production_decision_rule",
+    "implementation_staging",
+    "unavoidable_arm_differences",
+    "external_references"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "design_id": { "const": "learnpilot-rag-hybrid-rerank-ablation-design-v1" },
+    "status": { "const": "COMPLETE" },
+    "ready_for_hybrid_rerank_implementation": { "const": true },
+    "scope_declarations": { "$ref": "#/$defs/object" },
+    "frozen_inputs": { "$ref": "#/$defs/object" },
+    "current_pipeline_contract": { "$ref": "#/$defs/object" },
+    "arms": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dense_only", "hybrid", "dense_rerank", "hybrid_rerank"],
+      "properties": {
+        "dense_only": { "$ref": "#/$defs/arm" },
+        "hybrid": { "$ref": "#/$defs/arm" },
+        "dense_rerank": { "$ref": "#/$defs/arm" },
+        "hybrid_rerank": { "$ref": "#/$defs/arm" }
+      }
+    },
+    "candidate_budget": { "$ref": "#/$defs/object" },
+    "candidate_identity": { "$ref": "#/$defs/object" },
+    "hybrid": { "$ref": "#/$defs/object" },
+    "reranker": { "$ref": "#/$defs/object" },
+    "shared": { "$ref": "#/$defs/object" },
+    "score_provenance": { "$ref": "#/$defs/object" },
+    "metrics": { "$ref": "#/$defs/object" },
+    "target_case_sets": { "$ref": "#/$defs/object" },
+    "latency": { "$ref": "#/$defs/object" },
+    "execution_isolation": { "$ref": "#/$defs/object" },
+    "production_decision_rule": { "$ref": "#/$defs/object" },
+    "implementation_staging": { "$ref": "#/$defs/object" },
+    "unavoidable_arm_differences": { "type": "array", "items": { "$ref": "#/$defs/object" } },
+    "external_references": { "type": "array", "items": { "$ref": "#/$defs/object" } }
+  },
+  "$defs": {
+    "object": { "type": "object" },
+    "arm": {
+      "type": "object",
+      "required": [
+        "role",
+        "retrieval",
+        "fusion",
+        "reranker",
+        "candidate_pool_limit",
+        "ordering_score",
+        "eligibility_gate",
+        "allowed_changes",
+        "forbidden_changes",
+        "shared_contract_ref"
+      ],
+      "properties": {
+        "role": { "type": "string" },
+        "retrieval": { "type": "string" },
+        "fusion": { "type": ["string", "null"] },
+        "reranker": { "type": ["string", "null"] },
+        "candidate_pool_limit": { "const": 18 },
+        "ordering_score": { "type": "string" },
+        "eligibility_gate": { "type": "string" },
+        "allowed_changes": { "type": "array", "items": { "type": "string" } },
+        "forbidden_changes": { "type": "array", "items": { "type": "string" } },
+        "shared_contract_ref": { "const": "#/shared" }
+      }
+    }
+  }
+}

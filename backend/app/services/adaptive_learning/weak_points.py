@@ -2,6 +2,7 @@ from datetime import datetime, timezone
 
 from sqlalchemy import func, select
 
+from app.core.clock import SystemClock
 from app.models import KnowledgeMastery, ReviewSchedule, WrongAnswer
 
 
@@ -12,7 +13,7 @@ def aware(value: datetime) -> datetime:
 class WeakPointService:
     def __init__(self, db, *, now: datetime | None = None):
         self.db = db
-        self.now = now or datetime.now(timezone.utc)
+        self.now = now or SystemClock("UTC").now()
 
     def facts(self, mastery: KnowledgeMastery) -> dict:
         active_wrong = self.db.scalar(select(func.count(WrongAnswer.id)).where(

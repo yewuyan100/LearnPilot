@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "acquired_at": "2026-08-13T12:33:34.949269+00:00",
+  "repositories": [
+    {
+      "project": "FAISS",
+      "repository": "https://github.com/facebookresearch/faiss",
+      "commit_sha": "80a16564f86530dbf0bfaf96c2b71feffeb5093f"
+    },
+    {
+      "project": "FastAPI",
+      "repository": "https://github.com/fastapi/fastapi",
+      "commit_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7"
+    },
+    {
+      "project": "FlagEmbedding",
+      "repository": "https://github.com/FlagOpen/FlagEmbedding",
+      "commit_sha": "7ed43d67ec03fbe5c31c0992dbfa941fb1860549"
+    },
+    {
+      "project": "LangChain Documentation",
+      "repository": "https://github.com/langchain-ai/docs",
+      "commit_sha": "47062bb8dc8eb56fb7cdd99201028e1d0177b19b"
+    },
+    {
+      "project": "LangGraph",
+      "repository": "https://github.com/langchain-ai/langgraph",
+      "commit_sha": "644815f9e5bc52ad8f7a5227a456227e9c3e639b"
+    },
+    {
+      "project": "OpenTelemetry Website",
+      "repository": "https://github.com/open-telemetry/opentelemetry.io",
+      "commit_sha": "0480294d04e49023b559d33d4546a34ce738fcab"
+    },
+    {
+      "project": "Ragas",
+      "repository": "https://github.com/vibrantlabsai/ragas",
+      "commit_sha": "298b68274234c060deacab3cf5fb52aa3a20e885"
+    }
+  ]
+}

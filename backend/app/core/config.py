@@ -7,7 +7,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    app_name: str = "PersonalLearning"
+    app_name: str = "LearnPilot"
     app_version: str = "6.0.0"
     api_prefix: str = "/api"
     database_url: str = "sqlite:///./data/personal_learning.sqlite3"
@@ -43,19 +43,28 @@ class Settings(BaseSettings):
     llm_max_retries: int = 2
     llm_temperature: float = 0.1
     llm_max_output_tokens: int = 1200
-    rag_top_k_default: int = 6
+    llm_structured_model: str | None = None
+    llm_structured_reasoning_enabled: bool = False
+    llm_structured_max_output_tokens: int = 2400
+    curriculum_generation_max_output_tokens: int = 8000
+    agent_planning_max_output_tokens: int = 2400
+    rag_candidate_top_k: int = 18
+    rag_final_context_top_k: int = 6
     rag_top_k_max: int = 12
     rag_min_score: float = 0.35
-    rag_max_sources: int = 6
+    rag_max_sources_per_material: int = 3
     rag_max_context_chars: int = 12000
     rag_max_chunk_chars: int = 2200
     rag_history_messages: int = 6
     rag_history_chars: int = 6000
     rag_query_rewrite_enabled: bool = True
     rag_max_question_chars: int = 2000
-    rag_prompt_version: str = "rag-answer-v1"
+    rag_prompt_version: str = "rag-answer-v2-evidence-binding"
     rag_rewrite_prompt_version: str = "rag-rewrite-v1"
     rag_citation_excerpt_chars: int = 800
+    rag_reranker_enabled: bool = False
+    rag_reranker_model_path: Path | None = None
+    rag_reranker_device: str = "cuda"
     activity_max_question_count: int = 20
     activity_default_question_count: int = 8
     activity_max_sources: int = 8
@@ -68,6 +77,10 @@ class Settings(BaseSettings):
     short_answer_grading_temperature: float = 0.0
     short_answer_grading_max_retries: int = 1
     wrong_answer_short_answer_threshold: float = 0.6
+    diagnostic_prompt_version: str = "diagnostic-generation-v1"
+    diagnostic_questions_per_point: int = 2
+    diagnostic_max_sources_per_point: int = 6
+    diagnostic_short_answer_confidence_threshold: float = 0.65
     question_source_excerpt_chars: int = 800
     app_timezone: str = "Asia/Shanghai"
     agent_enabled: bool = True
@@ -94,6 +107,7 @@ class Settings(BaseSettings):
     mastery_task_weight: float = 0.08
     mastery_session_weight: float = 0.07
     mastery_self_assessment_weight: float = 0.05
+    mastery_diagnostic_weight: float = 0.20
     mastery_beginner_max: float = 39
     mastery_developing_max: float = 59
     mastery_proficient_max: float = 79
@@ -103,7 +117,19 @@ class Settings(BaseSettings):
     review_interval_strong_days: int = 14
     review_failed_interval_days: int = 1
     review_unresolved_wrong_answer_days: int = 3
+    clock_fixed_now: datetime | None = None
     adaptive_fixed_now: datetime | None = None
+    course_architecture_max_materials_per_draft: int = 5
+    course_architecture_max_chunks_per_batch: int = 12
+    course_architecture_max_characters_per_batch: int = 18000
+    course_architecture_max_batches: int = 24
+    course_architecture_max_generated_courses: int = 8
+    course_architecture_max_knowledge_points_per_course: int = 20
+    course_architecture_max_total_knowledge_points: int = 80
+    course_architecture_max_sources_per_knowledge_point: int = 6
+    course_architecture_generation_timeout_seconds: int = 180
+    course_architecture_generation_retries: int = 1
+    course_architecture_prompt_version: str = "course-architecture-v1"
 
     model_config = SettingsConfigDict(
         env_file="../.env",
@@ -140,14 +166,37 @@ class Settings(BaseSettings):
             raise ValueError("V3 仅支持 openai_compatible LLM Provider")
         if self.llm_timeout_seconds <= 0 or self.llm_max_retries < 0:
             raise ValueError("LLM 超时必须大于 0，重试次数不能小于 0")
+        if min(
+            self.llm_max_output_tokens,
+            self.llm_structured_max_output_tokens,
+            self.curriculum_generation_max_output_tokens,
+            self.agent_planning_max_output_tokens,
+        ) <= 0:
+            raise ValueError("LLM output token limits must be greater than zero")
         if not 0 <= self.llm_temperature <= 2:
             raise ValueError("LLM_TEMPERATURE 必须在 0 到 2 之间")
-        if self.rag_top_k_default <= 0 or self.rag_top_k_max < self.rag_top_k_default:
-            raise ValueError("RAG top_k 配置无效")
+        if self.rag_candidate_top_k <= 0:
+            raise ValueError("RAG_CANDIDATE_TOP_K 必须大于 0")
+        if self.rag_final_context_top_k <= 0:
+            raise ValueError("RAG_FINAL_CONTEXT_TOP_K 必须大于 0")
+        if self.rag_final_context_top_k > self.rag_candidate_top_k:
+            raise ValueError("RAG_FINAL_CONTEXT_TOP_K 不能超过 RAG_CANDIDATE_TOP_K")
+        if self.rag_top_k_max <= 0:
+            raise ValueError("RAG_TOP_K_MAX 必须大于 0")
         if not -1 <= self.rag_min_score <= 1:
             raise ValueError("RAG_MIN_SCORE 必须在 -1 到 1 之间")
+        if self.rag_reranker_enabled and self.rag_reranker_model_path is None:
+            raise ValueError("启用 RAG reranker 时必须配置 RAG_RERANKER_MODEL_PATH")
+        if not (
+            self.rag_reranker_device == "cuda"
+            or (
+                self.rag_reranker_device.startswith("cuda:")
+                and self.rag_reranker_device.removeprefix("cuda:").isdigit()
+            )
+        ):
+            raise ValueError("RAG_RERANKER_DEVICE 必须是 cuda 或 cuda:<index>")
         if min(
-            self.rag_max_sources,
+            self.rag_max_sources_per_material,
             self.rag_max_context_chars,
             self.rag_max_chunk_chars,
             self.rag_history_messages,
@@ -173,6 +222,12 @@ class Settings(BaseSettings):
             raise ValueError("SHORT_ANSWER_GRADING_MAX_RETRIES 不能小于 0")
         if not 0 <= self.wrong_answer_short_answer_threshold <= 1:
             raise ValueError("WRONG_ANSWER_SHORT_ANSWER_THRESHOLD 必须在 0 到 1 之间")
+        if not 1 <= self.diagnostic_questions_per_point <= 4:
+            raise ValueError("DIAGNOSTIC_QUESTIONS_PER_POINT 必须在 1 到 4 之间")
+        if self.diagnostic_max_sources_per_point <= 0:
+            raise ValueError("DIAGNOSTIC_MAX_SOURCES_PER_POINT 必须大于 0")
+        if not 0 <= self.diagnostic_short_answer_confidence_threshold <= 1:
+            raise ValueError("DIAGNOSTIC_SHORT_ANSWER_CONFIDENCE_THRESHOLD 必须在 0 到 1 之间")
         if min(
             self.agent_max_history_messages,
             self.agent_max_history_chars,
@@ -193,6 +248,7 @@ class Settings(BaseSettings):
             self.mastery_objective_weight, self.mastery_short_answer_weight,
             self.mastery_review_weight, self.mastery_task_weight,
             self.mastery_session_weight, self.mastery_self_assessment_weight,
+            self.mastery_diagnostic_weight,
         )
         if any(weight <= 0 or weight > 1 for weight in mastery_weights):
             raise ValueError("Mastery weights must be in (0, 1]")
@@ -204,6 +260,24 @@ class Settings(BaseSettings):
             self.review_failed_interval_days, self.review_unresolved_wrong_answer_days,
         ) <= 0:
             raise ValueError("Review intervals must be greater than zero")
+        architecture_limits = (
+            self.course_architecture_max_materials_per_draft,
+            self.course_architecture_max_chunks_per_batch,
+            self.course_architecture_max_characters_per_batch,
+            self.course_architecture_max_batches,
+            self.course_architecture_max_generated_courses,
+            self.course_architecture_max_knowledge_points_per_course,
+            self.course_architecture_max_total_knowledge_points,
+            self.course_architecture_max_sources_per_knowledge_point,
+            self.course_architecture_generation_timeout_seconds,
+        )
+        if min(architecture_limits) <= 0 or self.course_architecture_generation_retries < 0:
+            raise ValueError("Course architecture generation limits are invalid")
+        if (
+            self.course_architecture_max_total_knowledge_points
+            < self.course_architecture_max_knowledge_points_per_course
+        ):
+            raise ValueError("Course architecture total point limit is too small")
         return self
 
     @property
@@ -214,6 +288,10 @@ class Settings(BaseSettings):
     def llm_configured(self) -> bool:
         key = self.llm_api_key.get_secret_value().strip() if self.llm_api_key else ""
         return bool(key and self.llm_base_url and self.llm_model)
+
+    @property
+    def llm_structured_model_name(self) -> str | None:
+        return self.llm_structured_model or self.llm_model
 
 
 @lru_cache

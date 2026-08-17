@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "case_type": "cross_topic_multi_doc",
+  "cumulative_authored_count": 68,
+  "cases": [
+    {
+      "slug": "stress-cross-retrieval-evaluation",
+      "tier": "STRESS",
+      "case_type": "cross_topic_multi_doc",
+      "question": "用 context precision 评估 BGE-M3 加 Faiss 的检索器时，三份来源各自说明什么，为什么仅凭向量搜索速度不能断定排序质量？",
+      "language": "zh-CN",
+      "topic": "rag_retrieval",
+      "difficulty": "stress",
+      "groups": [["bge-pipeline"], ["faiss-tradeoffs"], ["precision-definition"]],
+      "claims": [
+        {"text": "BGE-M3 supplies dense/sparse retrieval signals and recommends hybrid retrieval with reranking.", "groups": [0], "mode": "SEMANTIC_REVIEW", "terms": null},
+        {"text": "Faiss supplies vector-index search with explicit speed, quality, memory, training, and adding trade-offs.", "groups": [1], "mode": "SEMANTIC_REVIEW", "terms": null},
+        {"text": "Context precision judges whether relevant chunks are ranked ahead of irrelevant ones, so speed alone cannot establish ranking quality.", "groups": [2], "mode": "SEMANTIC_REVIEW", "terms": null}
+      ],
+      "secondary": ["evaluation_reliability"], "accepts": [], "distractors": [], "region": "mixed", "absent": null
+    },
+    {
+      "slug": "stress-cross-agent-api-replay",
+      "tier": "STRESS",
+      "case_type": "cross_topic_multi_doc",
+      "question": "If a LangGraph approval node calls an external API before interrupting, why can resume repeat the call, and how should a FastAPI-facing design expose a failed call to its client?",
+      "language": "en",
+      "topic": "agent_engineering",
+      "difficulty": "stress",
+      "groups": [["interrupt-restart-rule", "interrupt-side-effects"], ["errors-http-exception"]],
+      "claims": [
+        {"text": "Resume restarts the node, so a pre-interrupt non-idempotent API call can repeat.", "groups": [0], "mode": "SEMANTIC_REVIEW", "terms": null},
+        {"text": "The side effect should be idempotent, moved after the interrupt, or isolated in a separate node.", "groups": [0], "mode": "SEMANTIC_REVIEW", "terms": null},
+        {"text": "At the FastAPI boundary, HTTPException terminates the request and carries an HTTP error response to the client.", "groups": [1], "mode": "SEMANTIC_REVIEW", "terms": null}
+      ],
+      "secondary": ["ai_app_backend"], "accepts": [], "distractors": [], "region": "mixed", "absent": null
+    },
+    {
+      "slug": "stress-cross-persistence-tracing",
+      "tier": "STRESS",
+      "case_type": "cross_topic_multi_doc",
+      "question": "Across a process restart, what preserves an agent's workflow state and what trace structure correlates later work when it belongs to a separate but causally related trace?",
+      "language": "en",
+      "topic": "evaluation_reliability",
+      "difficulty": "stress",
+      "groups": [["persist-memorysaver", "persist-overview"], ["otel-links-status"]],
+      "claims": [
+        {"text": "A persistent checkpointer, rather than an in-memory saver, preserves thread state across process restarts.", "groups": [0], "mode": "SEMANTIC_REVIEW", "terms": null},
+        {"text": "Span Links associate causally related spans across separate traces without requiring a parent-child relationship.", "groups": [1], "mode": "SEMANTIC_REVIEW", "terms": null}
+      ],
+      "secondary": ["agent_engineering"], "accepts": [], "distractors": [], "region": "mixed", "absent": null
+    },
+    {
+      "slug": "stress-cross-embedding-api-concurrency",
+      "tier": "STRESS",
+      "case_type": "cross_topic_multi_doc",
+      "question": "A FastAPI endpoint wraps BGE-M3 embedding generation. Which BGE-M3 option trades a little quality for faster computation, and which FastAPI rule decides between async def and normal def for the library call?",
+      "language": "en",
+      "topic": "ai_app_backend",
+      "difficulty": "stress",
+      "groups": [["bge-dense-usage"], ["async-tldr"]],
+      "claims": [
+        {"text": "BGE-M3's example says use_fp16=True speeds computation with slight performance degradation.", "groups": [0], "mode": "SEMANTIC_REVIEW", "terms": null},
+        {"text": "Use async def when the library call must be awaited; use normal def for a blocking library without await support.", "groups": [1], "mode": "SEMANTIC_REVIEW", "terms": null}
+      ],
+      "secondary": ["rag_retrieval"], "accepts": [], "distractors": [], "region": "mixed", "absent": null
+    }
+  ]
+}

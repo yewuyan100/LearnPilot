@@ -1,0 +1,3802 @@
+{
+  "schema_version": "1.0.0",
+  "review_version": "real-world-gold-review-v1",
+  "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+  "verification_scope": {
+    "structural_contract_validation": true,
+    "frozen_corpus_locator_revalidation": true,
+    "anchor_hash_recomputation": true,
+    "independent_semantic_rejudgment_performed": false
+  },
+  "draft_file_sha256": "1b2a90390718644292d5e8b379d03de3f73f6964d7d3a013c780bc2761bb54ff",
+  "review_count": 72,
+  "verified_count": 72,
+  "reviews": [
+    {
+      "case_id": "rw-gold-v1-single-bge-shape",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-single-bge-shape-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-single-bge-shape-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-single-bge-shape-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-single-bge-shape-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-bge-specs",
+          "document_id": "rw-rag-bge-m3",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "a6e25219680dd3d03855888dc4be1e380ba273f8e8c5d70d8d4ec9be0d866c3f",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-single-dependency-defaults",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-single-dependency-defaults-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-single-dependency-defaults-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-single-dependency-defaults-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-single-dependency-defaults-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-deps-dependable",
+          "document_id": "rw-backend-fastapi-dependencies",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "bfe30809cdd9dac0063dc67571f12ae32fccf15cc332b699682630bd88020aa5",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-single-error-response",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-single-error-response-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-single-error-response-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-single-error-response-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-single-error-response-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-errors-http-exception",
+          "document_id": "rw-backend-fastapi-errors",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "7fe15bfbf116807e56ecc8ab43150c12ab017f419595de33d2f734157b604f62",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-single-faiss-cosine",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-single-faiss-cosine-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-single-faiss-cosine-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-faiss-distance",
+          "document_id": "rw-rag-faiss-overview",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "d2a992d14be11917fe80515dc75ced279801e1f48b2a783ec81bb7c268821c43",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-single-interrupt-status",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-single-interrupt-status-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-single-interrupt-status-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-single-interrupt-status-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-single-interrupt-status-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-interrupt-approval",
+          "document_id": "rw-agent-interrupts",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "997680bb2909538d8c2f9cfeb41eaa4db72dc429a70ebb16937f31453c76f7ad",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-single-langgraph-js",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-single-langgraph-js-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-single-langgraph-js-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-agent-overview-purpose",
+          "document_id": "rw-agent-langgraph-overview",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "a325a3906f87659672179b65c8ca85bc9b989acab8d6b485131b8ea00f97ed40",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-single-otel-status",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-single-otel-status-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-single-otel-status-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-single-otel-status-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-single-otel-status-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-otel-links-status",
+          "document_id": "rw-eval-otel-traces",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "376c10519c3d296c29ae6a822143c087a488ef8d2310583df4a06f3d9db7dd25",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-single-persist-thread-id",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-single-persist-thread-id-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-single-persist-thread-id-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-single-persist-thread-id-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-single-persist-thread-id-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-persist-thread-id",
+          "document_id": "rw-agent-persistence",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "529ad6ada59c0a5a03217fcce5adadbe7f943e7ee524098b130a7df34372fadb",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-single-precision-id",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-single-precision-id-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-single-precision-id-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-precision-id-based",
+          "document_id": "rw-eval-context-precision",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "fa30107d509786c967d6e98a356790078dd8dd4a604c4738df7ca75210653f5f",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-single-ragas-dataset",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-single-ragas-dataset-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-single-ragas-dataset-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-ragas-collect-data",
+          "document_id": "rw-eval-ragas-workflow",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "1f105f9dc1f011d71bbb8d10113fcffe53168ff700d71a4f73fc6d71fcbedbda",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-semantic-bge-functions",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-semantic-bge-functions-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-semantic-bge-functions-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-bge-capabilities",
+          "document_id": "rw-rag-bge-m3",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "c5e197662e114a6915488398e66b9b67abc7cefa0ec7a2da976301273149533e",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-bge-methods",
+          "document_id": "rw-rag-bge-m3",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "09deae8299455c7fe6e545e2c31d87874c0d6bd557a3d0f5a7a3a4f8b97cafea",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-semantic-checkpointer-store",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-semantic-checkpointer-store-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-semantic-checkpointer-store-01",
+            "eg-rw-semantic-checkpointer-store-03"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-semantic-checkpointer-store-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-semantic-checkpointer-store-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-agent-overview-capabilities",
+          "document_id": "rw-agent-langgraph-overview",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "9c4065e0151576379bb8016217fcad4843acf70d51f60a8bd09a23f565569ad4",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-persist-comparison",
+          "document_id": "rw-agent-persistence",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "4573053a53ce330011910291079101e904649aefb8c941b6607000a53d11df51",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-persist-overview",
+          "document_id": "rw-agent-persistence",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "bb61e8fdbf7a513cace0d00e478afff294a4756605b9e123de06c26202e034bb",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-semantic-context-order",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-semantic-context-order-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-semantic-context-order-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-semantic-context-order-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-semantic-context-order-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-precision-definition",
+          "document_id": "rw-eval-context-precision",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "4797ec283f22f33cc10e8c648de99afe61e76f5071d742f754e1394565f151ae",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-precision-rank-effect",
+          "document_id": "rw-eval-context-precision",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "0aa40b23ae85758ca04a6ea6bc74c7da62bdf8e98bb006fe496dc9cf51c22e18",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-semantic-deps-automatic",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-semantic-deps-automatic-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-semantic-deps-automatic-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-semantic-deps-automatic-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-semantic-deps-automatic-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-deps-call",
+          "document_id": "rw-backend-fastapi-dependencies",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "d4a08fe5df5e87c7de8206f1f77e2b8eb71ed300a6a05bab5ccf8372e3193696",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-semantic-error-raise",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-semantic-error-raise-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-semantic-error-raise-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-semantic-error-raise-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-semantic-error-raise-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-errors-http-exception",
+          "document_id": "rw-backend-fastapi-errors",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "7fe15bfbf116807e56ecc8ab43150c12ab017f419595de33d2f734157b604f62",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-semantic-faiss-compression",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-semantic-faiss-compression-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-semantic-faiss-compression-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-semantic-faiss-compression-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-semantic-faiss-compression-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-faiss-distance",
+          "document_id": "rw-rag-faiss-overview",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "d2a992d14be11917fe80515dc75ced279801e1f48b2a783ec81bb7c268821c43",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-semantic-fastapi-blocking",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-semantic-fastapi-blocking-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-semantic-fastapi-blocking-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-semantic-fastapi-blocking-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-semantic-fastapi-blocking-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-async-tldr",
+          "document_id": "rw-backend-fastapi-async",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "279342831b201865dd2227c1bfe87228026e99f9a81c8f7c942da8f715e7e4be",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-semantic-interrupt-replay",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-semantic-interrupt-replay-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-semantic-interrupt-replay-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-interrupt-restart-rule",
+          "document_id": "rw-agent-interrupts",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "223b6224b12ea2a606ff410012bca113a644264848765cce5b66f272b6f27023",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-semantic-ragas-data",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-semantic-ragas-data-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-semantic-ragas-data-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-semantic-ragas-data-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-semantic-ragas-data-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-ragas-collect-data",
+          "document_id": "rw-eval-ragas-workflow",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "1f105f9dc1f011d71bbb8d10113fcffe53168ff700d71a4f73fc6d71fcbedbda",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-semantic-trace-correlation",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-semantic-trace-correlation-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-semantic-trace-correlation-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-otel-propagation-span",
+          "document_id": "rw-eval-otel-traces",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "23e9457debe36547240ffe92d7971e86d14100c42ebd4b9e315d3eb81c788616",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-long-async-threadpool",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-long-async-threadpool-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-long-async-threadpool-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-async-threadpool-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-long-async-threadpool-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-async-threadpool-claim-03",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-long-async-threadpool-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-async-threadpool",
+          "document_id": "rw-backend-fastapi-async",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "0290f7c54ff71a2edfdd58339e9a79c73a42208378447e3a75d75e6134911be4",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-long-bge-query-instruction",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-long-bge-query-instruction-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-long-bge-query-instruction-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-bge-no-query-instruction",
+          "document_id": "rw-rag-bge-m3",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "16e08df7a06e6d607c43503744891a7c0bdbe60ee2b78afe56273feed6a2bbc6",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-long-bge-score-mix",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-long-bge-score-mix-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-long-bge-score-mix-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-bge-score-mix-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-long-bge-score-mix-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-bge-score-weights",
+          "document_id": "rw-rag-bge-m3",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "99f3b0917dfea4d9838525bee5d8d1a3854ed12d90b92fc2b9679a4f818909eb",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-long-bge-training",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-long-bge-training-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-long-bge-training-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-bge-training-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-long-bge-training-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-bge-training-claim-03",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-long-bge-training-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-bge-training",
+          "document_id": "rw-rag-bge-m3",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "ca90fc50b2dd7d6a4c4107a29f8e432e8968e9301cdbe713851287656cc160d4",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-long-deps-hierarchy",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-long-deps-hierarchy-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-long-deps-hierarchy-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-deps-hierarchy-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-long-deps-hierarchy-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-deps-hierarchy",
+          "document_id": "rw-backend-fastapi-dependencies",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "1999a9afb480fb5fd4b11c3941ccf8db15e9494e706ba530f7f04578587318ca",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-deps-openapi",
+          "document_id": "rw-backend-fastapi-dependencies",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "24321ba6e2c9ea2d877149926c0f9e1f068aa50aebfa63804f04047d7b0c7438",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-long-interrupt-static",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-long-interrupt-static-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-long-interrupt-static-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-interrupt-static-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-long-interrupt-static-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-interrupt-static-claim-03",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-long-interrupt-static-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-interrupt-runtime-static",
+          "document_id": "rw-agent-interrupts",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "9b4e248e1311e84dd32ab33953ba9c9297aec5c367de08d4bb4b7169385777fd",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-interrupt-static",
+          "document_id": "rw-agent-interrupts",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "a14f6773576b643950638b19ef862cf92bef2f83a15cbfb20a3acd092737a000",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-long-interrupt-validation",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-long-interrupt-validation-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-long-interrupt-validation-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-interrupt-validation-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-long-interrupt-validation-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-interrupt-validation-claim-03",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-long-interrupt-validation-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-interrupt-order",
+          "document_id": "rw-agent-interrupts",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "f561ff56d00e3e1680a02c877674956c04d39e1d16a9a65cba5a127867901572",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-interrupt-validation",
+          "document_id": "rw-agent-interrupts",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "09a303cc3d3cdfeadf22ecfc726937ebd95d2f85582b1d2fd5e3c407334a7447",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-long-langgraph-positioning",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-long-langgraph-positioning-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-long-langgraph-positioning-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-langgraph-positioning-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-long-langgraph-positioning-01",
+            "eg-rw-long-langgraph-positioning-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-agent-overview-capabilities",
+          "document_id": "rw-agent-langgraph-overview",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "9c4065e0151576379bb8016217fcad4843acf70d51f60a8bd09a23f565569ad4",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-agent-overview-purpose",
+          "document_id": "rw-agent-langgraph-overview",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "a325a3906f87659672179b65c8ca85bc9b989acab8d6b485131b8ea00f97ed40",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-long-otel-links",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-long-otel-links-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-long-otel-links-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-otel-links-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-long-otel-links-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-otel-links-status",
+          "document_id": "rw-eval-otel-traces",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "376c10519c3d296c29ae6a822143c087a488ef8d2310583df4a06f3d9db7dd25",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-long-precision-nonllm",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-long-precision-nonllm-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-long-precision-nonllm-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-precision-nonllm-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-long-precision-nonllm-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-precision-nonllm",
+          "document_id": "rw-eval-context-precision",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "80491ad45cd3a13992b396aa3e6b730a5a9d2af70da50a228601d1ef893c5e02",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-multi-agent-memory-hitl",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-multi-agent-memory-hitl-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-agent-memory-hitl-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-agent-memory-hitl-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-agent-memory-hitl-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-agent-memory-hitl-claim-03",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-agent-memory-hitl-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-interrupt-mechanism",
+          "document_id": "rw-agent-interrupts",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "b6a8c8bbb24eb388f9612679293707637fb1c1b042f2c3a91b8a9657c211d372",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-persist-comparison",
+          "document_id": "rw-agent-persistence",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "4573053a53ce330011910291079101e904649aefb8c941b6607000a53d11df51",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-multi-agent-resume",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-multi-agent-resume-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-agent-resume-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-agent-resume-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-agent-resume-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-interrupt-resume",
+          "document_id": "rw-agent-interrupts",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "17babc909a503b2fa8adfe0924815714768d626dec0f1094ed1cb7aed2b04404",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-persist-comparison",
+          "document_id": "rw-agent-persistence",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "4573053a53ce330011910291079101e904649aefb8c941b6607000a53d11df51",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-persist-overview",
+          "document_id": "rw-agent-persistence",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "bb61e8fdbf7a513cace0d00e478afff294a4756605b9e123de06c26202e034bb",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-multi-async-dependency",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-multi-async-dependency-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-async-dependency-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-async-dependency-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-async-dependency-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-async-threadpool",
+          "document_id": "rw-backend-fastapi-async",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "0290f7c54ff71a2edfdd58339e9a79c73a42208378447e3a75d75e6134911be4",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-deps-mixed-async",
+          "document_id": "rw-backend-fastapi-dependencies",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "535c21d85cca75c527c8f98628e9e40d8f2fedc418900ee45ebcff14a739c9ce",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-multi-backend-control",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-multi-backend-control-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-backend-control-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-backend-control-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-backend-control-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-backend-control-claim-03",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-backend-control-03"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-async-tldr",
+          "document_id": "rw-backend-fastapi-async",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "279342831b201865dd2227c1bfe87228026e99f9a81c8f7c942da8f715e7e4be",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-deps-hierarchy",
+          "document_id": "rw-backend-fastapi-dependencies",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "1999a9afb480fb5fd4b11c3941ccf8db15e9494e706ba530f7f04578587318ca",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-deps-meaning",
+          "document_id": "rw-backend-fastapi-dependencies",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "f48758d42f48c84d8c5417c24fcc91d59852776f3122a0079afbc24d90ffaf19",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-errors-http-exception",
+          "document_id": "rw-backend-fastapi-errors",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "7fe15bfbf116807e56ecc8ab43150c12ab017f419595de33d2f734157b604f62",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-multi-error-observability",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-multi-error-observability-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-error-observability-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-error-observability-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-error-observability-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-errors-http-exception",
+          "document_id": "rw-backend-fastapi-errors",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "7fe15bfbf116807e56ecc8ab43150c12ab017f419595de33d2f734157b604f62",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-otel-links-status",
+          "document_id": "rw-eval-otel-traces",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "376c10519c3d296c29ae6a822143c087a488ef8d2310583df4a06f3d9db7dd25",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-multi-eval-stack",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-multi-eval-stack-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-eval-stack-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-eval-stack-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-eval-stack-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-eval-stack-claim-03",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-eval-stack-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-precision-reference-response",
+          "document_id": "rw-eval-context-precision",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "068abe1f953620f8113f28f65b32486b1d75a3e05abc26a6062e9748d432a503",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-precision-with-reference",
+          "document_id": "rw-eval-context-precision",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "346670bcc31d4d0b73f589f15d359455d62d969a37b9463371450a235d647fcf",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-precision-without-reference",
+          "document_id": "rw-eval-context-precision",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "f5ec550c09746472c36b022ed908da7644952f0d5656dd472e14fccbe19807f5",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-ragas-collect-data",
+          "document_id": "rw-eval-ragas-workflow",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "1f105f9dc1f011d71bbb8d10113fcffe53168ff700d71a4f73fc6d71fcbedbda",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-multi-faiss-context-precision",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-multi-faiss-context-precision-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-faiss-context-precision-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-faiss-context-precision-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-faiss-context-precision-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-faiss-context-precision-claim-03",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-faiss-context-precision-01",
+            "eg-rw-multi-faiss-context-precision-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-faiss-tradeoffs",
+          "document_id": "rw-rag-faiss-overview",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "584857a6d173c12344012a66da37dd0beb0d370a1cb725c0183ba4b2ef4186a3",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-precision-definition",
+          "document_id": "rw-eval-context-precision",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "4797ec283f22f33cc10e8c648de99afe61e76f5071d742f754e1394565f151ae",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-multi-hybrid-index",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-multi-hybrid-index-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-hybrid-index-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-hybrid-index-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-hybrid-index-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-bge-pipeline",
+          "document_id": "rw-rag-bge-m3",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "5dee7f35807b2494f11f2bbf7233b043e3ceeb42b1c2e720f05f04c824c8ec5d",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-faiss-distance",
+          "document_id": "rw-rag-faiss-overview",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "d2a992d14be11917fe80515dc75ced279801e1f48b2a783ec81bb7c268821c43",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-faiss-purpose",
+          "document_id": "rw-rag-faiss-overview",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "44332f1aed5c7139503466a86a27ee3d69e15ee69aeba058f866767c25b9fdb2",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-multi-rag-tracing",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-multi-rag-tracing-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-rag-tracing-01",
+            "eg-rw-multi-rag-tracing-03"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-rag-tracing-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-rag-tracing-02",
+            "eg-rw-multi-rag-tracing-04"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-otel-propagation-span",
+          "document_id": "rw-eval-otel-traces",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "23e9457debe36547240ffe92d7971e86d14100c42ebd4b9e315d3eb81c788616",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-otel-trace-overview",
+          "document_id": "rw-eval-otel-traces",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "1e27b25efb5427a9e63f8f4a1e60733667ae40e3aec53b738dd5c22decb5e25b",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-ragas-collect-data",
+          "document_id": "rw-eval-ragas-workflow",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "1f105f9dc1f011d71bbb8d10113fcffe53168ff700d71a4f73fc6d71fcbedbda",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-ragas-components",
+          "document_id": "rw-eval-ragas-workflow",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "2ab3cb9527ec4950de0e3c093c1af226775258ac107af3db776f746e58e94c3e",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-multi-retrieval-eval",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-multi-retrieval-eval-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-retrieval-eval-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-retrieval-eval-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-retrieval-eval-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-retrieval-eval-claim-03",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-multi-retrieval-eval-03"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-faiss-distance",
+          "document_id": "rw-rag-faiss-overview",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "d2a992d14be11917fe80515dc75ced279801e1f48b2a783ec81bb7c268821c43",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-faiss-purpose",
+          "document_id": "rw-rag-faiss-overview",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "44332f1aed5c7139503466a86a27ee3d69e15ee69aeba058f866767c25b9fdb2",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-precision-definition",
+          "document_id": "rw-eval-context-precision",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "4797ec283f22f33cc10e8c648de99afe61e76f5071d742f754e1394565f151ae",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-ragas-collect-data",
+          "document_id": "rw-eval-ragas-workflow",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "1f105f9dc1f011d71bbb8d10113fcffe53168ff700d71a4f73fc6d71fcbedbda",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-agent-memory",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-disambig-agent-memory-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-disambig-agent-memory-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-disambig-agent-memory-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-disambig-agent-memory-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-interrupt-mechanism",
+          "document_id": "rw-agent-interrupts",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "b6a8c8bbb24eb388f9612679293707637fb1c1b042f2c3a91b8a9657c211d372",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-persist-comparison",
+          "document_id": "rw-agent-persistence",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "4573053a53ce330011910291079101e904649aefb8c941b6607000a53d11df51",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-agent-persist-interrupt",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-disambig-agent-persist-interrupt-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-disambig-agent-persist-interrupt-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-disambig-agent-persist-interrupt-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-disambig-agent-persist-interrupt-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-interrupt-resume",
+          "document_id": "rw-agent-interrupts",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "17babc909a503b2fa8adfe0924815714768d626dec0f1094ed1cb7aed2b04404",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-persist-comparison",
+          "document_id": "rw-agent-persistence",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "4573053a53ce330011910291079101e904649aefb8c941b6607000a53d11df51",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-persist-memorysaver",
+          "document_id": "rw-agent-persistence",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "7cee128b0e98146c848d03c05371245a46691545053f2994d44b2219b33362cc",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-bge-faiss",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-disambig-bge-faiss-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-disambig-bge-faiss-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-disambig-bge-faiss-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-disambig-bge-faiss-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-bge-capabilities",
+          "document_id": "rw-rag-bge-m3",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "c5e197662e114a6915488398e66b9b67abc7cefa0ec7a2da976301273149533e",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-bge-methods",
+          "document_id": "rw-rag-bge-m3",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "09deae8299455c7fe6e545e2c31d87874c0d6bd557a3d0f5a7a3a4f8b97cafea",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-faiss-distance",
+          "document_id": "rw-rag-faiss-overview",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "d2a992d14be11917fe80515dc75ced279801e1f48b2a783ec81bb7c268821c43",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-bge-long",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-disambig-bge-long-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-disambig-bge-long-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-bge-capabilities",
+          "document_id": "rw-rag-bge-m3",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "c5e197662e114a6915488398e66b9b67abc7cefa0ec7a2da976301273149533e",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-bge-specs",
+          "document_id": "rw-rag-bge-m3",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "a6e25219680dd3d03855888dc4be1e380ba273f8e8c5d70d8d4ec9be0d866c3f",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-fastapi-async-deps",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-disambig-fastapi-async-deps-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-disambig-fastapi-async-deps-01",
+            "eg-rw-disambig-fastapi-async-deps-03"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-disambig-fastapi-async-deps-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-disambig-fastapi-async-deps-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-async-threadpool",
+          "document_id": "rw-backend-fastapi-async",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "0290f7c54ff71a2edfdd58339e9a79c73a42208378447e3a75d75e6134911be4",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-async-tldr",
+          "document_id": "rw-backend-fastapi-async",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "279342831b201865dd2227c1bfe87228026e99f9a81c8f7c942da8f715e7e4be",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-deps-mixed-async",
+          "document_id": "rw-backend-fastapi-dependencies",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "535c21d85cca75c527c8f98628e9e40d8f2fedc418900ee45ebcff14a739c9ce",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-fastapi-errors",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-disambig-fastapi-errors-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-disambig-fastapi-errors-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-errors-http-exception",
+          "document_id": "rw-backend-fastapi-errors",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "7fe15bfbf116807e56ecc8ab43150c12ab017f419595de33d2f734157b604f62",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-fastapi-exceptions",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-disambig-fastapi-exceptions-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-disambig-fastapi-exceptions-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-disambig-fastapi-exceptions-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-disambig-fastapi-exceptions-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-errors-fastapi-starlette",
+          "document_id": "rw-backend-fastapi-errors",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "601861d454339012b20283e956e55940d7037b81f4910ddf73009c0c788a0a3f",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-interrupt-static",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-disambig-interrupt-static-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-disambig-interrupt-static-01",
+            "eg-rw-disambig-interrupt-static-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-interrupt-runtime-static",
+          "document_id": "rw-agent-interrupts",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "9b4e248e1311e84dd32ab33953ba9c9297aec5c367de08d4bb4b7169385777fd",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-interrupt-static",
+          "document_id": "rw-agent-interrupts",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "a14f6773576b643950638b19ef862cf92bef2f83a15cbfb20a3acd092737a000",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-ragas-metrics",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-disambig-ragas-metrics-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-disambig-ragas-metrics-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-disambig-ragas-metrics-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-disambig-ragas-metrics-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-precision-definition",
+          "document_id": "rw-eval-context-precision",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "4797ec283f22f33cc10e8c648de99afe61e76f5071d742f754e1394565f151ae",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-ragas-collect-data",
+          "document_id": "rw-eval-ragas-workflow",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "1f105f9dc1f011d71bbb8d10113fcffe53168ff700d71a4f73fc6d71fcbedbda",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-ragas-otel",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-disambig-ragas-otel-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-disambig-ragas-otel-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-disambig-ragas-otel-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-disambig-ragas-otel-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-otel-propagation-span",
+          "document_id": "rw-eval-otel-traces",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "23e9457debe36547240ffe92d7971e86d14100c42ebd4b9e315d3eb81c788616",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-otel-trace-overview",
+          "document_id": "rw-eval-otel-traces",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "1e27b25efb5427a9e63f8f4a1e60733667ae40e3aec53b738dd5c22decb5e25b",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-precision-definition",
+          "document_id": "rw-eval-context-precision",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "4797ec283f22f33cc10e8c648de99afe61e76f5071d742f754e1394565f151ae",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-unanswerable-bge-language-counts",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic refusal-contract structure and near-boundary anchor binding passed; corpus-wide absence was not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-unanswerable-bge-language-counts-claim-01",
+          "binding_status": "NEAR_BOUNDARY_ANCHOR_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [],
+          "rationale": "The authored near-boundary anchors resolve and hash-match; corpus-wide absence and answerability were not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-bge-capabilities",
+          "document_id": "rw-rag-bge-m3",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "c5e197662e114a6915488398e66b9b67abc7cefa0ec7a2da976301273149533e",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-unanswerable-bge-optimal-weights",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic refusal-contract structure and near-boundary anchor binding passed; corpus-wide absence was not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-unanswerable-bge-optimal-weights-claim-01",
+          "binding_status": "NEAR_BOUNDARY_ANCHOR_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [],
+          "rationale": "The authored near-boundary anchors resolve and hash-match; corpus-wide absence and answerability were not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-bge-pipeline",
+          "document_id": "rw-rag-bge-m3",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "5dee7f35807b2494f11f2bbf7233b043e3ceeb42b1c2e720f05f04c824c8ec5d",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-bge-score-weights",
+          "document_id": "rw-rag-bge-m3",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "99f3b0917dfea4d9838525bee5d8d1a3854ed12d90b92fc2b9679a4f818909eb",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-unanswerable-checkpoint-encryption",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic refusal-contract structure and near-boundary anchor binding passed; corpus-wide absence was not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-unanswerable-checkpoint-encryption-claim-01",
+          "binding_status": "NEAR_BOUNDARY_ANCHOR_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [],
+          "rationale": "The authored near-boundary anchors resolve and hash-match; corpus-wide absence and answerability were not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-persist-comparison",
+          "document_id": "rw-agent-persistence",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "4573053a53ce330011910291079101e904649aefb8c941b6607000a53d11df51",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-persist-memorysaver",
+          "document_id": "rw-agent-persistence",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "7cee128b0e98146c848d03c05371245a46691545053f2994d44b2219b33362cc",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-unanswerable-dependency-depth",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic refusal-contract structure and near-boundary anchor binding passed; corpus-wide absence was not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-unanswerable-dependency-depth-claim-01",
+          "binding_status": "NEAR_BOUNDARY_ANCHOR_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [],
+          "rationale": "The authored near-boundary anchors resolve and hash-match; corpus-wide absence and answerability were not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-deps-hierarchy",
+          "document_id": "rw-backend-fastapi-dependencies",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "1999a9afb480fb5fd4b11c3941ccf8db15e9494e706ba530f7f04578587318ca",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-unanswerable-faiss-p95-latency",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic refusal-contract structure and near-boundary anchor binding passed; corpus-wide absence was not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-unanswerable-faiss-p95-latency-claim-01",
+          "binding_status": "NEAR_BOUNDARY_ANCHOR_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [],
+          "rationale": "The authored near-boundary anchors resolve and hash-match; corpus-wide absence and answerability were not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-faiss-tradeoffs",
+          "document_id": "rw-rag-faiss-overview",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "584857a6d173c12344012a66da37dd0beb0d370a1cb725c0183ba4b2ef4186a3",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-unanswerable-interrupt-timeout",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic refusal-contract structure and near-boundary anchor binding passed; corpus-wide absence was not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-unanswerable-interrupt-timeout-claim-01",
+          "binding_status": "NEAR_BOUNDARY_ANCHOR_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [],
+          "rationale": "The authored near-boundary anchors resolve and hash-match; corpus-wide absence and answerability were not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-interrupt-approval",
+          "document_id": "rw-agent-interrupts",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "997680bb2909538d8c2f9cfeb41eaa4db72dc429a70ebb16937f31453c76f7ad",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-unanswerable-precision-pass-threshold",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic refusal-contract structure and near-boundary anchor binding passed; corpus-wide absence was not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-unanswerable-precision-pass-threshold-claim-01",
+          "binding_status": "NEAR_BOUNDARY_ANCHOR_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [],
+          "rationale": "The authored near-boundary anchors resolve and hash-match; corpus-wide absence and answerability were not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-precision-definition",
+          "document_id": "rw-eval-context-precision",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "4797ec283f22f33cc10e8c648de99afe61e76f5071d742f754e1394565f151ae",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-precision-rank-effect",
+          "document_id": "rw-eval-context-precision",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "0aa40b23ae85758ca04a6ea6bc74c7da62bdf8e98bb006fe496dc9cf51c22e18",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-unanswerable-ragas-minimum-score",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic refusal-contract structure and near-boundary anchor binding passed; corpus-wide absence was not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-unanswerable-ragas-minimum-score-claim-01",
+          "binding_status": "NEAR_BOUNDARY_ANCHOR_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [],
+          "rationale": "The authored near-boundary anchors resolve and hash-match; corpus-wide absence and answerability were not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-ragas-evaluate",
+          "document_id": "rw-eval-ragas-workflow",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "21c374bf7cd73f2e51f2789c0fd319b04c6afcb1c9f6aebfc01b102726c3dbfe",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-unanswerable-threadpool-workers",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic refusal-contract structure and near-boundary anchor binding passed; corpus-wide absence was not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-unanswerable-threadpool-workers-claim-01",
+          "binding_status": "NEAR_BOUNDARY_ANCHOR_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [],
+          "rationale": "The authored near-boundary anchors resolve and hash-match; corpus-wide absence and answerability were not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-async-threadpool",
+          "document_id": "rw-backend-fastapi-async",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "0290f7c54ff71a2edfdd58339e9a79c73a42208378447e3a75d75e6134911be4",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-unanswerable-trace-retention",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic refusal-contract structure and near-boundary anchor binding passed; corpus-wide absence was not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-unanswerable-trace-retention-claim-01",
+          "binding_status": "NEAR_BOUNDARY_ANCHOR_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [],
+          "rationale": "The authored near-boundary anchors resolve and hash-match; corpus-wide absence and answerability were not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-otel-trace-overview",
+          "document_id": "rw-eval-otel-traces",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "1e27b25efb5427a9e63f8f4a1e60733667ae40e3aec53b738dd5c22decb5e25b",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-stress-deep-async-call-kinds",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-stress-deep-async-call-kinds-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-stress-deep-async-call-kinds-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-stress-deep-async-call-kinds-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-stress-deep-async-call-kinds-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-stress-deep-async-call-kinds-claim-03",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-stress-deep-async-call-kinds-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-async-threadpool",
+          "document_id": "rw-backend-fastapi-async",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "0290f7c54ff71a2edfdd58339e9a79c73a42208378447e3a75d75e6134911be4",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-stress-deep-bge-mldr-comparison",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-stress-deep-bge-mldr-comparison-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-stress-deep-bge-mldr-comparison-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-stress-deep-bge-mldr-comparison-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-stress-deep-bge-mldr-comparison-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-bge-long-eval",
+          "document_id": "rw-rag-bge-m3",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "e4e1906943d1aa4dbadf42ed5c059c942abb659bd00ec501b3034de44acf8ca1",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-stress-deep-interrupt-side-effects",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-stress-deep-interrupt-side-effects-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-stress-deep-interrupt-side-effects-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-stress-deep-interrupt-side-effects-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-stress-deep-interrupt-side-effects-01",
+            "eg-rw-stress-deep-interrupt-side-effects-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-interrupt-duplicate-risk",
+          "document_id": "rw-agent-interrupts",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "332a35b25c0caa06d546927b6e817c01aa013c6416d53e9f7e03d9a6c46ce84c",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-interrupt-side-effects",
+          "document_id": "rw-agent-interrupts",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "3bab89a31bf5c5bf0089a667c65b118b1625f5b1f96f8b738540ee167080723a",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-interrupt-side-effects-nodes",
+          "document_id": "rw-agent-interrupts",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "9af930ecc1382bcda05995f1c4dd557076af0a054f590ac39f860d7d2154e00d",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-stress-deep-precision-id-versus-content",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-stress-deep-precision-id-versus-content-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-stress-deep-precision-id-versus-content-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-stress-deep-precision-id-versus-content-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-stress-deep-precision-id-versus-content-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-precision-id-based",
+          "document_id": "rw-eval-context-precision",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "fa30107d509786c967d6e98a356790078dd8dd4a604c4738df7ca75210653f5f",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-stress-cross-agent-api-replay",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-stress-cross-agent-api-replay-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-stress-cross-agent-api-replay-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-stress-cross-agent-api-replay-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-stress-cross-agent-api-replay-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-stress-cross-agent-api-replay-claim-03",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-stress-cross-agent-api-replay-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-errors-http-exception",
+          "document_id": "rw-backend-fastapi-errors",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "7fe15bfbf116807e56ecc8ab43150c12ab017f419595de33d2f734157b604f62",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-interrupt-restart-rule",
+          "document_id": "rw-agent-interrupts",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "223b6224b12ea2a606ff410012bca113a644264848765cce5b66f272b6f27023",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-interrupt-side-effects",
+          "document_id": "rw-agent-interrupts",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "3bab89a31bf5c5bf0089a667c65b118b1625f5b1f96f8b738540ee167080723a",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-stress-cross-embedding-api-concurrency",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-stress-cross-embedding-api-concurrency-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-stress-cross-embedding-api-concurrency-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-stress-cross-embedding-api-concurrency-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-stress-cross-embedding-api-concurrency-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-async-tldr",
+          "document_id": "rw-backend-fastapi-async",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "279342831b201865dd2227c1bfe87228026e99f9a81c8f7c942da8f715e7e4be",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-bge-dense-usage",
+          "document_id": "rw-rag-bge-m3",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "fcacc497a7c5c6723579166bc2269a7634ee26d19a6c3aa08fff5041b0ed85e5",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-stress-cross-persistence-tracing",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-stress-cross-persistence-tracing-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-stress-cross-persistence-tracing-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-stress-cross-persistence-tracing-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-stress-cross-persistence-tracing-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-otel-links-status",
+          "document_id": "rw-eval-otel-traces",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "376c10519c3d296c29ae6a822143c087a488ef8d2310583df4a06f3d9db7dd25",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-persist-memorysaver",
+          "document_id": "rw-agent-persistence",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "7cee128b0e98146c848d03c05371245a46691545053f2994d44b2219b33362cc",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-persist-overview",
+          "document_id": "rw-agent-persistence",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "bb61e8fdbf7a513cace0d00e478afff294a4756605b9e123de06c26202e034bb",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-stress-cross-retrieval-evaluation",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-stress-cross-retrieval-evaluation-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-stress-cross-retrieval-evaluation-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-stress-cross-retrieval-evaluation-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-stress-cross-retrieval-evaluation-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-stress-cross-retrieval-evaluation-claim-03",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-stress-cross-retrieval-evaluation-03"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-bge-pipeline",
+          "document_id": "rw-rag-bge-m3",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "5dee7f35807b2494f11f2bbf7233b043e3ceeb42b1c2e720f05f04c824c8ec5d",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-faiss-tradeoffs",
+          "document_id": "rw-rag-faiss-overview",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "584857a6d173c12344012a66da37dd0beb0d370a1cb725c0183ba4b2ef4186a3",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-precision-definition",
+          "document_id": "rw-eval-context-precision",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "4797ec283f22f33cc10e8c648de99afe61e76f5071d742f754e1394565f151ae",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-stress-conflict-bge-faiss-compression",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-stress-conflict-bge-faiss-compression-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-stress-conflict-bge-faiss-compression-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-faiss-distance",
+          "document_id": "rw-rag-faiss-overview",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "d2a992d14be11917fe80515dc75ced279801e1f48b2a783ec81bb7c268821c43",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-faiss-tradeoffs",
+          "document_id": "rw-rag-faiss-overview",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "584857a6d173c12344012a66da37dd0beb0d370a1cb725c0183ba4b2ef4186a3",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-stress-conflict-fastapi-handler-type",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-stress-conflict-fastapi-handler-type-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-stress-conflict-fastapi-handler-type-02",
+            "eg-rw-stress-conflict-fastapi-handler-type-03"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        },
+        {
+          "claim_id": "rw-gold-v1-stress-conflict-fastapi-handler-type-claim-02",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-stress-conflict-fastapi-handler-type-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-errors-fastapi-starlette",
+          "document_id": "rw-backend-fastapi-errors",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "601861d454339012b20283e956e55940d7037b81f4910ddf73009c0c788a0a3f",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-errors-reuse-handlers",
+          "document_id": "rw-backend-fastapi-errors",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "d871cb0cac6605cd3c1b6603a4677d1b9239f666bf21e8d59d880df180b8cfb7",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-stress-conflict-interrupt-persistence-resume",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-stress-conflict-interrupt-persistence-resume-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-stress-conflict-interrupt-persistence-resume-01"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-interrupt-mechanism",
+          "document_id": "rw-agent-interrupts",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "b6a8c8bbb24eb388f9612679293707637fb1c1b042f2c3a91b8a9657c211d372",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-interrupt-resume",
+          "document_id": "rw-agent-interrupts",
+          "locator_kind": "PDF_PAGE",
+          "anchor_hash_recomputed": "17babc909a503b2fa8adfe0924815714768d626dec0f1094ed1cb7aed2b04404",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    },
+    {
+      "case_id": "rw-gold-v1-stress-conflict-ragas-reference-mode",
+      "verification_status": "VERIFIED",
+      "review_reason": "Deterministic contract structure and frozen-corpus anchor binding passed; claim semantics were not independently re-judged.",
+      "reviewer_mode": "FRESH_CORPUS_EVIDENCE_PASS",
+      "review_version": "real-world-gold-review-v1",
+      "checks": {
+        "question_field_present": true,
+        "answerability_contract_structure_valid": true,
+        "claim_group_references_resolve": true,
+        "evidence_anchors_recomputed": true,
+        "evidence_role_sets_disjoint": true,
+        "citation_contract_structurally_valid": true,
+        "case_type_structurally_valid": true,
+        "duplicate_question_heuristics_passed": true,
+        "independent_semantic_rejudgment_performed": false
+      },
+      "claim_reviews": [
+        {
+          "claim_id": "rw-gold-v1-stress-conflict-ragas-reference-mode-claim-01",
+          "binding_status": "EVIDENCE_GROUP_BINDING_VERIFIED",
+          "semantic_rejudgment": "NOT_PERFORMED",
+          "evidence_group_ids": [
+            "eg-rw-stress-conflict-ragas-reference-mode-01",
+            "eg-rw-stress-conflict-ragas-reference-mode-02"
+          ],
+          "rationale": "Claim references resolve to evidence groups whose frozen-source locators and hashes were recomputed; semantic support was not independently re-judged."
+        }
+      ],
+      "evidence_reviews": [
+        {
+          "evidence_id": "ev-rw-precision-with-reference",
+          "document_id": "rw-eval-context-precision",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "346670bcc31d4d0b73f589f15d359455d62d969a37b9463371450a235d647fcf",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        },
+        {
+          "evidence_id": "ev-rw-precision-without-reference",
+          "document_id": "rw-eval-context-precision",
+          "locator_kind": "SOURCE_LINES",
+          "anchor_hash_recomputed": "f5ec550c09746472c36b022ed908da7644952f0d5656dd472e14fccbe19807f5",
+          "locator_resolution": "PASS",
+          "source_binding_status": "PASS"
+        }
+      ]
+    }
+  ]
+}

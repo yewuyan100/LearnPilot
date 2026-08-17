@@ -1,4 +1,5 @@
 from pathlib import Path
+from datetime import date, datetime, timezone
 
 import pytest
 from fastapi.testclient import TestClient
@@ -11,6 +12,28 @@ from app.db.base import Base
 from app.db.session import get_db
 from app.main import app
 from tests.fakes import FakeEmbedder
+
+
+@pytest.fixture(scope="session", autouse=True)
+def production_resources_are_read_only():
+    paths = [
+        Path("data/personal_learning.sqlite3"),
+        Path("data/agent_checkpoints.sqlite"),
+        Path("data/materials.faiss"),
+        Path("data/materials.faiss.manifest.json"),
+    ]
+    before = {
+        path: (path.exists(), path.stat().st_size, path.stat().st_mtime_ns)
+        for path in paths
+        if path.exists()
+    }
+    yield
+    after = {
+        path: (path.exists(), path.stat().st_size, path.stat().st_mtime_ns)
+        for path in paths
+        if path.exists()
+    }
+    assert after == before, "Tests modified a production data resource"
 
 
 @pytest.fixture()
@@ -40,8 +63,13 @@ def client(tmp_path: Path):
         material_min_chunk_size=20,
         embedding_model_name="fake/bge-m3",
         embedding_model_revision="test",
+        llm_api_key=None,
+        llm_base_url=None,
+        llm_model=None,
         faiss_index_path=tmp_path / "materials.faiss",
         faiss_manifest_path=tmp_path / "materials.faiss.manifest.json",
+        agent_checkpoint_db_path=tmp_path / "agent_checkpoints.sqlite",
+        clock_fixed_now=datetime(2026, 8, 1, 4, 0, tzinfo=timezone.utc),
         search_top_k_default=3,
         search_top_k_max=10,
     )
@@ -71,3 +99,8 @@ def goal_payload():
         "current_level": "了解普通 API",
         "status": "active",
     }
+
+
+@pytest.fixture()
+def business_date() -> date:
+    return date(2026, 8, 1)

@@ -3,13 +3,14 @@ import {
   BookOpenCheck,
   ChevronRight,
   ClipboardCheck,
+  NotebookPen,
   Plus,
-  Sparkles,
+  FileQuestion as Sparkles,
 } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { FormEvent } from "react";
-import { useNavigate } from "react-router-dom";
-import { activitiesApi, coursesApi, materialsApi } from "../api/resources";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { activitiesApi, coursesApi, goalsApi, materialsApi } from "../api/resources";
 import { EmptyState, ErrorState, LoadingState } from "../components/States";
 import { useToast } from "../components/toast-context";
 import { formatDateTime } from "../utils/format";
@@ -29,23 +30,28 @@ const statusLabel: Record<string, string> = {
 };
 
 export function ActivitiesPage() {
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { showToast } = useToast();
   const [showForm, setShowForm] = useState(false);
   const [title, setTitle] = useState("");
-  const [courseId, setCourseId] = useState("");
-  const [pointId, setPointId] = useState("");
+  const [courseId, setCourseId] = useState(searchParams.get("course_id") ?? "");
+  const [pointId, setPointId] = useState(searchParams.get("knowledge_point_id") ?? "");
+  const [goalId, setGoalId] = useState(searchParams.get("learning_goal_id") ?? "");
+  const [sourceScopeType, setSourceScopeType] = useState(searchParams.get("course_id") ? "course" : searchParams.get("knowledge_point_id") ? "knowledge_point" : "material");
   const [materialIds, setMaterialIds] = useState<number[]>([]);
   const [types, setTypes] = useState<string[]>(["single_choice", "true_false"]);
   const [questionCount, setQuestionCount] = useState(6);
   const [difficulty, setDifficulty] = useState("mixed");
+  const [statusFilter, setStatusFilter] = useState("");
 
   const activities = useQuery({
     queryKey: ["learning-activities"],
     queryFn: () => activitiesApi.list(),
   });
   const courses = useQuery({ queryKey: ["courses"], queryFn: coursesApi.list });
+  const goals = useQuery({ queryKey: ["goals"], queryFn: goalsApi.list });
   const materials = useQuery({
     queryKey: ["materials", "", ""],
     queryFn: () => materialsApi.list(),
@@ -64,6 +70,7 @@ export function ActivitiesPage() {
       ),
     [materials.data],
   );
+  const visibleActivities = useMemo(() => (activities.data?.items ?? []).filter((item) => !statusFilter || item.status === statusFilter), [activities.data, statusFilter]);
 
   const generate = useMutation({
     mutationFn: () =>
@@ -71,7 +78,9 @@ export function ActivitiesPage() {
         title: title.trim(),
         course_id: courseId ? Number(courseId) : null,
         knowledge_point_id: pointId ? Number(pointId) : null,
-        material_ids: materialIds,
+        learning_goal_id: sourceScopeType === "learning_goal" && goalId ? Number(goalId) : null,
+        material_ids: sourceScopeType === "material" ? materialIds : null,
+        source_mode: sourceScopeType === "without_materials" ? "without_materials" : "materials",
         question_types: types,
         question_count: questionCount,
         difficulty,
@@ -87,7 +96,8 @@ export function ActivitiesPage() {
 
   const submit = (event: FormEvent) => {
     event.preventDefault();
-    if (!title.trim() || !materialIds.length || !types.length) return;
+    const validScope = sourceScopeType === "without_materials" || (sourceScopeType === "material" && materialIds.length) || (sourceScopeType === "learning_goal" && goalId) || (sourceScopeType === "course" && courseId) || (sourceScopeType === "knowledge_point" && pointId);
+    if (!title.trim() || !validScope || !types.length) return;
     generate.mutate();
   };
 
@@ -103,16 +113,16 @@ export function ActivitiesPage() {
     <div className="page activity-page">
       <header className="page-header page-header--split">
         <div>
-          <span className="eyebrow">V4 · 基于真实资料</span>
+          <span className="page-kicker">学习</span>
           <h1>学习活动</h1>
           <p>从已索引资料生成可预览、可批改、可复习的练习。</p>
         </div>
-        <button
+        <div className="button-row"><Link className="button button--secondary" to="/notes?new=1&note_type=study"><NotebookPen size={16}/>记录笔记</Link><button
           className="button button--primary"
           onClick={() => setShowForm((value) => !value)}
         >
           <Plus size={17} />生成活动
-        </button>
+        </button></div>
       </header>
 
       {showForm && (
@@ -166,7 +176,15 @@ export function ActivitiesPage() {
                 ))}
               </select>
             </label>
-            <fieldset className="field field--wide activity-scope">
+            <label className="field field--wide">
+              <span>题目来源范围</span>
+              <select aria-label="活动来源范围" value={sourceScopeType} onChange={(event) => { setSourceScopeType(event.target.value); if (event.target.value !== "material") setMaterialIds([]); }}>
+                <option value="material">指定资料</option><option value="learning_goal">学习目标有效资料</option><option value="course">课程有效资料</option><option value="knowledge_point">知识点有效资料</option><option value="without_materials">无资料生成</option>
+              </select>
+              <small>{sourceScopeType === "without_materials" ? "会明确标记为无资料生成，题目不会声称引用了资料。" : "多项范围同时存在时取交集，不会自动扩大到全局资料。"}</small>
+            </label>
+            {sourceScopeType === "learning_goal" && <label className="field field--wide"><span>来源目标</span><select aria-label="活动来源目标" value={goalId} onChange={(event) => setGoalId(event.target.value)}><option value="">选择学习目标</option>{goals.data?.map((goal) => <option key={goal.id} value={goal.id}>{goal.title}</option>)}</select></label>}
+            {sourceScopeType === "material" && <fieldset className="field field--wide activity-scope">
               <legend>资料范围（仅显示已处理并索引的资料）</legend>
               {usableMaterials.length ? usableMaterials.map((material) => (
                 <label key={material.id} className="check-row">
@@ -187,7 +205,7 @@ export function ActivitiesPage() {
               )) : (
                 <p className="muted">暂无可用资料，请先在资料页完成处理和索引。</p>
               )}
-            </fieldset>
+            </fieldset>}
             <fieldset className="field field--wide activity-type-grid">
               <legend>题型</legend>
               {questionTypes.map(([value, label]) => (
@@ -239,7 +257,10 @@ export function ActivitiesPage() {
               disabled={
                 generate.isPending ||
                 !title.trim() ||
-                !materialIds.length ||
+                (sourceScopeType === "material" && !materialIds.length) ||
+                (sourceScopeType === "learning_goal" && !goalId) ||
+                (sourceScopeType === "course" && !courseId) ||
+                (sourceScopeType === "knowledge_point" && !pointId) ||
                 !types.length
               }
               type="submit"
@@ -257,15 +278,16 @@ export function ActivitiesPage() {
             <span className="eyebrow">活动记录</span>
             <h2>{activities.data?.total ?? 0} 个活动</h2>
           </div>
+          <label className="select-field"><span>状态</span><select aria-label="按状态筛选活动" value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)}><option value="">全部</option><option value="draft">草稿</option><option value="published">已发布</option><option value="archived">已归档</option><option value="generation_failed">生成失败</option></select></label>
         </div>
-        {!activities.data?.items.length ? (
+        {!visibleActivities.length ? (
           <EmptyState
-            title="还没有学习活动"
-            description="选择已索引资料，生成第一组有来源的练习题。"
+            title={activities.data?.items.length ? "没有符合筛选条件的活动" : "还没有学习活动"}
+            description={activities.data?.items.length ? "切换状态查看其他真实活动记录。" : "选择已索引资料，生成第一组有来源的练习题。"}
           />
         ) : (
           <div className="activity-list">
-            {activities.data.items.map((activity) => (
+            {visibleActivities.map((activity) => (
               <article key={activity.id} className="activity-row">
                 <span className={`status status--${activity.status}`}>
                   {statusLabel[activity.status] ?? activity.status}

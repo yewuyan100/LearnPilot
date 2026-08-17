@@ -4,7 +4,7 @@ import pytest
 from app.core.config import Settings
 from app.services.llm.errors import LLMOutputInvalidError, LLMUnavailableError
 from app.services.llm.openai_compatible import OpenAICompatibleProvider
-from app.services.llm.schemas import RagModelAnswer
+from app.services.llm.schemas import RagGroundedAnswerDraft
 from app.services.rag.prompts import ANSWER_SYSTEM_PROMPT, answer_messages
 from app.services.rag.query_rewriter import rewrite_query
 from app.services.rag.retrieval import retrieve_sources
@@ -38,8 +38,8 @@ def test_openai_compatible_provider_parses_structured_output(monkeypatch):
                     {
                         "message": {
                             "content": (
-                                '{"answerable":true,"answer_markdown":"ok [S1]",'
-                                '"cited_source_ids":["S1"],"refusal_reason":null}'
+                                '{"answerable":true,"blocks":[{"content_markdown":"ok",'
+                                '"source_ids":["S1"]}],"refusal_reason":null}'
                             )
                         }
                     }
@@ -51,7 +51,7 @@ def test_openai_compatible_provider_parses_structured_output(monkeypatch):
     monkeypatch.setattr(httpx.Client, "post", post)
     result = OpenAICompatibleProvider(llm_settings()).generate_structured(
         messages=[{"role": "user", "content": "question"}],
-        schema=RagModelAnswer,
+        schema=RagGroundedAnswerDraft,
     )
     assert result.value.answerable is True
     assert result.model == "served-model"
@@ -71,7 +71,7 @@ def test_openai_compatible_provider_rejects_invalid_and_retries_unavailable(
     monkeypatch.setattr(httpx.Client, "post", invalid_post)
     with pytest.raises(LLMOutputInvalidError):
         OpenAICompatibleProvider(llm_settings()).generate_structured(
-            messages=[], schema=RagModelAnswer
+            messages=[], schema=RagGroundedAnswerDraft
         )
 
     calls = 0
@@ -87,7 +87,7 @@ def test_openai_compatible_provider_rejects_invalid_and_retries_unavailable(
     monkeypatch.setattr(httpx.Client, "post", unavailable_post)
     with pytest.raises(LLMUnavailableError):
         OpenAICompatibleProvider(llm_settings()).generate_structured(
-            messages=[], schema=RagModelAnswer
+            messages=[], schema=RagGroundedAnswerDraft
         )
     assert calls == 2
 
@@ -195,7 +195,7 @@ def test_retrieval_threshold_overlap_dedup_and_stable_labels(monkeypatch):
     )
     outcome = retrieve_sources(
         db=object(),
-        settings=Settings(rag_min_score=0.35, rag_max_sources=3),
+        settings=Settings(rag_min_score=0.35, rag_final_context_top_k=3),
         embedder=object(),
         query="MCP",
         top_k=3,

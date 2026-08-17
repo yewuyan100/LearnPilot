@@ -41,6 +41,7 @@ class RagCitationRead(BaseModel):
     section_title: str | None
     content_excerpt: str
     source_available: bool
+    learning_context: dict = {}
     created_at: datetime
 
 
@@ -54,6 +55,7 @@ class RagMessageRead(BaseModel):
     request_id: str | None
     original_query: str | None
     retrieval_query: str | None
+    retrieval_scope: dict = {}
     answerable: bool | None
     refusal_reason: str | None
     prompt_version: str | None
@@ -77,6 +79,9 @@ class RagAskRequest(BaseModel):
     request_id: str = Field(min_length=8, max_length=64, pattern=r"^[A-Za-z0-9_.:-]+$")
     top_k: int | None = Field(default=None, ge=1)
     material_ids: list[int] | None = Field(default=None, max_length=100)
+    learning_goal_id: int | None = Field(default=None, gt=0)
+    course_id: int | None = Field(default=None, gt=0)
+    knowledge_point_id: int | None = Field(default=None, gt=0)
 
     @field_validator("question")
     @classmethod
@@ -104,6 +109,17 @@ class RagRetrievalSummary(BaseModel):
     min_score: float
     index_version: str | None
     duration_ms: int
+    requested_scope: dict = {}
+    resolved_material_ids: list[int] | None = None
+    retrieved_count: int = 0
+    filtered_count: int = 0
+    final_count: int = 0
+    retrieval_mode: str = "dense_only"
+    reranker_status: str = "disabled"
+    reranker_device: str | None = None
+    reranker_dtype: str | None = None
+    reranker_batch_count: int = 0
+    reranker_fallback_reason: str | None = None
 
 
 class RagModelSummary(BaseModel):

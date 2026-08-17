@@ -1,0 +1,847 @@
+{
+  "schema_version": "1.0.0",
+  "schema_ref": "draft_shard.schema.json",
+  "draft_status": "UNVERIFIED",
+  "case_type": "source_disambiguation",
+  "expected_case_count": 10,
+  "cases": [
+    {
+      "case_id": "rw-gold-v1-disambig-bge-faiss",
+      "tier": "CORE",
+      "case_type": "source_disambiguation",
+      "information_need_key": "disambig-bge-faiss",
+      "question": "哪个来源说明模型能同时输出 dense/sparse/multi-vector 信号，哪个来源说明向量索引如何按 L2 或 dot product 搜索？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "rag_retrieval",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-disambig-bge-faiss-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-rag-bge-m3"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-bge-capabilities",
+            "ev-rw-bge-methods"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-disambig-bge-faiss-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-rag-faiss-overview"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-faiss-distance"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [
+        {
+          "document_id": "rw-eval-context-precision",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "UNSUPPORTED for model capabilities and index mechanics."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-disambig-bge-faiss-claim-01",
+          "canonical_claim": "BGE-M3 documentation owns the three retrieval-functionality claim.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-disambig-bge-faiss-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-disambig-bge-faiss-claim-02",
+          "canonical_claim": "Faiss documentation owns the L2/dot-product index-search claim.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-disambig-bge-faiss-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-disambig-bge-faiss-01",
+          "eg-rw-disambig-bge-faiss-02"
+        ],
+        "minimum_distinct_required_documents": 2,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-bge-long",
+      "tier": "CORE",
+      "case_type": "source_disambiguation",
+      "information_need_key": "disambig-bge-long",
+      "question": "问到 8192-token 输入能力时，应引用 BGE-M3 规格还是 Faiss 的索引说明？邻近来源能提供什么、不能提供什么？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "rag_retrieval",
+      "secondary_topics": [],
+      "difficulty": "medium",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-disambig-bge-long-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-rag-bge-m3"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-bge-capabilities",
+            "ev-rw-bge-specs"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [
+        {
+          "document_id": "rw-rag-faiss-overview",
+          "evidence_ids": [
+            "ev-rw-faiss-purpose"
+          ],
+          "evidence_role": "ACCEPTABLE_SUPPORT",
+          "notes": "Faiss supports vector search context but not model token length."
+        }
+      ],
+      "plausible_distractor_documents": [
+        {
+          "document_id": "rw-eval-context-precision",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "Does not state embedding-model sequence length."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-disambig-bge-long-claim-01",
+          "canonical_claim": "The 8192-token input/sequence-length claim is documented by BGE-M3.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-disambig-bge-long-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-disambig-bge-long-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-agent-persist-interrupt",
+      "tier": "CORE",
+      "case_type": "source_disambiguation",
+      "information_need_key": "disambig-agent-persist-interrupt",
+      "question": "“跨进程重启仍保留 checkpoint”与“人工暂停后用 Command 恢复”分别应该从 persistence TXT 和 interrupts PDF 的哪类证据判断？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "agent_engineering",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-disambig-agent-persist-interrupt-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-persistence"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-persist-memorysaver",
+            "ev-rw-persist-comparison"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-disambig-agent-persist-interrupt-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-interrupts"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-interrupt-resume"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [
+        {
+          "document_id": "rw-agent-langgraph-overview",
+          "evidence_ids": [
+            "ev-rw-agent-overview-capabilities"
+          ],
+          "evidence_role": "ACCEPTABLE_SUPPORT",
+          "notes": "High-level durable execution and human-in-the-loop support, but not the detailed contracts."
+        }
+      ],
+      "plausible_distractor_documents": [
+        {
+          "document_id": "rw-eval-otel-traces",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "Tracing spans does not define checkpoint storage or Command resume semantics."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-disambig-agent-persist-interrupt-claim-01",
+          "canonical_claim": "Persistence documentation distinguishes in-memory savers from persistent checkpointers across restarts.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-disambig-agent-persist-interrupt-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-disambig-agent-persist-interrupt-claim-02",
+          "canonical_claim": "Interrupts documentation explains Command resume using the durable thread pointer.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-disambig-agent-persist-interrupt-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-disambig-agent-persist-interrupt-01",
+          "eg-rw-disambig-agent-persist-interrupt-02"
+        ],
+        "minimum_distinct_required_documents": 2,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-agent-memory",
+      "tier": "CORE",
+      "case_type": "source_disambiguation",
+      "information_need_key": "disambig-agent-memory",
+      "question": "短期 thread state、跨 thread memory 和 human-in-the-loop 暂停这三个概念，三个 LangGraph 来源各自最适合支持哪一部分？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "agent_engineering",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-disambig-agent-memory-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-persistence"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-persist-comparison"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-disambig-agent-memory-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-interrupts"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-interrupt-mechanism"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [
+        {
+          "document_id": "rw-agent-langgraph-overview",
+          "evidence_ids": [
+            "ev-rw-agent-overview-capabilities"
+          ],
+          "evidence_role": "ACCEPTABLE_SUPPORT",
+          "notes": "Provides high-level labels for durable execution, HITL, and memory."
+        }
+      ],
+      "plausible_distractor_documents": [
+        {
+          "document_id": "rw-eval-otel-traces",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "Trace context is not LangGraph thread memory or pause/resume state."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-disambig-agent-memory-claim-01",
+          "canonical_claim": "Persistence TXT specifies checkpointer versus store scopes.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-disambig-agent-memory-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-disambig-agent-memory-claim-02",
+          "canonical_claim": "Interrupts PDF specifies the pause/resume mechanism.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-disambig-agent-memory-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-disambig-agent-memory-01",
+          "eg-rw-disambig-agent-memory-02"
+        ],
+        "minimum_distinct_required_documents": 2,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-interrupt-static",
+      "tier": "CORE",
+      "case_type": "source_disambiguation",
+      "information_need_key": "disambig-interrupt-static",
+      "question": "为什么调试断点问题要找 interrupts PDF，而不是 LangGraph overview 或 persistence TXT？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "agent_engineering",
+      "secondary_topics": [],
+      "difficulty": "medium",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-disambig-interrupt-static-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-interrupts"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-interrupt-static"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-disambig-interrupt-static-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-interrupts"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-interrupt-runtime-static"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [
+        {
+          "document_id": "rw-agent-langgraph-overview",
+          "evidence_ids": [
+            "ev-rw-agent-overview-capabilities"
+          ],
+          "evidence_role": "ACCEPTABLE_SUPPORT",
+          "notes": "Mentions debugging and HITL generally."
+        },
+        {
+          "document_id": "rw-agent-persistence",
+          "evidence_ids": [
+            "ev-rw-persist-overview"
+          ],
+          "evidence_role": "ACCEPTABLE_SUPPORT",
+          "notes": "Explains state persistence needed by workflows generally."
+        }
+      ],
+      "plausible_distractor_documents": [
+        {
+          "document_id": "rw-backend-fastapi-async",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "Async execution guidance does not define graph breakpoints."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-disambig-interrupt-static-claim-01",
+          "canonical_claim": "Only the interrupts PDF specifies static interrupt breakpoints and their compile/run-time configuration.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-disambig-interrupt-static-01",
+            "eg-rw-disambig-interrupt-static-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-disambig-interrupt-static-01",
+          "eg-rw-disambig-interrupt-static-02"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-fastapi-async-deps",
+      "tier": "CORE",
+      "case_type": "source_disambiguation",
+      "information_need_key": "disambig-fastapi-async-deps",
+      "question": "endpoint 本身的 def/async def 选择与 dependency 的混用规则，应该分别依赖哪两份 FastAPI 文档？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "ai_app_backend",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-disambig-fastapi-async-deps-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-async"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-async-tldr"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-disambig-fastapi-async-deps-03",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-async"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-async-threadpool"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-disambig-fastapi-async-deps-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-dependencies"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-deps-mixed-async"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [
+        {
+          "document_id": "rw-backend-fastapi-errors",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "Does not govern async/dependency execution."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-disambig-fastapi-async-deps-claim-01",
+          "canonical_claim": "The async document provides endpoint selection and threadpool behavior.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-disambig-fastapi-async-deps-01",
+            "eg-rw-disambig-fastapi-async-deps-03"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-disambig-fastapi-async-deps-claim-02",
+          "canonical_claim": "The dependency document states def/async def dependencies can be mixed with either endpoint style.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-disambig-fastapi-async-deps-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-disambig-fastapi-async-deps-01",
+          "eg-rw-disambig-fastapi-async-deps-02",
+          "eg-rw-disambig-fastapi-async-deps-03"
+        ],
+        "minimum_distinct_required_documents": 2,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-fastapi-errors",
+      "tier": "CORE",
+      "case_type": "source_disambiguation",
+      "information_need_key": "disambig-fastapi-errors",
+      "question": "依赖解析成功后仍要返回 404，这个状态与 detail 由 dependency 文档还是 error-handling 文档定义？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "ai_app_backend",
+      "secondary_topics": [],
+      "difficulty": "medium",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-disambig-fastapi-errors-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-errors"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-errors-http-exception"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [
+        {
+          "document_id": "rw-backend-fastapi-dependencies",
+          "evidence_ids": [
+            "ev-rw-deps-call"
+          ],
+          "evidence_role": "ACCEPTABLE_SUPPORT",
+          "notes": "Can explain that a dependency is invoked before the endpoint, not the HTTP error payload."
+        }
+      ],
+      "plausible_distractor_documents": [
+        {
+          "document_id": "rw-backend-fastapi-async",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "Concurrency guidance does not define the 404 response payload."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-disambig-fastapi-errors-claim-01",
+          "canonical_claim": "The error-handling document defines raising HTTPException and the 404/detail response.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-disambig-fastapi-errors-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-disambig-fastapi-errors-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-fastapi-exceptions",
+      "tier": "CORE",
+      "case_type": "source_disambiguation",
+      "information_need_key": "disambig-fastapi-exceptions",
+      "question": "注册全局 HTTPException handler 时，为什么应对 Starlette 类型注册，却仍可在业务代码里抛 FastAPI 类型？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "ai_app_backend",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-disambig-fastapi-exceptions-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-errors"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-errors-fastapi-starlette"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [
+        {
+          "document_id": "rw-backend-fastapi-async",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "Threadpool execution does not support the exception hierarchy or handler-registration choice."
+        },
+        {
+          "document_id": "rw-backend-fastapi-dependencies",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "Does not define exception-class hierarchy."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-disambig-fastapi-exceptions-claim-01",
+          "canonical_claim": "FastAPI HTTPException inherits from Starlette HTTPException and accepts any JSON-able detail.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-disambig-fastapi-exceptions-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-disambig-fastapi-exceptions-claim-02",
+          "canonical_claim": "Handlers should register for Starlette HTTPException to catch errors from Starlette and extensions.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-disambig-fastapi-exceptions-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-disambig-fastapi-exceptions-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-ragas-metrics",
+      "tier": "CORE",
+      "case_type": "source_disambiguation",
+      "information_need_key": "disambig-ragas-metrics",
+      "question": "“怎样组织评估数据”与“怎样衡量相关 chunk 的排序”分别应查 Ragas workflow 还是 context precision 文档？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "evaluation_reliability",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-disambig-ragas-metrics-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-ragas-workflow"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-ragas-collect-data"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-disambig-ragas-metrics-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-context-precision"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-precision-definition"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [
+        {
+          "document_id": "rw-eval-otel-traces",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "Tracing does not define Ragas dataset or precision metric."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-disambig-ragas-metrics-claim-01",
+          "canonical_claim": "The workflow document defines the evaluation dataset fields and construction.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-disambig-ragas-metrics-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-disambig-ragas-metrics-claim-02",
+          "canonical_claim": "The context precision document defines the ranking metric and formula.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-disambig-ragas-metrics-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-disambig-ragas-metrics-01",
+          "eg-rw-disambig-ragas-metrics-02"
+        ],
+        "minimum_distinct_required_documents": 2,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-ragas-otel",
+      "tier": "CORE",
+      "case_type": "source_disambiguation",
+      "information_need_key": "disambig-ragas-otel",
+      "question": "检索质量排序与分布式请求路径都属于 observability 邻域，但 context precision 和 trace 各自回答什么不同问题？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "evaluation_reliability",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-disambig-ragas-otel-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-context-precision"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-precision-definition"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-disambig-ragas-otel-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-otel-traces"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-otel-trace-overview",
+            "ev-rw-otel-propagation-span"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [
+        {
+          "document_id": "rw-eval-ragas-workflow",
+          "evidence_ids": [
+            "ev-rw-ragas-evaluate"
+          ],
+          "evidence_role": "ACCEPTABLE_SUPPORT",
+          "notes": "Supports the broader evaluation workflow only."
+        }
+      ],
+      "plausible_distractor_documents": [
+        {
+          "document_id": "rw-rag-faiss-overview",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "Vector indexing mechanics do not define the metric or distributed trace assembly."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-disambig-ragas-otel-claim-01",
+          "canonical_claim": "Context precision answers whether relevant retrieved chunks are ranked near the top.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-disambig-ragas-otel-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-disambig-ragas-otel-claim-02",
+          "canonical_claim": "Tracing answers how work/spans form the end-to-end path of a request across services.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-disambig-ragas-otel-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-disambig-ragas-otel-01",
+          "eg-rw-disambig-ragas-otel-02"
+        ],
+        "minimum_distinct_required_documents": 2,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    }
+  ]
+}

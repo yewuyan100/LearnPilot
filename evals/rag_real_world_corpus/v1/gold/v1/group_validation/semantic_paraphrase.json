@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "case_type": "semantic_paraphrase",
+  "expected_case_count": 10,
+  "actual_case_count": 10,
+  "schema_validation": "PASS",
+  "utf8_question_validation": "PASS",
+  "unique_case_id_validation": "PASS",
+  "unique_claim_id_validation": "PASS",
+  "document_reference_validation": "PASS",
+  "evidence_anchor_reference_validation": "PASS",
+  "evidence_group_validation": "PASS",
+  "tier_and_case_type_validation": "PASS",
+  "fresh_corpus_grounding_review": "PASS",
+  "duplicate_question_validation": "PASS",
+  "malformed_string_validation": "PASS"
+}

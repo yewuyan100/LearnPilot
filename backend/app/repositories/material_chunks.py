@@ -57,7 +57,10 @@ class MaterialChunkRepository:
             self.db.scalars(
                 select(MaterialChunk)
                 .join(Material, Material.id == MaterialChunk.material_id)
-                .where(Material.ingestion_status == "completed")
+                .where(
+                    Material.ingestion_status == "completed",
+                    Material.deletion_status == "active",
+                )
                 .order_by(MaterialChunk.id)
             )
         )
@@ -75,6 +78,8 @@ class MaterialChunkRepository:
             .where(
                 MaterialChunk.id.in_(chunk_ids),
                 Material.ingestion_status == "completed",
+                Material.deletion_status == "active",
+                Material.archived_at.is_(None),
             )
         )
         if material_ids is not None:

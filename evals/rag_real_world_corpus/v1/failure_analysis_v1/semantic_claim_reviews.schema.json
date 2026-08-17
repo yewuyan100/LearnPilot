@@ -1,0 +1,174 @@
+{
+  "$id": "learnpilot://rag-real-world/failure-analysis-v1/semantic-claim-reviews.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "case_reviews": {
+      "items": {
+        "properties": {
+          "case_id": {
+            "type": "string"
+          },
+          "case_metadata": {
+            "type": "object"
+          },
+          "case_run_id": {
+            "type": "string"
+          },
+          "citations": {
+            "type": "array"
+          },
+          "claim_reviews": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "case_id": {
+                  "type": "string"
+                },
+                "case_type": {
+                  "type": "string"
+                },
+                "citations": {
+                  "type": "array"
+                },
+                "claim_id": {
+                  "type": "string"
+                },
+                "difficulty": {
+                  "type": "string"
+                },
+                "evaluation_mode": {
+                  "const": "SEMANTIC_REVIEW"
+                },
+                "evidence_group_ids": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "gold_claim": {
+                  "type": "string"
+                },
+                "machine_answer": {
+                  "type": "string"
+                },
+                "query_language": {
+                  "type": "string"
+                },
+                "question": {
+                  "type": "string"
+                },
+                "required": {
+                  "type": "boolean"
+                },
+                "review_reason": {
+                  "minLength": 20,
+                  "type": "string"
+                },
+                "reviewer_mode": {
+                  "const": "HUMAN_EVIDENCE_REVIEW"
+                },
+                "selected_context_summary": {
+                  "type": "array"
+                },
+                "tier": {
+                  "type": "string"
+                },
+                "topic": {
+                  "type": "string"
+                },
+                "verdict": {
+                  "enum": [
+                    "AMBIGUOUS",
+                    "PARTIALLY_SUPPORTED",
+                    "SUPPORTED",
+                    "UNSUPPORTED"
+                  ]
+                }
+              },
+              "required": [
+                "case_id",
+                "claim_id",
+                "case_type",
+                "tier",
+                "topic",
+                "difficulty",
+                "query_language",
+                "question",
+                "gold_claim",
+                "machine_answer",
+                "selected_context_summary",
+                "citations",
+                "required",
+                "evaluation_mode",
+                "evidence_group_ids",
+                "verdict",
+                "review_reason",
+                "reviewer_mode"
+              ],
+              "type": "object"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "expected_answerable": {
+            "type": "boolean"
+          },
+          "model_answerable": {
+            "type": "boolean"
+          },
+          "normalized_answer": {
+            "type": "string"
+          },
+          "question": {
+            "type": "string"
+          },
+          "selected_context": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "case_id",
+          "case_run_id",
+          "question",
+          "case_metadata",
+          "expected_answerable",
+          "model_answerable",
+          "normalized_answer",
+          "selected_context",
+          "citations",
+          "claim_reviews"
+        ],
+        "type": "object"
+      },
+      "maxItems": 54,
+      "minItems": 54,
+      "type": "array"
+    },
+    "methodology": {
+      "type": "object"
+    },
+    "provenance": {
+      "type": "object"
+    },
+    "review_id": {
+      "const": "learnpilot-rag-real-world-semantic-claim-reviews-v1"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "summary": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "review_id",
+    "provenance",
+    "methodology",
+    "summary",
+    "case_reviews"
+  ],
+  "title": "LearnPilot Real-world Baseline Semantic Claim Reviews V1",
+  "type": "object"
+}

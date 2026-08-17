@@ -5,6 +5,7 @@ from app.api.deps import DbSession
 from app.models.learning_goal import LearningGoal
 from app.schemas.learning_goal import LearningGoalCreate, LearningGoalRead, LearningGoalUpdate
 from app.services.crud import apply_updates, commit, get_or_404
+from app.services.learning_goals import LearningGoalLifecycle
 
 router = APIRouter(prefix="/learning-goals", tags=["learning goals"])
 
@@ -35,7 +36,5 @@ def update_goal(goal_id: int, payload: LearningGoalUpdate, db: DbSession) -> Lea
 
 @router.delete("/{goal_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_goal(goal_id: int, db: DbSession) -> Response:
-    goal = get_or_404(db, LearningGoal, goal_id, "学习目标")
-    db.delete(goal)
-    commit(db)
+    LearningGoalLifecycle(db).delete(goal_id)
     return Response(status_code=status.HTTP_204_NO_CONTENT)

@@ -1,0 +1,335 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://learnpilot.local/schemas/independent-semantic-verification-v1.json",
+  "title": "LearnPilot Real-world Gold V1 Independent Semantic Verification",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset",
+    "review_version",
+    "review_completed_date",
+    "review_input",
+    "review_method",
+    "execution_audit",
+    "summary",
+    "semantic_claim_reviews",
+    "non_semantic_contract_sanity",
+    "evidence_role_reviews",
+    "case_reviews",
+    "defects",
+    "final_status"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "dataset": {"const": "learnpilot-rag-real-world-gold-v1"},
+    "review_version": {"const": "independent-semantic-verification-v1"},
+    "review_completed_date": {"type": "string", "format": "date"},
+    "review_input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["gold_path", "gold_sha256", "semantic_claim_id_set_sha256"],
+      "properties": {
+        "gold_path": {"type": "string", "minLength": 1},
+        "gold_sha256": {"$ref": "#/$defs/sha256"},
+        "semantic_claim_id_set_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "review_method": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fresh_corpus_reopen",
+        "source_lines_reopened_from_frozen_files",
+        "pdf_pages_reextracted_from_frozen_files",
+        "document_and_anchor_hashes_recomputed",
+        "and_across_groups",
+        "or_inside_group",
+        "authoring_verdict_used",
+        "old_independent_review_verdict_used",
+        "baseline_output_used",
+        "retrieval_output_used",
+        "llm_used",
+        "production_rag_used"
+      ],
+      "properties": {
+        "fresh_corpus_reopen": {"const": true},
+        "source_lines_reopened_from_frozen_files": {"const": true},
+        "pdf_pages_reextracted_from_frozen_files": {"const": true},
+        "document_and_anchor_hashes_recomputed": {"const": true},
+        "and_across_groups": {"const": true},
+        "or_inside_group": {"const": true},
+        "authoring_verdict_used": {"const": false},
+        "old_independent_review_verdict_used": {"const": false},
+        "baseline_output_used": {"const": false},
+        "retrieval_output_used": {"const": false},
+        "llm_used": {"const": false},
+        "production_rag_used": {"const": false}
+      }
+    },
+    "execution_audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["deepseek_call_count", "other_llm_call_count", "rag_ask_count", "real_world_baseline_execution_count"],
+      "properties": {
+        "deepseek_call_count": {"const": 0},
+        "other_llm_call_count": {"const": 0},
+        "rag_ask_count": {"const": 0},
+        "real_world_baseline_execution_count": {"const": 0}
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "semantic_review_total",
+        "reviewed",
+        "claim_verdict_distribution",
+        "non_semantic_sanity_total",
+        "non_semantic_mode_distribution",
+        "case_total",
+        "case_verdict_distribution",
+        "evidence_role_record_total",
+        "evidence_role_verdict_distribution",
+        "defect_total"
+      ],
+      "properties": {
+        "semantic_review_total": {"const": 104},
+        "reviewed": {"const": 104},
+        "claim_verdict_distribution": {"$ref": "#/$defs/verdict_counts"},
+        "non_semantic_sanity_total": {"const": 28},
+        "non_semantic_mode_distribution": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["ANSWERABILITY_ONLY", "IDENTIFIER_EXACT", "NUMERIC_EXACT", "STRUCTURED_EXACT"],
+          "properties": {
+            "ANSWERABILITY_ONLY": {"const": 10},
+            "IDENTIFIER_EXACT": {"const": 5},
+            "NUMERIC_EXACT": {"const": 7},
+            "STRUCTURED_EXACT": {"const": 6}
+          }
+        },
+        "case_total": {"const": 72},
+        "case_verdict_distribution": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["NEEDS_GOLD_FIX", "VERIFIED"],
+          "properties": {
+            "NEEDS_GOLD_FIX": {"type": "integer", "minimum": 0},
+            "VERIFIED": {"type": "integer", "minimum": 0}
+          }
+        },
+        "evidence_role_record_total": {"type": "integer", "minimum": 1},
+        "evidence_role_verdict_distribution": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["CONFIRMED", "MISCLASSIFIED"],
+          "properties": {
+            "CONFIRMED": {"type": "integer", "minimum": 0},
+            "MISCLASSIFIED": {"type": "integer", "minimum": 0}
+          }
+        },
+        "defect_total": {"type": "integer", "minimum": 0}
+      }
+    },
+    "semantic_claim_reviews": {
+      "type": "array",
+      "minItems": 104,
+      "maxItems": 104,
+      "items": {"$ref": "#/$defs/semantic_review"}
+    },
+    "non_semantic_contract_sanity": {
+      "type": "array",
+      "minItems": 28,
+      "maxItems": 28,
+      "items": {"$ref": "#/$defs/sanity_review"}
+    },
+    "evidence_role_reviews": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/role_review"}
+    },
+    "case_reviews": {
+      "type": "array",
+      "minItems": 72,
+      "maxItems": 72,
+      "items": {"$ref": "#/$defs/case_review"}
+    },
+    "defects": {"type": "array", "items": {"$ref": "#/$defs/defect"}},
+    "final_status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["independent_semantic_verification_v1", "gold_correctness_repair_required", "rag_real_world_gold_dataset_v1"],
+      "properties": {
+        "independent_semantic_verification_v1": {"const": "COMPLETE"},
+        "gold_correctness_repair_required": {"enum": ["YES", "NO"]},
+        "rag_real_world_gold_dataset_v1": {"enum": ["HOLD", "READY_FOR_FINAL_FREEZE"]}
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "semantic_verdict": {"enum": ["SUPPORTED", "PARTIALLY_SUPPORTED", "UNSUPPORTED", "AMBIGUOUS"]},
+    "verdict_counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["AMBIGUOUS", "PARTIALLY_SUPPORTED", "SUPPORTED", "UNSUPPORTED"],
+      "properties": {
+        "AMBIGUOUS": {"type": "integer", "minimum": 0},
+        "PARTIALLY_SUPPORTED": {"type": "integer", "minimum": 0},
+        "SUPPORTED": {"type": "integer", "minimum": 0},
+        "UNSUPPORTED": {"type": "integer", "minimum": 0}
+      }
+    },
+    "locator": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "source_path", "start_line", "end_line", "section_title", "region"],
+          "properties": {
+            "kind": {"const": "SOURCE_LINES"},
+            "source_path": {"type": "string", "minLength": 1},
+            "start_line": {"type": "integer", "minimum": 1},
+            "end_line": {"type": "integer", "minimum": 1},
+            "section_title": {"type": "string", "minLength": 1},
+            "region": {"enum": ["early", "middle", "deep"]}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "source_path", "page_number", "region"],
+          "properties": {
+            "kind": {"const": "PDF_PAGE"},
+            "source_path": {"type": "string", "minLength": 1},
+            "page_number": {"type": "integer", "minimum": 1},
+            "region": {"enum": ["early", "middle", "deep"]}
+          }
+        }
+      ]
+    },
+    "fresh_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidence_id", "document_id", "locator", "source_bytes_sha256", "fresh_text_sha256", "fresh_evidence_excerpt", "locator_resolved", "source_hash_matches_manifest", "anchor_hash_matches"],
+      "properties": {
+        "evidence_id": {"type": "string", "pattern": "^ev-rw-[a-z0-9-]+$"},
+        "document_id": {"type": "string", "pattern": "^rw-[a-z0-9-]+$"},
+        "locator": {"$ref": "#/$defs/locator"},
+        "source_bytes_sha256": {"$ref": "#/$defs/sha256"},
+        "fresh_text_sha256": {"$ref": "#/$defs/sha256"},
+        "fresh_evidence_excerpt": {"type": "string", "minLength": 1},
+        "locator_resolved": {"const": true},
+        "source_hash_matches_manifest": {"const": true},
+        "anchor_hash_matches": {"const": true}
+      }
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidence_id", "document_id", "locator", "source_bytes_sha256", "fresh_text_sha256", "fresh_evidence_excerpt", "locator_resolved", "source_hash_matches_manifest", "anchor_hash_matches", "candidate_semantic_verdict", "review_reason"],
+      "properties": {
+        "evidence_id": {"type": "string", "pattern": "^ev-rw-[a-z0-9-]+$"},
+        "document_id": {"type": "string", "pattern": "^rw-[a-z0-9-]+$"},
+        "locator": {"$ref": "#/$defs/locator"},
+        "source_bytes_sha256": {"$ref": "#/$defs/sha256"},
+        "fresh_text_sha256": {"$ref": "#/$defs/sha256"},
+        "fresh_evidence_excerpt": {"type": "string", "minLength": 1},
+        "locator_resolved": {"const": true},
+        "source_hash_matches_manifest": {"const": true},
+        "anchor_hash_matches": {"const": true},
+        "candidate_semantic_verdict": {"$ref": "#/$defs/semantic_verdict"},
+        "review_reason": {"type": "string", "minLength": 1}
+      }
+    },
+    "group_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["group_id", "required", "evidence_role", "logic", "candidate_anchors", "group_verdict", "review_reason"],
+      "properties": {
+        "group_id": {"type": "string", "pattern": "^eg-rw-[a-z0-9-]+$"},
+        "required": {"const": true},
+        "evidence_role": {"const": "REQUIRED"},
+        "logic": {"const": "OR"},
+        "candidate_anchors": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/candidate"}},
+        "group_verdict": {"$ref": "#/$defs/semantic_verdict"},
+        "review_reason": {"type": "string", "minLength": 1}
+      }
+    },
+    "semantic_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["case_id", "case_type", "claim_id", "evaluation_mode", "question", "claim", "group_combination_logic", "groups", "claim_verdict", "review_reason", "authoring_semantic_verdict_visible_to_reviewer"],
+      "properties": {
+        "case_id": {"type": "string", "pattern": "^rw-gold-v1-[a-z0-9-]+$"},
+        "case_type": {"type": "string", "minLength": 1},
+        "claim_id": {"type": "string", "pattern": "^rw-gold-v1-[a-z0-9-]+-claim-[0-9]{2}$"},
+        "evaluation_mode": {"const": "SEMANTIC_REVIEW"},
+        "question": {"type": "string", "minLength": 1},
+        "claim": {"type": "string", "minLength": 1},
+        "group_combination_logic": {"const": "AND"},
+        "groups": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/group_review"}},
+        "claim_verdict": {"$ref": "#/$defs/semantic_verdict"},
+        "review_reason": {"type": "string", "minLength": 1},
+        "authoring_semantic_verdict_visible_to_reviewer": {"const": false}
+      }
+    },
+    "sanity_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["case_id", "claim_id", "evaluation_mode", "sanity_status", "review_reason", "fresh_evidence"],
+      "properties": {
+        "case_id": {"type": "string", "minLength": 1},
+        "claim_id": {"type": "string", "minLength": 1},
+        "evaluation_mode": {"enum": ["ANSWERABILITY_ONLY", "NUMERIC_EXACT", "STRUCTURED_EXACT", "IDENTIFIER_EXACT"]},
+        "sanity_status": {"const": "PASS"},
+        "review_reason": {"type": "string", "minLength": 1},
+        "fresh_evidence": {"type": "array", "items": {"$ref": "#/$defs/fresh_evidence"}}
+      }
+    },
+    "role_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["case_id", "document_id", "declared_role", "evidence_ids", "fresh_evidence", "role_semantic_verdict", "recommended_role", "review_reason"],
+      "properties": {
+        "case_id": {"type": "string", "minLength": 1},
+        "document_id": {"type": "string", "minLength": 1},
+        "declared_role": {"enum": ["REQUIRED", "ACCEPTABLE_SUPPORT", "UNSUPPORTED"]},
+        "evidence_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "fresh_evidence": {"type": "array", "items": {"$ref": "#/$defs/fresh_evidence"}},
+        "role_semantic_verdict": {"enum": ["CONFIRMED", "MISCLASSIFIED"]},
+        "recommended_role": {"enum": ["REQUIRED", "ACCEPTABLE_SUPPORT", "UNSUPPORTED"]},
+        "review_reason": {"type": "string", "minLength": 1}
+      }
+    },
+    "case_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["case_id", "case_verdict", "review_reason"],
+      "properties": {
+        "case_id": {"type": "string", "minLength": 1},
+        "case_verdict": {"enum": ["VERIFIED", "NEEDS_GOLD_FIX"]},
+        "review_reason": {"type": "string", "minLength": 1}
+      }
+    },
+    "defect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["defect_id", "category", "category_name", "case_id", "claim_id", "question", "claim", "evidence", "verdict", "root_cause", "recommended_minimal_correction"],
+      "properties": {
+        "defect_id": {"type": "string", "minLength": 1},
+        "category": {"enum": ["A", "B", "C", "D", "E", "F"]},
+        "category_name": {"type": "string", "minLength": 1},
+        "case_id": {"type": "string", "minLength": 1},
+        "claim_id": {"type": ["string", "null"]},
+        "question": {"type": "string", "minLength": 1},
+        "claim": {"type": "string", "minLength": 1},
+        "evidence": {"type": "array", "items": {"type": "object"}},
+        "verdict": {"enum": ["SUPPORTED", "PARTIALLY_SUPPORTED", "UNSUPPORTED", "AMBIGUOUS", "MISCLASSIFIED"]},
+        "root_cause": {"type": "string", "minLength": 1},
+        "recommended_minimal_correction": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

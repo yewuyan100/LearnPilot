@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "shards": [
+    {
+      "case_type": "single_doc_fact",
+      "case_count": 10,
+      "status": "PASS"
+    },
+    {
+      "case_type": "semantic_paraphrase",
+      "case_count": 10,
+      "status": "PASS"
+    },
+    {
+      "case_type": "long_doc_localization",
+      "case_count": 10,
+      "status": "PASS"
+    },
+    {
+      "case_type": "multi_doc_synthesis",
+      "case_count": 10,
+      "status": "PASS"
+    },
+    {
+      "case_type": "source_disambiguation",
+      "case_count": 10,
+      "status": "PASS"
+    },
+    {
+      "case_type": "unanswerable_near_boundary",
+      "case_count": 10,
+      "status": "PASS"
+    },
+    {
+      "case_type": "deep_long_doc_localization",
+      "case_count": 4,
+      "status": "PASS"
+    },
+    {
+      "case_type": "cross_topic_multi_doc",
+      "case_count": 4,
+      "status": "PASS"
+    },
+    {
+      "case_type": "high_overlap_source_conflict",
+      "case_count": 4,
+      "status": "PASS"
+    }
+  ],
+  "case_count": 72,
+  "tier_distribution": {
+    "CORE": 60,
+    "STRESS": 12
+  },
+  "case_type_distribution": {
+    "cross_topic_multi_doc": 4,
+    "deep_long_doc_localization": 4,
+    "high_overlap_source_conflict": 4,
+    "long_doc_localization": 10,
+    "multi_doc_synthesis": 10,
+    "semantic_paraphrase": 10,
+    "single_doc_fact": 10,
+    "source_disambiguation": 10,
+    "unanswerable_near_boundary": 10
+  },
+  "merged_draft_file_sha256": "1b2a90390718644292d5e8b379d03de3f73f6964d7d3a013c780bc2761bb54ff",
+  "merged_draft_canonical_sha256": "837413aed2d5d1f3c5d6f82ffc2e1d361b8ae65f0ee3d2d7d147d20b7fe77726",
+  "duplicate_case_id_count": 0,
+  "duplicate_claim_id_count": 0,
+  "duplicate_question_count": 0
+}

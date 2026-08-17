@@ -1,21 +1,75 @@
+# Local secrets (keep the public template)
 .env
+.env.*
+!.env.example
+
+# Local Python environments and caches
 .venv/
+.venv*/
+**/.venv*/
+venv/
 __pycache__/
 .pytest_cache/
 .coverage
 htmlcov/
 *.py[cod]
+
+# Local databases, uploads, and runtime state
 *.sqlite3
 *.sqlite
+*.sqlite-*
+*.db
+*.db-*
 *.faiss
 *.index
 *.manifest.json
 backend/data/
 backend/uploads/
 backend/test-data/
-frontend/node_modules/
+
+# JavaScript dependencies and build output
+node_modules/
+**/node_modules/
 frontend/dist/
 frontend/coverage/
+
+# Generated runtime, browser, and audit artifacts
+.tmp/
+artifacts/
+frontend/artifacts/
+.hallmark/
+*.log
+*.pid
+**/browser-profile/
+**/chrome-profile/
+
+# Local model exports, weights, and incomplete downloads
+*.onnx
+*.pt
+*.pth
+*.safetensors
+*.gguf
+*.bin
+*.partial
+*.incomplete
+
+# Generated evaluation runs. Canonical public evidence is force-added explicitly.
 evals/results/
+evals/**/results/
+evals/documentation_finalization/
+evals/public_repository_release/
+evals/repository_cleanup/
+
+# Local agent/runtime metadata and duplicate working reports
+.agents/
+skills-lock.json
+/FINAL_*.md
+/PERSONAL*
+/RAG_*.md
+/V[7-9]_*.md
+/V1[0-2]*.md
+/v11a_*report.json
+
+# IDE metadata
 .idea/
 .vscode/

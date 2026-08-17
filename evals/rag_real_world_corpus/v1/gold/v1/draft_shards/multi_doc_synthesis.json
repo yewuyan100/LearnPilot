@@ -1,0 +1,878 @@
+{
+  "schema_version": "1.0.0",
+  "schema_ref": "draft_shard.schema.json",
+  "draft_status": "UNVERIFIED",
+  "case_type": "multi_doc_synthesis",
+  "expected_case_count": 10,
+  "cases": [
+    {
+      "case_id": "rw-gold-v1-multi-hybrid-index",
+      "tier": "CORE",
+      "case_type": "multi_doc_synthesis",
+      "information_need_key": "multi-hybrid-index",
+      "question": "要搭一个 hybrid retrieval 管线，BGE-M3 能提供哪些检索信号，而 Faiss 负责什么？两者的职责不要混在一起。",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "rag_retrieval",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-multi-hybrid-index-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-rag-bge-m3"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-bge-pipeline"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-multi-hybrid-index-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-rag-faiss-overview"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-faiss-purpose",
+            "ev-rw-faiss-distance"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-multi-hybrid-index-claim-01",
+          "canonical_claim": "BGE-M3 can supply dense and sparse retrieval signals and recommends hybrid retrieval plus reranking.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-hybrid-index-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-hybrid-index-claim-02",
+          "canonical_claim": "Faiss indexes and searches dense vector representations using vector distances or dot products.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-hybrid-index-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-multi-hybrid-index-01",
+          "eg-rw-multi-hybrid-index-02"
+        ],
+        "minimum_distinct_required_documents": 2,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-multi-retrieval-eval",
+      "tier": "CORE",
+      "case_type": "multi_doc_synthesis",
+      "information_need_key": "multi-retrieval-eval",
+      "question": "Faiss 向量索引产出的检索结果，怎样作为 Ragas 的 retrieved_contexts 进入评估数据，并由 context precision 检查排序质量？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "evaluation_reliability",
+      "secondary_topics": [
+        "rag_retrieval"
+      ],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-multi-retrieval-eval-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-rag-faiss-overview"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-faiss-purpose",
+            "ev-rw-faiss-distance"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-multi-retrieval-eval-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-ragas-workflow"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-ragas-collect-data"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-multi-retrieval-eval-03",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-context-precision"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-precision-definition"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-multi-retrieval-eval-claim-01",
+          "canonical_claim": "Faiss indexes and searches dense vectors by vector distance or dot product.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-retrieval-eval-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-retrieval-eval-claim-02",
+          "canonical_claim": "The evaluation record supplies retrieved_contexts for each user_input.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-retrieval-eval-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-retrieval-eval-claim-03",
+          "canonical_claim": "Context precision evaluates whether relevant chunks are ranked ahead of irrelevant chunks.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-retrieval-eval-03"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-multi-retrieval-eval-01",
+          "eg-rw-multi-retrieval-eval-02",
+          "eg-rw-multi-retrieval-eval-03"
+        ],
+        "minimum_distinct_required_documents": 3,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-multi-agent-resume",
+      "tier": "CORE",
+      "case_type": "multi_doc_synthesis",
+      "information_need_key": "multi-agent-resume",
+      "question": "长时间运行的 LangGraph agent 为何既需要 checkpointer，又需要在 interrupt 恢复时保持相同 thread_id？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "agent_engineering",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-multi-agent-resume-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-persistence"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-persist-overview",
+            "ev-rw-persist-comparison"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-multi-agent-resume-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-interrupts"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-interrupt-resume"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-multi-agent-resume-claim-01",
+          "canonical_claim": "The checkpointer persists thread-scoped graph state as checkpoints for continuity and recovery.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-agent-resume-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-agent-resume-claim-02",
+          "canonical_claim": "The same thread_id is the durable pointer used to return to the saved checkpoint when resuming.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-agent-resume-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-multi-agent-resume-01",
+          "eg-rw-multi-agent-resume-02"
+        ],
+        "minimum_distinct_required_documents": 2,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-multi-agent-memory-hitl",
+      "tier": "CORE",
+      "case_type": "multi_doc_synthesis",
+      "information_need_key": "multi-agent-memory-hitl",
+      "question": "如何组合 checkpointer、store 和 interrupt，既支持当前审批流程恢复，又保留跨会话用户偏好？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "agent_engineering",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-multi-agent-memory-hitl-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-persistence"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-persist-comparison"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-multi-agent-memory-hitl-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-interrupts"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-interrupt-mechanism"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-multi-agent-memory-hitl-claim-01",
+          "canonical_claim": "A checkpointer provides thread-scoped state for the interrupted workflow.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-agent-memory-hitl-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-agent-memory-hitl-claim-02",
+          "canonical_claim": "A store carries cross-thread application data such as user preferences.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-agent-memory-hitl-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-agent-memory-hitl-claim-03",
+          "canonical_claim": "interrupt suspends execution and returns an external resume value into the node.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-agent-memory-hitl-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-multi-agent-memory-hitl-01",
+          "eg-rw-multi-agent-memory-hitl-02"
+        ],
+        "minimum_distinct_required_documents": 2,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-multi-backend-control",
+      "tier": "CORE",
+      "case_type": "multi_doc_synthesis",
+      "information_need_key": "multi-backend-control",
+      "question": "FastAPI 接口在等待异步 I/O、复用鉴权依赖、以及把权限失败返回给客户端时，三部分各应依赖什么机制？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "ai_app_backend",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "mixed",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-multi-backend-control-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-async"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-async-tldr"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-multi-backend-control-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-dependencies"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-deps-meaning",
+            "ev-rw-deps-hierarchy"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-multi-backend-control-03",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-errors"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-errors-http-exception"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-multi-backend-control-claim-01",
+          "canonical_claim": "Await-capable I/O belongs in async def path operations.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-backend-control-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-backend-control-claim-02",
+          "canonical_claim": "Shared authentication/authorization requirements can be modeled as dependencies and sub-dependencies.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-backend-control-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-backend-control-claim-03",
+          "canonical_claim": "An HTTPException can immediately return an appropriate client error.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-backend-control-03"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-multi-backend-control-01",
+          "eg-rw-multi-backend-control-02",
+          "eg-rw-multi-backend-control-03"
+        ],
+        "minimum_distinct_required_documents": 3,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-multi-async-dependency",
+      "tier": "CORE",
+      "case_type": "multi_doc_synthesis",
+      "information_need_key": "multi-async-dependency",
+      "question": "普通 def dependency 放进 async def endpoint 时，框架怎样执行它？依赖文档与并发文档分别提供了什么依据？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "ai_app_backend",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-multi-async-dependency-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-dependencies"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-deps-mixed-async"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-multi-async-dependency-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-async"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-async-threadpool"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-multi-async-dependency-claim-01",
+          "canonical_claim": "FastAPI permits def dependencies inside async def path operations.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-async-dependency-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-async-dependency-claim-02",
+          "canonical_claim": "A normal def dependency is executed in the external threadpool rather than awaited directly.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-async-dependency-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-multi-async-dependency-01",
+          "eg-rw-multi-async-dependency-02"
+        ],
+        "minimum_distinct_required_documents": 2,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-multi-error-observability",
+      "tier": "CORE",
+      "case_type": "multi_doc_synthesis",
+      "information_need_key": "multi-error-observability",
+      "question": "API 请求失败时，FastAPI 的异常处理负责客户端响应，而 OpenTelemetry span 应记录哪些状态语义？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "ai_app_backend",
+      "secondary_topics": [
+        "evaluation_reliability"
+      ],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-multi-error-observability-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-errors"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-errors-http-exception"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-multi-error-observability-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-otel-traces"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-otel-links-status"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-multi-error-observability-claim-01",
+          "canonical_claim": "FastAPI raises HTTPException to terminate the request and send an HTTP error response.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-error-observability-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-error-observability-claim-02",
+          "canonical_claim": "A span status can be Error for a failed operation; Unset is the default and can still mean successful completion.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-error-observability-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-multi-error-observability-01",
+          "eg-rw-multi-error-observability-02"
+        ],
+        "minimum_distinct_required_documents": 2,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-multi-eval-stack",
+      "tier": "CORE",
+      "case_type": "multi_doc_synthesis",
+      "information_need_key": "multi-eval-stack",
+      "question": "评估一个 RAG 系统时，Ragas workflow 提供的 reference/response/retrieved_contexts 与 context precision 的有 reference、无 reference 两种用法如何对应？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "evaluation_reliability",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-multi-eval-stack-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-ragas-workflow"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-ragas-collect-data"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-multi-eval-stack-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-context-precision"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-precision-reference-response",
+            "ev-rw-precision-without-reference",
+            "ev-rw-precision-with-reference"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-multi-eval-stack-claim-01",
+          "canonical_claim": "The workflow record includes response, retrieved_contexts, and an optional reference.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-eval-stack-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-eval-stack-claim-02",
+          "canonical_claim": "Reference-based context precision compares contexts to a reference response.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-eval-stack-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-eval-stack-claim-03",
+          "canonical_claim": "Without-reference context precision compares contexts to the generated response.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-eval-stack-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-multi-eval-stack-01",
+          "eg-rw-multi-eval-stack-02"
+        ],
+        "minimum_distinct_required_documents": 2,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-multi-rag-tracing",
+      "tier": "CORE",
+      "case_type": "multi_doc_synthesis",
+      "information_need_key": "multi-rag-tracing",
+      "question": "一个 RAG 请求先检索再生成时，评估数据和 trace/span 结构分别怎样描述这条执行链？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "evaluation_reliability",
+      "secondary_topics": [
+        "rag_retrieval"
+      ],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-multi-rag-tracing-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-ragas-workflow"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-ragas-components"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-multi-rag-tracing-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-otel-traces"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-otel-trace-overview"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-multi-rag-tracing-03",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-ragas-workflow"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-ragas-collect-data"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-multi-rag-tracing-04",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-otel-traces"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-otel-propagation-span"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-multi-rag-tracing-claim-01",
+          "canonical_claim": "The RAG workflow separates vectorization, retrieval, and response generation and records retrieved contexts with the response.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-rag-tracing-01",
+            "eg-rw-multi-rag-tracing-03"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-rag-tracing-claim-02",
+          "canonical_claim": "A trace represents the request path and spans represent units of work correlated through context propagation.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-rag-tracing-02",
+            "eg-rw-multi-rag-tracing-04"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-multi-rag-tracing-01",
+          "eg-rw-multi-rag-tracing-02",
+          "eg-rw-multi-rag-tracing-03",
+          "eg-rw-multi-rag-tracing-04"
+        ],
+        "minimum_distinct_required_documents": 2,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-multi-faiss-context-precision",
+      "tier": "CORE",
+      "case_type": "multi_doc_synthesis",
+      "information_need_key": "multi-faiss-context-precision",
+      "question": "How do Faiss's index trade-offs and context precision measure different parts of retrieval quality, and why can improving speed alone not establish better ranking?",
+      "query_language": "en",
+      "expected_answer_language": "en",
+      "primary_topic": "rag_retrieval",
+      "secondary_topics": [
+        "evaluation_reliability"
+      ],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-multi-faiss-context-precision-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-rag-faiss-overview"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-faiss-tradeoffs"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-multi-faiss-context-precision-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-context-precision"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-precision-definition"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-multi-faiss-context-precision-claim-01",
+          "canonical_claim": "Faiss index choices trade search time, quality, memory, training time, and adding time.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-faiss-context-precision-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-faiss-context-precision-claim-02",
+          "canonical_claim": "Context precision specifically measures how highly relevant retrieved chunks are ranked.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-faiss-context-precision-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-multi-faiss-context-precision-claim-03",
+          "canonical_claim": "A faster index does not by itself prove a better relevance ordering.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-multi-faiss-context-precision-01",
+            "eg-rw-multi-faiss-context-precision-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-multi-faiss-context-precision-01",
+          "eg-rw-multi-faiss-context-precision-02"
+        ],
+        "minimum_distinct_required_documents": 2,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    }
+  ]
+}

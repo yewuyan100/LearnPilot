@@ -1,0 +1,30 @@
+{
+  "run_id": "20260816T140758Z-finalproductaudit",
+  "status": "FINAL",
+  "preexisting_dirty_worktree_preserved": true,
+  "created_files": [
+    "evals/final_product_audit/20260816T140758Z-finalproductaudit/LEARNPILOT_FINAL_PRODUCT_AUDIT.md",
+    "evals/final_product_audit/20260816T140758Z-finalproductaudit/project_state_snapshot.json",
+    "evals/final_product_audit/20260816T140758Z-finalproductaudit/authoritative_evidence_inventory.json",
+    "evals/final_product_audit/20260816T140758Z-finalproductaudit/core_workflow_audit.json",
+    "evals/final_product_audit/20260816T140758Z-finalproductaudit/runtime_startup_audit.json",
+    "evals/final_product_audit/20260816T140758Z-finalproductaudit/frontend_backend_contract_audit.json",
+    "evals/final_product_audit/20260816T140758Z-finalproductaudit/failure_fallback_audit.json",
+    "evals/final_product_audit/20260816T140758Z-finalproductaudit/data_state_integrity_audit.json",
+    "evals/final_product_audit/20260816T140758Z-finalproductaudit/generation_nondeterminism_assessment.json",
+    "evals/final_product_audit/20260816T140758Z-finalproductaudit/repository_inventory.json",
+    "evals/final_product_audit/20260816T140758Z-finalproductaudit/repository_cleanup_plan.json",
+    "evals/final_product_audit/20260816T140758Z-finalproductaudit/p0_p1_p2_assessment.json",
+    "evals/final_product_audit/20260816T140758Z-finalproductaudit/final_product_decision.json",
+    "evals/final_product_audit/20260816T140758Z-finalproductaudit/changed_files.json",
+    "evals/final_product_audit/20260816T140758Z-finalproductaudit/artifact_manifest.json"
+  ],
+  "production_code_changed": false,
+  "production_dependency_changed": false,
+  "test_code_changed": false,
+  "evaluation_artifacts_created": true,
+  "repository_cleanup_executed": false,
+  "files_deleted": 0,
+  "files_moved": 0,
+  "git_commit_reset_clean_or_stash_performed": false
+}

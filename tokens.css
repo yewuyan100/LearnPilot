@@ -1,39 +1,101 @@
-/* Hallmark · token system · theme: Cobalt · light / geometric-sans / cool */
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V4 · genre: modern-minimal · macrostructure: locked LearnPilot workspaces with semantic feedback and collaboration surfaces · theme: studied-DNA (source: approved LearnPilot reference) · nav: N3 fixed rail · footer: none · contrast: pass (40-41) · slop: pass (1-58, final visual closure) · mobile: pass (34, 49, 50-57) · designed-as-app */
 :root {
-  --color-canvas: oklch(97.4% 0.008 250);
-  --color-surface: oklch(99.2% 0.004 250);
-  --color-surface-raised: oklch(100% 0.002 250);
-  --color-surface-muted: oklch(95.6% 0.012 250);
-  --color-rule: oklch(88% 0.016 250);
-  --color-rule-strong: oklch(76% 0.024 250);
-  --color-muted: oklch(49% 0.028 250);
-  --color-ink-soft: oklch(34% 0.032 250);
-  --color-ink: oklch(20% 0.035 250);
-  --color-accent-soft: oklch(94% 0.035 255);
-  --color-accent: oklch(56% 0.19 255);
-  --color-accent-strong: oklch(46% 0.19 255);
-  --color-accent-ink: oklch(99% 0.006 255);
-  --color-focus: oklch(47% 0.22 255);
-  --color-success-soft: oklch(95% 0.035 155);
-  --color-success: oklch(51% 0.13 155);
-  --color-warning-soft: oklch(96% 0.045 75);
-  --color-warning: oklch(54% 0.14 60);
-  --color-note-soft: oklch(96% 0.035 305);
-  --color-note: oklch(50% 0.14 305);
-  --color-danger-soft: oklch(96% 0.03 25);
-  --color-danger: oklch(52% 0.18 25);
-  --color-overlay: oklch(18% 0.025 250 / 0.42);
-  --color-shadow: oklch(20% 0.03 250 / 0.08);
+  --color-page: oklch(97.4% 0.009 235);
+  --color-canvas: var(--color-page);
+  --color-surface: oklch(99.4% 0.005 235);
+  --color-surface-raised: oklch(99% 0.005 235);
+  --color-surface-muted: oklch(96.4% 0.012 235);
+  --color-surface-soft: var(--color-surface-muted);
+  --color-rule: oklch(91.5% 0.013 235);
+  --color-rule-strong: oklch(82% 0.025 235);
+  --color-border: var(--color-rule);
+  --color-muted: oklch(54% 0.025 240);
+  --color-ink-soft: oklch(42% 0.03 240);
+  --color-ink: oklch(24% 0.032 248);
+  --color-text: var(--color-ink);
+  --color-text-muted: var(--color-muted);
 
-  --font-display: "Space Grotesk", "Microsoft YaHei UI", ui-sans-serif, sans-serif;
+  --color-primary: oklch(51% 0.16 250);
+  --color-primary-hover: oklch(46% 0.15 250);
+  --color-accent: var(--color-primary);
+  --color-accent-strong: oklch(43% 0.135 250);
+  --color-accent-soft: oklch(95.5% 0.025 245);
+  --color-accent-rule: oklch(84% 0.055 245);
+  --color-accent-ink: oklch(99% 0.005 240);
+  --color-action: var(--color-primary);
+  --color-action-strong: var(--color-primary-hover);
+  --color-action-soft: var(--color-accent-soft);
+  --color-action-ink: var(--color-accent-ink);
+
+  --color-secondary: oklch(66% 0.14 215);
+  --color-focus: oklch(55% 0.17 245);
+  --color-logo-cyan: oklch(70% 0.155 215);
+  --color-logo-blue: oklch(55% 0.18 255);
+  --color-summary-ice-a: oklch(98% 0.014 220);
+  --color-summary-ice-b: oklch(94% 0.035 225);
+  --color-summary-blush-a: oklch(98% 0.012 15);
+  --color-summary-blush-b: oklch(94% 0.032 15);
+  --color-summary-periwinkle-a: oklch(98% 0.012 285);
+  --color-summary-periwinkle-b: oklch(94% 0.032 285);
+  --color-summary-sand-a: oklch(98% 0.014 75);
+  --color-summary-sand-b: oklch(94% 0.035 75);
+  --color-summary-ice-icon: oklch(58% 0.16 235);
+  --color-summary-blush-icon: oklch(59% 0.17 15);
+  --color-summary-periwinkle-icon: oklch(57% 0.18 285);
+  --color-summary-sand-icon: oklch(62% 0.16 65);
+  --color-path-layer-a: oklch(94% 0.045 240);
+  --color-path-layer-b: oklch(87% 0.075 240);
+  --color-path-layer-c: oklch(97% 0.025 230);
+  --color-path-layer-d: oklch(91% 0.05 245);
+  --color-path-edge: oklch(84% 0.045 240);
+  --color-note: oklch(52% 0.11 260);
+  --color-note-soft: oklch(95% 0.022 260);
+  --color-success: oklch(50% 0.105 155);
+  --color-success-soft: oklch(95% 0.025 155);
+  --color-warning: oklch(50% 0.12 78);
+  --color-warning-soft: oklch(96% 0.035 78);
+  --color-danger: oklch(50% 0.14 24);
+  --color-danger-soft: oklch(96% 0.027 24);
+
+  /* Ocean Mist workspace composition palette. Scoped consumers protect the Workbench. */
+  --color-workspace-app-canvas: #eef4f7;
+  --color-workspace-canvas: #f4f8fa;
+  --color-workspace-paper: #fcfdfd;
+  --color-workspace-mist: #e6f1f7;
+  --color-workspace-selected: #dcecf8;
+  --color-workspace-graphite: #17232e;
+  --color-workspace-secondary: #60717f;
+  --color-workspace-ocean: #0873b9;
+  --color-workspace-ocean-dark: #07598e;
+  --color-workspace-teal: #e3f2ef;
+  --color-workspace-sand: #f3eee4;
+  --color-feedback-recent: oklch(97.2% 0.012 235);
+  --color-feedback-strengthen: oklch(97% 0.018 75);
+  --color-feedback-steady: oklch(96.8% 0.018 170);
+  --color-feedback-review: oklch(96.6% 0.01 225);
+  --color-ai-context-surface: oklch(97.4% 0.012 235);
+
+  --color-overlay: oklch(24% 0.03 245 / 0.42);
+  --color-shadow: oklch(26% 0.04 240 / 0.055);
+  --color-shadow-elevated: oklch(21% 0.04 240 / 0.09);
+  --color-on-dark: oklch(98% 0.006 240);
+  --color-on-dark-muted: oklch(86% 0.018 240);
+  --color-on-dark-rule: oklch(98% 0.006 240 / 0.16);
+
+  --font-display: "Geist", "Microsoft YaHei UI", ui-sans-serif, sans-serif;
   --font-body: "IBM Plex Sans", "Microsoft YaHei UI", ui-sans-serif, sans-serif;
-  --font-outlier: "JetBrains Mono", "Cascadia Code", ui-monospace, monospace;
+  --font-outlier: var(--font-body);
+  --font-mono: "JetBrains Mono", "Cascadia Code", ui-monospace, monospace;
 
   --space-3xs: 0.125rem;
   --space-2xs: 0.25rem;
   --space-xs: 0.5rem;
   --space-sm: 0.75rem;
   --space-md: 1rem;
+  --space-2: var(--space-xs);
+  --space-3: var(--space-sm);
+  --space-4: var(--space-md);
+  --space-5: 1.25rem;
   --space-lg: 1.5rem;
   --space-xl: 2.5rem;
   --space-2xl: 4rem;
@@ -47,18 +109,38 @@
   --text-xl: 1.75rem;
   --text-2xl: 2.25rem;
   --text-display: clamp(2rem, 4vw, 3.25rem);
+  --font-size-sm: var(--text-sm);
+  --font-size-md: var(--text-md);
+  --font-size-xl: var(--text-xl);
 
   --radius-xs: 0.25rem;
-  --radius-sm: 0.375rem;
-  --radius-md: 0.625rem;
-  --radius-lg: 0.875rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
   --radius-pill: 999px;
 
   --rule-hairline: 1px solid var(--color-rule);
+  --shadow-whisper: 0 1px 2px var(--color-shadow);
+  --shadow-xs: var(--shadow-whisper);
+  --shadow-sm: 0 0.375rem 1.25rem var(--color-shadow);
+  --shadow-card: 0 0.5rem 1.5rem var(--color-shadow);
+  --layout-max: 100rem;
+  --sidebar-width: 13.75rem;
+  --sidebar-width-collapsed: 4.5rem;
+  --topbar-height: 4.25rem;
+
+  --z-base: 1;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal: 400;
+  --z-toast: 500;
+  --z-tooltip: 600;
+
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --dur-micro: 120ms;
   --dur-short: 220ms;
-  --dur-long: 420ms;
+  --dur-long: 320ms;
 }

@@ -1,0 +1,65 @@
+{
+  "run_id": "20260816T140758Z-finalproductaudit",
+  "status": "PASS",
+  "new_browser_full_matrix": false,
+  "workflows": [
+    {
+      "name": "Workbench",
+      "route": "/workspace",
+      "status": "PASS",
+      "evidence": ["existing real browser acceptance", "current Vite HTTP shell smoke"],
+      "checks": ["page opens", "LearnPilot title", "primary cards/sections present", "primary navigation available", "no recorded browser errors"]
+    },
+    {
+      "name": "Learning Planning",
+      "route": "/items",
+      "status": "PASS",
+      "evidence": ["final usability canonical tests", "real browser lifecycle acceptance"],
+      "checks": ["Create", "Rename", "Delete", "enter item", "detail/index synchronization"]
+    },
+    {
+      "name": "Knowledge Base",
+      "route": "/knowledge",
+      "status": "PASS",
+      "evidence": ["428/428 backend regression", "frontend canonical gates", "primary-route browser acceptance", "production RAG E2E"],
+      "checks": ["material list", "upload/access contract", "material participates in RAG", "error UI does not crash"]
+    },
+    {
+      "name": "RAG Q&A",
+      "route": "/knowledge?tab=qa",
+      "status": "PASS_WITH_DOCUMENTED_LIMITATION",
+      "production_path": "Dense Top18 -> eligibility -> BAAI/bge-reranker-v2-m3 CUDA FP32 -> governance -> Final Top7 -> DeepSeek -> Citation",
+      "evidence": ["5/5 production HTTP 200", "5/5 exact selected-context digest", "13/13 emitted citation IDs resolve", "Dense fallback PASS"],
+      "limitation": "One of five fixed cases omitted one supported answer branch; no unsupported fabrication."
+    },
+    {
+      "name": "AI Collaboration",
+      "route": "/ai",
+      "status": "PASS",
+      "evidence": ["primary-route browser acceptance", "current Vite shell smoke", "authoritative backend/frontend regression"],
+      "checks": ["route opens", "context contract intact", "safe public errors", "recent RAG/backend changes did not break API"]
+    },
+    {
+      "name": "Notes",
+      "route": "/notes",
+      "status": "PASS",
+      "evidence": ["final usability tests", "real browser lifecycle acceptance"],
+      "checks": ["Create", "Rename", "Archive", "Delete"]
+    },
+    {
+      "name": "Discover",
+      "route": "/explore",
+      "status": "PASS",
+      "evidence": ["primary-route browser acceptance", "current Vite shell smoke"],
+      "checks": ["does not crash", "lightweight state does not misrepresent unavailable functionality"]
+    },
+    {
+      "name": "Settings",
+      "route": "/settings",
+      "status": "PASS",
+      "evidence": ["primary-route browser acceptance", "current Vite shell smoke"],
+      "checks": ["page opens", "no functional blocker"],
+      "visual_review": "OUT_OF_SCOPE"
+    }
+  ]
+}

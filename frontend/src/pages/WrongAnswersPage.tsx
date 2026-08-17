@@ -43,7 +43,7 @@ export function WrongAnswersPage() {
     <div className="page wrong-answer-page">
       <header className="page-header page-header--split">
         <div>
-          <span className="eyebrow">V4 · 错题闭环</span>
+          <span className="page-kicker">学习</span>
           <h1>错题本</h1>
           <p>这里的“已掌握”是你的复习状态，不代表算法掌握度。</p>
         </div>

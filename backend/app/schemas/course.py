@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from pydantic import BaseModel, Field
 
 from app.models.enums import CourseStatus, KnowledgePointStatus
@@ -50,4 +52,8 @@ class KnowledgePointRead(Timestamped):
     order_index: int
     estimated_minutes: int
     status: str
-
+    lifecycle_status: str
+    superseded_by_id: int | None
+    lifecycle_reason: str | None
+    archived_at: datetime | None
+    version: int

@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0.0",
+  "case_type": "deep_long_doc_localization",
+  "expected_case_count": 4,
+  "actual_case_count": 4,
+  "schema_validation": "PASS",
+  "document_reference_validation": "PASS",
+  "evidence_anchor_reference_validation": "PASS",
+  "distribution_validation": "PASS",
+  "cumulative_authored_count": 64
+}

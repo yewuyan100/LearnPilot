@@ -1,10 +1,11 @@
-from datetime import date, datetime, timedelta, timezone
+from datetime import timedelta
 from hashlib import sha256
 
 from sqlalchemy import delete, select
 from sqlalchemy.orm import Session
 
 from app.core.config import get_settings
+from app.core.clock import clock_from_settings
 from app.models import (
     ActivityQuestion, Course, DailyTask, KnowledgePoint, LearningActivity,
     LearningGoal, LearningSession, QuizAnswer, QuizAttempt, WrongAnswer,
@@ -18,11 +19,14 @@ def seed_demo(db: Session) -> LearningGoal:
     existing = db.scalar(select(LearningGoal).where(LearningGoal.is_demo.is_(True)))
     if existing:
         return existing
-    now = datetime.now(timezone.utc)
+    settings = get_settings()
+    clock = clock_from_settings(settings)
+    now = clock.now()
+    today = clock.today()
     goal = LearningGoal(
-        title="[DEMO] PersonalLearning 自适应闭环",
+        title="[DEMO] LearnPilot 自适应闭环",
         description="仅用于演示 V1–V6，不包含任何个人资料。",
-        target_date=date.today() + timedelta(days=21), daily_minutes=40,
+        target_date=today + timedelta(days=21), daily_minutes=40,
         current_level="工程演示", status="active", is_demo=True,
     )
     db.add(goal); db.flush()
@@ -43,7 +47,7 @@ def seed_demo(db: Session) -> LearningGoal:
     db.add(DailyTask(
         learning_goal_id=goal.id, course_id=course.id, knowledge_point_id=points[0].id,
         title="[DEMO] 复习掌握度证据", task_type="learning", estimated_minutes=20,
-        scheduled_date=date.today(), status="completed",
+        scheduled_date=today, status="completed",
     ))
     db.add(LearningSession(
         learning_goal_id=goal.id, course_id=course.id, knowledge_point_id=points[0].id,
@@ -89,7 +93,7 @@ def seed_demo(db: Session) -> LearningGoal:
     ))
     db.commit()
     refresh_adaptive_learning(
-        db, get_settings(), points[0].id,
+        db, settings, points[0].id,
         trigger_type="quiz_completed", trigger_source_id=attempt.id,
     )
     db.refresh(goal)

@@ -54,10 +54,12 @@ describe("V6 掌握度与自适应复习", () => {
     expect(screen.getByText("4 条 · 2 条错题")).toBeInTheDocument();
   });
 
-  it("显示证据组成、快照、算法版本和复习原因", async () => {
+  it("显示证据组成、历史和复习原因且隐藏内部字段", async () => {
     renderApp(<App />, "/mastery/7");
     expect(await screen.findByRole("heading", { name: "LangGraph Checkpoint" })).toBeInTheDocument();
-    expect(screen.getByText(/mastery-rule-v1/)).toBeInTheDocument();
+    expect(screen.queryByText(/mastery-rule-v1/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/quiz_completed/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/quiz_answer/)).not.toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "证据组成" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "掌握度历史" })).toBeInTheDocument();
     expect(screen.getByText("存在 2 条未解决错题，建议尽快复习。")).toBeInTheDocument();

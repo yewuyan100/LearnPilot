@@ -1,0 +1,683 @@
+{
+  "schema_version": "1.0.0",
+  "repair_version": "gold-correctness-repair-v1",
+  "repair_date": "2026-08-14",
+  "pre_repair_gold_sha256": "11b71513b00a63e158333eab5d26bc3aded858116f237b1b3b206dc3f444ba9c",
+  "post_repair_gold_sha256": "33a0b69901fa47e3fe45be0277228cd4a5519fe780fe5b9d2c52b1bfe614927a",
+  "frozen_review_sha256": "89bf00e924579c1c68a88a952797d4bfb73bccab0f7ba8ffe28bb74e5888279d",
+  "repairs": 9,
+  "affected_cases": 8,
+  "affected_case_ids": [
+    "rw-gold-v1-disambig-fastapi-async-deps",
+    "rw-gold-v1-disambig-fastapi-exceptions",
+    "rw-gold-v1-disambig-interrupt-static",
+    "rw-gold-v1-long-langgraph-positioning",
+    "rw-gold-v1-multi-rag-tracing",
+    "rw-gold-v1-semantic-checkpointer-store",
+    "rw-gold-v1-stress-conflict-fastapi-handler-type",
+    "rw-gold-v1-stress-conflict-ragas-reference-mode"
+  ],
+  "repair_records": [
+    {
+      "repair_id": "repair-01",
+      "case_id": "rw-gold-v1-semantic-checkpointer-store",
+      "claim_id": "rw-gold-v1-semantic-checkpointer-store-claim-01",
+      "defect_category": "D",
+      "old_value": {
+        "case_id": "rw-gold-v1-semantic-checkpointer-store",
+        "question": "为什么长期运行的 agent 既要有 durable execution 与 memory 能力，又要区分 thread-scoped checkpoint 和跨 thread store？",
+        "claim_id": "rw-gold-v1-semantic-checkpointer-store-claim-01",
+        "evaluation_mode": "SEMANTIC_REVIEW",
+        "claim": "LangGraph's high-level capabilities and persistence guide both support durable continuity and memory for long-running agents.",
+        "groups": [
+          {
+            "group_id": "eg-rw-semantic-checkpointer-store-01",
+            "required": true,
+            "evidence_role": "REQUIRED",
+            "candidate_anchors": [
+              {
+                "evidence_id": "ev-rw-agent-overview-capabilities",
+                "document_id": "rw-agent-langgraph-overview"
+              },
+              {
+                "evidence_id": "ev-rw-persist-overview",
+                "document_id": "rw-agent-persistence"
+              }
+            ]
+          }
+        ],
+        "citation_contract": "Pre-repair claim/group binding recorded by the frozen review artifact."
+      },
+      "new_value": {
+        "case_id": "rw-gold-v1-semantic-checkpointer-store",
+        "question": "为什么长期运行的 agent 既要有 durable execution 与 memory 能力，又要区分 thread-scoped checkpoint 和跨 thread store？",
+        "claim_id": "rw-gold-v1-semantic-checkpointer-store-claim-01",
+        "evaluation_mode": "SEMANTIC_REVIEW",
+        "claim": "LangGraph's high-level capabilities and persistence guide both support durable continuity and memory for long-running agents.",
+        "groups": [
+          {
+            "group_id": "eg-rw-semantic-checkpointer-store-01",
+            "required": true,
+            "evidence_role": "REQUIRED",
+            "candidate_anchors": [
+              {
+                "evidence_id": "ev-rw-agent-overview-capabilities",
+                "document_id": "rw-agent-langgraph-overview"
+              }
+            ]
+          },
+          {
+            "group_id": "eg-rw-semantic-checkpointer-store-03",
+            "required": true,
+            "evidence_role": "REQUIRED",
+            "candidate_anchors": [
+              {
+                "evidence_id": "ev-rw-persist-overview",
+                "document_id": "rw-agent-persistence"
+              }
+            ]
+          }
+        ],
+        "citation_contract": {
+          "citation_required": true,
+          "required_evidence_group_ids": [
+            "eg-rw-semantic-checkpointer-store-01",
+            "eg-rw-semantic-checkpointer-store-02",
+            "eg-rw-semantic-checkpointer-store-03"
+          ],
+          "minimum_distinct_required_documents": 2,
+          "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+          "forbid_citations": false,
+          "notes": "Citations must semantically support each attached claim and cover every required group."
+        }
+      },
+      "root_cause": "Each alternative independently shows durable continuity and memory in one source, but the claim asserts that both named sources do so. Under the contract's OR-inside-group rule, neither alternative alone establishes the two-source 'both' proposition.",
+      "repair_type": "GROUP_LOGIC",
+      "information_need_preserved": true,
+      "why_not_baseline_driven": "The repair is derived only from the frozen independent defect evidence and reopened frozen corpus; no model or baseline output was used.",
+      "source_review_reference": "independent_semantic_verification_v1",
+      "source_review_sha256": "89bf00e924579c1c68a88a952797d4bfb73bccab0f7ba8ffe28bb74e5888279d"
+    },
+    {
+      "repair_id": "repair-02",
+      "case_id": "rw-gold-v1-long-langgraph-positioning",
+      "claim_id": "rw-gold-v1-long-langgraph-positioning-claim-02",
+      "defect_category": "C",
+      "old_value": {
+        "case_id": "rw-gold-v1-long-langgraph-positioning",
+        "question": "LangGraph 在长文档开头如何定位自身：它面向哪类 agent，又强调给开发者哪两类底层控制？",
+        "claim_id": "rw-gold-v1-long-langgraph-positioning-claim-02",
+        "evaluation_mode": "SEMANTIC_REVIEW",
+        "claim": "It emphasizes control over both agent workflows and agent state.",
+        "groups": [
+          {
+            "group_id": "eg-rw-long-langgraph-positioning-01",
+            "required": true,
+            "evidence_role": "REQUIRED",
+            "candidate_anchors": [
+              {
+                "evidence_id": "ev-rw-agent-overview-purpose",
+                "document_id": "rw-agent-langgraph-overview"
+              }
+            ]
+          }
+        ],
+        "citation_contract": "Pre-repair claim/group binding recorded by the frozen review artifact."
+      },
+      "new_value": {
+        "case_id": "rw-gold-v1-long-langgraph-positioning",
+        "question": "LangGraph 在长文档开头如何定位自身：它面向哪类 agent，又强调给开发者哪两类底层控制？",
+        "claim_id": "rw-gold-v1-long-langgraph-positioning-claim-02",
+        "evaluation_mode": "SEMANTIC_REVIEW",
+        "claim": "It emphasizes control over both agent workflows and agent state.",
+        "groups": [
+          {
+            "group_id": "eg-rw-long-langgraph-positioning-01",
+            "required": true,
+            "evidence_role": "REQUIRED",
+            "candidate_anchors": [
+              {
+                "evidence_id": "ev-rw-agent-overview-purpose",
+                "document_id": "rw-agent-langgraph-overview"
+              }
+            ]
+          },
+          {
+            "group_id": "eg-rw-long-langgraph-positioning-02",
+            "required": true,
+            "evidence_role": "REQUIRED",
+            "candidate_anchors": [
+              {
+                "evidence_id": "ev-rw-agent-overview-capabilities",
+                "document_id": "rw-agent-langgraph-overview"
+              }
+            ]
+          }
+        ],
+        "citation_contract": {
+          "citation_required": true,
+          "required_evidence_group_ids": [
+            "eg-rw-long-langgraph-positioning-01",
+            "eg-rw-long-langgraph-positioning-02"
+          ],
+          "minimum_distinct_required_documents": 1,
+          "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+          "forbid_citations": false,
+          "notes": "Citations must semantically support each attached claim and cover every required group."
+        }
+      },
+      "root_cause": "The reopened overview calls LangGraph a low-level orchestration framework for long-running, stateful agents. It does not explicitly say that developers receive two distinct controls over both workflows and state, so the claim is stronger than the locator text.",
+      "repair_type": "ANCHOR_REBIND",
+      "information_need_preserved": true,
+      "why_not_baseline_driven": "The repair is derived only from the frozen independent defect evidence and reopened frozen corpus; no model or baseline output was used.",
+      "source_review_reference": "independent_semantic_verification_v1",
+      "source_review_sha256": "89bf00e924579c1c68a88a952797d4bfb73bccab0f7ba8ffe28bb74e5888279d"
+    },
+    {
+      "repair_id": "repair-03",
+      "case_id": "rw-gold-v1-multi-rag-tracing",
+      "claim_id": "rw-gold-v1-multi-rag-tracing-claim-01",
+      "defect_category": "D",
+      "old_value": {
+        "case_id": "rw-gold-v1-multi-rag-tracing",
+        "question": "一个 RAG 请求先检索再生成时，评估数据和 trace/span 结构分别怎样描述这条执行链？",
+        "claim_id": "rw-gold-v1-multi-rag-tracing-claim-01",
+        "evaluation_mode": "SEMANTIC_REVIEW",
+        "claim": "The RAG workflow separates vectorization, retrieval, and response generation and records retrieved contexts with the response.",
+        "groups": [
+          {
+            "group_id": "eg-rw-multi-rag-tracing-01",
+            "required": true,
+            "evidence_role": "REQUIRED",
+            "candidate_anchors": [
+              {
+                "evidence_id": "ev-rw-ragas-components",
+                "document_id": "rw-eval-ragas-workflow"
+              },
+              {
+                "evidence_id": "ev-rw-ragas-collect-data",
+                "document_id": "rw-eval-ragas-workflow"
+              }
+            ]
+          }
+        ],
+        "citation_contract": "Pre-repair claim/group binding recorded by the frozen review artifact."
+      },
+      "new_value": {
+        "case_id": "rw-gold-v1-multi-rag-tracing",
+        "question": "一个 RAG 请求先检索再生成时，评估数据和 trace/span 结构分别怎样描述这条执行链？",
+        "claim_id": "rw-gold-v1-multi-rag-tracing-claim-01",
+        "evaluation_mode": "SEMANTIC_REVIEW",
+        "claim": "The RAG workflow separates vectorization, retrieval, and response generation and records retrieved contexts with the response.",
+        "groups": [
+          {
+            "group_id": "eg-rw-multi-rag-tracing-01",
+            "required": true,
+            "evidence_role": "REQUIRED",
+            "candidate_anchors": [
+              {
+                "evidence_id": "ev-rw-ragas-components",
+                "document_id": "rw-eval-ragas-workflow"
+              }
+            ]
+          },
+          {
+            "group_id": "eg-rw-multi-rag-tracing-03",
+            "required": true,
+            "evidence_role": "REQUIRED",
+            "candidate_anchors": [
+              {
+                "evidence_id": "ev-rw-ragas-collect-data",
+                "document_id": "rw-eval-ragas-workflow"
+              }
+            ]
+          }
+        ],
+        "citation_contract": {
+          "citation_required": true,
+          "required_evidence_group_ids": [
+            "eg-rw-multi-rag-tracing-01",
+            "eg-rw-multi-rag-tracing-02",
+            "eg-rw-multi-rag-tracing-03",
+            "eg-rw-multi-rag-tracing-04"
+          ],
+          "minimum_distinct_required_documents": 2,
+          "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+          "forbid_citations": false,
+          "notes": "Citations must semantically support each attached claim and cover every required group."
+        }
+      },
+      "root_cause": "One OR alternative lists vectorization, retrieval, and generation; the other records retrieved_contexts with response. Neither candidate alone supports the complete conjunctive claim.",
+      "repair_type": "GROUP_LOGIC",
+      "information_need_preserved": true,
+      "why_not_baseline_driven": "The repair is derived only from the frozen independent defect evidence and reopened frozen corpus; no model or baseline output was used.",
+      "source_review_reference": "independent_semantic_verification_v1",
+      "source_review_sha256": "89bf00e924579c1c68a88a952797d4bfb73bccab0f7ba8ffe28bb74e5888279d"
+    },
+    {
+      "repair_id": "repair-04",
+      "case_id": "rw-gold-v1-multi-rag-tracing",
+      "claim_id": "rw-gold-v1-multi-rag-tracing-claim-02",
+      "defect_category": "D",
+      "old_value": {
+        "case_id": "rw-gold-v1-multi-rag-tracing",
+        "question": "一个 RAG 请求先检索再生成时，评估数据和 trace/span 结构分别怎样描述这条执行链？",
+        "claim_id": "rw-gold-v1-multi-rag-tracing-claim-02",
+        "evaluation_mode": "SEMANTIC_REVIEW",
+        "claim": "A trace represents the request path and spans represent units of work correlated through context propagation.",
+        "groups": [
+          {
+            "group_id": "eg-rw-multi-rag-tracing-02",
+            "required": true,
+            "evidence_role": "REQUIRED",
+            "candidate_anchors": [
+              {
+                "evidence_id": "ev-rw-otel-trace-overview",
+                "document_id": "rw-eval-otel-traces"
+              },
+              {
+                "evidence_id": "ev-rw-otel-propagation-span",
+                "document_id": "rw-eval-otel-traces"
+              }
+            ]
+          }
+        ],
+        "citation_contract": "Pre-repair claim/group binding recorded by the frozen review artifact."
+      },
+      "new_value": {
+        "case_id": "rw-gold-v1-multi-rag-tracing",
+        "question": "一个 RAG 请求先检索再生成时，评估数据和 trace/span 结构分别怎样描述这条执行链？",
+        "claim_id": "rw-gold-v1-multi-rag-tracing-claim-02",
+        "evaluation_mode": "SEMANTIC_REVIEW",
+        "claim": "A trace represents the request path and spans represent units of work correlated through context propagation.",
+        "groups": [
+          {
+            "group_id": "eg-rw-multi-rag-tracing-02",
+            "required": true,
+            "evidence_role": "REQUIRED",
+            "candidate_anchors": [
+              {
+                "evidence_id": "ev-rw-otel-trace-overview",
+                "document_id": "rw-eval-otel-traces"
+              }
+            ]
+          },
+          {
+            "group_id": "eg-rw-multi-rag-tracing-04",
+            "required": true,
+            "evidence_role": "REQUIRED",
+            "candidate_anchors": [
+              {
+                "evidence_id": "ev-rw-otel-propagation-span",
+                "document_id": "rw-eval-otel-traces"
+              }
+            ]
+          }
+        ],
+        "citation_contract": {
+          "citation_required": true,
+          "required_evidence_group_ids": [
+            "eg-rw-multi-rag-tracing-01",
+            "eg-rw-multi-rag-tracing-02",
+            "eg-rw-multi-rag-tracing-03",
+            "eg-rw-multi-rag-tracing-04"
+          ],
+          "minimum_distinct_required_documents": 2,
+          "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+          "forbid_citations": false,
+          "notes": "Citations must semantically support each attached claim and cover every required group."
+        }
+      },
+      "root_cause": "One OR alternative establishes request path and span units; the other establishes span correlation through context propagation. Neither candidate alone supports every part of the claim.",
+      "repair_type": "GROUP_LOGIC",
+      "information_need_preserved": true,
+      "why_not_baseline_driven": "The repair is derived only from the frozen independent defect evidence and reopened frozen corpus; no model or baseline output was used.",
+      "source_review_reference": "independent_semantic_verification_v1",
+      "source_review_sha256": "89bf00e924579c1c68a88a952797d4bfb73bccab0f7ba8ffe28bb74e5888279d"
+    },
+    {
+      "repair_id": "repair-05",
+      "case_id": "rw-gold-v1-disambig-fastapi-async-deps",
+      "claim_id": "rw-gold-v1-disambig-fastapi-async-deps-claim-01",
+      "defect_category": "D",
+      "old_value": {
+        "case_id": "rw-gold-v1-disambig-fastapi-async-deps",
+        "question": "endpoint 本身的 def/async def 选择与 dependency 的混用规则，应该分别依赖哪两份 FastAPI 文档？",
+        "claim_id": "rw-gold-v1-disambig-fastapi-async-deps-claim-01",
+        "evaluation_mode": "SEMANTIC_REVIEW",
+        "claim": "The async document provides endpoint selection and threadpool behavior.",
+        "groups": [
+          {
+            "group_id": "eg-rw-disambig-fastapi-async-deps-01",
+            "required": true,
+            "evidence_role": "REQUIRED",
+            "candidate_anchors": [
+              {
+                "evidence_id": "ev-rw-async-tldr",
+                "document_id": "rw-backend-fastapi-async"
+              },
+              {
+                "evidence_id": "ev-rw-async-threadpool",
+                "document_id": "rw-backend-fastapi-async"
+              }
+            ]
+          }
+        ],
+        "citation_contract": "Pre-repair claim/group binding recorded by the frozen review artifact."
+      },
+      "new_value": {
+        "case_id": "rw-gold-v1-disambig-fastapi-async-deps",
+        "question": "endpoint 本身的 def/async def 选择与 dependency 的混用规则，应该分别依赖哪两份 FastAPI 文档？",
+        "claim_id": "rw-gold-v1-disambig-fastapi-async-deps-claim-01",
+        "evaluation_mode": "SEMANTIC_REVIEW",
+        "claim": "The async document provides endpoint selection and threadpool behavior.",
+        "groups": [
+          {
+            "group_id": "eg-rw-disambig-fastapi-async-deps-01",
+            "required": true,
+            "evidence_role": "REQUIRED",
+            "candidate_anchors": [
+              {
+                "evidence_id": "ev-rw-async-tldr",
+                "document_id": "rw-backend-fastapi-async"
+              }
+            ]
+          },
+          {
+            "group_id": "eg-rw-disambig-fastapi-async-deps-03",
+            "required": true,
+            "evidence_role": "REQUIRED",
+            "candidate_anchors": [
+              {
+                "evidence_id": "ev-rw-async-threadpool",
+                "document_id": "rw-backend-fastapi-async"
+              }
+            ]
+          }
+        ],
+        "citation_contract": {
+          "citation_required": true,
+          "required_evidence_group_ids": [
+            "eg-rw-disambig-fastapi-async-deps-01",
+            "eg-rw-disambig-fastapi-async-deps-02",
+            "eg-rw-disambig-fastapi-async-deps-03"
+          ],
+          "minimum_distinct_required_documents": 2,
+          "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+          "forbid_citations": false,
+          "notes": "Citations must semantically support each attached claim and cover every required group."
+        }
+      },
+      "root_cause": "The TL;DR alternative supports endpoint def/async-def selection, while the technical-details alternative supports threadpool behavior. Neither OR candidate independently supports both.",
+      "repair_type": "GROUP_LOGIC",
+      "information_need_preserved": true,
+      "why_not_baseline_driven": "The repair is derived only from the frozen independent defect evidence and reopened frozen corpus; no model or baseline output was used.",
+      "source_review_reference": "independent_semantic_verification_v1",
+      "source_review_sha256": "89bf00e924579c1c68a88a952797d4bfb73bccab0f7ba8ffe28bb74e5888279d"
+    },
+    {
+      "repair_id": "repair-06",
+      "case_id": "rw-gold-v1-disambig-interrupt-static",
+      "claim_id": "rw-gold-v1-disambig-interrupt-static-claim-01",
+      "defect_category": "D",
+      "old_value": {
+        "case_id": "rw-gold-v1-disambig-interrupt-static",
+        "question": "为什么调试断点问题要找 interrupts PDF，而不是 LangGraph overview 或 persistence TXT？",
+        "claim_id": "rw-gold-v1-disambig-interrupt-static-claim-01",
+        "evaluation_mode": "SEMANTIC_REVIEW",
+        "claim": "Only the interrupts PDF specifies static interrupt breakpoints and their compile/run-time configuration.",
+        "groups": [
+          {
+            "group_id": "eg-rw-disambig-interrupt-static-01",
+            "required": true,
+            "evidence_role": "REQUIRED",
+            "candidate_anchors": [
+              {
+                "evidence_id": "ev-rw-interrupt-static",
+                "document_id": "rw-agent-interrupts"
+              },
+              {
+                "evidence_id": "ev-rw-interrupt-runtime-static",
+                "document_id": "rw-agent-interrupts"
+              }
+            ]
+          }
+        ],
+        "citation_contract": "Pre-repair claim/group binding recorded by the frozen review artifact."
+      },
+      "new_value": {
+        "case_id": "rw-gold-v1-disambig-interrupt-static",
+        "question": "为什么调试断点问题要找 interrupts PDF，而不是 LangGraph overview 或 persistence TXT？",
+        "claim_id": "rw-gold-v1-disambig-interrupt-static-claim-01",
+        "evaluation_mode": "SEMANTIC_REVIEW",
+        "claim": "Only the interrupts PDF specifies static interrupt breakpoints and their compile/run-time configuration.",
+        "groups": [
+          {
+            "group_id": "eg-rw-disambig-interrupt-static-01",
+            "required": true,
+            "evidence_role": "REQUIRED",
+            "candidate_anchors": [
+              {
+                "evidence_id": "ev-rw-interrupt-static",
+                "document_id": "rw-agent-interrupts"
+              }
+            ]
+          },
+          {
+            "group_id": "eg-rw-disambig-interrupt-static-02",
+            "required": true,
+            "evidence_role": "REQUIRED",
+            "candidate_anchors": [
+              {
+                "evidence_id": "ev-rw-interrupt-runtime-static",
+                "document_id": "rw-agent-interrupts"
+              }
+            ]
+          }
+        ],
+        "citation_contract": {
+          "citation_required": true,
+          "required_evidence_group_ids": [
+            "eg-rw-disambig-interrupt-static-01",
+            "eg-rw-disambig-interrupt-static-02"
+          ],
+          "minimum_distinct_required_documents": 1,
+          "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+          "forbid_citations": false,
+          "notes": "Citations must semantically support each attached claim and cover every required group."
+        }
+      },
+      "root_cause": "The page-22 candidate supports static breakpoints and compile-time configuration; page 23 supports run-time configuration. The OR group cannot combine them to prove the conjunctive claim.",
+      "repair_type": "GROUP_LOGIC",
+      "information_need_preserved": true,
+      "why_not_baseline_driven": "The repair is derived only from the frozen independent defect evidence and reopened frozen corpus; no model or baseline output was used.",
+      "source_review_reference": "independent_semantic_verification_v1",
+      "source_review_sha256": "89bf00e924579c1c68a88a952797d4bfb73bccab0f7ba8ffe28bb74e5888279d"
+    },
+    {
+      "repair_id": "repair-07",
+      "case_id": "rw-gold-v1-stress-conflict-fastapi-handler-type",
+      "claim_id": "rw-gold-v1-stress-conflict-fastapi-handler-type-claim-01",
+      "defect_category": "D",
+      "old_value": {
+        "case_id": "rw-gold-v1-stress-conflict-fastapi-handler-type",
+        "question": "Among FastAPI's async, dependency, and error documents, which one supports registering a handler for StarletteHTTPException, and what limited support can the dependency document still provide?",
+        "claim_id": "rw-gold-v1-stress-conflict-fastapi-handler-type-claim-01",
+        "evaluation_mode": "SEMANTIC_REVIEW",
+        "claim": "The error-handling document explains the FastAPI/Starlette HTTPException relationship and handler reuse.",
+        "groups": [
+          {
+            "group_id": "eg-rw-stress-conflict-fastapi-handler-type-01",
+            "required": true,
+            "evidence_role": "REQUIRED",
+            "candidate_anchors": [
+              {
+                "evidence_id": "ev-rw-errors-fastapi-starlette",
+                "document_id": "rw-backend-fastapi-errors"
+              },
+              {
+                "evidence_id": "ev-rw-errors-reuse-handlers",
+                "document_id": "rw-backend-fastapi-errors"
+              }
+            ]
+          }
+        ],
+        "citation_contract": "Pre-repair claim/group binding recorded by the frozen review artifact."
+      },
+      "new_value": {
+        "case_id": "rw-gold-v1-stress-conflict-fastapi-handler-type",
+        "question": "Among FastAPI's async, dependency, and error documents, which one supports registering a handler for StarletteHTTPException, and what limited support can the dependency document still provide?",
+        "claim_id": "rw-gold-v1-stress-conflict-fastapi-handler-type-claim-01",
+        "evaluation_mode": "SEMANTIC_REVIEW",
+        "claim": "The error-handling document explains the FastAPI/Starlette HTTPException relationship and handler reuse.",
+        "groups": [
+          {
+            "group_id": "eg-rw-stress-conflict-fastapi-handler-type-02",
+            "required": true,
+            "evidence_role": "REQUIRED",
+            "candidate_anchors": [
+              {
+                "evidence_id": "ev-rw-errors-fastapi-starlette",
+                "document_id": "rw-backend-fastapi-errors"
+              }
+            ]
+          },
+          {
+            "group_id": "eg-rw-stress-conflict-fastapi-handler-type-03",
+            "required": true,
+            "evidence_role": "REQUIRED",
+            "candidate_anchors": [
+              {
+                "evidence_id": "ev-rw-errors-reuse-handlers",
+                "document_id": "rw-backend-fastapi-errors"
+              }
+            ]
+          }
+        ],
+        "citation_contract": {
+          "citation_required": true,
+          "required_evidence_group_ids": [
+            "eg-rw-stress-conflict-fastapi-handler-type-01",
+            "eg-rw-stress-conflict-fastapi-handler-type-02",
+            "eg-rw-stress-conflict-fastapi-handler-type-03"
+          ],
+          "minimum_distinct_required_documents": 1,
+          "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+          "forbid_citations": false,
+          "notes": "Citations must semantically support each attached claim and cover every required group."
+        }
+      },
+      "root_cause": "The type-hierarchy alternative explains FastAPI/Starlette HTTPException and handler registration; the reuse alternative explains importing FastAPI's default handlers. Neither OR alternative alone establishes both the relationship and the stated handler-reuse proposition.",
+      "repair_type": "GROUP_LOGIC",
+      "information_need_preserved": true,
+      "why_not_baseline_driven": "The repair is derived only from the frozen independent defect evidence and reopened frozen corpus; no model or baseline output was used.",
+      "source_review_reference": "independent_semantic_verification_v1",
+      "source_review_sha256": "89bf00e924579c1c68a88a952797d4bfb73bccab0f7ba8ffe28bb74e5888279d"
+    },
+    {
+      "repair_id": "repair-08",
+      "case_id": "rw-gold-v1-stress-conflict-ragas-reference-mode",
+      "claim_id": "rw-gold-v1-stress-conflict-ragas-reference-mode-claim-01",
+      "defect_category": "D",
+      "old_value": {
+        "case_id": "rw-gold-v1-stress-conflict-ragas-reference-mode",
+        "question": "区分有 reference 与无 reference 的 context precision 变体时，哪份 Ragas 来源是必需证据，通用 workflow 来源只能间接支持什么？",
+        "claim_id": "rw-gold-v1-stress-conflict-ragas-reference-mode-claim-01",
+        "evaluation_mode": "SEMANTIC_REVIEW",
+        "claim": "The context-precision document states that the with-reference variant compares retrieved contexts with reference, while the without-reference variant compares them with response.",
+        "groups": [
+          {
+            "group_id": "eg-rw-stress-conflict-ragas-reference-mode-01",
+            "required": true,
+            "evidence_role": "REQUIRED",
+            "candidate_anchors": [
+              {
+                "evidence_id": "ev-rw-precision-with-reference",
+                "document_id": "rw-eval-context-precision"
+              },
+              {
+                "evidence_id": "ev-rw-precision-without-reference",
+                "document_id": "rw-eval-context-precision"
+              }
+            ]
+          }
+        ],
+        "citation_contract": "Pre-repair claim/group binding recorded by the frozen review artifact."
+      },
+      "new_value": {
+        "case_id": "rw-gold-v1-stress-conflict-ragas-reference-mode",
+        "question": "区分有 reference 与无 reference 的 context precision 变体时，哪份 Ragas 来源是必需证据，通用 workflow 来源只能间接支持什么？",
+        "claim_id": "rw-gold-v1-stress-conflict-ragas-reference-mode-claim-01",
+        "evaluation_mode": "SEMANTIC_REVIEW",
+        "claim": "The context-precision document states that the with-reference variant compares retrieved contexts with reference, while the without-reference variant compares them with response.",
+        "groups": [
+          {
+            "group_id": "eg-rw-stress-conflict-ragas-reference-mode-01",
+            "required": true,
+            "evidence_role": "REQUIRED",
+            "candidate_anchors": [
+              {
+                "evidence_id": "ev-rw-precision-with-reference",
+                "document_id": "rw-eval-context-precision"
+              }
+            ]
+          },
+          {
+            "group_id": "eg-rw-stress-conflict-ragas-reference-mode-02",
+            "required": true,
+            "evidence_role": "REQUIRED",
+            "candidate_anchors": [
+              {
+                "evidence_id": "ev-rw-precision-without-reference",
+                "document_id": "rw-eval-context-precision"
+              }
+            ]
+          }
+        ],
+        "citation_contract": {
+          "citation_required": true,
+          "required_evidence_group_ids": [
+            "eg-rw-stress-conflict-ragas-reference-mode-01",
+            "eg-rw-stress-conflict-ragas-reference-mode-02"
+          ],
+          "minimum_distinct_required_documents": 1,
+          "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+          "forbid_citations": false,
+          "notes": "Citations must semantically support each attached claim and cover every required group."
+        }
+      },
+      "root_cause": "The with-reference and without-reference behaviors are in separate OR alternatives. Each candidate supports only one half, so no single alternative supports the complete comparison.",
+      "repair_type": "GROUP_LOGIC",
+      "information_need_preserved": true,
+      "why_not_baseline_driven": "The repair is derived only from the frozen independent defect evidence and reopened frozen corpus; no model or baseline output was used.",
+      "source_review_reference": "independent_semantic_verification_v1",
+      "source_review_sha256": "89bf00e924579c1c68a88a952797d4bfb73bccab0f7ba8ffe28bb74e5888279d"
+    },
+    {
+      "repair_id": "repair-09",
+      "case_id": "rw-gold-v1-disambig-fastapi-exceptions",
+      "claim_id": null,
+      "defect_category": "B",
+      "old_value": {
+        "document_id": "rw-backend-fastapi-async",
+        "evidence_role": "ACCEPTABLE_SUPPORT",
+        "evidence_ids": [
+          "ev-rw-async-threadpool"
+        ]
+      },
+      "new_value": {
+        "document_id": "rw-backend-fastapi-async",
+        "evidence_ids": [],
+        "evidence_role": "UNSUPPORTED",
+        "notes": "Threadpool execution does not support the exception hierarchy or handler-registration choice."
+      },
+      "root_cause": "The reopened threadpool locator only describes def/async-def execution. It neither supports nor meaningfully explains the exception-class hierarchy or global handler-registration decision.",
+      "repair_type": "ROLE_RECLASSIFICATION",
+      "information_need_preserved": true,
+      "why_not_baseline_driven": "The repair is the exact case-local role correction frozen by independent semantic review; no model or baseline output was used.",
+      "source_review_reference": "independent_semantic_verification_v1",
+      "source_review_sha256": "89bf00e924579c1c68a88a952797d4bfb73bccab0f7ba8ffe28bb74e5888279d"
+    }
+  ],
+  "status": "COMPLETE"
+}

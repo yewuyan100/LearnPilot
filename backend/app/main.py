@@ -9,6 +9,7 @@ from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 
 from app.api.router import api_router
 from app.core.config import get_settings
+from app.core.clock import clock_from_settings
 from app.core.errors import AppError
 from app.services.agent.runtime import AgentRuntime
 
@@ -22,7 +23,10 @@ settings = get_settings()
 
 @asynccontextmanager
 async def lifespan(application: FastAPI):
-    application.state.agent_runtime = AgentRuntime(settings)
+    settings_provider = application.dependency_overrides.get(get_settings, get_settings)
+    runtime_settings = settings_provider()
+    application.state.clock = clock_from_settings(runtime_settings)
+    application.state.agent_runtime = AgentRuntime(runtime_settings)
     try:
         yield
     finally:
@@ -32,7 +36,7 @@ app = FastAPI(
     title=settings.app_name,
     version=settings.app_version,
     lifespan=lifespan,
-    description="PersonalLearning V6 确定性掌握度、自适应复习与受控 Agent API",
+    description="LearnPilot 本地优先个人学习与知识管理 API",
 )
 app.add_middleware(
     CORSMiddleware,
@@ -58,9 +62,12 @@ async def app_error_handler(request: Request, exc: AppError) -> JSONResponse:
 
 @app.exception_handler(RequestValidationError)
 async def validation_error_handler(request: Request, exc: RequestValidationError) -> JSONResponse:
+    # Pydantic may place the original ValueError object in ``ctx``. Returning
+    # that object directly makes an otherwise normal 422 fail JSON encoding.
+    details = [{key: value for key, value in item.items() if key != "ctx"} for item in exc.errors()]
     return JSONResponse(
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-        content=error_body("validation_error", "输入参数校验失败", exc.errors()),
+        content=error_body("validation_error", "输入参数校验失败", details),
     )
 
 

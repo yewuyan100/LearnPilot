@@ -1,14 +1,14 @@
-import logging
 from math import ceil
 
 from fastapi import APIRouter, File, Query, Response, UploadFile, status
+from sqlalchemy import select
 
-from app.api.deps import AppSettings, DbSession, EmbedderDep
+from app.api.deps import AppClock, AppSettings, DbSession, EmbedderDep
 from app.core.errors import AppError
 from app.models.material import Material
 from app.repositories.material_chunks import MaterialChunkRepository
 from app.repositories.materials import MaterialRepository
-from app.schemas.material import MaterialRead
+from app.schemas.material import MaterialArchiveBulkRequest, MaterialArchiveBulkResult, MaterialRead
 from app.schemas.material_chunk import (
     MaterialChunkPage,
     MaterialIndexBuildResult,
@@ -18,11 +18,11 @@ from app.schemas.material_chunk import (
 )
 from app.services.crud import commit
 from app.services.material_processing.pipeline import MaterialProcessingPipeline
-from app.services.materials import delete_material_file, save_upload
+from app.services.materials import save_upload
+from app.services.material_deletion import MaterialDeletionService
 from app.services.vector_store.service import MaterialIndexService
 
 
-logger = logging.getLogger("personal_learning.materials_api")
 router = APIRouter(prefix="/materials", tags=["materials"])
 
 
@@ -84,6 +84,39 @@ def list_materials(
     return MaterialRepository(db).list(search, source_type)
 
 
+@router.post("/archive/bulk", response_model=MaterialArchiveBulkResult)
+def archive_materials_bulk(
+    payload: MaterialArchiveBulkRequest, db: DbSession, clock: AppClock
+) -> MaterialArchiveBulkResult:
+    unique_ids = list(dict.fromkeys(payload.material_ids))
+    materials = list(db.scalars(select(Material).where(Material.id.in_(unique_ids))))
+    found = {material.id for material in materials}
+    missing = set(unique_ids).difference(found)
+    if missing:
+        raise AppError(
+            "material_not_found", "One or more materials do not exist.",
+            status.HTTP_404_NOT_FOUND, {"material_ids": sorted(missing)},
+        )
+    for material in materials:
+        material.archived_at = clock.now()
+    commit(db)
+    return MaterialArchiveBulkResult(archived_ids=unique_ids)
+
+
+@router.post("/{material_id}/archive", response_model=MaterialRead)
+def archive_material(material_id: int, db: DbSession, clock: AppClock) -> Material:
+    material = MaterialRepository(db).get(material_id)
+    material.archived_at = clock.now()
+    return commit(db, material)
+
+
+@router.post("/{material_id}/unarchive", response_model=MaterialRead)
+def unarchive_material(material_id: int, db: DbSession) -> Material:
+    material = MaterialRepository(db).get(material_id)
+    material.archived_at = None
+    return commit(db, material)
+
+
 @router.post("/{material_id}/process", response_model=MaterialRead)
 def process_material(
     material_id: int,
@@ -129,27 +162,25 @@ def delete_material(
     db: DbSession,
     settings: AppSettings,
     embedder: EmbedderDep,
+    clock: AppClock,
 ) -> Response:
-    material = MaterialRepository(db).get(material_id)
-    path = material.file_path
-    db.delete(material)
-    commit(db)
-    delete_material_file(material)
-
-    index_result = "rebuilt"
-    try:
-        MaterialIndexService(db, settings, embedder).rebuild()
-    except AppError as exc:
-        index_result = "stale"
-        logger.warning(
-            "material_deleted_index_rebuild_failed material_id=%s error_code=%s",
-            material_id,
-            exc.code,
-        )
+    result = MaterialDeletionService(db, settings, embedder, clock).delete(material_id)
+    details = result.get("result") or {}
     return Response(
         status_code=status.HTTP_204_NO_CONTENT,
         headers={
-            "X-Deleted-File": path,
-            "X-Index-Result": index_result,
+            "X-Deleted-File": str(details.get("file_path", "")),
+            "X-Index-Result": str(details.get("index_result", "rebuilt")),
         },
     )
+
+
+@router.post("/{material_id}/delete/retry")
+def retry_material_delete(
+    material_id: int,
+    db: DbSession,
+    settings: AppSettings,
+    embedder: EmbedderDep,
+    clock: AppClock,
+) -> dict:
+    return MaterialDeletionService(db, settings, embedder, clock).delete(material_id)

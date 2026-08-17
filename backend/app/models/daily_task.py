@@ -1,6 +1,6 @@
-from datetime import date
+from datetime import date, datetime
 
-from sqlalchemy import CheckConstraint, Date, ForeignKey, String
+from sqlalchemy import CheckConstraint, Date, DateTime, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.db.base import Base, TimestampMixin
@@ -21,7 +21,7 @@ class DailyTask(TimestampMixin, Base):
         ForeignKey("courses.id", ondelete="SET NULL"), index=True, nullable=True
     )
     knowledge_point_id: Mapped[int | None] = mapped_column(
-        ForeignKey("knowledge_points.id", ondelete="SET NULL"), index=True, nullable=True
+        ForeignKey("knowledge_points.id", ondelete="RESTRICT"), index=True, nullable=True
     )
     activity_id: Mapped[int | None] = mapped_column(
         ForeignKey("learning_activities.id", ondelete="SET NULL"), index=True, nullable=True
@@ -33,3 +33,7 @@ class DailyTask(TimestampMixin, Base):
     status: Mapped[str] = mapped_column(
         String(32), default=DailyTaskStatus.pending, nullable=False, index=True
     )
+    blocked_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True, index=True)
+    blocked_reason: Mapped[str | None] = mapped_column(Text, nullable=True)
+    blocked_source_type: Mapped[str | None] = mapped_column(String(32), nullable=True)
+    blocked_source_id: Mapped[int | None] = mapped_column(Integer, nullable=True)

@@ -31,4 +31,13 @@ class Material(TimestampMixin, Base):
     indexed_chunk_count: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
     processed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     indexed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    archived_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True, index=True)
     error_message: Mapped[str | None] = mapped_column(Text, nullable=True)
+    deletion_status: Mapped[str] = mapped_column(
+        String(24), default="active", nullable=False, index=True
+    )
+    deletion_error: Mapped[str | None] = mapped_column(Text, nullable=True)
+    deletion_requested_at: Mapped[datetime | None] = mapped_column(
+        DateTime(timezone=True), nullable=True
+    )
+    deletion_attempts: Mapped[int] = mapped_column(Integer, default=0, nullable=False)

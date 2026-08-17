@@ -28,6 +28,14 @@ export const statusLabel: Record<string, string> = {
   pending: "待完成",
   in_progress: "进行中",
   skipped: "已跳过",
+  generating: "正在生成",
+  submitted: "已提交",
+  evidence_insufficient: "证据不足",
+  generation_failed: "生成失败",
+  review_required: "需要检查",
+  validating: "正在检查",
+  infeasible: "需要调整",
+  superseded: "历史版本",
 };
 
 export const ingestionStatusLabel: Record<string, string> = {

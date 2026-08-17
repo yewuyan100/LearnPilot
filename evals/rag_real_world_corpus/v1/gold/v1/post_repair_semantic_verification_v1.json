@@ -1,0 +1,1484 @@
+{
+  "schema_version": "1.0.0",
+  "review_version": "post-repair-semantic-verification-v1",
+  "review_date": "2026-08-14",
+  "frozen_pre_repair_review": {
+    "path": "evals/rag_real_world_corpus/v1/gold/v1/independent_semantic_verification_v1.json",
+    "sha256": "89bf00e924579c1c68a88a952797d4bfb73bccab0f7ba8ffe28bb74e5888279d"
+  },
+  "post_repair_gold_sha256": "33a0b69901fa47e3fe45be0277228cd4a5519fe780fe5b9d2c52b1bfe614927a",
+  "review_method": {
+    "incremental_semantic_closure": true,
+    "previously_supported_claim_payloads_compared": 96,
+    "fresh_repaired_claim_review": true,
+    "fresh_corpus_reopen": true,
+    "llm_used": false,
+    "baseline_output_used": false,
+    "retrieval_output_used": false,
+    "production_rag_used": false
+  },
+  "repaired_semantic_claim_total": 8,
+  "claim_reviews": [
+    {
+      "case_id": "rw-gold-v1-semantic-checkpointer-store",
+      "claim_id": "rw-gold-v1-semantic-checkpointer-store-claim-01",
+      "question": "为什么长期运行的 agent 既要有 durable execution 与 memory 能力，又要区分 thread-scoped checkpoint 和跨 thread store？",
+      "claim": "LangGraph's high-level capabilities and persistence guide both support durable continuity and memory for long-running agents.",
+      "old_verdict": "PARTIALLY_SUPPORTED",
+      "new_verdict": "SUPPORTED",
+      "group_combination_logic": "AND",
+      "new_evidence_groups": [
+        {
+          "group_id": "eg-rw-semantic-checkpointer-store-01",
+          "logic": "OR",
+          "candidate_anchors": [
+            {
+              "evidence_id": "ev-rw-agent-overview-capabilities",
+              "document_id": "rw-agent-langgraph-overview",
+              "locator": {
+                "kind": "SOURCE_LINES",
+                "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-langgraph-overview.md",
+                "start_line": 35,
+                "end_line": 46,
+                "section_title": "Why use LangGraph?",
+                "region": "middle"
+              },
+              "source_bytes_sha256": "4b5bf18421432989b6e46f22751fed5d0a14a908628e039fc6e1d6543d1e858c",
+              "fresh_text_sha256": "9c4065e0151576379bb8016217fcad4843acf70d51f60a8bd09a23f565569ad4",
+              "fresh_evidence_excerpt": "## Why use LangGraph? LangGraph provides low-level supporting infrastructure for *any* long-running, stateful workflow or agent: - **[Durable execution](https://docs.langchain.com/oss/python/langgraph/durable-execution)** — Build agents that persist through failures and can run for extended periods, automatically resuming from exactly where they left off. - **[Human-in-the-loop](https://docs.langchain.com/oss/python/langgraph/interrupts)** — Seamlessly incorporate human oversight by inspecting and modifying agent state at any point during execution. - **[Comprehensive memory](https://docs.langchain.com/oss/python/langgraph/memory)** — Create truly stateful agents with both short-term working memory for ongoing reasoning and long-term persistent memory across sessions. - **[Debugging with LangSmith](https://www.langchain.com/langsmith)** — Gain deep visibility into complex agent behavior ",
+              "locator_resolved": true,
+              "source_hash_matches_manifest": true,
+              "anchor_hash_matches": true,
+              "candidate_semantic_verdict": "SUPPORTED",
+              "review_reason": "The overview directly supplies durable execution and comprehensive memory for long-running agents."
+            }
+          ],
+          "group_verdict": "SUPPORTED",
+          "review_reason": "The candidate evidence directly supports this independently required group obligation."
+        },
+        {
+          "group_id": "eg-rw-semantic-checkpointer-store-03",
+          "logic": "OR",
+          "candidate_anchors": [
+            {
+              "evidence_id": "ev-rw-persist-overview",
+              "document_id": "rw-agent-persistence",
+              "locator": {
+                "kind": "SOURCE_LINES",
+                "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-persistence.txt",
+                "start_line": 14,
+                "end_line": 21,
+                "section_title": "Persistence overview",
+                "region": "early"
+              },
+              "source_bytes_sha256": "0b2be3426fc43a7d5da8d98f316ca93a1e4951e47a12d286d1fdb2d5a3edfc17",
+              "fresh_text_sha256": "bb61e8fdbf7a513cace0d00e478afff294a4756605b9e123de06c26202e034bb",
+              "fresh_evidence_excerpt": "Persistence lets LangGraph applications keep useful information beyond a single graph run. It matters when an agent needs to continue a conversation, resume after an interruption, recover from a failure, or remember information across interactions. LangGraph provides two complementary persistence systems: - **[Checkpointers](/oss/langgraph/checkpointers)** persist a thread's graph state as checkpoints. Use them for short-term, thread-scoped memory, including conversation continuity, human-in-the-loop workflows, time travel, and fault tolerance. - **[Stores](/oss/langgraph/stores)** persist application-defined data outside the graph state. Use them for long-term, cross-thread memory, including user preferences, facts, and shared knowledge. Most applications can use both: a [checkpointer](/oss/langgraph/checkpointers) tracks the current thread, and a [store](/oss/langgraph/stores) tracks d",
+              "locator_resolved": true,
+              "source_hash_matches_manifest": true,
+              "anchor_hash_matches": true,
+              "candidate_semantic_verdict": "SUPPORTED",
+              "review_reason": "The persistence guide directly supplies durable continuity plus thread-scoped and cross-thread memory systems."
+            }
+          ],
+          "group_verdict": "SUPPORTED",
+          "review_reason": "The candidate evidence directly supports this independently required group obligation."
+        }
+      ],
+      "claim_verdict": "SUPPORTED",
+      "review_reason": "The two source-specific facts are now separate required groups, so the claim's 'both' semantics is represented as AND.",
+      "fresh_corpus_reopen": true,
+      "authoring_verdict_used": false
+    },
+    {
+      "case_id": "rw-gold-v1-long-langgraph-positioning",
+      "claim_id": "rw-gold-v1-long-langgraph-positioning-claim-02",
+      "question": "LangGraph 在长文档开头如何定位自身：它面向哪类 agent，又强调给开发者哪两类底层控制？",
+      "claim": "It emphasizes control over both agent workflows and agent state.",
+      "old_verdict": "PARTIALLY_SUPPORTED",
+      "new_verdict": "SUPPORTED",
+      "group_combination_logic": "AND",
+      "new_evidence_groups": [
+        {
+          "group_id": "eg-rw-long-langgraph-positioning-01",
+          "logic": "OR",
+          "candidate_anchors": [
+            {
+              "evidence_id": "ev-rw-agent-overview-purpose",
+              "document_id": "rw-agent-langgraph-overview",
+              "locator": {
+                "kind": "SOURCE_LINES",
+                "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-langgraph-overview.md",
+                "start_line": 22,
+                "end_line": 33,
+                "section_title": "Repository overview",
+                "region": "early"
+              },
+              "source_bytes_sha256": "4b5bf18421432989b6e46f22751fed5d0a14a908628e039fc6e1d6543d1e858c",
+              "fresh_text_sha256": "a325a3906f87659672179b65c8ca85bc9b989acab8d6b485131b8ea00f97ed40",
+              "fresh_evidence_excerpt": "<br> Trusted by companies shaping the future of agents – including Klarna, Replit, Elastic, and more – LangGraph is a low-level orchestration framework for building, managing, and deploying long-running, stateful agents. ```bash pip install -U langgraph ``` > [!TIP] > If you're looking to quickly build agents, check out **[Deep Agents](https://docs.langchain.com/oss/python/deepagents/overview)** — a higher-level package built on LangGraph for agents that can plan, use subagents, and leverage file systems for complex tasks. For an equivalent JS/TS library, check out [LangGraph.js](https://github.com/langchain-ai/langgraphjs) and the [JS docs](https://docs.langchain.com/oss/javascript/langgraph/overview).",
+              "locator_resolved": true,
+              "source_hash_matches_manifest": true,
+              "anchor_hash_matches": true,
+              "candidate_semantic_verdict": "SUPPORTED",
+              "review_reason": "Building, managing, and deploying agents through low-level orchestration supports workflow-level control."
+            }
+          ],
+          "group_verdict": "SUPPORTED",
+          "review_reason": "The candidate evidence directly supports this independently required group obligation."
+        },
+        {
+          "group_id": "eg-rw-long-langgraph-positioning-02",
+          "logic": "OR",
+          "candidate_anchors": [
+            {
+              "evidence_id": "ev-rw-agent-overview-capabilities",
+              "document_id": "rw-agent-langgraph-overview",
+              "locator": {
+                "kind": "SOURCE_LINES",
+                "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-langgraph-overview.md",
+                "start_line": 35,
+                "end_line": 46,
+                "section_title": "Why use LangGraph?",
+                "region": "middle"
+              },
+              "source_bytes_sha256": "4b5bf18421432989b6e46f22751fed5d0a14a908628e039fc6e1d6543d1e858c",
+              "fresh_text_sha256": "9c4065e0151576379bb8016217fcad4843acf70d51f60a8bd09a23f565569ad4",
+              "fresh_evidence_excerpt": "## Why use LangGraph? LangGraph provides low-level supporting infrastructure for *any* long-running, stateful workflow or agent: - **[Durable execution](https://docs.langchain.com/oss/python/langgraph/durable-execution)** — Build agents that persist through failures and can run for extended periods, automatically resuming from exactly where they left off. - **[Human-in-the-loop](https://docs.langchain.com/oss/python/langgraph/interrupts)** — Seamlessly incorporate human oversight by inspecting and modifying agent state at any point during execution. - **[Comprehensive memory](https://docs.langchain.com/oss/python/langgraph/memory)** — Create truly stateful agents with both short-term working memory for ongoing reasoning and long-term persistent memory across sessions. - **[Debugging with LangSmith](https://www.langchain.com/langsmith)** — Gain deep visibility into complex agent behavior ",
+              "locator_resolved": true,
+              "source_hash_matches_manifest": true,
+              "anchor_hash_matches": true,
+              "candidate_semantic_verdict": "SUPPORTED",
+              "review_reason": "The source targets long-running stateful workflows and explicitly permits inspecting and modifying agent state."
+            }
+          ],
+          "group_verdict": "SUPPORTED",
+          "review_reason": "The candidate evidence directly supports this independently required group obligation."
+        }
+      ],
+      "claim_verdict": "SUPPORTED",
+      "review_reason": "The unchanged claim now requires both the low-level orchestration locator and the capabilities locator that covers workflows and state inspection/modification.",
+      "fresh_corpus_reopen": true,
+      "authoring_verdict_used": false
+    },
+    {
+      "case_id": "rw-gold-v1-multi-rag-tracing",
+      "claim_id": "rw-gold-v1-multi-rag-tracing-claim-01",
+      "question": "一个 RAG 请求先检索再生成时，评估数据和 trace/span 结构分别怎样描述这条执行链？",
+      "claim": "The RAG workflow separates vectorization, retrieval, and response generation and records retrieved contexts with the response.",
+      "old_verdict": "PARTIALLY_SUPPORTED",
+      "new_verdict": "SUPPORTED",
+      "group_combination_logic": "AND",
+      "new_evidence_groups": [
+        {
+          "group_id": "eg-rw-multi-rag-tracing-01",
+          "logic": "OR",
+          "candidate_anchors": [
+            {
+              "evidence_id": "ev-rw-ragas-components",
+              "document_id": "rw-eval-ragas-workflow",
+              "locator": {
+                "kind": "SOURCE_LINES",
+                "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-ragas-workflow.md",
+                "start_line": 23,
+                "end_line": 29,
+                "section_title": "Build a Simple RAG System",
+                "region": "early"
+              },
+              "source_bytes_sha256": "4bbe894b2a6313d8af058705de87f7c407f4378727b8784372c2c370b6b7da18",
+              "fresh_text_sha256": "2ab3cb9527ec4950de0e3c093c1af226775258ac107af3db776f746e58e94c3e",
+              "fresh_evidence_excerpt": "### Build a Simple RAG System To build a simple RAG system, we need to define the following components: - Define a method to vectorize our docs - Define a method to retrieve the relevant docs - Define a method to generate the response",
+              "locator_resolved": true,
+              "source_hash_matches_manifest": true,
+              "anchor_hash_matches": true,
+              "candidate_semantic_verdict": "SUPPORTED",
+              "review_reason": "The source separately lists vectorization, retrieval, and response-generation components."
+            }
+          ],
+          "group_verdict": "SUPPORTED",
+          "review_reason": "The candidate evidence directly supports this independently required group obligation."
+        },
+        {
+          "group_id": "eg-rw-multi-rag-tracing-03",
+          "logic": "OR",
+          "candidate_anchors": [
+            {
+              "evidence_id": "ev-rw-ragas-collect-data",
+              "document_id": "rw-eval-ragas-workflow",
+              "locator": {
+                "kind": "SOURCE_LINES",
+                "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-ragas-workflow.md",
+                "start_line": 116,
+                "end_line": 164,
+                "section_title": "Collect Evaluation Data",
+                "region": "middle"
+              },
+              "source_bytes_sha256": "4bbe894b2a6313d8af058705de87f7c407f4378727b8784372c2c370b6b7da18",
+              "fresh_text_sha256": "1f105f9dc1f011d71bbb8d10113fcffe53168ff700d71a4f73fc6d71fcbedbda",
+              "fresh_evidence_excerpt": "## Collect Evaluation Data To collect evaluation data, we first need a set of queries to run against our RAG. We can run the queries through the RAG system and collect the `response`, `retrieved_contexts`for each query. You may also optionally prepare a set of golden answers for each query to evaluate the system's performance. ```python sample_queries = [ \"Who introduced the theory of relativity?\", \"Who was the first computer programmer?\", \"What did Isaac Newton contribute to science?\", \"Who won two Nobel Prizes for research on radioactivity?\", \"What is the theory of evolution by natural selection?\" ] expected_responses = [ \"Albert Einstein proposed the theory of relativity, which transformed our understanding of time, space, and gravity.\", \"Ada Lovelace is regarded as the first computer programmer for her work on Charles Babbage's early mechanical computer, the Analytical Engine.\", \"Isa",
+              "locator_resolved": true,
+              "source_hash_matches_manifest": true,
+              "anchor_hash_matches": true,
+              "candidate_semantic_verdict": "SUPPORTED",
+              "review_reason": "The source records retrieved_contexts together with response in each evaluation record."
+            }
+          ],
+          "group_verdict": "SUPPORTED",
+          "review_reason": "The candidate evidence directly supports this independently required group obligation."
+        }
+      ],
+      "claim_verdict": "SUPPORTED",
+      "review_reason": "Component separation and collected context/response fields are now independent required groups.",
+      "fresh_corpus_reopen": true,
+      "authoring_verdict_used": false
+    },
+    {
+      "case_id": "rw-gold-v1-multi-rag-tracing",
+      "claim_id": "rw-gold-v1-multi-rag-tracing-claim-02",
+      "question": "一个 RAG 请求先检索再生成时，评估数据和 trace/span 结构分别怎样描述这条执行链？",
+      "claim": "A trace represents the request path and spans represent units of work correlated through context propagation.",
+      "old_verdict": "PARTIALLY_SUPPORTED",
+      "new_verdict": "SUPPORTED",
+      "group_combination_logic": "AND",
+      "new_evidence_groups": [
+        {
+          "group_id": "eg-rw-multi-rag-tracing-02",
+          "logic": "OR",
+          "candidate_anchors": [
+            {
+              "evidence_id": "ev-rw-otel-trace-overview",
+              "document_id": "rw-eval-otel-traces",
+              "locator": {
+                "kind": "PDF_PAGE",
+                "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-otel-traces.pdf",
+                "page_number": 1,
+                "region": "early"
+              },
+              "source_bytes_sha256": "f20c1a63b8603a5c79e546ff8474194a7160b154a87cee36831ab8a52dc834cd",
+              "fresh_text_sha256": "1e27b25efb5427a9e63f8f4a1e60733667ae40e3aec53b738dd5c22decb5e25b",
+              "fresh_evidence_excerpt": "--- title: Traces weight: 1 description: The path of a request through your application. cSpell:ignore: Guten --- **Traces** give us the big picture of what happens when a request is made to an application. Whether your application is a monolith with a single database or a sophisticated mesh of services, traces are essential to understanding the full \"path\" a request takes in your application. Let's explore this with three units of work, represented as [Spans](#spans): > [!NOTE] > > The following JSON examples do not represent a specific format, and especially > not [OTLP/JSON](/docs/specs/otlp/#json-protobuf-encoding), which is more > verbose. `hello` span: ```json { \"name\": \"hello\", \"context\": { \"trace_id\": \"5b8aa5a2d2c872e8321cf37308d69df2\", \"span_id\": \"051581bf3cb55c13\" }, \"parent_id\": null, \"start_time\": \"2022-04-29T18:52:58.114201Z\", \"end_time\": \"2022-04-29T18:52:58.114687Z\", \"attr",
+              "locator_resolved": true,
+              "source_hash_matches_manifest": true,
+              "anchor_hash_matches": true,
+              "candidate_semantic_verdict": "SUPPORTED",
+              "review_reason": "The source defines a trace as the request path and spans as its units of work."
+            }
+          ],
+          "group_verdict": "SUPPORTED",
+          "review_reason": "The candidate evidence directly supports this independently required group obligation."
+        },
+        {
+          "group_id": "eg-rw-multi-rag-tracing-04",
+          "logic": "OR",
+          "candidate_anchors": [
+            {
+              "evidence_id": "ev-rw-otel-propagation-span",
+              "document_id": "rw-eval-otel-traces",
+              "locator": {
+                "kind": "PDF_PAGE",
+                "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-otel-traces.pdf",
+                "page_number": 3,
+                "region": "middle"
+              },
+              "source_bytes_sha256": "f20c1a63b8603a5c79e546ff8474194a7160b154a87cee36831ab8a52dc834cd",
+              "fresh_text_sha256": "23e9457debe36547240ffe92d7971e86d14100c42ebd4b9e315d3eb81c788616",
+              "fresh_evidence_excerpt": "for debugging and development-time, the OpenTelemetry Collector, or any open source or vendor backend of your choice. ## Context Propagation Context Propagation is the core concept that enables Distributed Tracing. With Context Propagation, Spans can be correlated with each other and assembled into a trace, regardless of where Spans are generated. To learn more about this topic, see the concept page on [Context Propagation](../../context-propagation). ## Spans A **span** represents a unit of work or operation. Spans are the building blocks of Traces. In OpenTelemetry, they include the following information: - Name - Parent span ID (empty for root spans) - Start and End Timestamps - [Span Context](#span-context) - [Attributes](#attributes) - [Span Events](#span-events) - [Span Links](#span-links) - [Span Status](#span-status) Sample span: ```json { \"name\": \"/v1/sys/health\", \"context\": { \"",
+              "locator_resolved": true,
+              "source_hash_matches_manifest": true,
+              "anchor_hash_matches": true,
+              "candidate_semantic_verdict": "SUPPORTED",
+              "review_reason": "The source states that context propagation correlates spans and assembles them into a trace."
+            }
+          ],
+          "group_verdict": "SUPPORTED",
+          "review_reason": "The candidate evidence directly supports this independently required group obligation."
+        }
+      ],
+      "claim_verdict": "SUPPORTED",
+      "review_reason": "Request-path/span structure and propagation-based correlation are now independent required groups.",
+      "fresh_corpus_reopen": true,
+      "authoring_verdict_used": false
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-fastapi-async-deps",
+      "claim_id": "rw-gold-v1-disambig-fastapi-async-deps-claim-01",
+      "question": "endpoint 本身的 def/async def 选择与 dependency 的混用规则，应该分别依赖哪两份 FastAPI 文档？",
+      "claim": "The async document provides endpoint selection and threadpool behavior.",
+      "old_verdict": "PARTIALLY_SUPPORTED",
+      "new_verdict": "SUPPORTED",
+      "group_combination_logic": "AND",
+      "new_evidence_groups": [
+        {
+          "group_id": "eg-rw-disambig-fastapi-async-deps-01",
+          "logic": "OR",
+          "candidate_anchors": [
+            {
+              "evidence_id": "ev-rw-async-tldr",
+              "document_id": "rw-backend-fastapi-async",
+              "locator": {
+                "kind": "SOURCE_LINES",
+                "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-async.md",
+                "start_line": 5,
+                "end_line": 53,
+                "section_title": "In a hurry?",
+                "region": "early"
+              },
+              "source_bytes_sha256": "de47a11e50cc2e3beadc69f7b6b9524f0a55ac95aaa4c68768cdfe7dd5e8c8ee",
+              "fresh_text_sha256": "279342831b201865dd2227c1bfe87228026e99f9a81c8f7c942da8f715e7e4be",
+              "fresh_evidence_excerpt": "## In a hurry? { #in-a-hurry } <abbr title=\"too long; didn't read\"><strong>TL;DR:</strong></abbr> If you are using third party libraries that tell you to call them with `await`, like: ```Python results = await some_library() ``` Then, declare your *path operation functions* with `async def` like: ```Python hl_lines=\"2\" @app.get('/') async def read_results(): results = await some_library() return results ``` /// note You can only use `await` inside of functions created with `async def`. /// --- If you are using a third party library that communicates with something (a database, an API, the file system, etc.) and doesn't have support for using `await`, (this is currently the case for most database libraries), then declare your *path operation functions* as normally, with just `def`, like: ```Python hl_lines=\"2\" @app.get('/') def results(): results = some_library() return results ``` --- If",
+              "locator_resolved": true,
+              "source_hash_matches_manifest": true,
+              "anchor_hash_matches": true,
+              "candidate_semantic_verdict": "SUPPORTED",
+              "review_reason": "The source directly gives the await-capable async def versus blocking normal def endpoint-selection rule."
+            }
+          ],
+          "group_verdict": "SUPPORTED",
+          "review_reason": "The candidate evidence directly supports this independently required group obligation."
+        },
+        {
+          "group_id": "eg-rw-disambig-fastapi-async-deps-03",
+          "logic": "OR",
+          "candidate_anchors": [
+            {
+              "evidence_id": "ev-rw-async-threadpool",
+              "document_id": "rw-backend-fastapi-async",
+              "locator": {
+                "kind": "SOURCE_LINES",
+                "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-async.md",
+                "start_line": 416,
+                "end_line": 438,
+                "section_title": "Very Technical Details",
+                "region": "deep"
+              },
+              "source_bytes_sha256": "de47a11e50cc2e3beadc69f7b6b9524f0a55ac95aaa4c68768cdfe7dd5e8c8ee",
+              "fresh_text_sha256": "0290f7c54ff71a2edfdd58339e9a79c73a42208378447e3a75d75e6134911be4",
+              "fresh_evidence_excerpt": "### Path operation functions { #path-operation-functions } When you declare a *path operation function* with normal `def` instead of `async def`, it is run in an external threadpool that is then awaited, instead of being called directly (as it would block the server). If you are coming from another async framework that does not work in the way described above and you are used to defining trivial compute-only *path operation functions* with plain `def` for a tiny performance gain (about 100 nanoseconds), please note that in **FastAPI** the effect would be quite opposite. In these cases, it's better to use `async def` unless your *path operation functions* use code that performs blocking <abbr title=\"Input/Output: disk reading or writing, network communications.\">I/O</abbr>. Still, in both situations, chances are that **FastAPI** will [still be faster](index.md#performance) than (or at lea",
+              "locator_resolved": true,
+              "source_hash_matches_manifest": true,
+              "anchor_hash_matches": true,
+              "candidate_semantic_verdict": "SUPPORTED",
+              "review_reason": "The source directly gives external-threadpool behavior for normal def path operations."
+            }
+          ],
+          "group_verdict": "SUPPORTED",
+          "review_reason": "The candidate evidence directly supports this independently required group obligation."
+        }
+      ],
+      "claim_verdict": "SUPPORTED",
+      "review_reason": "Endpoint selection and threadpool behavior are now independent required groups.",
+      "fresh_corpus_reopen": true,
+      "authoring_verdict_used": false
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-interrupt-static",
+      "claim_id": "rw-gold-v1-disambig-interrupt-static-claim-01",
+      "question": "为什么调试断点问题要找 interrupts PDF，而不是 LangGraph overview 或 persistence TXT？",
+      "claim": "Only the interrupts PDF specifies static interrupt breakpoints and their compile/run-time configuration.",
+      "old_verdict": "PARTIALLY_SUPPORTED",
+      "new_verdict": "SUPPORTED",
+      "group_combination_logic": "AND",
+      "new_evidence_groups": [
+        {
+          "group_id": "eg-rw-disambig-interrupt-static-01",
+          "logic": "OR",
+          "candidate_anchors": [
+            {
+              "evidence_id": "ev-rw-interrupt-static",
+              "document_id": "rw-agent-interrupts",
+              "locator": {
+                "kind": "PDF_PAGE",
+                "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-interrupts.pdf",
+                "page_number": 22,
+                "region": "deep"
+              },
+              "source_bytes_sha256": "42aab890b1009f736e41d6160caddaee49ca06da25252a77b756710d26869909",
+              "fresh_text_sha256": "a14f6773576b643950638b19ef862cf92bef2f83a15cbfb20a3acd092737a000",
+              "fresh_evidence_excerpt": "To debug and test a graph, you can use static interrupts as breakpoints to step through the graph execution one node at a time. Static interrupts are triggered at defined points either before or after a node executes. You can set these by specifying `interruptBefore` and `int erruptAfter` when compiling the graph. ::: <Note> Static interrupts are **not** recommended for human-in-the-loop workflows. Use the @[`in terrupt`] function instead. </Note> <Tabs> <Tab title=\"At compile time\"> :::python ```python graph = builder.compile( interrupt_before=[\"node_a\"], # [!code highlight] interrupt_after=[\"node_b\", \"node_c\"], # [!code highlight] checkpointer=checkpointer, ) # Pass a thread ID to the graph config = { \"configurable\": { \"thread_id\": \"some_thread\" } } # Run the graph until the breakpoint graph.invoke(inputs, config=config) # [!code highlight] # Resume the graph graph.invoke(None, config=",
+              "locator_resolved": true,
+              "source_hash_matches_manifest": true,
+              "anchor_hash_matches": true,
+              "candidate_semantic_verdict": "SUPPORTED",
+              "review_reason": "The reopened page defines static breakpoints and their compile-time configuration."
+            }
+          ],
+          "group_verdict": "SUPPORTED",
+          "review_reason": "The candidate evidence directly supports this independently required group obligation."
+        },
+        {
+          "group_id": "eg-rw-disambig-interrupt-static-02",
+          "logic": "OR",
+          "candidate_anchors": [
+            {
+              "evidence_id": "ev-rw-interrupt-runtime-static",
+              "document_id": "rw-agent-interrupts",
+              "locator": {
+                "kind": "PDF_PAGE",
+                "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-interrupts.pdf",
+                "page_number": 23,
+                "region": "deep"
+              },
+              "source_bytes_sha256": "42aab890b1009f736e41d6160caddaee49ca06da25252a77b756710d26869909",
+              "fresh_text_sha256": "9b4e248e1311e84dd32ab33953ba9c9297aec5c367de08d4bb4b7169385777fd",
+              "fresh_evidence_excerpt": "</Tab> <Tab title=\"At run time\"> :::python ```python config = { \"configurable\": { \"thread_id\": \"some_thread\" } } # Run the graph until the breakpoint graph.invoke( inputs, interrupt_before=[\"node_a\"], # [!code highlight] interrupt_after=[\"node_b\", \"node_c\"], # [!code highlight] config=config, ) # Resume the graph graph.invoke(None, config=config) # [!code highlight] ``` 1. `graph.invoke` is called with the `interrupt_before` and `interrupt_after` parame ters. This is a run-time configuration and can be changed for every invocation. 2. `interrupt_before` specifies the nodes where execution should pause before the no de is executed. 3. `interrupt_after` specifies the nodes where execution should pause after the node is executed. 4. The graph is run until the first breakpoint is hit. 5. The graph is resumed by passing in `None` for the input. This will run the graph until the next breakpoin",
+              "locator_resolved": true,
+              "source_hash_matches_manifest": true,
+              "anchor_hash_matches": true,
+              "candidate_semantic_verdict": "SUPPORTED",
+              "review_reason": "The reopened page defines per-invocation run-time static breakpoint configuration."
+            }
+          ],
+          "group_verdict": "SUPPORTED",
+          "review_reason": "The candidate evidence directly supports this independently required group obligation."
+        }
+      ],
+      "claim_verdict": "SUPPORTED",
+      "review_reason": "Compile-time and run-time PDF-page evidence are now independent required groups.",
+      "fresh_corpus_reopen": true,
+      "authoring_verdict_used": false
+    },
+    {
+      "case_id": "rw-gold-v1-stress-conflict-fastapi-handler-type",
+      "claim_id": "rw-gold-v1-stress-conflict-fastapi-handler-type-claim-01",
+      "question": "Among FastAPI's async, dependency, and error documents, which one supports registering a handler for StarletteHTTPException, and what limited support can the dependency document still provide?",
+      "claim": "The error-handling document explains the FastAPI/Starlette HTTPException relationship and handler reuse.",
+      "old_verdict": "PARTIALLY_SUPPORTED",
+      "new_verdict": "SUPPORTED",
+      "group_combination_logic": "AND",
+      "new_evidence_groups": [
+        {
+          "group_id": "eg-rw-stress-conflict-fastapi-handler-type-02",
+          "logic": "OR",
+          "candidate_anchors": [
+            {
+              "evidence_id": "ev-rw-errors-fastapi-starlette",
+              "document_id": "rw-backend-fastapi-errors",
+              "locator": {
+                "kind": "SOURCE_LINES",
+                "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-errors.md",
+                "start_line": 218,
+                "end_line": 236,
+                "section_title": "FastAPI HTTPException vs Starlette HTTPException",
+                "region": "deep"
+              },
+              "source_bytes_sha256": "61fae95bbbf9d3b29882cbc01b5220f81271814083662e8a790e47a4c90e822c",
+              "fresh_text_sha256": "601861d454339012b20283e956e55940d7037b81f4910ddf73009c0c788a0a3f",
+              "fresh_evidence_excerpt": "#### FastAPI's `HTTPException` vs Starlette's `HTTPException` { #fastapis-httpexception-vs-starlettes-httpexception } **FastAPI** has its own `HTTPException`. And **FastAPI**'s `HTTPException` error class inherits from Starlette's `HTTPException` error class. The only difference is that **FastAPI**'s `HTTPException` accepts any JSON-able data for the `detail` field, while Starlette's `HTTPException` only accepts strings for it. So, you can keep raising **FastAPI**'s `HTTPException` as normally in your code. But when you register an exception handler, you should register it for Starlette's `HTTPException`. This way, if any part of Starlette's internal code, or a Starlette extension or plug-in, raises a Starlette `HTTPException`, your handler will be able to catch and handle it. In this example, to be able to have both `HTTPException`s in the same code, Starlette's exceptions is renamed to",
+              "locator_resolved": true,
+              "source_hash_matches_manifest": true,
+              "anchor_hash_matches": true,
+              "candidate_semantic_verdict": "SUPPORTED",
+              "review_reason": "The source directly explains the FastAPI/Starlette HTTPException inheritance relationship and registration choice."
+            }
+          ],
+          "group_verdict": "SUPPORTED",
+          "review_reason": "The candidate evidence directly supports this independently required group obligation."
+        },
+        {
+          "group_id": "eg-rw-stress-conflict-fastapi-handler-type-03",
+          "logic": "OR",
+          "candidate_anchors": [
+            {
+              "evidence_id": "ev-rw-errors-reuse-handlers",
+              "document_id": "rw-backend-fastapi-errors",
+              "locator": {
+                "kind": "SOURCE_LINES",
+                "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-errors.md",
+                "start_line": 238,
+                "end_line": 244,
+                "section_title": "Reuse FastAPI exception handlers",
+                "region": "deep"
+              },
+              "source_bytes_sha256": "61fae95bbbf9d3b29882cbc01b5220f81271814083662e8a790e47a4c90e822c",
+              "fresh_text_sha256": "d871cb0cac6605cd3c1b6603a4677d1b9239f666bf21e8d59d880df180b8cfb7",
+              "fresh_evidence_excerpt": "### Reuse **FastAPI**'s exception handlers { #reuse-fastapis-exception-handlers } If you want to use the exception along with the same default exception handlers from **FastAPI**, you can import and reuse the default exception handlers from `fastapi.exception_handlers`: {* ../../docs_src/handling_errors/tutorial006_py310.py hl[2:5,15,21] *} In this example you are just printing the error with a very expressive message, but you get the idea. You can use the exception and then just reuse the default exception handlers.",
+              "locator_resolved": true,
+              "source_hash_matches_manifest": true,
+              "anchor_hash_matches": true,
+              "candidate_semantic_verdict": "SUPPORTED",
+              "review_reason": "The source directly explains importing and reusing FastAPI's default exception handlers."
+            }
+          ],
+          "group_verdict": "SUPPORTED",
+          "review_reason": "The candidate evidence directly supports this independently required group obligation."
+        }
+      ],
+      "claim_verdict": "SUPPORTED",
+      "review_reason": "Type hierarchy/registration and default-handler reuse are now independent required groups while the previously supported sibling claim retains its original OR group.",
+      "fresh_corpus_reopen": true,
+      "authoring_verdict_used": false
+    },
+    {
+      "case_id": "rw-gold-v1-stress-conflict-ragas-reference-mode",
+      "claim_id": "rw-gold-v1-stress-conflict-ragas-reference-mode-claim-01",
+      "question": "区分有 reference 与无 reference 的 context precision 变体时，哪份 Ragas 来源是必需证据，通用 workflow 来源只能间接支持什么？",
+      "claim": "The context-precision document states that the with-reference variant compares retrieved contexts with reference, while the without-reference variant compares them with response.",
+      "old_verdict": "PARTIALLY_SUPPORTED",
+      "new_verdict": "SUPPORTED",
+      "group_combination_logic": "AND",
+      "new_evidence_groups": [
+        {
+          "group_id": "eg-rw-stress-conflict-ragas-reference-mode-01",
+          "logic": "OR",
+          "candidate_anchors": [
+            {
+              "evidence_id": "ev-rw-precision-with-reference",
+              "document_id": "rw-eval-context-precision",
+              "locator": {
+                "kind": "SOURCE_LINES",
+                "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-context-precision.md",
+                "start_line": 170,
+                "end_line": 193,
+                "section_title": "Context Precision with reference",
+                "region": "deep"
+              },
+              "source_bytes_sha256": "f2f5850ee0f04826a46a8c1492e60cf6c51ff0389f0d88fe966b9fb776b38310",
+              "fresh_text_sha256": "346670bcc31d4d0b73f589f15d359455d62d969a37b9463371450a235d647fcf",
+              "fresh_evidence_excerpt": "### Context Precision with reference The `LLMContextPrecisionWithReference` metric can be used when you have both retrieved contexts and also a reference response associated with a `user_input`. To estimate if the retrieved contexts are relevant, this method uses the LLM to compare each chunk in `retrieved_contexts` with the `reference`. #### Example ```python from ragas import SingleTurnSample from ragas.metrics import LLMContextPrecisionWithReference context_precision = LLMContextPrecisionWithReference(llm=evaluator_llm) sample = SingleTurnSample( user_input=\"Where is the Eiffel Tower located?\", reference=\"The Eiffel Tower is located in Paris.\", retrieved_contexts=[\"The Eiffel Tower is located in Paris.\"], ) await context_precision.single_turn_ascore(sample) ``` Output: ``` 0.9999999999",
+              "locator_resolved": true,
+              "source_hash_matches_manifest": true,
+              "anchor_hash_matches": true,
+              "candidate_semantic_verdict": "SUPPORTED",
+              "review_reason": "The source directly states comparison of retrieved contexts with the reference."
+            }
+          ],
+          "group_verdict": "SUPPORTED",
+          "review_reason": "The candidate evidence directly supports this independently required group obligation."
+        },
+        {
+          "group_id": "eg-rw-stress-conflict-ragas-reference-mode-02",
+          "logic": "OR",
+          "candidate_anchors": [
+            {
+              "evidence_id": "ev-rw-precision-without-reference",
+              "document_id": "rw-eval-context-precision",
+              "locator": {
+                "kind": "SOURCE_LINES",
+                "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-context-precision.md",
+                "start_line": 144,
+                "end_line": 167,
+                "section_title": "Context Precision without reference",
+                "region": "middle"
+              },
+              "source_bytes_sha256": "f2f5850ee0f04826a46a8c1492e60cf6c51ff0389f0d88fe966b9fb776b38310",
+              "fresh_text_sha256": "f5ec550c09746472c36b022ed908da7644952f0d5656dd472e14fccbe19807f5",
+              "fresh_evidence_excerpt": "### Context Precision without reference The `LLMContextPrecisionWithoutReference` metric can be used without the availability of a reference answer. To estimate if the retrieved contexts are relevant, this method uses the LLM to compare each chunk in `retrieved_contexts` with the `response`. #### Example ```python from ragas import SingleTurnSample from ragas.metrics import LLMContextPrecisionWithoutReference context_precision = LLMContextPrecisionWithoutReference(llm=evaluator_llm) sample = SingleTurnSample( user_input=\"Where is the Eiffel Tower located?\", response=\"The Eiffel Tower is located in Paris.\", retrieved_contexts=[\"The Eiffel Tower is located in Paris.\"], ) await context_precision.single_turn_ascore(sample) ``` Output: ``` 0.9999999999",
+              "locator_resolved": true,
+              "source_hash_matches_manifest": true,
+              "anchor_hash_matches": true,
+              "candidate_semantic_verdict": "SUPPORTED",
+              "review_reason": "The source directly states comparison of retrieved contexts with the response when no reference is used."
+            }
+          ],
+          "group_verdict": "SUPPORTED",
+          "review_reason": "The candidate evidence directly supports this independently required group obligation."
+        }
+      ],
+      "claim_verdict": "SUPPORTED",
+      "review_reason": "With-reference and without-reference behavior are now independent required groups.",
+      "fresh_corpus_reopen": true,
+      "authoring_verdict_used": false
+    }
+  ],
+  "previously_supported_and_unchanged": 96,
+  "previously_supported_claim_payload_proof": [
+    {
+      "claim_id": "rw-gold-v1-single-faiss-cosine-claim-01",
+      "pre_repair_sha256": "04f78a99231685a779be90018ae15beaefa6cb47fe2ca3f5599927b539378897",
+      "post_repair_sha256": "04f78a99231685a779be90018ae15beaefa6cb47fe2ca3f5599927b539378897",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-single-persist-thread-id-claim-02",
+      "pre_repair_sha256": "def18e17e3a0bbcaef90b5c08f2636c4d5ac1f23a3aa0afba89935df47ae476c",
+      "post_repair_sha256": "def18e17e3a0bbcaef90b5c08f2636c4d5ac1f23a3aa0afba89935df47ae476c",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-semantic-bge-functions-claim-01",
+      "pre_repair_sha256": "17abc947f191f293ed7c7ff1315b9af9aef45329695966343aa1359464087fdc",
+      "post_repair_sha256": "17abc947f191f293ed7c7ff1315b9af9aef45329695966343aa1359464087fdc",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-semantic-checkpointer-store-claim-02",
+      "pre_repair_sha256": "e1c8f16852884305ef989ebbcb9c56f65bf2979028edfe0b49355c721545ef9a",
+      "post_repair_sha256": "e1c8f16852884305ef989ebbcb9c56f65bf2979028edfe0b49355c721545ef9a",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-semantic-context-order-claim-01",
+      "pre_repair_sha256": "3b77d49480e3e57b3397e3d6e8c9f10a48a321f7e5c0906880992e0dafd7141d",
+      "post_repair_sha256": "3b77d49480e3e57b3397e3d6e8c9f10a48a321f7e5c0906880992e0dafd7141d",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-semantic-context-order-claim-02",
+      "pre_repair_sha256": "9605a0a1acbd8a37fe1cd54ac323a21eb8fca9d464f9446528820cbf1fe1b1da",
+      "post_repair_sha256": "9605a0a1acbd8a37fe1cd54ac323a21eb8fca9d464f9446528820cbf1fe1b1da",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-semantic-deps-automatic-claim-01",
+      "pre_repair_sha256": "f7309ed2ff7e7c860ceb76bb4227631c5e0c17127d851c2a10fb8c84ab7eadc0",
+      "post_repair_sha256": "f7309ed2ff7e7c860ceb76bb4227631c5e0c17127d851c2a10fb8c84ab7eadc0",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-semantic-deps-automatic-claim-02",
+      "pre_repair_sha256": "e85389c8be77b8ce7354234d4d8891930cd45882bbb2992ad8ef808cd357e216",
+      "post_repair_sha256": "e85389c8be77b8ce7354234d4d8891930cd45882bbb2992ad8ef808cd357e216",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-semantic-error-raise-claim-01",
+      "pre_repair_sha256": "2e27a6eb3230a20457f3ac9b7b878f9b82c1385b41c3458786de6cb37168bf16",
+      "post_repair_sha256": "2e27a6eb3230a20457f3ac9b7b878f9b82c1385b41c3458786de6cb37168bf16",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-semantic-error-raise-claim-02",
+      "pre_repair_sha256": "aac49b438954cedc5f03832515736317075aebf0cfc0e704ae4788a61ff2e8f4",
+      "post_repair_sha256": "aac49b438954cedc5f03832515736317075aebf0cfc0e704ae4788a61ff2e8f4",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-semantic-faiss-compression-claim-01",
+      "pre_repair_sha256": "dcf3fbee3f6263254b2300c21db98a477ec376d1389b3bca1037547fed6c6bc0",
+      "post_repair_sha256": "dcf3fbee3f6263254b2300c21db98a477ec376d1389b3bca1037547fed6c6bc0",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-semantic-faiss-compression-claim-02",
+      "pre_repair_sha256": "c17f93766292be5ee6b57e2401910663461eadd7f0a4053a34633ff78d656d73",
+      "post_repair_sha256": "c17f93766292be5ee6b57e2401910663461eadd7f0a4053a34633ff78d656d73",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-semantic-fastapi-blocking-claim-01",
+      "pre_repair_sha256": "36ee6cd628313dbee22babb96e6985d7289801024805b12d2095edb664a00433",
+      "post_repair_sha256": "36ee6cd628313dbee22babb96e6985d7289801024805b12d2095edb664a00433",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-semantic-fastapi-blocking-claim-02",
+      "pre_repair_sha256": "d9d2cbebe5ee2833a24d89aa36ae80876604303cc248f0b2fe1edc23d122d0a3",
+      "post_repair_sha256": "d9d2cbebe5ee2833a24d89aa36ae80876604303cc248f0b2fe1edc23d122d0a3",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-semantic-interrupt-replay-claim-01",
+      "pre_repair_sha256": "07658ab03de8e31a1dee4083ddb56db03260211674d1cd1b50821b98b7852714",
+      "post_repair_sha256": "07658ab03de8e31a1dee4083ddb56db03260211674d1cd1b50821b98b7852714",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-semantic-ragas-data-claim-02",
+      "pre_repair_sha256": "4d27bb2eab3e28cb88c13664d7e5db30826f247af294cf7746f12ae7c6ca8ebe",
+      "post_repair_sha256": "4d27bb2eab3e28cb88c13664d7e5db30826f247af294cf7746f12ae7c6ca8ebe",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-semantic-trace-correlation-claim-01",
+      "pre_repair_sha256": "296d64df33e43e660b9ae89960daffbe51de6b22879da70add72415b9ac37272",
+      "post_repair_sha256": "296d64df33e43e660b9ae89960daffbe51de6b22879da70add72415b9ac37272",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-long-async-threadpool-claim-01",
+      "pre_repair_sha256": "d4c602b57f79a3da03380398808c86cc9e4117112c901e11a8af168f46a61c2f",
+      "post_repair_sha256": "d4c602b57f79a3da03380398808c86cc9e4117112c901e11a8af168f46a61c2f",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-long-async-threadpool-claim-02",
+      "pre_repair_sha256": "cace4832352153c5ad12963bc6da6a0385251384184ac9d4346e9d8733996194",
+      "post_repair_sha256": "cace4832352153c5ad12963bc6da6a0385251384184ac9d4346e9d8733996194",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-long-async-threadpool-claim-03",
+      "pre_repair_sha256": "f057c86952ce2aec8f32b54beda7b76e2810ff2b0938a287d677837512cf4e1d",
+      "post_repair_sha256": "f057c86952ce2aec8f32b54beda7b76e2810ff2b0938a287d677837512cf4e1d",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-long-bge-query-instruction-claim-01",
+      "pre_repair_sha256": "3210a3f9f5e3e994fa3159aed70904d54144a03129f64e173018f12509932ed4",
+      "post_repair_sha256": "3210a3f9f5e3e994fa3159aed70904d54144a03129f64e173018f12509932ed4",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-long-bge-score-mix-claim-01",
+      "pre_repair_sha256": "2e24186a345f70c1a2d35b55273523352d269646da84f3ecee5ff39e0e754414",
+      "post_repair_sha256": "2e24186a345f70c1a2d35b55273523352d269646da84f3ecee5ff39e0e754414",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-long-bge-training-claim-01",
+      "pre_repair_sha256": "34c7bed508d8391d8baa5cd7be2ff11c10eeef8273bebc2698f23d86754b0773",
+      "post_repair_sha256": "34c7bed508d8391d8baa5cd7be2ff11c10eeef8273bebc2698f23d86754b0773",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-long-bge-training-claim-02",
+      "pre_repair_sha256": "95914cbef73f02a366753b93b0fd5d365653046cfa26b3435ff9c70c08e9a101",
+      "post_repair_sha256": "95914cbef73f02a366753b93b0fd5d365653046cfa26b3435ff9c70c08e9a101",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-long-bge-training-claim-03",
+      "pre_repair_sha256": "08c99784b07337f57a60bf80c11df17d476a8e59a9996f566eef2a8af28283d8",
+      "post_repair_sha256": "08c99784b07337f57a60bf80c11df17d476a8e59a9996f566eef2a8af28283d8",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-long-deps-hierarchy-claim-01",
+      "pre_repair_sha256": "0591af9d8314b397e67145dc00d216355400756f7be56829765940650958989b",
+      "post_repair_sha256": "0591af9d8314b397e67145dc00d216355400756f7be56829765940650958989b",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-long-deps-hierarchy-claim-02",
+      "pre_repair_sha256": "163c80e3da72bcd74023defd4c76a830240ccc7d475e5df295f46aa3512a383a",
+      "post_repair_sha256": "163c80e3da72bcd74023defd4c76a830240ccc7d475e5df295f46aa3512a383a",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-long-interrupt-static-claim-01",
+      "pre_repair_sha256": "5ef5e8a894c244dbf67c68fe0ed9a6b73dc8d41e66b73ec6a165245e44d48754",
+      "post_repair_sha256": "5ef5e8a894c244dbf67c68fe0ed9a6b73dc8d41e66b73ec6a165245e44d48754",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-long-interrupt-static-claim-02",
+      "pre_repair_sha256": "7c94977ba959cc15e93fe87e170392ba26ed1e517ece06954091fb07429f95ad",
+      "post_repair_sha256": "7c94977ba959cc15e93fe87e170392ba26ed1e517ece06954091fb07429f95ad",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-long-interrupt-static-claim-03",
+      "pre_repair_sha256": "ff2c30c2ba761aa0e46a55a490952902c4bc43ade73cc06f007e497c012b1c7c",
+      "post_repair_sha256": "ff2c30c2ba761aa0e46a55a490952902c4bc43ade73cc06f007e497c012b1c7c",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-long-interrupt-validation-claim-01",
+      "pre_repair_sha256": "6b07466d92502c09a0a95d0e4a8bf4d7c4c8763bebee501efc0ecb481511324a",
+      "post_repair_sha256": "6b07466d92502c09a0a95d0e4a8bf4d7c4c8763bebee501efc0ecb481511324a",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-long-interrupt-validation-claim-02",
+      "pre_repair_sha256": "7707b52741f1acb8b2a97410055cc52a227c7a97d854edeb1095b3e60560d08b",
+      "post_repair_sha256": "7707b52741f1acb8b2a97410055cc52a227c7a97d854edeb1095b3e60560d08b",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-long-interrupt-validation-claim-03",
+      "pre_repair_sha256": "1e79b709aece82a89ffcc5ec8d4d2de7434779cd83699e4337da0cfb42b606bf",
+      "post_repair_sha256": "1e79b709aece82a89ffcc5ec8d4d2de7434779cd83699e4337da0cfb42b606bf",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-long-langgraph-positioning-claim-01",
+      "pre_repair_sha256": "24b924261590a099df9dc1cadf4b8faf7b5af45872402d90f3d562f1ce3f0d65",
+      "post_repair_sha256": "24b924261590a099df9dc1cadf4b8faf7b5af45872402d90f3d562f1ce3f0d65",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-long-otel-links-claim-01",
+      "pre_repair_sha256": "a22bb9c7e6cf0f9ccc8a8c65f3b294cae0265f7e3421c96e9eef8f3cc47f3fa9",
+      "post_repair_sha256": "a22bb9c7e6cf0f9ccc8a8c65f3b294cae0265f7e3421c96e9eef8f3cc47f3fa9",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-long-otel-links-claim-02",
+      "pre_repair_sha256": "567240895efe2ed3957dba492c8b1c42dcd98dbe0d6fa475bfea8e86b91d7e83",
+      "post_repair_sha256": "567240895efe2ed3957dba492c8b1c42dcd98dbe0d6fa475bfea8e86b91d7e83",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-long-precision-nonllm-claim-01",
+      "pre_repair_sha256": "f136dafe7903938008ba4aeca918648c501a4eb6d1efcb0894579fe7d2bf4852",
+      "post_repair_sha256": "f136dafe7903938008ba4aeca918648c501a4eb6d1efcb0894579fe7d2bf4852",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-multi-agent-memory-hitl-claim-01",
+      "pre_repair_sha256": "164e2cba137861beb83a50e46f8f7c848f870c79b66cb9191a47ab46b93f5bb3",
+      "post_repair_sha256": "164e2cba137861beb83a50e46f8f7c848f870c79b66cb9191a47ab46b93f5bb3",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-multi-agent-memory-hitl-claim-02",
+      "pre_repair_sha256": "3b8ddd1daeffd188094cea4e4ce58eb1a8f40e0300e48efa1fd84da1da53f136",
+      "post_repair_sha256": "3b8ddd1daeffd188094cea4e4ce58eb1a8f40e0300e48efa1fd84da1da53f136",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-multi-agent-memory-hitl-claim-03",
+      "pre_repair_sha256": "710f04655b116b212d993a747f942e64b58bad0081fe91e1e74edabbde1bf7f3",
+      "post_repair_sha256": "710f04655b116b212d993a747f942e64b58bad0081fe91e1e74edabbde1bf7f3",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-multi-agent-resume-claim-01",
+      "pre_repair_sha256": "b77a8b6706ce4650c7a7c58f04c11db71a6bac5b3029f39d770854663782f9a7",
+      "post_repair_sha256": "b77a8b6706ce4650c7a7c58f04c11db71a6bac5b3029f39d770854663782f9a7",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-multi-agent-resume-claim-02",
+      "pre_repair_sha256": "b3be89733b21e6a83771854d9c7913448f3daa04bcb800c012e21269103214ed",
+      "post_repair_sha256": "b3be89733b21e6a83771854d9c7913448f3daa04bcb800c012e21269103214ed",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-multi-async-dependency-claim-01",
+      "pre_repair_sha256": "3357f1dd96a332b8407bfa6b508db0a4597a08a5fb73169ee3fd6232c7489e8e",
+      "post_repair_sha256": "3357f1dd96a332b8407bfa6b508db0a4597a08a5fb73169ee3fd6232c7489e8e",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-multi-async-dependency-claim-02",
+      "pre_repair_sha256": "0b959ac737f74b9a77c813dd332275434ad97d086007cabcc49c9f1ad3ce2b99",
+      "post_repair_sha256": "0b959ac737f74b9a77c813dd332275434ad97d086007cabcc49c9f1ad3ce2b99",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-multi-backend-control-claim-01",
+      "pre_repair_sha256": "ba8fbc255e959d828cf14104987f0a5594e7a19701adee1d7cb03b3173fce0fe",
+      "post_repair_sha256": "ba8fbc255e959d828cf14104987f0a5594e7a19701adee1d7cb03b3173fce0fe",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-multi-backend-control-claim-02",
+      "pre_repair_sha256": "e544017704f21e511d8a1ea93cb2cbe994648abd543e569a4a03dd6266a8e1a9",
+      "post_repair_sha256": "e544017704f21e511d8a1ea93cb2cbe994648abd543e569a4a03dd6266a8e1a9",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-multi-backend-control-claim-03",
+      "pre_repair_sha256": "ba4b00215f32ba1f09b5cca765c43a6749c70b05f8b4183696567c18f96768bc",
+      "post_repair_sha256": "ba4b00215f32ba1f09b5cca765c43a6749c70b05f8b4183696567c18f96768bc",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-multi-error-observability-claim-01",
+      "pre_repair_sha256": "99571cfe74aa895fdc9127653baf9e8f2d3123430cef3a5577b1db769593f4a0",
+      "post_repair_sha256": "99571cfe74aa895fdc9127653baf9e8f2d3123430cef3a5577b1db769593f4a0",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-multi-error-observability-claim-02",
+      "pre_repair_sha256": "ee5a28e83742055879e5bb8c498581a493f8e4b1bc394eeea9b586bb5ec271ee",
+      "post_repair_sha256": "ee5a28e83742055879e5bb8c498581a493f8e4b1bc394eeea9b586bb5ec271ee",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-multi-eval-stack-claim-01",
+      "pre_repair_sha256": "ed7780ec92ebff32509feca3b16d831d383db2bc1043c6c1ccac5cefc2486c20",
+      "post_repair_sha256": "ed7780ec92ebff32509feca3b16d831d383db2bc1043c6c1ccac5cefc2486c20",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-multi-eval-stack-claim-02",
+      "pre_repair_sha256": "1fad6b6b74c2834ca7eb4fa93bd5efa64a0de84f5497dfd3c4c50ea24f2f9984",
+      "post_repair_sha256": "1fad6b6b74c2834ca7eb4fa93bd5efa64a0de84f5497dfd3c4c50ea24f2f9984",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-multi-eval-stack-claim-03",
+      "pre_repair_sha256": "46e928f40dc3be536d9b11eb253292ae36fde485b4a648aa33ca5c9b366d5200",
+      "post_repair_sha256": "46e928f40dc3be536d9b11eb253292ae36fde485b4a648aa33ca5c9b366d5200",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-multi-faiss-context-precision-claim-01",
+      "pre_repair_sha256": "388db72bea2e941bf9eb1ab34925ee60536152040f65b377432001c0fdbd601a",
+      "post_repair_sha256": "388db72bea2e941bf9eb1ab34925ee60536152040f65b377432001c0fdbd601a",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-multi-faiss-context-precision-claim-02",
+      "pre_repair_sha256": "f8bb72d38f000b30284818bf545c7bb04bf88c6d06016cc7d7cbebc8b52bdbfa",
+      "post_repair_sha256": "f8bb72d38f000b30284818bf545c7bb04bf88c6d06016cc7d7cbebc8b52bdbfa",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-multi-faiss-context-precision-claim-03",
+      "pre_repair_sha256": "0aaddb998ad428d05f98de9cd310237f73885734d7dd8039e0d986178a36995f",
+      "post_repair_sha256": "0aaddb998ad428d05f98de9cd310237f73885734d7dd8039e0d986178a36995f",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-multi-hybrid-index-claim-01",
+      "pre_repair_sha256": "7d935b618dc533124806ec7b83359a708562b0a1934b0d75089f102a05bd9ed2",
+      "post_repair_sha256": "7d935b618dc533124806ec7b83359a708562b0a1934b0d75089f102a05bd9ed2",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-multi-hybrid-index-claim-02",
+      "pre_repair_sha256": "cb8d55149827411839ddc30a723818576d7e6c6a2747a761d38a0898055bb062",
+      "post_repair_sha256": "cb8d55149827411839ddc30a723818576d7e6c6a2747a761d38a0898055bb062",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-multi-retrieval-eval-claim-01",
+      "pre_repair_sha256": "3328b13830989b0aadd0f131d60b2b745a5f768cb9e35cec0f779f37ed6bc320",
+      "post_repair_sha256": "3328b13830989b0aadd0f131d60b2b745a5f768cb9e35cec0f779f37ed6bc320",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-multi-retrieval-eval-claim-02",
+      "pre_repair_sha256": "79bf30d7eff709a89e948cfd0fdc4c9e371b73c29d1b983176f5bcc910ae5731",
+      "post_repair_sha256": "79bf30d7eff709a89e948cfd0fdc4c9e371b73c29d1b983176f5bcc910ae5731",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-multi-retrieval-eval-claim-03",
+      "pre_repair_sha256": "853c9e158973d1835010e48f0fd45ae879a7d5584b65b3e52b65873bc6ad2a27",
+      "post_repair_sha256": "853c9e158973d1835010e48f0fd45ae879a7d5584b65b3e52b65873bc6ad2a27",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-disambig-agent-memory-claim-01",
+      "pre_repair_sha256": "27f31e1054d657c5d85dd745e26af117ed6abd4a0ec9a9e90a3e79ee402c3897",
+      "post_repair_sha256": "27f31e1054d657c5d85dd745e26af117ed6abd4a0ec9a9e90a3e79ee402c3897",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-disambig-agent-memory-claim-02",
+      "pre_repair_sha256": "e4852b2e6b7a1345ac18902e8c52b28b9087c53a3192352b1e0a2bef0dd1c4a7",
+      "post_repair_sha256": "e4852b2e6b7a1345ac18902e8c52b28b9087c53a3192352b1e0a2bef0dd1c4a7",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-disambig-agent-persist-interrupt-claim-01",
+      "pre_repair_sha256": "00608dde06b231b7d08a693b8064a0d7c2818e6c18ce94d3ce2803172ad6eb3f",
+      "post_repair_sha256": "00608dde06b231b7d08a693b8064a0d7c2818e6c18ce94d3ce2803172ad6eb3f",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-disambig-agent-persist-interrupt-claim-02",
+      "pre_repair_sha256": "1d2c2f36407e93b7072e298a3be4ff8e31a33c190fd291083529ab00a896e677",
+      "post_repair_sha256": "1d2c2f36407e93b7072e298a3be4ff8e31a33c190fd291083529ab00a896e677",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-disambig-bge-faiss-claim-01",
+      "pre_repair_sha256": "7a4e0cc564abf4eeae8d5253eadc1a236e85750ecfb94bcd4e9ae0b8edbbe45a",
+      "post_repair_sha256": "7a4e0cc564abf4eeae8d5253eadc1a236e85750ecfb94bcd4e9ae0b8edbbe45a",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-disambig-bge-faiss-claim-02",
+      "pre_repair_sha256": "7b4c968e9d33065dae01c02cea0cfb3545ee551aa0d7cc7b026ac443e2ad5874",
+      "post_repair_sha256": "7b4c968e9d33065dae01c02cea0cfb3545ee551aa0d7cc7b026ac443e2ad5874",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-disambig-bge-long-claim-01",
+      "pre_repair_sha256": "a4d01d24ca36b019dd9916ee1440beca741882b7def04cfd8b1c6c82489327d5",
+      "post_repair_sha256": "a4d01d24ca36b019dd9916ee1440beca741882b7def04cfd8b1c6c82489327d5",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-disambig-fastapi-async-deps-claim-02",
+      "pre_repair_sha256": "b512a2cb8e58752453d845473b1c24da1ca134c8f393ad61d82fc36acf9d981e",
+      "post_repair_sha256": "b512a2cb8e58752453d845473b1c24da1ca134c8f393ad61d82fc36acf9d981e",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-disambig-fastapi-errors-claim-01",
+      "pre_repair_sha256": "59e229ebe14aaaa6391979543ea8c2ac3fcefc40974a9b42922d200d520fdc7e",
+      "post_repair_sha256": "59e229ebe14aaaa6391979543ea8c2ac3fcefc40974a9b42922d200d520fdc7e",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-disambig-fastapi-exceptions-claim-01",
+      "pre_repair_sha256": "2b0c157f7fc733efc77252769787bcd1d5881b5ac11c99546b7e978c7bc4ffe8",
+      "post_repair_sha256": "2b0c157f7fc733efc77252769787bcd1d5881b5ac11c99546b7e978c7bc4ffe8",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-disambig-fastapi-exceptions-claim-02",
+      "pre_repair_sha256": "3bb7159539b5013224a8c5ef14d34eb2e9f262b922ecad11838047f202b0f2f4",
+      "post_repair_sha256": "3bb7159539b5013224a8c5ef14d34eb2e9f262b922ecad11838047f202b0f2f4",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-disambig-ragas-metrics-claim-01",
+      "pre_repair_sha256": "e0c6befcba08d5a0b6338eebcec2b9035dc7812990237b6d1f019c204cfc010d",
+      "post_repair_sha256": "e0c6befcba08d5a0b6338eebcec2b9035dc7812990237b6d1f019c204cfc010d",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-disambig-ragas-metrics-claim-02",
+      "pre_repair_sha256": "8e7fa2f3f4a591ac157e09bc48e557c68ac3d2588499fc5920532da47a90b1d4",
+      "post_repair_sha256": "8e7fa2f3f4a591ac157e09bc48e557c68ac3d2588499fc5920532da47a90b1d4",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-disambig-ragas-otel-claim-01",
+      "pre_repair_sha256": "66da097ae9235715e6798b3ead3241154f6d6911626c5c5979f18fd4e58c0ed9",
+      "post_repair_sha256": "66da097ae9235715e6798b3ead3241154f6d6911626c5c5979f18fd4e58c0ed9",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-disambig-ragas-otel-claim-02",
+      "pre_repair_sha256": "fcbf69106599a4c7402005acec54825824d4d638d79d1171f5788366c12b453b",
+      "post_repair_sha256": "fcbf69106599a4c7402005acec54825824d4d638d79d1171f5788366c12b453b",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-stress-deep-async-call-kinds-claim-01",
+      "pre_repair_sha256": "c21a1b12c04652d29c1421c10496604cbf12e4ac4f7ef986d41e315f97bbc2a5",
+      "post_repair_sha256": "c21a1b12c04652d29c1421c10496604cbf12e4ac4f7ef986d41e315f97bbc2a5",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-stress-deep-async-call-kinds-claim-02",
+      "pre_repair_sha256": "88777af1805d2f7bf6562982757968d4b5b47036c2ce864ae034336406b6d777",
+      "post_repair_sha256": "88777af1805d2f7bf6562982757968d4b5b47036c2ce864ae034336406b6d777",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-stress-deep-async-call-kinds-claim-03",
+      "pre_repair_sha256": "2d1cf3970e4c4d4479eec5eac96a129d195ff0e776e75f260c14493352879584",
+      "post_repair_sha256": "2d1cf3970e4c4d4479eec5eac96a129d195ff0e776e75f260c14493352879584",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-stress-deep-bge-mldr-comparison-claim-02",
+      "pre_repair_sha256": "3f1767d4af685e8aba1978b53deb856ca2982cfd48b25dbf6047836339c061be",
+      "post_repair_sha256": "3f1767d4af685e8aba1978b53deb856ca2982cfd48b25dbf6047836339c061be",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-stress-deep-interrupt-side-effects-claim-01",
+      "pre_repair_sha256": "bcbedaee10412437fd28352aa9f10e7654e9ec2652dd629b438d5ffc8a95eeb7",
+      "post_repair_sha256": "bcbedaee10412437fd28352aa9f10e7654e9ec2652dd629b438d5ffc8a95eeb7",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-stress-deep-interrupt-side-effects-claim-02",
+      "pre_repair_sha256": "44eca3a209f549a63d2f8d946836c39ff8129bb0b11b1cb66e6f0137f2e04c91",
+      "post_repair_sha256": "44eca3a209f549a63d2f8d946836c39ff8129bb0b11b1cb66e6f0137f2e04c91",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-stress-deep-precision-id-versus-content-claim-01",
+      "pre_repair_sha256": "70b701a619984e0dc6eb770f4417e67c6afe53bd079268300ff69c4e0e3d2213",
+      "post_repair_sha256": "70b701a619984e0dc6eb770f4417e67c6afe53bd079268300ff69c4e0e3d2213",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-stress-deep-precision-id-versus-content-claim-02",
+      "pre_repair_sha256": "62ec66a81d07b0faef18102d231c9ef551daf29dbe96f542bdb36795967bca9d",
+      "post_repair_sha256": "62ec66a81d07b0faef18102d231c9ef551daf29dbe96f542bdb36795967bca9d",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-stress-cross-agent-api-replay-claim-01",
+      "pre_repair_sha256": "e15b8a87fa6192046590c176b7588bf9557596aee0ebcce26b3fa08cef171d6f",
+      "post_repair_sha256": "e15b8a87fa6192046590c176b7588bf9557596aee0ebcce26b3fa08cef171d6f",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-stress-cross-agent-api-replay-claim-02",
+      "pre_repair_sha256": "dbe2133b70be961de23b87df7f8c54fea9c3eae8446a87f88c14d074d6144405",
+      "post_repair_sha256": "dbe2133b70be961de23b87df7f8c54fea9c3eae8446a87f88c14d074d6144405",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-stress-cross-agent-api-replay-claim-03",
+      "pre_repair_sha256": "df08c218da07eeb39503c5a4d4993951a100e706195baf0224b1941735e9ccad",
+      "post_repair_sha256": "df08c218da07eeb39503c5a4d4993951a100e706195baf0224b1941735e9ccad",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-stress-cross-embedding-api-concurrency-claim-01",
+      "pre_repair_sha256": "20afb580a09046cc4861f76265ed5e44f5944ddd9d41704d672759d341d2f6ca",
+      "post_repair_sha256": "20afb580a09046cc4861f76265ed5e44f5944ddd9d41704d672759d341d2f6ca",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-stress-cross-embedding-api-concurrency-claim-02",
+      "pre_repair_sha256": "c3a2a057af75f613187620a942cff5298cfa4681fbfafb86c08033ecb80a7163",
+      "post_repair_sha256": "c3a2a057af75f613187620a942cff5298cfa4681fbfafb86c08033ecb80a7163",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-stress-cross-persistence-tracing-claim-01",
+      "pre_repair_sha256": "e341cbfb673f40e6561f2d68b9d33065cd213d85d3fca7384e828d5789a5424d",
+      "post_repair_sha256": "e341cbfb673f40e6561f2d68b9d33065cd213d85d3fca7384e828d5789a5424d",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-stress-cross-persistence-tracing-claim-02",
+      "pre_repair_sha256": "4c60d606d7b7601875417aca77fc156e552800bdb771bec879ff4e017a8dc5ab",
+      "post_repair_sha256": "4c60d606d7b7601875417aca77fc156e552800bdb771bec879ff4e017a8dc5ab",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-stress-cross-retrieval-evaluation-claim-01",
+      "pre_repair_sha256": "443f5e6e4dde55a01ef53e9e2931319b1e222caa2a5514e7e4e979eeb79fc2d6",
+      "post_repair_sha256": "443f5e6e4dde55a01ef53e9e2931319b1e222caa2a5514e7e4e979eeb79fc2d6",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-stress-cross-retrieval-evaluation-claim-02",
+      "pre_repair_sha256": "737c3f294ea4a69fe5e64117786682d083e60a1b0fa30dca45beca54da32490d",
+      "post_repair_sha256": "737c3f294ea4a69fe5e64117786682d083e60a1b0fa30dca45beca54da32490d",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-stress-cross-retrieval-evaluation-claim-03",
+      "pre_repair_sha256": "d74d2601c4bfba2290a46f5115f295c35ee46a29e7e4981d2089a5f6efd85021",
+      "post_repair_sha256": "d74d2601c4bfba2290a46f5115f295c35ee46a29e7e4981d2089a5f6efd85021",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-stress-conflict-bge-faiss-compression-claim-01",
+      "pre_repair_sha256": "9d6fe8ab3e13de068f4b58b0478b2b773ed20f41b91e6c50ce8e43ce59744bf7",
+      "post_repair_sha256": "9d6fe8ab3e13de068f4b58b0478b2b773ed20f41b91e6c50ce8e43ce59744bf7",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-stress-conflict-fastapi-handler-type-claim-02",
+      "pre_repair_sha256": "c4738e1a75f6136ed40801c8072c95b5f25814b1c2364714ff91ace0ef8a3fe8",
+      "post_repair_sha256": "c4738e1a75f6136ed40801c8072c95b5f25814b1c2364714ff91ace0ef8a3fe8",
+      "unchanged": true
+    },
+    {
+      "claim_id": "rw-gold-v1-stress-conflict-interrupt-persistence-resume-claim-01",
+      "pre_repair_sha256": "80d112aeb4d60c4a1867345dbf0a59c052501144f4e8c22e0ec1dc20105fc0ec",
+      "post_repair_sha256": "80d112aeb4d60c4a1867345dbf0a59c052501144f4e8c22e0ec1dc20105fc0ec",
+      "unchanged": true
+    }
+  ],
+  "evidence_role_closure": {
+    "target_case_count": 14,
+    "case_reviews": [
+      {
+        "case_id": "rw-gold-v1-disambig-agent-memory",
+        "review_mode": "UNCHANGED_PREVIOUSLY_CONFIRMED",
+        "roles": [
+          {
+            "document_id": "rw-agent-interrupts",
+            "role": "REQUIRED"
+          },
+          {
+            "document_id": "rw-agent-langgraph-overview",
+            "role": "ACCEPTABLE_SUPPORT"
+          },
+          {
+            "document_id": "rw-agent-persistence",
+            "role": "REQUIRED"
+          },
+          {
+            "document_id": "rw-eval-otel-traces",
+            "role": "UNSUPPORTED"
+          }
+        ],
+        "role_verdict": "VERIFIED",
+        "review_reason": "Role payload is unchanged from the frozen independent review and remains semantically valid."
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-agent-persist-interrupt",
+        "review_mode": "UNCHANGED_PREVIOUSLY_CONFIRMED",
+        "roles": [
+          {
+            "document_id": "rw-agent-interrupts",
+            "role": "REQUIRED"
+          },
+          {
+            "document_id": "rw-agent-langgraph-overview",
+            "role": "ACCEPTABLE_SUPPORT"
+          },
+          {
+            "document_id": "rw-agent-persistence",
+            "role": "REQUIRED"
+          },
+          {
+            "document_id": "rw-eval-otel-traces",
+            "role": "UNSUPPORTED"
+          }
+        ],
+        "role_verdict": "VERIFIED",
+        "review_reason": "Role payload is unchanged from the frozen independent review and remains semantically valid."
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-bge-faiss",
+        "review_mode": "UNCHANGED_PREVIOUSLY_CONFIRMED",
+        "roles": [
+          {
+            "document_id": "rw-eval-context-precision",
+            "role": "UNSUPPORTED"
+          },
+          {
+            "document_id": "rw-rag-bge-m3",
+            "role": "REQUIRED"
+          },
+          {
+            "document_id": "rw-rag-faiss-overview",
+            "role": "REQUIRED"
+          }
+        ],
+        "role_verdict": "VERIFIED",
+        "review_reason": "Role payload is unchanged from the frozen independent review and remains semantically valid."
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-bge-long",
+        "review_mode": "UNCHANGED_PREVIOUSLY_CONFIRMED",
+        "roles": [
+          {
+            "document_id": "rw-eval-context-precision",
+            "role": "UNSUPPORTED"
+          },
+          {
+            "document_id": "rw-rag-bge-m3",
+            "role": "REQUIRED"
+          },
+          {
+            "document_id": "rw-rag-faiss-overview",
+            "role": "ACCEPTABLE_SUPPORT"
+          }
+        ],
+        "role_verdict": "VERIFIED",
+        "review_reason": "Role payload is unchanged from the frozen independent review and remains semantically valid."
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-fastapi-async-deps",
+        "review_mode": "UNCHANGED_PREVIOUSLY_CONFIRMED",
+        "roles": [
+          {
+            "document_id": "rw-backend-fastapi-async",
+            "role": "REQUIRED"
+          },
+          {
+            "document_id": "rw-backend-fastapi-dependencies",
+            "role": "REQUIRED"
+          },
+          {
+            "document_id": "rw-backend-fastapi-errors",
+            "role": "UNSUPPORTED"
+          }
+        ],
+        "role_verdict": "VERIFIED",
+        "review_reason": "Role payload is unchanged from the frozen independent review and remains semantically valid."
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-fastapi-errors",
+        "review_mode": "UNCHANGED_PREVIOUSLY_CONFIRMED",
+        "roles": [
+          {
+            "document_id": "rw-backend-fastapi-async",
+            "role": "UNSUPPORTED"
+          },
+          {
+            "document_id": "rw-backend-fastapi-dependencies",
+            "role": "ACCEPTABLE_SUPPORT"
+          },
+          {
+            "document_id": "rw-backend-fastapi-errors",
+            "role": "REQUIRED"
+          }
+        ],
+        "role_verdict": "VERIFIED",
+        "review_reason": "Role payload is unchanged from the frozen independent review and remains semantically valid."
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-fastapi-exceptions",
+        "review_mode": "FRESH_POST_REPAIR_REVIEW",
+        "roles": [
+          {
+            "document_id": "rw-backend-fastapi-async",
+            "role": "UNSUPPORTED"
+          },
+          {
+            "document_id": "rw-backend-fastapi-dependencies",
+            "role": "UNSUPPORTED"
+          },
+          {
+            "document_id": "rw-backend-fastapi-errors",
+            "role": "REQUIRED"
+          }
+        ],
+        "role_verdict": "VERIFIED",
+        "review_reason": "The async document is now UNSUPPORTED; required error-handling evidence and the dependency distractor remain conflict-free."
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-interrupt-static",
+        "review_mode": "UNCHANGED_PREVIOUSLY_CONFIRMED",
+        "roles": [
+          {
+            "document_id": "rw-agent-interrupts",
+            "role": "REQUIRED"
+          },
+          {
+            "document_id": "rw-agent-langgraph-overview",
+            "role": "ACCEPTABLE_SUPPORT"
+          },
+          {
+            "document_id": "rw-agent-persistence",
+            "role": "ACCEPTABLE_SUPPORT"
+          },
+          {
+            "document_id": "rw-backend-fastapi-async",
+            "role": "UNSUPPORTED"
+          }
+        ],
+        "role_verdict": "VERIFIED",
+        "review_reason": "Role payload is unchanged from the frozen independent review and remains semantically valid."
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-ragas-metrics",
+        "review_mode": "UNCHANGED_PREVIOUSLY_CONFIRMED",
+        "roles": [
+          {
+            "document_id": "rw-eval-context-precision",
+            "role": "REQUIRED"
+          },
+          {
+            "document_id": "rw-eval-otel-traces",
+            "role": "UNSUPPORTED"
+          },
+          {
+            "document_id": "rw-eval-ragas-workflow",
+            "role": "REQUIRED"
+          }
+        ],
+        "role_verdict": "VERIFIED",
+        "review_reason": "Role payload is unchanged from the frozen independent review and remains semantically valid."
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-ragas-otel",
+        "review_mode": "UNCHANGED_PREVIOUSLY_CONFIRMED",
+        "roles": [
+          {
+            "document_id": "rw-eval-context-precision",
+            "role": "REQUIRED"
+          },
+          {
+            "document_id": "rw-eval-otel-traces",
+            "role": "REQUIRED"
+          },
+          {
+            "document_id": "rw-eval-ragas-workflow",
+            "role": "ACCEPTABLE_SUPPORT"
+          },
+          {
+            "document_id": "rw-rag-faiss-overview",
+            "role": "UNSUPPORTED"
+          }
+        ],
+        "role_verdict": "VERIFIED",
+        "review_reason": "Role payload is unchanged from the frozen independent review and remains semantically valid."
+      },
+      {
+        "case_id": "rw-gold-v1-stress-conflict-bge-faiss-compression",
+        "review_mode": "UNCHANGED_PREVIOUSLY_CONFIRMED",
+        "roles": [
+          {
+            "document_id": "rw-eval-context-precision",
+            "role": "UNSUPPORTED"
+          },
+          {
+            "document_id": "rw-rag-bge-m3",
+            "role": "ACCEPTABLE_SUPPORT"
+          },
+          {
+            "document_id": "rw-rag-faiss-overview",
+            "role": "REQUIRED"
+          }
+        ],
+        "role_verdict": "VERIFIED",
+        "review_reason": "Role payload is unchanged from the frozen independent review and remains semantically valid."
+      },
+      {
+        "case_id": "rw-gold-v1-stress-conflict-fastapi-handler-type",
+        "review_mode": "UNCHANGED_PREVIOUSLY_CONFIRMED",
+        "roles": [
+          {
+            "document_id": "rw-backend-fastapi-async",
+            "role": "UNSUPPORTED"
+          },
+          {
+            "document_id": "rw-backend-fastapi-dependencies",
+            "role": "ACCEPTABLE_SUPPORT"
+          },
+          {
+            "document_id": "rw-backend-fastapi-errors",
+            "role": "REQUIRED"
+          }
+        ],
+        "role_verdict": "VERIFIED",
+        "review_reason": "Role payload is unchanged from the frozen independent review and remains semantically valid."
+      },
+      {
+        "case_id": "rw-gold-v1-stress-conflict-interrupt-persistence-resume",
+        "review_mode": "UNCHANGED_PREVIOUSLY_CONFIRMED",
+        "roles": [
+          {
+            "document_id": "rw-agent-interrupts",
+            "role": "REQUIRED"
+          },
+          {
+            "document_id": "rw-agent-langgraph-overview",
+            "role": "UNSUPPORTED"
+          },
+          {
+            "document_id": "rw-agent-persistence",
+            "role": "ACCEPTABLE_SUPPORT"
+          }
+        ],
+        "role_verdict": "VERIFIED",
+        "review_reason": "Role payload is unchanged from the frozen independent review and remains semantically valid."
+      },
+      {
+        "case_id": "rw-gold-v1-stress-conflict-ragas-reference-mode",
+        "review_mode": "UNCHANGED_PREVIOUSLY_CONFIRMED",
+        "roles": [
+          {
+            "document_id": "rw-eval-context-precision",
+            "role": "REQUIRED"
+          },
+          {
+            "document_id": "rw-eval-otel-traces",
+            "role": "UNSUPPORTED"
+          },
+          {
+            "document_id": "rw-eval-ragas-workflow",
+            "role": "ACCEPTABLE_SUPPORT"
+          }
+        ],
+        "role_verdict": "VERIFIED",
+        "review_reason": "Role payload is unchanged from the frozen independent review and remains semantically valid."
+      }
+    ],
+    "misclassified_count": 0
+  },
+  "final_semantic_closure": {
+    "semantic_review_total": 104,
+    "previously_supported_and_unchanged": 96,
+    "repaired_semantic_claims_reviewed": 8,
+    "verdict_distribution": {
+      "SUPPORTED": 104,
+      "PARTIALLY_SUPPORTED": 0,
+      "UNSUPPORTED": 0,
+      "AMBIGUOUS": 0
+    },
+    "status": "PASS"
+  },
+  "execution_audit": {
+    "deepseek_calls": 0,
+    "other_llm_calls": 0,
+    "production_rag_ask_calls": 0,
+    "real_world_baseline_executions": 0,
+    "embedding_executions": 0,
+    "faiss_retrieval_executions": 0
+  }
+}

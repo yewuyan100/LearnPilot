@@ -7,6 +7,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from app.core.config import Settings
+from app.core.clock import clock_from_settings
 from app.core.errors import AppError
 from app.models.rag_citation import RagCitation
 from app.models.rag_conversation import RagConversation
@@ -24,13 +25,17 @@ from app.schemas.rag import (
 )
 from app.services.embedding.base import Embedder
 from app.services.llm.base import LLMProvider
-from app.services.llm.errors import LLMError, LLMOutputInvalidError
-from app.services.llm.schemas import RagModelAnswer
-from app.services.rag.prompts import REPAIR_SYSTEM_PROMPT, answer_messages
+from app.services.llm.errors import LLMError
+from app.services.rag.grounding import (
+    GroundedAnswerInvalidError,
+    generate_grounded_answer,
+)
 from app.services.rag.query_rewriter import rewrite_query
 from app.services.rag.retrieval import retrieve_sources
+from app.services.rag.reranker import RerankerGateway, build_reranker_provider
 from app.services.rag.types import RagSource, RetrievalResult
-from app.services.rag.validation import is_prompt_injection_request, validate_answer
+from app.services.rag.validation import is_prompt_injection_request
+from app.services.material_learning import MaterialScopeResolver
 
 REFUSAL_TEXT = "当前资料不足以可靠回答这个问题。请补充相关资料，或缩小问题范围后重试。"
 logger = logging.getLogger("personal_learning.rag")
@@ -43,12 +48,19 @@ class RagConversationService:
         settings: Settings,
         embedder: Embedder,
         provider: LLMProvider | None,
+        reranker_provider: RerankerGateway | None = None,
     ):
         self.db = db
         self.settings = settings
         self.embedder = embedder
         self.provider = provider
-        self.repo = RagRepository(db)
+        self.reranker_provider = (
+            reranker_provider
+            if reranker_provider is not None
+            else build_reranker_provider(settings)
+        )
+        self.clock = clock_from_settings(settings)
+        self.repo = RagRepository(db, self.clock)
 
     def create_conversation(
         self, *, title: str, default_top_k: int | None
@@ -119,6 +131,9 @@ class RagConversationService:
         request_id: str,
         top_k: int | None,
         material_ids: list[int] | None,
+        learning_goal_id: int | None = None,
+        course_id: int | None = None,
+        knowledge_point_id: int | None = None,
     ) -> RagAnswerResponse:
         conversation = self.repo.get_conversation(conversation_id)
         if conversation.status != "active":
@@ -127,16 +142,30 @@ class RagConversationService:
                 "该资料问答会话已归档",
                 status.HTTP_409_CONFLICT,
             )
+        scope = MaterialScopeResolver(self.db).resolve_combined_scope(
+            learning_goal_id=learning_goal_id,
+            course_id=course_id,
+            knowledge_point_id=knowledge_point_id,
+            material_ids=material_ids,
+            searchable_only=True,
+        )
         existing = self.repo.find_by_request(conversation_id, request_id)
         if existing is not None:
-            if existing.original_query != question:
+            if (
+                existing.original_query != question
+                or existing.retrieval_scope.get("requested_scope") != scope.requested_scope
+            ):
                 raise AppError(
                     "request_id_conflict",
                     "相同 request_id 已用于其他问题",
                     status.HTTP_409_CONFLICT,
                 )
             return self._response_for(existing, idempotent_replay=True)
-        resolved_top_k = top_k or conversation.default_top_k or self.settings.rag_top_k_default
+        resolved_top_k = (
+            top_k
+            or conversation.default_top_k
+            or self.settings.rag_final_context_top_k
+        )
         if resolved_top_k > self.settings.rag_top_k_max:
             raise AppError(
                 "top_k_too_large",
@@ -153,14 +182,39 @@ class RagConversationService:
             settings=self.settings,
             provider=self.provider,
         )
-        retrieval = retrieve_sources(
-            db=self.db,
-            settings=self.settings,
-            embedder=self.embedder,
-            query=rewrite.query,
-            top_k=resolved_top_k,
-            material_ids=material_ids,
-        )
+        if scope.empty:
+            retrieval = RetrievalResult(
+                query=rewrite.query,
+                sources=[],
+                candidate_count=0,
+                index_version=None,
+                duration_ms=0,
+                unavailable_reason="empty_material_scope",
+            )
+        else:
+            retrieval = retrieve_sources(
+                db=self.db,
+                settings=self.settings,
+                embedder=self.embedder,
+                query=rewrite.query,
+                top_k=resolved_top_k,
+                material_ids=scope.resolved_material_ids,
+                reranker_provider=self.reranker_provider,
+            )
+        scope_record = {
+            "requested_scope": scope.requested_scope,
+            "resolved_material_ids": scope.resolved_material_ids,
+            "scoped": scope.scoped,
+            "retrieved_count": retrieval.retrieved_count,
+            "filtered_count": retrieval.filtered_count,
+            "final_count": retrieval.final_count,
+            "retrieval_mode": retrieval.retrieval_mode,
+            "reranker_status": retrieval.reranker_status,
+            "reranker_device": retrieval.reranker_device,
+            "reranker_dtype": retrieval.reranker_dtype,
+            "reranker_batch_count": retrieval.reranker_batch_count,
+            "reranker_fallback_reason": retrieval.reranker_fallback_reason,
+        }
         user = RagMessage(
             conversation_id=conversation_id,
             role="user",
@@ -176,6 +230,7 @@ class RagConversationService:
             request_id=request_id,
             original_query=question,
             retrieval_query=rewrite.query,
+            retrieval_scope=scope_record,
             prompt_version=self.settings.rag_prompt_version,
         )
         self.db.add(user)
@@ -212,22 +267,17 @@ class RagConversationService:
             )
         else:
             try:
-                model_result = self.provider.generate_structured(
-                    messages=answer_messages(question, retrieval.sources),
-                    schema=RagModelAnswer,
+                grounded = generate_grounded_answer(
+                    provider=self.provider,
+                    question=question,
+                    sources=retrieval.sources,
                 )
-                answer = model_result.value
-                valid, invalid_reason = validate_answer(answer, retrieval.sources)  # type: ignore[arg-type]
-                if not valid:
-                    answer = self._repair_answer(
-                        question, retrieval.sources, invalid_reason or "invalid_answer"
-                    )
-                    fallback_used = True
-                    valid, invalid_reason = validate_answer(answer, retrieval.sources)
-                if not valid:
-                    self._apply_refusal(assistant, invalid_reason or "citation_validation_failed")
-                    fallback_used = True
-                elif not answer.answerable:
+                answer = grounded.answer
+                fallback_used = grounded.repair_attempted
+                assistant.model_name = grounded.model_name
+                assistant.input_tokens = grounded.usage.input_tokens
+                assistant.output_tokens = grounded.usage.output_tokens
+                if not answer.answerable:
                     self._apply_refusal(
                         assistant, answer.refusal_reason or "model_reported_insufficient"
                     )
@@ -235,42 +285,20 @@ class RagConversationService:
                     assistant.content = answer.answer_markdown.strip()
                     assistant.status = "completed"
                     assistant.answerable = True
-                    assistant.model_name = model_result.model
-                    assistant.input_tokens = model_result.usage.input_tokens
-                    assistant.output_tokens = model_result.usage.output_tokens
                     self._add_citations(
                         assistant,
                         retrieval.sources,
-                        list(dict.fromkeys(answer.cited_source_ids)),
+                        answer.cited_source_ids,
+                        scope_record,
                     )
-            except LLMOutputInvalidError:
-                try:
-                    try:
-                        answer = self._repair_answer(
-                            question, retrieval.sources, "llm_output_invalid"
-                        )
-                    except LLMOutputInvalidError:
-                        answer = self._repair_answer(
-                            question, retrieval.sources, "llm_output_invalid_retry"
-                        )
-                    valid, invalid_reason = validate_answer(answer, retrieval.sources)
-                    if valid and answer.answerable:
-                        assistant.content = answer.answer_markdown.strip()
-                        assistant.status = "completed"
-                        assistant.answerable = True
-                        self._add_citations(
-                            assistant,
-                            retrieval.sources,
-                            list(dict.fromkeys(answer.cited_source_ids)),
-                        )
-                    else:
-                        self._apply_refusal(
-                            assistant, invalid_reason or "llm_output_invalid"
-                        )
-                    fallback_used = True
-                except LLMError:
-                    self._apply_refusal(assistant, "llm_output_invalid")
-                    fallback_used = True
+            except GroundedAnswerInvalidError as exc:
+                logger.info(
+                    "rag_grounding_failed initial_reason=%s final_reason=%s",
+                    exc.initial_reason,
+                    exc.reason,
+                )
+                self._apply_refusal(assistant, "grounded_answer_invalid")
+                fallback_used = True
             except LLMError as exc:
                 assistant.status = "failed"
                 assistant.error_message = exc.code
@@ -294,37 +322,26 @@ class RagConversationService:
         )
         logger.info(
             "rag_request_completed conversation_id=%s request_id=%s answerable=%s "
-            "refusal_reason=%s source_count=%s retrieval_duration_ms=%s total_duration_ms=%s",
+            "refusal_reason=%s resolved_material_count=%s retrieved_count=%s "
+            "filtered_count=%s final_count=%s retrieval_mode=%s reranker_status=%s "
+            "reranker_device=%s reranker_fallback_reason=%s retrieval_duration_ms=%s "
+            "total_duration_ms=%s",
             conversation_id,
             request_id,
             assistant.answerable,
             assistant.refusal_reason,
-            len(response.assistant_message.citations),
+            len(scope.resolved_material_ids or []),
+            retrieval.retrieved_count,
+            retrieval.filtered_count,
+            retrieval.final_count,
+            retrieval.retrieval_mode,
+            retrieval.reranker_status,
+            retrieval.reranker_device,
+            retrieval.reranker_fallback_reason,
             retrieval.duration_ms,
             assistant.latency_ms,
         )
         return response
-
-    def _repair_answer(
-        self, question: str, sources: list[RagSource], reason: str
-    ) -> RagModelAnswer:
-        assert self.provider is not None
-        allowed = ", ".join(source.source_label for source in sources)
-        result = self.provider.generate_structured(
-            messages=[
-                {"role": "system", "content": REPAIR_SYSTEM_PROMPT},
-                {
-                    "role": "user",
-                    "content": (
-                        f"问题：{question}\n校验失败原因：{reason}\n"
-                        f"允许来源：{allowed}\n请重新依据资料生成合规答案。"
-                    ),
-                },
-                *answer_messages(question, sources)[1:2],
-            ],
-            schema=RagModelAnswer,
-        )
-        return result.value  # type: ignore[return-value]
 
     @staticmethod
     def _apply_refusal(assistant: RagMessage, reason: str) -> None:
@@ -338,8 +355,16 @@ class RagConversationService:
         assistant: RagMessage,
         sources: list[RagSource],
         source_ids: list[str],
+        scope_record: dict,
     ) -> None:
         by_id = {source.source_label: source for source in sources}
+        source_ids = list(dict.fromkeys(source_ids))
+        unknown = [source_id for source_id in source_ids if source_id not in by_id]
+        if unknown:
+            raise ValueError(f"citation sources were not retrieved: {unknown}")
+        material_contexts = MaterialScopeResolver(self.db).material_link_contexts(
+            [source.material_id for source in sources]
+        )
         for source_id in source_ids:
             source = by_id[source_id]
             self.db.add(
@@ -357,6 +382,10 @@ class RagConversationService:
                     content_excerpt=source.content[
                         : self.settings.rag_citation_excerpt_chars
                     ],
+                    learning_context={
+                        "requested_scope": scope_record.get("requested_scope", {}),
+                        "material_links": material_contexts.get(source.material_id, []),
+                    },
                 )
             )
 
@@ -372,6 +401,7 @@ class RagConversationService:
             request_id=message.request_id,
             original_query=message.original_query,
             retrieval_query=message.retrieval_query,
+            retrieval_scope=message.retrieval_scope or {},
             answerable=message.answerable,
             refusal_reason=message.refusal_reason,
             prompt_version=message.prompt_version,
@@ -394,6 +424,7 @@ class RagConversationService:
                     content_excerpt=item.content_excerpt,
                     source_available=item.chunk_id is not None
                     and item.material_id is not None,
+                    learning_context=item.learning_context or {},
                     created_at=item.created_at,
                 )
                 for item in citations
@@ -418,6 +449,25 @@ class RagConversationService:
                 min_score=self.settings.rag_min_score,
                 index_version=None,
                 duration_ms=0,
+                requested_scope=assistant.retrieval_scope.get("requested_scope", {}),
+                resolved_material_ids=assistant.retrieval_scope.get("resolved_material_ids"),
+                retrieved_count=assistant.retrieval_scope.get("retrieved_count", 0),
+                filtered_count=assistant.retrieval_scope.get("filtered_count", 0),
+                final_count=assistant.retrieval_scope.get("final_count", len(citations)),
+                retrieval_mode=assistant.retrieval_scope.get(
+                    "retrieval_mode", "dense_only"
+                ),
+                reranker_status=assistant.retrieval_scope.get(
+                    "reranker_status", "disabled"
+                ),
+                reranker_device=assistant.retrieval_scope.get("reranker_device"),
+                reranker_dtype=assistant.retrieval_scope.get("reranker_dtype"),
+                reranker_batch_count=assistant.retrieval_scope.get(
+                    "reranker_batch_count", 0
+                ),
+                reranker_fallback_reason=assistant.retrieval_scope.get(
+                    "reranker_fallback_reason"
+                ),
             ),
             model=RagModelSummary(
                 provider=self.settings.llm_provider,
@@ -450,6 +500,17 @@ class RagConversationService:
                 min_score=self.settings.rag_min_score,
                 index_version=retrieval.index_version,
                 duration_ms=retrieval.duration_ms,
+                requested_scope=assistant.retrieval_scope.get("requested_scope", {}),
+                resolved_material_ids=assistant.retrieval_scope.get("resolved_material_ids"),
+                retrieved_count=retrieval.retrieved_count,
+                filtered_count=retrieval.filtered_count,
+                final_count=retrieval.final_count,
+                retrieval_mode=retrieval.retrieval_mode,
+                reranker_status=retrieval.reranker_status,
+                reranker_device=retrieval.reranker_device,
+                reranker_dtype=retrieval.reranker_dtype,
+                reranker_batch_count=retrieval.reranker_batch_count,
+                reranker_fallback_reason=retrieval.reranker_fallback_reason,
             ),
             model=RagModelSummary(
                 provider=self.settings.llm_provider,

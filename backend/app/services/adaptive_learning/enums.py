@@ -9,6 +9,8 @@ class EvidenceType(StrEnum):
     task_completion = "task_completion"
     learning_session = "learning_session"
     self_assessment = "self_assessment"
+    diagnostic_assessment = "diagnostic_assessment"
+    diagnostic_adjustment = "diagnostic_adjustment"
 
 
 class MasteryLevel(StrEnum):

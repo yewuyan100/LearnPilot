@@ -1,0 +1,1580 @@
+{
+  "analysis_id": "learnpilot-rag-real-world-optimization-addressability-matrix-v1",
+  "definition": "Theoretical addressability only; it does not assert that any optimization will fix the case.",
+  "entries": [
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-single-bge-shape",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "HIGH",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "diagnostic_or_evaluator_false_negative": true,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "EVAL_MAPPING_DIAGNOSTIC",
+      "rationale": "The answer and citation recover both numeric facts from a selected same-document boundary chunk, while the diagnostic stable-anchor mapper reports no anchor; this is a mapping false negative."
+    },
+    {
+      "addressability_class": "HYBRID_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-single-dependency-defaults",
+      "case_verdict": "INCORRECT_REFUSAL",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "HIGH",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "candidate_required_evidence_missing": true,
+        "lexical_signature": [
+          "common_parameters",
+          "skip",
+          "0",
+          "limit",
+          "100"
+        ],
+        "selected_required_evidence_sufficient": false
+      },
+      "primary_root_cause": "RETRIEVAL_MISS",
+      "rationale": "The candidate pool contains a boundary fragment stating limit=100 but no candidate contains the required skip=0 fact; the selected context is therefore insufficient before the model refuses."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-single-error-response",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-single-faiss-cosine",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-single-interrupt-status",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-single-langgraph-js",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "HIGH",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "diagnostic_or_evaluator_false_negative": true,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "EVAL_MAPPING_DIAGNOSTIC",
+      "rationale": "The selected LangGraph overview boundary fragment directly contains LangGraph.js and the answer is exact, but the stable anchor is not attached to that runtime chunk."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-single-otel-status",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-single-persist-thread-id",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-single-precision-id",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-single-ragas-dataset",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-semantic-bge-functions",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "CITATION_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-semantic-checkpointer-store",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "HIGH",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "answer_semantically_correct": true,
+        "missing_required_citation_document": "rw-agent-langgraph-overview"
+      },
+      "primary_root_cause": "CITATION_ONLY_FAILURE",
+      "rationale": "The answer fulfills both semantic claims, but it cites only rw-agent-persistence and omits the required rw-agent-langgraph-overview source group and the two-document citation obligation."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-semantic-context-order",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "HIGH",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "diagnostic_or_evaluator_false_negative": true,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "EVAL_MAPPING_DIAGNOSTIC",
+      "rationale": "The selected context semantically contains the order-swap example and both claims pass, although one required stable anchor is not mapped to the runtime chunk."
+    },
+    {
+      "addressability_class": "RERANKER_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-semantic-deps-automatic",
+      "case_verdict": "PARTIAL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "HIGH"
+      },
+      "evidence": {
+        "candidate_required_evidence_ranks": [
+          7
+        ],
+        "selected_required_evidence_sufficient": false,
+        "selection_stage": "DIVERSITY_DEFERRED"
+      },
+      "primary_root_cause": "SELECTION_DIVERSITY_MISS",
+      "rationale": "The exact dependency-call chunk (candidate rank 7) is present but diversity-deferred; selected chunks explain injection generally but omit the explicit pass-the-callable-to-Depends obligation."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-semantic-error-raise",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-semantic-faiss-compression",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "HIGH",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "diagnostic_or_evaluator_false_negative": true,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "EVAL_MAPPING_DIAGNOSTIC",
+      "rationale": "The cited selected Faiss passage contains compression and precision trade-off semantics, so the selected-anchor miss is a runtime-boundary mapping diagnostic."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-semantic-fastapi-blocking",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-semantic-interrupt-replay",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-semantic-ragas-data",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-semantic-trace-correlation",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-long-async-threadpool",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-long-bge-query-instruction",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "ANSWERABILITY_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-long-bge-score-mix",
+      "case_verdict": "INCORRECT_REFUSAL",
+      "dimensions": {
+        "answerability": "HIGH",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "candidate_required_evidence_ranks": [
+          1,
+          2,
+          5,
+          6,
+          8,
+          10
+        ],
+        "model_refused": true,
+        "selected_required_evidence_sufficient": true
+      },
+      "primary_root_cause": "ANSWERABILITY_FALSE_NEGATIVE",
+      "rationale": "The score-weight evidence is selected at rank 1, including the required dense/sparse weighting example, yet the model says the context does not explain score combination and refuses."
+    },
+    {
+      "addressability_class": "RERANKER_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-long-bge-training",
+      "case_verdict": "INCORRECT_REFUSAL",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "HIGH"
+      },
+      "evidence": {
+        "candidate_required_evidence_ranks": [
+          15
+        ],
+        "selected_required_evidence_sufficient": false,
+        "selection_stage": "DIVERSITY_DEFERRED"
+      },
+      "primary_root_cause": "SELECTION_DIVERSITY_MISS",
+      "rationale": "The required BGE-M3 training passage is candidate rank 15 but diversity-deferred; the six selected chunks cover capabilities and usage rather than the training obligations, so the refusal has an upstream selection cause."
+    },
+    {
+      "addressability_class": "RERANKER_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-long-deps-hierarchy",
+      "case_verdict": "INCORRECT_REFUSAL",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "HIGH"
+      },
+      "evidence": {
+        "candidate_required_evidence_ranks": [
+          1,
+          7,
+          12,
+          14
+        ],
+        "selected_required_evidence_sufficient": false,
+        "selection_stage": "DIVERSITY_DEFERRED"
+      },
+      "primary_root_cause": "SELECTION_DIVERSITY_MISS",
+      "rationale": "Hierarchy/OpenAPI evidence exists in candidates, but the semantically complete hierarchy and OpenAPI chunks at ranks 7, 12, and 14 are diversity-deferred; the selected boundary-mapped chunk covers only the OpenAPI half."
+    },
+    {
+      "addressability_class": "RERANKER_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-long-interrupt-static",
+      "case_verdict": "PARTIAL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "HIGH"
+      },
+      "evidence": {
+        "candidate_required_evidence_ranks": [
+          10,
+          13,
+          17
+        ],
+        "selected_required_evidence_sufficient": false,
+        "selection_stage": "DIVERSITY_DEFERRED"
+      },
+      "primary_root_cause": "SELECTION_DIVERSITY_MISS",
+      "rationale": "The static-interrupt and runtime-configuration anchors are candidates at ranks 10, 13, and 17 but are diversity-deferred; the selected boundary fragment only exposes debugging use, causing two obligations to be omitted."
+    },
+    {
+      "addressability_class": "GENERATION_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-long-interrupt-validation",
+      "case_verdict": "PARTIAL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "HIGH",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "model_refused": false,
+        "omitted_obligations": [
+          "question stored in state",
+          "nondeterministic interrupt ordering"
+        ],
+        "selected_required_evidence_sufficient": true
+      },
+      "primary_root_cause": "GENERATION_OMISSION",
+      "rationale": "Selected S1 and S6 provide the once-per-node/state/conditional-edge pattern and unstable interrupt-order warning; the answer uses the loop guidance but omits question-in-state and nondeterministic-order details."
+    },
+    {
+      "addressability_class": "GENERATION_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-long-langgraph-positioning",
+      "case_verdict": "PARTIAL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "HIGH",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "candidate_required_evidence_ranks": [
+          1,
+          2
+        ],
+        "omitted_obligations": [
+          "fine-grained workflow and state control"
+        ],
+        "selected_required_evidence_sufficient": true
+      },
+      "primary_root_cause": "GENERATION_OMISSION",
+      "rationale": "Both positioning anchors are selected at ranks 1 and 2, but the answer stops at low-level infrastructure and does not explicitly state fine-grained control over workflow and state."
+    },
+    {
+      "addressability_class": "RERANKER_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-long-otel-links",
+      "case_verdict": "PARTIAL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "HIGH"
+      },
+      "evidence": {
+        "candidate_required_evidence_ranks": [
+          4,
+          5
+        ],
+        "selected_required_evidence_sufficient": false,
+        "selection_stage": "DIVERSITY_DEFERRED"
+      },
+      "primary_root_cause": "SELECTION_DIVERSITY_MISS",
+      "rationale": "The complete span-link/status passage is present at candidate ranks 4 and 5 but diversity-deferred; selected S1 supports causal non-hierarchical association but not the optional-link qualification."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-long-precision-nonllm",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "HIGH",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "diagnostic_or_evaluator_false_negative": true,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "EVAL_MAPPING_DIAGNOSTIC",
+      "rationale": "The selected context and citation support the non-LLM context-precision claim despite the runtime chunk lacking the stable evidence ID."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-multi-agent-memory-hitl",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "HIGH",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "diagnostic_or_evaluator_false_negative": true,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "EVAL_MAPPING_DIAGNOSTIC",
+      "rationale": "All three cross-source claims and citations are supported; the selected anchor deficit reflects boundary IDs rather than missing answer evidence."
+    },
+    {
+      "addressability_class": "CITATION_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-multi-agent-resume",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "HIGH",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "answer_semantically_correct": true,
+        "missing_required_citation_document": "rw-agent-persistence"
+      },
+      "primary_root_cause": "CITATION_ONLY_FAILURE",
+      "rationale": "The answer correctly explains checkpointer persistence and thread_id resumption, but both citations resolve to rw-agent-interrupts; the required rw-agent-persistence source and two-document coverage are missing."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-multi-async-dependency",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "HIGH",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "diagnostic_or_evaluator_false_negative": true,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "EVAL_MAPPING_DIAGNOSTIC",
+      "rationale": "The answer correctly integrates async endpoint and dependency execution rules from selected boundary chunks even though diagnostic anchors do not map."
+    },
+    {
+      "addressability_class": "HYBRID_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-multi-backend-control",
+      "case_verdict": "PARTIAL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "HIGH",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "candidate_required_evidence_missing": true,
+        "lexical_signature": [
+          "authentication",
+          "authorization",
+          "HTTPException"
+        ],
+        "selected_required_evidence_sufficient": false
+      },
+      "primary_root_cause": "RETRIEVAL_MISS",
+      "rationale": "The selected/candidate pool covers async handling and generic dependencies, but no candidate contains the required authentication/authorization subdependency semantics or the HTTPException immediate-client-error passage."
+    },
+    {
+      "addressability_class": "HYBRID_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-multi-error-observability",
+      "case_verdict": "PARTIAL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "HIGH",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "candidate_required_evidence_missing": true,
+        "lexical_signature": [
+          "HTTPException",
+          "raise",
+          "terminate"
+        ],
+        "selected_required_evidence_sufficient": false
+      },
+      "primary_root_cause": "RETRIEVAL_MISS",
+      "rationale": "The OpenTelemetry status passage is selected, but the candidate pool lacks the HTTPException raise/terminate passage and supplies only generic error-handler/client-range fragments, leaving the first claim under-supported."
+    },
+    {
+      "addressability_class": "RERANKER_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-multi-eval-stack",
+      "case_verdict": "INCORRECT_REFUSAL",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "HIGH"
+      },
+      "evidence": {
+        "candidate_required_evidence_ranks": [
+          10,
+          11,
+          12,
+          13
+        ],
+        "selected_required_evidence_sufficient": false,
+        "selection_stage": "DIVERSITY_DEFERRED"
+      },
+      "primary_root_cause": "SELECTION_DIVERSITY_MISS",
+      "rationale": "Workflow fields are available through a selected boundary fragment, but the reference-based and without-reference context-precision examples are candidates at ranks 10-13 and diversity-deferred; selected context is incomplete before refusal."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-multi-faiss-context-precision",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "RERANKER_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-multi-hybrid-index",
+      "case_verdict": "PARTIAL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "HIGH"
+      },
+      "evidence": {
+        "candidate_required_evidence_ranks": [
+          4
+        ],
+        "selected_required_evidence_sufficient": false,
+        "selection_stage": "DIVERSITY_DEFERRED"
+      },
+      "primary_root_cause": "SELECTION_DIVERSITY_MISS",
+      "rationale": "The BGE pipeline recommendation is candidate rank 4 but diversity-deferred after three BGE chunks are chosen; selected context supports retrieval modes and Faiss but omits hybrid-plus-reranking guidance."
+    },
+    {
+      "addressability_class": "HYBRID_ADDRESSABLE",
+      "addressability_strength": "MEDIUM",
+      "case_id": "rw-gold-v1-multi-rag-tracing",
+      "case_verdict": "INCORRECT_REFUSAL",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "MEDIUM",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "candidate_required_document_missing": "rw-eval-ragas-workflow",
+        "candidate_required_evidence_missing": true,
+        "lexical_signature": [
+          "evaluation data",
+          "trace",
+          "span"
+        ],
+        "selected_required_evidence_sufficient": false
+      },
+      "primary_root_cause": "RETRIEVAL_MISS",
+      "rationale": "This is the sole document-group candidate miss: required Ragas workflow groups are absent from all 18 candidates, while only OpenTelemetry trace material is selected, so the refusal is upstream of answerability."
+    },
+    {
+      "addressability_class": "HYBRID_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-multi-retrieval-eval",
+      "case_verdict": "INCORRECT_REFUSAL",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "HIGH",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "candidate_required_evidence_missing": true,
+        "lexical_signature": [
+          "Ragas",
+          "retrieved_contexts",
+          "user_input"
+        ],
+        "selected_required_evidence_sufficient": false
+      },
+      "primary_root_cause": "RETRIEVAL_MISS",
+      "rationale": "Faiss and context-precision roles are present, but no candidate contains the required Ragas data-collection record that supplies retrieved_contexts for each user_input; selected evaluation context is therefore incomplete."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-disambig-agent-memory",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "HIGH",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "diagnostic_or_evaluator_false_negative": true,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "EVAL_MAPPING_DIAGNOSTIC",
+      "rationale": "The answer correctly separates checkpointer, Store, and interrupts from selected text; absent anchor IDs are diagnostic only."
+    },
+    {
+      "addressability_class": "ANSWERABILITY_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-disambig-agent-persist-interrupt",
+      "case_verdict": "INCORRECT_REFUSAL",
+      "dimensions": {
+        "answerability": "HIGH",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "model_refused": true,
+        "selected_required_evidence_sufficient": true
+      },
+      "primary_root_cause": "ANSWERABILITY_FALSE_NEGATIVE",
+      "rationale": "Both required persistence and interrupt/resume groups are selected with their anchors, yet the model claims the supplied documents do not explain the distinction and refuses."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-disambig-bge-faiss",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "HIGH",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "diagnostic_or_evaluator_false_negative": true,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "EVAL_MAPPING_DIAGNOSTIC",
+      "rationale": "The answer correctly distinguishes BGE-M3 and Faiss using selected semantic equivalents, while one stable anchor is not mapped to its runtime chunk."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-disambig-bge-long",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "RERANKER_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-disambig-fastapi-async-deps",
+      "case_verdict": "PARTIAL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "HIGH"
+      },
+      "evidence": {
+        "candidate_required_evidence_ranks": [
+          12
+        ],
+        "selected_required_evidence_sufficient": false,
+        "selection_stage": "RANKING_OR_CAP"
+      },
+      "primary_root_cause": "SELECTION_RANKING_MISS",
+      "rationale": "The dependency mixing rule is selected, but the endpoint-selection TLDR passage is candidate rank 12 and does not enter final context; the answer consequently omits thread-pool behavior."
+    },
+    {
+      "addressability_class": "ANSWERABILITY_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-disambig-fastapi-errors",
+      "case_verdict": "INCORRECT_REFUSAL",
+      "dimensions": {
+        "answerability": "HIGH",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "candidate_required_evidence_ranks": [
+          4,
+          5
+        ],
+        "model_refused": true,
+        "selected_required_evidence_sufficient": true
+      },
+      "primary_root_cause": "ANSWERABILITY_FALSE_NEGATIVE",
+      "rationale": "The required HTTPException passage is selected at rank 4 and directly states raise/terminate/client-error behavior, but the model says the material is insufficient and refuses."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-disambig-fastapi-exceptions",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "RERANKER_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-disambig-interrupt-static",
+      "case_verdict": "INCORRECT_REFUSAL",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "HIGH"
+      },
+      "evidence": {
+        "candidate_required_evidence_ranks": [
+          13,
+          14
+        ],
+        "selected_required_evidence_sufficient": false,
+        "selection_stage": "DIVERSITY_DEFERRED"
+      },
+      "primary_root_cause": "SELECTION_DIVERSITY_MISS",
+      "rationale": "The static-breakpoint and runtime-static chunks are candidates at ranks 13 and 14 but diversity-deferred; final context contains dynamic interrupt material instead, so refusal is selection-driven."
+    },
+    {
+      "addressability_class": "RERANKER_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-disambig-ragas-metrics",
+      "case_verdict": "PARTIAL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "HIGH"
+      },
+      "evidence": {
+        "candidate_required_evidence_ranks": [
+          15
+        ],
+        "selected_required_evidence_sufficient": false,
+        "selection_stage": "RANKING_OR_CAP"
+      },
+      "primary_root_cause": "SELECTION_RANKING_MISS",
+      "rationale": "The context-precision definition is selected, but the workflow construction passage is candidate rank 15 and excluded; selected S6 only describes collecting fields, so EvaluationDataset construction is omitted."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-disambig-ragas-otel",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-unanswerable-bge-language-counts",
+      "case_verdict": "CORRECT_REFUSAL",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-unanswerable-bge-optimal-weights",
+      "case_verdict": "CORRECT_REFUSAL",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-unanswerable-checkpoint-encryption",
+      "case_verdict": "CORRECT_REFUSAL",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-unanswerable-dependency-depth",
+      "case_verdict": "CORRECT_REFUSAL",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-unanswerable-faiss-p95-latency",
+      "case_verdict": "CORRECT_REFUSAL",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-unanswerable-interrupt-timeout",
+      "case_verdict": "CORRECT_REFUSAL",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-unanswerable-precision-pass-threshold",
+      "case_verdict": "CORRECT_REFUSAL",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-unanswerable-ragas-minimum-score",
+      "case_verdict": "CORRECT_REFUSAL",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-unanswerable-threadpool-workers",
+      "case_verdict": "CORRECT_REFUSAL",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-unanswerable-trace-retention",
+      "case_verdict": "CORRECT_REFUSAL",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-stress-deep-async-call-kinds",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-stress-deep-bge-mldr-comparison",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "HIGH",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "diagnostic_or_evaluator_false_negative": true,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "EVAL_MAPPING_DIAGNOSTIC",
+      "rationale": "The Chinese answer explicitly states 13 languages plus test, validation, and training sets; the STRUCTURED_EXACT matcher fails only because it requires the English tokens."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-stress-deep-interrupt-side-effects",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "HIGH",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "diagnostic_or_evaluator_false_negative": true,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "EVAL_MAPPING_DIAGNOSTIC",
+      "rationale": "The answer and citations fully cover replay and idempotent side-effect placement; the selected-anchor miss is boundary mapping."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-stress-deep-precision-id-versus-content",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "HYBRID_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-stress-cross-agent-api-replay",
+      "case_verdict": "INCORRECT_REFUSAL",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "HIGH",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "candidate_required_evidence_missing": true,
+        "lexical_signature": [
+          "external API",
+          "idempotent",
+          "HTTPException"
+        ],
+        "selected_required_evidence_sufficient": false
+      },
+      "primary_root_cause": "RETRIEVAL_MISS",
+      "rationale": "Node-restart evidence is selected, but no candidate contains the non-idempotent side-effect mitigation or HTTPException client-boundary passage required to complete the cross-topic answer."
+    },
+    {
+      "addressability_class": "HYBRID_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-stress-cross-embedding-api-concurrency",
+      "case_verdict": "PARTIAL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "HIGH",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "candidate_required_evidence_missing": true,
+        "lexical_signature": [
+          "await",
+          "async def",
+          "normal def"
+        ],
+        "runtime_chunk_boundary_loss": true,
+        "selected_required_evidence_sufficient": false
+      },
+      "primary_root_cause": "RETRIEVAL_MISS",
+      "rationale": "BGE use_fp16 and the blocking-library half of FastAPI guidance are selected, but the runtime async chunk begins after the await-capable branch; no candidate contains the missing await-call obligation."
+    },
+    {
+      "addressability_class": "HYBRID_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-stress-cross-persistence-tracing",
+      "case_verdict": "PARTIAL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "HIGH",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "candidate_required_evidence_missing": true,
+        "lexical_signature": [
+          "persistent checkpointer",
+          "in-memory",
+          "process restart"
+        ],
+        "selected_required_evidence_sufficient": false
+      },
+      "primary_root_cause": "RETRIEVAL_MISS",
+      "rationale": "Generic persistence and span-link context are selected, but no candidate distinguishes a persistent checkpointer from an in-memory saver across process restart, leaving the first claim only partially supported."
+    },
+    {
+      "addressability_class": "HYBRID_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-stress-cross-retrieval-evaluation",
+      "case_verdict": "INCORRECT_REFUSAL",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "HIGH",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "candidate_required_evidence_missing": true,
+        "lexical_signature": [
+          "hybrid retrieval",
+          "reranking",
+          "context precision"
+        ],
+        "selected_required_evidence_sufficient": false
+      },
+      "primary_root_cause": "RETRIEVAL_MISS",
+      "rationale": "Selected context contains partial hybrid, Faiss trade-off, and score-example fragments, but candidates omit the full BGE hybrid-plus-reranking and context-precision definition obligations; refusal is upstream."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-stress-conflict-bge-faiss-compression",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-stress-conflict-fastapi-handler-type",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "HIGH",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "diagnostic_or_evaluator_false_negative": true,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "EVAL_MAPPING_DIAGNOSTIC",
+      "rationale": "The answer correctly resolves the handler-type conflict and cites supporting text; the remaining selected-anchor deficit is diagnostic mapping."
+    },
+    {
+      "addressability_class": "NOT_ARCHITECTURE_ADDRESSABLE",
+      "addressability_strength": "NONE",
+      "case_id": "rw-gold-v1-stress-conflict-interrupt-persistence-resume",
+      "case_verdict": "FULL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "NONE",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "citation_failure": false,
+        "product_answer_failure": false
+      },
+      "primary_root_cause": "NO_FAILURE",
+      "rationale": "The reviewed answer/corpus-bounded refusal and citation contract pass, and no upstream or evaluator defect is verified."
+    },
+    {
+      "addressability_class": "GENERATION_ADDRESSABLE",
+      "addressability_strength": "HIGH",
+      "case_id": "rw-gold-v1-stress-conflict-ragas-reference-mode",
+      "case_verdict": "PARTIAL_PASS",
+      "dimensions": {
+        "answerability": "NONE",
+        "citation": "NONE",
+        "generation": "HIGH",
+        "hybrid": "NONE",
+        "not_architecture": "NONE",
+        "reranker": "NONE"
+      },
+      "evidence": {
+        "model_refused": false,
+        "omitted_obligations": [
+          "explicit comparison targets"
+        ],
+        "selected_required_evidence_sufficient": true
+      },
+      "primary_root_cause": "GENERATION_OMISSION",
+      "rationale": "ID-based, with-reference, and without-reference examples are all selected, but the answer names the variants without explicitly stating their comparison targets: reference contexts versus generated response."
+    }
+  ],
+  "schema_version": "1.0.0",
+  "summary": {
+    "addressability_class_counts": {
+      "ANSWERABILITY_ADDRESSABLE": 3,
+      "CITATION_ADDRESSABLE": 2,
+      "GENERATION_ADDRESSABLE": 3,
+      "HYBRID_ADDRESSABLE": 9,
+      "NOT_ARCHITECTURE_ADDRESSABLE": 45,
+      "RERANKER_ADDRESSABLE": 10
+    },
+    "case_count": 72,
+    "high_strength_dimension_counts": {
+      "answerability": 3,
+      "citation": 2,
+      "generation": 3,
+      "hybrid": 8,
+      "not_architecture": 12,
+      "reranker": 10
+    }
+  }
+}

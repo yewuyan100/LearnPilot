@@ -3,6 +3,7 @@ from types import SimpleNamespace
 
 from app.core.config import Settings
 from app.services.adaptive_learning.mastery import KnowledgeMasteryService
+from app.services.adaptive_learning.lifecycle import AdaptiveRefreshError
 
 
 def prepare_point(client, *, order=0):
@@ -148,3 +149,52 @@ def test_recommendation_reject_does_not_create_task(client):
     assert rejected.status_code == 200
     assert rejected.json()["status"] == "rejected"
     assert client[0].get("/api/today").json()["tasks"] == []
+
+
+def test_adaptive_refresh_failure_is_persisted_and_idempotently_retried(
+    client, monkeypatch
+):
+    goal, course, point = prepare_point(client)
+    from app.services.adaptive_learning import lifecycle
+
+    original_refresh = lifecycle.refresh_adaptive_learning
+
+    def fail_refresh(*args, **kwargs):
+        raise AdaptiveRefreshError("schedule_review", RuntimeError("temporary"))
+
+    monkeypatch.setattr(lifecycle, "refresh_adaptive_learning", fail_refresh)
+    task = client[0].post(
+        "/api/daily-tasks",
+        json={
+            "learning_goal_id": goal["id"],
+            "course_id": course["id"],
+            "knowledge_point_id": point["id"],
+            "title": "完成后刷新掌握状态",
+            "scheduled_date": "2026-08-01",
+        },
+    ).json()
+    primary = client[0].patch(
+        f"/api/daily-tasks/{task['id']}", json={"status": "completed"}
+    )
+    assert primary.status_code == 200
+    failed = client[0].get(
+        f"/api/adaptive-recommendations/refresh-status/{point['id']}"
+    ).json()
+    assert failed["status"] == "failed"
+    assert failed["stage"] == "schedule_review"
+    assert failed["error_code"] == "adaptive_refresh_failed"
+
+    monkeypatch.setattr(lifecycle, "refresh_adaptive_learning", original_refresh)
+    retried = client[0].post(
+        f"/api/adaptive-recommendations/refresh-tasks/{failed['id']}/retry"
+    )
+    assert retried.status_code == 200
+    assert retried.json()["status"] == "completed"
+    assert retried.json()["attempts"] == 2
+
+    replay = client[0].post(
+        f"/api/adaptive-recommendations/refresh-tasks/{failed['id']}/retry"
+    )
+    assert replay.status_code == 200
+    assert replay.json()["status"] == "completed"
+    assert replay.json()["attempts"] == 2

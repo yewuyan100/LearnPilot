@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "review_count": 72,
+  "verified_count": 72,
+  "verification_scope": {
+    "structural_contract_validation": true,
+    "frozen_corpus_locator_revalidation": true,
+    "anchor_hash_recomputation": true,
+    "independent_semantic_rejudgment_performed": false
+  },
+  "answerable_review_count": 62,
+  "unanswerable_review_count": 10,
+  "claim_review_count": 132,
+  "independent_semantic_rejudgment_count": 0,
+  "evidence_review_count": 128,
+  "recomputed_anchor_hash_failure_count": 0,
+  "exact_duplicate_question_count": 0,
+  "near_duplicate_question_pair_count": 0,
+  "case_type_failure_count": 0,
+  "role_conflict_count": 0
+}

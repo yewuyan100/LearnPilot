@@ -10,6 +10,14 @@ class LLMUnavailableError(LLMError):
     code = "llm_unavailable"
 
 
+class LLMAuthenticationError(LLMError):
+    code = "llm_authentication_failed"
+
+
+class LLMConfigurationError(LLMError):
+    code = "llm_configuration_invalid"
+
+
 class LLMOutputInvalidError(LLMError):
     code = "llm_output_invalid"
 
@@ -21,3 +29,11 @@ class LLMOutputInvalidError(LLMError):
     ):
         super().__init__(message)
         self.reason = reason
+
+
+class LLMOutputTruncatedError(LLMOutputInvalidError):
+    code = "llm_output_truncated"
+
+
+class LLMEmptyContentError(LLMOutputInvalidError):
+    code = "llm_empty_content"

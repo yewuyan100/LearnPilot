@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0.0",
+  "allowed_licenses": [
+    "Apache-2.0",
+    "CC-BY-4.0",
+    "MIT"
+  ],
+  "all_verified": true,
+  "frozen_license_records": [
+    {
+      "project": "FAISS",
+      "spdx_identifier": "MIT",
+      "repository_path": "evals/rag_real_world_corpus/v1/provenance/licenses/faiss-MIT.txt",
+      "source": "https://github.com/facebookresearch/faiss/blob/80a16564f86530dbf0bfaf96c2b71feffeb5093f/LICENSE",
+      "sha256": "f08a94bfb0bdc1d7f1cb59badaf0f8c551b10db871185622dbf1fd036affa9cb"
+    },
+    {
+      "project": "FastAPI",
+      "spdx_identifier": "MIT",
+      "repository_path": "evals/rag_real_world_corpus/v1/provenance/licenses/fastapi-MIT.txt",
+      "source": "https://github.com/fastapi/fastapi/blob/f336ff831c4af3d4f625c2593a27b1e0cae93eb7/LICENSE",
+      "sha256": "2853a942962e3bb755239b5fecb736503be392554c1d90f97cea7f29f4465d34"
+    },
+    {
+      "project": "FlagEmbedding",
+      "spdx_identifier": "MIT",
+      "repository_path": "evals/rag_real_world_corpus/v1/provenance/licenses/FlagEmbedding-MIT.txt",
+      "source": "https://github.com/FlagOpen/FlagEmbedding/blob/7ed43d67ec03fbe5c31c0992dbfa941fb1860549/LICENSE",
+      "sha256": "d2066728cf4edc752cb7542fb20b97a3cde20fdb26e8d0f0e0900f0fa0ac43ef"
+    },
+    {
+      "project": "LangChain Documentation",
+      "spdx_identifier": "MIT",
+      "repository_path": "evals/rag_real_world_corpus/v1/provenance/licenses/langchain-docs-MIT.txt",
+      "source": "https://github.com/langchain-ai/docs/blob/47062bb8dc8eb56fb7cdd99201028e1d0177b19b/LICENSE",
+      "sha256": "9bc75ced0dc6df655c7ac6a3787012fe364e8fa7b499fda048543102f5cbdee3"
+    },
+    {
+      "project": "LangGraph",
+      "spdx_identifier": "MIT",
+      "repository_path": "evals/rag_real_world_corpus/v1/provenance/licenses/langgraph-MIT.txt",
+      "source": "https://github.com/langchain-ai/langgraph/blob/644815f9e5bc52ad8f7a5227a456227e9c3e639b/LICENSE",
+      "sha256": "ab08cf7f0b8d47e474d2e66e0212f18f6c70f5097f404de8a35c665012c9b199"
+    },
+    {
+      "project": "OpenTelemetry Website",
+      "spdx_identifier": "CC-BY-4.0",
+      "repository_path": "evals/rag_real_world_corpus/v1/provenance/licenses/opentelemetry.io-CC-BY-4.0.txt",
+      "source": "https://github.com/open-telemetry/opentelemetry.io/blob/0480294d04e49023b559d33d4546a34ce738fcab/LICENSE",
+      "sha256": "3dd00169d72711f03353b5a2e2122d7294bb69d2cb62b27509bccb40b154789b"
+    },
+    {
+      "project": "Ragas",
+      "spdx_identifier": "Apache-2.0",
+      "repository_path": "evals/rag_real_world_corpus/v1/provenance/licenses/ragas-Apache-2.0.txt",
+      "source": "https://github.com/vibrantlabsai/ragas/blob/298b68274234c060deacab3cf5fb52aa3a20e885/LICENSE",
+      "sha256": "4acca6f8cbd03e143ec8578672daea43e7ce362ec71521a8e203958e69562975"
+    }
+  ],
+  "documents": [
+    {
+      "document_id": "rw-rag-bge-m3",
+      "project": "FlagEmbedding",
+      "commit_sha": "7ed43d67ec03fbe5c31c0992dbfa941fb1860549",
+      "spdx_identifier": "MIT",
+      "license_source": "https://github.com/FlagOpen/FlagEmbedding/blob/7ed43d67ec03fbe5c31c0992dbfa941fb1860549/LICENSE",
+      "frozen_license_path": "evals/rag_real_world_corpus/v1/provenance/licenses/FlagEmbedding-MIT.txt",
+      "frozen_license_sha256": "d2066728cf4edc752cb7542fb20b97a3cde20fdb26e8d0f0e0900f0fa0ac43ef",
+      "verified": true
+    },
+    {
+      "document_id": "rw-rag-faiss-overview",
+      "project": "FAISS",
+      "commit_sha": "80a16564f86530dbf0bfaf96c2b71feffeb5093f",
+      "spdx_identifier": "MIT",
+      "license_source": "https://github.com/facebookresearch/faiss/blob/80a16564f86530dbf0bfaf96c2b71feffeb5093f/LICENSE",
+      "frozen_license_path": "evals/rag_real_world_corpus/v1/provenance/licenses/faiss-MIT.txt",
+      "frozen_license_sha256": "f08a94bfb0bdc1d7f1cb59badaf0f8c551b10db871185622dbf1fd036affa9cb",
+      "verified": true
+    },
+    {
+      "document_id": "rw-agent-langgraph-overview",
+      "project": "LangGraph",
+      "commit_sha": "644815f9e5bc52ad8f7a5227a456227e9c3e639b",
+      "spdx_identifier": "MIT",
+      "license_source": "https://github.com/langchain-ai/langgraph/blob/644815f9e5bc52ad8f7a5227a456227e9c3e639b/LICENSE",
+      "frozen_license_path": "evals/rag_real_world_corpus/v1/provenance/licenses/langgraph-MIT.txt",
+      "frozen_license_sha256": "ab08cf7f0b8d47e474d2e66e0212f18f6c70f5097f404de8a35c665012c9b199",
+      "verified": true
+    },
+    {
+      "document_id": "rw-agent-persistence",
+      "project": "LangChain Documentation",
+      "commit_sha": "47062bb8dc8eb56fb7cdd99201028e1d0177b19b",
+      "spdx_identifier": "MIT",
+      "license_source": "https://github.com/langchain-ai/docs/blob/47062bb8dc8eb56fb7cdd99201028e1d0177b19b/LICENSE",
+      "frozen_license_path": "evals/rag_real_world_corpus/v1/provenance/licenses/langchain-docs-MIT.txt",
+      "frozen_license_sha256": "9bc75ced0dc6df655c7ac6a3787012fe364e8fa7b499fda048543102f5cbdee3",
+      "verified": true
+    },
+    {
+      "document_id": "rw-agent-interrupts",
+      "project": "LangChain Documentation",
+      "commit_sha": "47062bb8dc8eb56fb7cdd99201028e1d0177b19b",
+      "spdx_identifier": "MIT",
+      "license_source": "https://github.com/langchain-ai/docs/blob/47062bb8dc8eb56fb7cdd99201028e1d0177b19b/LICENSE",
+      "frozen_license_path": "evals/rag_real_world_corpus/v1/provenance/licenses/langchain-docs-MIT.txt",
+      "frozen_license_sha256": "9bc75ced0dc6df655c7ac6a3787012fe364e8fa7b499fda048543102f5cbdee3",
+      "verified": true
+    },
+    {
+      "document_id": "rw-backend-fastapi-async",
+      "project": "FastAPI",
+      "commit_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+      "spdx_identifier": "MIT",
+      "license_source": "https://github.com/fastapi/fastapi/blob/f336ff831c4af3d4f625c2593a27b1e0cae93eb7/LICENSE",
+      "frozen_license_path": "evals/rag_real_world_corpus/v1/provenance/licenses/fastapi-MIT.txt",
+      "frozen_license_sha256": "2853a942962e3bb755239b5fecb736503be392554c1d90f97cea7f29f4465d34",
+      "verified": true
+    },
+    {
+      "document_id": "rw-backend-fastapi-dependencies",
+      "project": "FastAPI",
+      "commit_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+      "spdx_identifier": "MIT",
+      "license_source": "https://github.com/fastapi/fastapi/blob/f336ff831c4af3d4f625c2593a27b1e0cae93eb7/LICENSE",
+      "frozen_license_path": "evals/rag_real_world_corpus/v1/provenance/licenses/fastapi-MIT.txt",
+      "frozen_license_sha256": "2853a942962e3bb755239b5fecb736503be392554c1d90f97cea7f29f4465d34",
+      "verified": true
+    },
+    {
+      "document_id": "rw-backend-fastapi-errors",
+      "project": "FastAPI",
+      "commit_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+      "spdx_identifier": "MIT",
+      "license_source": "https://github.com/fastapi/fastapi/blob/f336ff831c4af3d4f625c2593a27b1e0cae93eb7/LICENSE",
+      "frozen_license_path": "evals/rag_real_world_corpus/v1/provenance/licenses/fastapi-MIT.txt",
+      "frozen_license_sha256": "2853a942962e3bb755239b5fecb736503be392554c1d90f97cea7f29f4465d34",
+      "verified": true
+    },
+    {
+      "document_id": "rw-eval-ragas-workflow",
+      "project": "Ragas",
+      "commit_sha": "298b68274234c060deacab3cf5fb52aa3a20e885",
+      "spdx_identifier": "Apache-2.0",
+      "license_source": "https://github.com/vibrantlabsai/ragas/blob/298b68274234c060deacab3cf5fb52aa3a20e885/LICENSE",
+      "frozen_license_path": "evals/rag_real_world_corpus/v1/provenance/licenses/ragas-Apache-2.0.txt",
+      "frozen_license_sha256": "4acca6f8cbd03e143ec8578672daea43e7ce362ec71521a8e203958e69562975",
+      "verified": true
+    },
+    {
+      "document_id": "rw-eval-context-precision",
+      "project": "Ragas",
+      "commit_sha": "298b68274234c060deacab3cf5fb52aa3a20e885",
+      "spdx_identifier": "Apache-2.0",
+      "license_source": "https://github.com/vibrantlabsai/ragas/blob/298b68274234c060deacab3cf5fb52aa3a20e885/LICENSE",
+      "frozen_license_path": "evals/rag_real_world_corpus/v1/provenance/licenses/ragas-Apache-2.0.txt",
+      "frozen_license_sha256": "4acca6f8cbd03e143ec8578672daea43e7ce362ec71521a8e203958e69562975",
+      "verified": true
+    },
+    {
+      "document_id": "rw-eval-otel-traces",
+      "project": "OpenTelemetry Website",
+      "commit_sha": "0480294d04e49023b559d33d4546a34ce738fcab",
+      "spdx_identifier": "CC-BY-4.0",
+      "license_source": "https://github.com/open-telemetry/opentelemetry.io/blob/0480294d04e49023b559d33d4546a34ce738fcab/LICENSE",
+      "frozen_license_path": "evals/rag_real_world_corpus/v1/provenance/licenses/opentelemetry.io-CC-BY-4.0.txt",
+      "frozen_license_sha256": "3dd00169d72711f03353b5a2e2122d7294bb69d2cb62b27509bccb40b154789b",
+      "verified": true
+    }
+  ]
+}

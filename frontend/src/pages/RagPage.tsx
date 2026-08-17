@@ -4,11 +4,13 @@ import {
   BookOpenCheck,
   FileSearch,
   MessageSquarePlus,
+  NotebookPen,
   Send,
   Square,
 } from "lucide-react";
 import { Fragment, useEffect, useMemo, useRef, useState } from "react";
-import { materialsApi, ragApi } from "../api/resources";
+import { Link, useSearchParams } from "react-router-dom";
+import { coursesApi, goalsApi, materialsApi, notesApi, ragApi } from "../api/resources";
 import { EmptyState, ErrorState, LoadingState } from "../components/States";
 import { useToast } from "../components/toast-context";
 import type { RagCitation, RagMessage } from "../types";
@@ -47,15 +49,22 @@ function AnswerText({
 }
 
 export function RagPage() {
+  const [searchParams] = useSearchParams();
   const queryClient = useQueryClient();
   const { showToast } = useToast();
   const [conversationId, setConversationId] = useState<number | null>(null);
   const [question, setQuestion] = useState("");
-  const [materialIds, setMaterialIds] = useState<number[]>([]);
+  const initialScope = searchParams.get("scope") ?? "all";
+  const [scopeType, setScopeType] = useState(initialScope);
+  const [goalId, setGoalId] = useState(searchParams.get("learning_goal_id") ?? "");
+  const [courseId, setCourseId] = useState(searchParams.get("course_id") ?? "");
+  const [pointId, setPointId] = useState(searchParams.get("knowledge_point_id") ?? "");
+  const [materialIds, setMaterialIds] = useState<number[]>(searchParams.get("material_id") ? [Number(searchParams.get("material_id"))] : []);
   const [selectedCitation, setSelectedCitation] = useState<RagCitation | null>(null);
   const [streamText, setStreamText] = useState("");
   const [stage, setStage] = useState("");
   const [sending, setSending] = useState(false);
+  const [targetNoteId, setTargetNoteId] = useState("");
   const controllerRef = useRef<AbortController | null>(null);
 
   const statusQuery = useQuery({ queryKey: ["rag-status"], queryFn: ragApi.status });
@@ -67,11 +76,15 @@ export function RagPage() {
     queryKey: ["materials", "", ""],
     queryFn: () => materialsApi.list(),
   });
+  const goals = useQuery({ queryKey: ["goals"], queryFn: goalsApi.list });
+  const courses = useQuery({ queryKey: ["courses"], queryFn: coursesApi.list });
+  const points = useQuery({ queryKey: ["knowledge-points", courseId], queryFn: () => coursesApi.points(Number(courseId)), enabled: !!courseId });
   const detail = useQuery({
     queryKey: ["rag-conversation", conversationId],
     queryFn: () => ragApi.get(conversationId!),
     enabled: conversationId !== null,
   });
+  const notes = useQuery({ queryKey: ["notes", "rag-picker"], queryFn: () => notesApi.list({ pageSize: 100 }) });
 
   useEffect(() => {
     if (conversationId === null && conversations.data?.items.length) {
@@ -108,6 +121,45 @@ export function RagPage() {
     },
     onError: (error: Error) => showToast(error.message, "error"),
   });
+  const saveCitation = async (noteId?: number) => {
+    if (!selectedCitation?.material_id || !selectedCitation.source_available) {
+      showToast("当前来源已经失效，无法建立新的资料摘录", "error");
+      return;
+    }
+    const source = {
+      material_id: selectedCitation.material_id,
+      chunk_id: selectedCitation.chunk_id,
+      source_title: selectedCitation.original_filename,
+      source_locator: selectedCitation.page_number
+        ? `第 ${selectedCitation.page_number} 页`
+        : selectedCitation.section_title ?? `片段 ${selectedCitation.chunk_index + 1}`,
+      quoted_text: selectedCitation.content_excerpt,
+    };
+    if (noteId) {
+      await notesApi.addSource(noteId, source);
+    } else {
+      await notesApi.create({
+        title: `资料摘录 · ${selectedCitation.original_filename}`,
+        content_markdown: "## 我的补充\n",
+        note_type: "material",
+        links: [{ entity_type: "material", entity_id: selectedCitation.material_id }],
+        sources: [source],
+      });
+    }
+    await queryClient.invalidateQueries({ queryKey: ["notes"] });
+    setTargetNoteId("");
+    showToast(noteId ? "引用已添加到笔记" : "引用已保存为新笔记", "success");
+  };
+  const saveAnswer = async (message: RagMessage) => {
+    await notesApi.create({
+      title: "资料问答整理",
+      content_markdown: `## 回答整理\n${message.content}\n\n## 我的补充\n`,
+      note_type: "study",
+      links: [{ entity_type: "rag_message", entity_id: message.id, relation_type: "derived_from" }],
+    });
+    await queryClient.invalidateQueries({ queryKey: ["notes"] });
+    showToast("回答已作为草稿保存，请在笔记本继续整理", "success");
+  };
 
   const send = async () => {
     const trimmed = question.trim();
@@ -131,15 +183,19 @@ export function RagPage() {
           question: trimmed,
           request_id: crypto.randomUUID(),
           material_ids: materialIds.length ? materialIds : null,
+          learning_goal_id: scopeType === "learning_goal" && goalId ? Number(goalId) : null,
+          course_id: scopeType === "course" && courseId ? Number(courseId) : null,
+          knowledge_point_id: scopeType === "knowledge_point" && pointId ? Number(pointId) : null,
         },
         controller.signal,
         (event, raw) => {
           const data = raw as StreamData;
-          if (event === "accepted") setStage("正在查找相关资料");
-          if (event === "retrieval") setStage("正在准备有依据的回答");
-          if (event === "message_start") setStage("正在输出已校验答案");
-          if (event === "delta") setStreamText((value) => value + (data.text ?? ""));
-          if (event === "error") throw new Error(data.message ?? "资料问答失败");
+          if (event === "run.started") setStage("正在准备资料问答");
+          if (event === "retrieval.started") setStage("正在查找相关资料");
+          if (event === "retrieval.completed") setStage("正在准备有依据的回答");
+          if (event === "generation.completed") setStage("回答已完成校验");
+          if (event === "answer.completed") setStreamText(data.text ?? "");
+          if (event === "run.failed") throw new Error(data.message ?? "资料问答失败");
         },
       );
       setQuestion("");
@@ -190,7 +246,7 @@ export function RagPage() {
         <header>
           <div>
             <span>学习知识库</span>
-            <h1>资料问答</h1>
+            <h2>资料问答</h2>
           </div>
           <button
             className="icon-button"
@@ -211,10 +267,10 @@ export function RagPage() {
           />
           <div>
             <strong>
-              {statusQuery.data?.index_available ? "知识索引可用" : "知识索引不可用"}
+              {statusQuery.data?.index_available ? "资料可用于问答" : "资料正在准备"}
             </strong>
             <small>
-              {statusQuery.data?.llm_configured ? "回答模型已配置" : "回答模型尚未配置"}
+              {statusQuery.data?.llm_configured ? "AI 回答可用" : "AI 回答尚未配置"}
             </small>
           </div>
         </div>
@@ -285,8 +341,9 @@ export function RagPage() {
                 <p>{message.content}</p>
               )}
               {message.role === "assistant" && message.answerable === false && (
-                <span className="rag-refusal">资料依据不足 · 未生成推测性答案</span>
+                <span className="rag-refusal">{message.refusal_reason === "empty_material_scope" ? "当前范围还没有关联可检索资料，请先完成资料归类。" : "资料依据不足 · 未生成推测性答案"}</span>
               )}
+              {message.role === "assistant" && message.answerable && <button className="text-button rag-note-action" onClick={() => void saveAnswer(message)}><NotebookPen size={15}/>保存回答到新笔记</button>}
             </article>
           ))}
           {sending && (
@@ -306,23 +363,18 @@ export function RagPage() {
         <section className="rag-composer">
           <div className="rag-scope">
             <FileSearch size={16} />
-            <span>资料范围</span>
+            <span>检索范围</span>
             <select
-              aria-label="资料范围"
-              value={materialIds[0] ?? ""}
-              onChange={(event) =>
-                setMaterialIds(
-                  event.target.value ? [Number(event.target.value)] : [],
-                )
-              }
+              aria-label="检索范围类型"
+              value={scopeType}
+              onChange={(event) => { setScopeType(event.target.value); setGoalId(""); setCourseId(""); setPointId(""); setMaterialIds([]); }}
             >
-              <option value="">全部已索引资料</option>
-              {usableMaterials.map((item) => (
-                <option key={item.id} value={item.id}>
-                  {item.original_filename}
-                </option>
-              ))}
+              <option value="all">全部可用于问答的资料</option><option value="learning_goal">事项</option><option value="course">路线</option><option value="knowledge_point">步骤</option><option value="material">指定资料</option>
             </select>
+            {scopeType === "learning_goal" && <select aria-label="选择检索事项" value={goalId} onChange={(event) => setGoalId(event.target.value)}><option value="">选择事项</option>{goals.data?.map((goal) => <option key={goal.id} value={goal.id}>{goal.title}</option>)}</select>}
+            {(scopeType === "course" || scopeType === "knowledge_point") && <select aria-label="选择检索路线" value={courseId} onChange={(event) => { setCourseId(event.target.value); setPointId(""); }}><option value="">选择路线</option>{courses.data?.map((course) => <option key={course.id} value={course.id}>{course.title}</option>)}</select>}
+            {scopeType === "knowledge_point" && <select aria-label="选择检索步骤" value={pointId} onChange={(event) => setPointId(event.target.value)} disabled={!courseId}><option value="">选择步骤</option>{points.data?.map((point) => <option key={point.id} value={point.id}>{point.title}</option>)}</select>}
+            {scopeType === "material" && <select aria-label="选择检索资料" value={materialIds[0] ?? ""} onChange={(event) => setMaterialIds(event.target.value ? [Number(event.target.value)] : [])}><option value="">选择资料</option>{usableMaterials.map((item) => <option key={item.id} value={item.id}>{item.original_filename}</option>)}</select>}
           </div>
           <textarea
             aria-label="向资料提问"
@@ -347,7 +399,7 @@ export function RagPage() {
           ) : (
             <button
               className="button button--primary"
-              disabled={!question.trim()}
+              disabled={!question.trim() || (scopeType === "learning_goal" && !goalId) || (scopeType === "course" && !courseId) || (scopeType === "knowledge_point" && !pointId) || (scopeType === "material" && !materialIds.length)}
               onClick={() => void send()}
             >
               <Send size={16} /> 发送
@@ -372,13 +424,15 @@ export function RagPage() {
                       `片段 ${selectedCitation.chunk_index + 1}`}
                 </dd>
               </div>
-              <div><dt>相关度</dt><dd>{selectedCitation.score.toFixed(3)}</dd></div>
               <div>
                 <dt>当前来源</dt>
                 <dd>{selectedCitation.source_available ? "可用" : "已删除（快照）"}</dd>
               </div>
             </dl>
             <blockquote>{selectedCitation.content_excerpt}</blockquote>
+            {!!selectedCitation.learning_context?.material_links?.length && <div className="citation-learning-context"><strong>学习归属</strong>{selectedCitation.learning_context.material_links.map((link) => <span key={`${link.target_type}-${link.target_id}`}>{link.target_title}</span>)}</div>}
+            {selectedCitation.material_id && <Link className="text-link" to={`/materials/${selectedCitation.material_id}${selectedCitation.chunk_id ? `?chunk=${selectedCitation.chunk_id}` : ""}`}>打开资料上下文</Link>}
+            <div className="rag-source-note-actions"><button className="button button--secondary" onClick={() => void saveCitation()}><NotebookPen size={15}/>只保存引用为新笔记</button><div className="inline-form"><select aria-label="选择已有笔记" value={targetNoteId} onChange={(event) => setTargetNoteId(event.target.value)}><option value="">添加到已有笔记</option>{(notes.data?.items ?? []).map((note) => <option key={note.id} value={note.id}>{note.title}</option>)}</select><button className="button button--secondary" disabled={!targetNoteId} onClick={() => void saveCitation(Number(targetNoteId))}>添加</button></div></div>
           </div>
         ) : (
           <p className="rag-source-empty">

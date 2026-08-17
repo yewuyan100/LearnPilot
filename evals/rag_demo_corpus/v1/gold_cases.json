@@ -1,0 +1,533 @@
+{
+  "schema_version": "1.0.0",
+  "corpus_id": "learnpilot-rag-demo-corpus",
+  "corpus_version": "v1",
+  "cases": [
+    {
+      "case_id": "rag-v1-single-default-chunk-size",
+      "question": "LearnPilot 默认按多少字符切块，并保留多少字符重叠？",
+      "difficulty": "easy",
+      "type": "single_doc_fact",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-c03"],
+      "key_facts": ["默认 chunk size 是 800 字符", "默认 overlap 是 120 字符"],
+      "citation_expectations": {
+        "required": true,
+        "minimum_distinct_documents": 1,
+        "must_cite_document_ids": ["lp-rag-v1-c03"],
+        "forbid_citations": false,
+        "notes": "两个配置事实由同一文档直接支持。"
+      }
+    },
+    {
+      "case_id": "rag-v1-paraphrase-delete-history",
+      "question": "如果原资料被移除，之前回答里的证据线索会不会跟着完全消失？",
+      "difficulty": "medium",
+      "type": "semantic_paraphrase",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-a03"],
+      "key_facts": [
+        "删除资料后 citation 的 chunk/material 外键会变为 NULL",
+        "历史 citation 的原文件名、位置与正文摘录仍保留"
+      ],
+      "citation_expectations": {
+        "required": true,
+        "minimum_distinct_documents": 1,
+        "must_cite_document_ids": ["lp-rag-v1-a03"],
+        "forbid_citations": false,
+        "notes": "问题不复用文档里的删除/快照措辞，用于语义改写命中。"
+      }
+    },
+    {
+      "case_id": "rag-v1-multidoc-controlled-write",
+      "question": "说明 Agent 写操作从计划到真正执行的限制与确认步骤。",
+      "difficulty": "hard",
+      "type": "multi_doc",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-b01", "lp-rag-v1-b02"],
+      "key_facts": [
+        "一次运行最多一个写工具且写入前只能先执行读取",
+        "写工具参数先被冻结并生成确认记录",
+        "真正写入只在用户批准并恢复原运行后发生"
+      ],
+      "citation_expectations": {
+        "required": true,
+        "minimum_distinct_documents": 2,
+        "must_cite_document_ids": ["lp-rag-v1-b01", "lp-rag-v1-b02"],
+        "forbid_citations": false,
+        "notes": "限额来自 B01，interrupt/resume 与批准后写入来自 B02。"
+      }
+    },
+    {
+      "case_id": "rag-v1-rerank-candidate-expansion",
+      "question": "默认 RAG top_k=6 时，RAG 层会向 MaterialIndexService 请求多少候选？系统是否还会调用独立的 cross-encoder 重排模型？",
+      "difficulty": "hard",
+      "type": "rerank_disambiguation",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-a01", "lp-rag-v1-a02"],
+      "key_facts": ["RAG 层默认向 MaterialIndexService 请求最多 18 个候选", "运行时没有独立 cross-encoder reranker"],
+      "citation_expectations": {
+        "required": true,
+        "minimum_distinct_documents": 2,
+        "must_cite_document_ids": ["lp-rag-v1-a01", "lp-rag-v1-a02"],
+        "forbid_citations": false,
+        "notes": "两个相近 Retrieval 文档分别提供 reranker 存在性与候选扩展公式。"
+      }
+    },
+    {
+      "case_id": "rag-v1-citation-source-label-lifetime",
+      "question": "S1 这类标识能否跨两次回答当作稳定文档 ID？请说明稳定的评测标识应该是什么。",
+      "difficulty": "medium",
+      "type": "citation_sensitive",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-a02", "lp-rag-v1-d01"],
+      "key_facts": [
+        "S1 等 source label 由每次回答的最终来源顺序重新编号，只在该次回答内有效",
+        "gold case 应绑定 Corpus Manifest 的稳定 document_id，而不是 source label 或运行时 Material ID"
+      ],
+      "citation_expectations": {
+        "required": true,
+        "minimum_distinct_documents": 2,
+        "must_cite_document_ids": ["lp-rag-v1-a02", "lp-rag-v1-d01"],
+        "forbid_citations": false,
+        "notes": "每个事实都需要引用对应文档，不能用单一相似来源替代。"
+      }
+    },
+    {
+      "case_id": "rag-v1-unanswerable-gpu-price",
+      "question": "2026 年 8 月 RTX 5090 在上海的最低零售价是多少？",
+      "difficulty": "easy",
+      "type": "unanswerable",
+      "answerable": false,
+      "expected_document_ids": [],
+      "key_facts": [],
+      "citation_expectations": {
+        "required": false,
+        "minimum_distinct_documents": 0,
+        "must_cite_document_ids": [],
+        "forbid_citations": true,
+        "notes": "Corpus 不含硬件零售价格，必须拒答且不引用主题相似的 AI 文档。"
+      }
+    },
+    {
+      "case_id": "rag-v1-single-query-rewrite-guard",
+      "question": "查询改写结果出现会话中从未出现的新英文实体时，系统怎样处理？",
+      "difficulty": "easy",
+      "type": "single_doc_fact",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-a01"],
+      "key_facts": ["系统回退到原问题"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-a01"], "forbid_citations": false, "notes": "A02 不包含 query rewrite guard。"}
+    },
+    {
+      "case_id": "rag-v1-single-score-threshold",
+      "question": "当前 RAG 的默认最低相关度阈值是多少？",
+      "difficulty": "easy",
+      "type": "single_doc_fact",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-a02"],
+      "key_facts": ["默认最低相关度阈值是 0.35"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-a02"], "forbid_citations": false, "notes": "精确配置事实。"}
+    },
+    {
+      "case_id": "rag-v1-single-grounding-repair-limit",
+      "question": "Grounded answer 初稿不符合 evidence contract 时，最多允许修复几次？",
+      "difficulty": "easy",
+      "type": "single_doc_fact",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-a03"],
+      "key_facts": ["最多允许一次受控修复"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-a03"], "forbid_citations": false, "notes": "引用契约的直接事实。"}
+    },
+    {
+      "case_id": "rag-v1-single-agent-step-limits",
+      "question": "一次 Agent 运行最多能调用多少个工具步骤、读取工具和写工具？",
+      "difficulty": "easy",
+      "type": "single_doc_fact",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-b01"],
+      "key_facts": ["最多四个工具步骤", "最多三个读取工具", "最多一个写工具"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-b01"], "forbid_citations": false, "notes": "B02/B03 有写入安全信息但不同时给出三个数字。"}
+    },
+    {
+      "case_id": "rag-v1-single-idempotent-approval",
+      "question": "用户重复批准同一个已完成的 Agent 确认时，允许再次创建业务对象吗？",
+      "difficulty": "easy",
+      "type": "single_doc_fact",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-b02"],
+      "key_facts": ["不允许再次创建或再次写入", "应重放原结果"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-b02"], "forbid_citations": false, "notes": "幂等确认的直接事实。"}
+    },
+    {
+      "case_id": "rag-v1-single-api-error-shape",
+      "question": "LearnPilot 的统一 API 错误响应由哪三个字段组成？",
+      "difficulty": "easy",
+      "type": "single_doc_fact",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-c01"],
+      "key_facts": ["error 对象包含 code、message、details"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-c01"], "forbid_citations": false, "notes": "公开 HTTP contract。"}
+    },
+    {
+      "case_id": "rag-v1-single-corpus-version-change",
+      "question": "已用于基线的语料文档发生语义变化时，应该静默更新 hash 还是发布新的 corpus version？",
+      "difficulty": "easy",
+      "type": "single_doc_fact",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-d03"],
+      "key_facts": ["应发布新的 corpus version", "不能静默覆盖既有 V1"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-d03"], "forbid_citations": false, "notes": "版本冻结事实。"}
+    },
+    {
+      "case_id": "rag-v1-paraphrase-inner-product-cosine",
+      "question": "为什么这个归一化向量索引用内积排出来的次序可以看成 cosine similarity 次序？",
+      "difficulty": "medium",
+      "type": "semantic_paraphrase",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-a01"],
+      "key_facts": ["文档向量和查询向量都做 L2 归一化", "归一化后内积排序与余弦相似度排序等价"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-a01"], "forbid_citations": false, "notes": "避免复用标题与原句开头。"}
+    },
+    {
+      "case_id": "rag-v1-paraphrase-source-diversity",
+      "question": "系统怎样避免一篇特别长的资料把回答可见的证据席位全部占满？",
+      "difficulty": "medium",
+      "type": "semantic_paraphrase",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-a02"],
+      "key_facts": ["第一轮按资料设置来源配额", "默认最多六个来源时每份资料先取最多三个", "不足时第二轮可从剩余候选补齐"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-a02"], "forbid_citations": false, "notes": "语义表达为证据席位而非 per-material cap。"}
+    },
+    {
+      "case_id": "rag-v1-paraphrase-duplicate-upload",
+      "question": "把完全相同的文件再上传一遍，平台会自动合并成原来的 Material 吗？",
+      "difficulty": "medium",
+      "type": "semantic_paraphrase",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-a04"],
+      "key_facts": ["当前上传契约不按内容哈希或原文件名去重", "重复上传会产生不同 Material ID"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-a04"], "forbid_citations": false, "notes": "测试 duplicate semantics。"}
+    },
+    {
+      "case_id": "rag-v1-paraphrase-checkpoint-vs-idempotency",
+      "question": "只要有工作流 checkpoint，业务写入就天然保证只执行一次吗？",
+      "difficulty": "medium",
+      "type": "semantic_paraphrase",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-b02"],
+      "key_facts": ["不是", "checkpoint 负责工作流恢复", "业务写入正确性还依赖事务、唯一约束和幂等 request ID"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-b02"], "forbid_citations": false, "notes": "区分两个相近工程概念。"}
+    },
+    {
+      "case_id": "rag-v1-paraphrase-untrusted-material",
+      "question": "检索到的文档若要求读取 API Key，为什么助手不能照做？",
+      "difficulty": "medium",
+      "type": "semantic_paraphrase",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-b03"],
+      "key_facts": ["检索正文是不可信数据，不能提升为系统指令", "Agent 不暴露环境变量或密钥工具"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-b03"], "forbid_citations": false, "notes": "正常安全文档而非 attack fixture。"}
+    },
+    {
+      "case_id": "rag-v1-paraphrase-index-derived-state",
+      "question": "向量文件损坏后，应该修改 chunk 事实来迁就它，还是从业务事实重新生成？",
+      "difficulty": "medium",
+      "type": "semantic_paraphrase",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-c02"],
+      "key_facts": ["FAISS 是可重建的派生索引", "损坏时应从业务数据重建而不是修改 chunk 事实"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-c02"], "forbid_citations": false, "notes": "持久化职责的语义问题。"}
+    },
+    {
+      "case_id": "rag-v1-paraphrase-scanned-pdf",
+      "question": "只有扫描图片、提取不到文字的 PDF 会被系统自动做 OCR 吗？",
+      "difficulty": "medium",
+      "type": "semantic_paraphrase",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-c03"],
+      "key_facts": ["不会执行 OCR", "无法提取文字的扫描 PDF 会明确失败"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-c03"], "forbid_citations": false, "notes": "parser behavior。"}
+    },
+    {
+      "case_id": "rag-v1-multidoc-retrieval-to-context",
+      "question": "概述从 normalized query embedding 到最终 S1…Sn 上下文的两个主要阶段。",
+      "difficulty": "hard",
+      "type": "multi_doc",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-a01", "lp-rag-v1-a02"],
+      "key_facts": ["A01 描述 embedding、FAISS 命中和 SQLite 回查过滤", "A02 描述阈值、稳定排序、重叠去重、资料多样性与上下文预算"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 2, "must_cite_document_ids": ["lp-rag-v1-a01", "lp-rag-v1-a02"], "forbid_citations": false, "notes": "端到端 retrieval/source-selection 组合。"}
+    },
+    {
+      "case_id": "rag-v1-multidoc-delete-new-vs-old",
+      "question": "资料删除后，新检索和历史回答分别会发生什么？",
+      "difficulty": "hard",
+      "type": "multi_doc",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-a03", "lp-rag-v1-a04"],
+      "key_facts": ["删除流程先让资料退出索引并重建，所以新检索不再命中", "历史 citation 的外键可空但文件名、位置和摘录快照保留"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 2, "must_cite_document_ids": ["lp-rag-v1-a03", "lp-rag-v1-a04"], "forbid_citations": false, "notes": "新路径与历史审计分别由两文档支持。"}
+    },
+    {
+      "case_id": "rag-v1-multidoc-agent-safety-plan",
+      "question": "一个包含读取环境变量、修改分数、然后继续查询的 Agent 计划会触犯哪些限制？",
+      "difficulty": "hard",
+      "type": "multi_doc",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-b01", "lp-rag-v1-b03"],
+      "key_facts": ["环境变量与改分能力不在允许工具中", "写入后不能继续读取", "未知或危险计划会在执行前被拒绝"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 2, "must_cite_document_ids": ["lp-rag-v1-b01", "lp-rag-v1-b03"], "forbid_citations": false, "notes": "计划顺序与能力边界分属不同文档。"}
+    },
+    {
+      "case_id": "rag-v1-multidoc-http-transaction-errors",
+      "question": "为什么 stale index 和 LLM provider failure 不应被同样记成‘没有答案’，它们在接口和持久化职责上有何不同？",
+      "difficulty": "hard",
+      "type": "multi_doc",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-c01", "lp-rag-v1-c02", "lp-rag-v1-d02"],
+      "key_facts": ["stale index 是派生索引与业务 chunks 不一致", "provider failure 是模型基础设施失败", "两者应有不同错误/失败分类而非正确拒答"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 3, "must_cite_document_ids": ["lp-rag-v1-c01", "lp-rag-v1-c02", "lp-rag-v1-d02"], "forbid_citations": false, "notes": "三文档综合。"}
+    },
+    {
+      "case_id": "rag-v1-multidoc-ingestion-reproducibility",
+      "question": "要让同一 corpus 的两轮导入结果可比较，离线 manifest 与运行时 FAISS manifest 各自冻结什么？",
+      "difficulty": "hard",
+      "type": "multi_doc",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-c03", "lp-rag-v1-d03"],
+      "key_facts": ["Corpus Manifest 冻结输入文档标识、路径和内容 hash", "FAISS Manifest 记录某次切块/embedding 后的模型、维度、chunk IDs、checksums 和 index version", "parser/chunker contract决定运行时 chunks"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 2, "must_cite_document_ids": ["lp-rag-v1-c03", "lp-rag-v1-d03"], "forbid_citations": false, "notes": "输入冻结与派生索引。"}
+    },
+    {
+      "case_id": "rag-v1-multidoc-eval-via-public-api",
+      "question": "为什么正式 RAG eval 要在隔离存储中通过公开 HTTP path 执行，并保存哪些可比较元数据？",
+      "difficulty": "hard",
+      "type": "multi_doc",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-c01", "lp-rag-v1-d01", "lp-rag-v1-d03"],
+      "key_facts": ["HTTP path 覆盖真实公开接口而不是直接读内部存储", "隔离存储避免个人知识库污染", "需记录 corpus、embedding、index、RAG、prompt 和模型配置"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 3, "must_cite_document_ids": ["lp-rag-v1-c01", "lp-rag-v1-d01", "lp-rag-v1-d03"], "forbid_citations": false, "notes": "eval protocol 综合。"}
+    },
+    {
+      "case_id": "rag-v1-multidoc-reprocess-identity",
+      "question": "资料重新处理后，哪些标识适合留在跨运行 gold truth，哪些不适合？",
+      "difficulty": "hard",
+      "type": "multi_doc",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-a04", "lp-rag-v1-d01"],
+      "key_facts": ["reprocess 可能产生新 DB chunk 主键", "Material ID、Chunk ID、S1 标签不适合作为跨运行 gold", "应使用稳定 document_id，必要时在运行内结合 chunk_index 和 content_hash"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 2, "must_cite_document_ids": ["lp-rag-v1-a04", "lp-rag-v1-d01"], "forbid_citations": false, "notes": "运行时 identity 与评测 identity。"}
+    },
+    {
+      "case_id": "rag-v1-rerank-agent-numeric-source",
+      "question": "Agent 一次运行的读写数量上限分别是什么？不要只回答确认原则。",
+      "difficulty": "hard",
+      "type": "rerank_disambiguation",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-b01"],
+      "key_facts": ["最多三个读取工具", "最多一个写工具"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-b01"], "forbid_citations": false, "notes": "B02/B03 是 plausible distractors，但没有完整数字。"}
+    },
+    {
+      "case_id": "rag-v1-rerank-citation-rendering",
+      "question": "谁负责把 [S1] 加到最终 answer block：模型还是后端？",
+      "difficulty": "hard",
+      "type": "rerank_disambiguation",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-a03"],
+      "key_facts": ["模型不得在 block 正文手写引用语法", "后端验证后确定性追加引用标记"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-a03"], "forbid_citations": false, "notes": "A02 讨论 S 标签但不描述渲染责任。"}
+    },
+    {
+      "case_id": "rag-v1-rerank-delete-order",
+      "question": "资料删除时，是先删原文件还是先让它退出可检索索引？",
+      "difficulty": "hard",
+      "type": "rerank_disambiguation",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-a04"],
+      "key_facts": ["先置 deletion pending 并重建索引", "索引更新成功后才删除原文件和 Material"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-a04"], "forbid_citations": false, "notes": "A03 描述删除后 citation，但不描述删除顺序。"}
+    },
+    {
+      "case_id": "rag-v1-rerank-confirmation-timing",
+      "question": "写工具在确认卡片展示前还是批准并 resume 之后执行？",
+      "difficulty": "hard",
+      "type": "rerank_disambiguation",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-b02"],
+      "key_facts": ["确认卡片展示时尚未业务写入", "批准后 resume 到 write-tool 节点才真正执行"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-b02"], "forbid_citations": false, "notes": "B01/B03 只给原则，不给 interrupt/resume 时序。"}
+    },
+    {
+      "case_id": "rag-v1-rerank-stream-validation",
+      "question": "RAG SSE 是直接转发未经校验的模型 token，还是验证并持久化后再发送？",
+      "difficulty": "hard",
+      "type": "rerank_disambiguation",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-c01"],
+      "key_facts": ["先完成结构化生成、验证和持久化", "不是直接透传未经校验的 token"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-c01"], "forbid_citations": false, "notes": "B03 也谈流式安全但不描述 RAG HTTP 时序。"}
+    },
+    {
+      "case_id": "rag-v1-rerank-storage-responsibility",
+      "question": "哪一种存储才是 Material、Chunk、RAG 消息和引用的事实来源？",
+      "difficulty": "hard",
+      "type": "rerank_disambiguation",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-c02"],
+      "key_facts": ["业务 SQLite 是这些业务事实的来源", "checkpoint SQLite 保存图状态，FAISS 是派生索引"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-c02"], "forbid_citations": false, "notes": "C01/C03 都涉及后端但没有三存储职责。"}
+    },
+    {
+      "case_id": "rag-v1-rerank-fixture-vs-corpus",
+      "question": "为了触发单个安全断言而写入攻击句子的短文档，应该算 demo corpus 还是 test fixture？",
+      "difficulty": "hard",
+      "type": "rerank_disambiguation",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-d01"],
+      "key_facts": ["应该算 test fixture", "fixture 为单个断言优化，不能代表真实检索分布"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-d01"], "forbid_citations": false, "notes": "B03 是安全边界 distractor，但不定义 eval asset 类型。"}
+    },
+    {
+      "case_id": "rag-v1-citation-block-source-binding",
+      "question": "一个可回答的 evidence block 至少需要绑定什么，source ID 可以来自本次上下文之外吗？",
+      "difficulty": "medium",
+      "type": "citation_sensitive",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-a03"],
+      "key_facts": ["每个非空 block 至少绑定一个真实支持它的 source ID", "source ID 必须属于本次实际上下文"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-a03"], "forbid_citations": false, "notes": "答案本身也必须正确引用 A03。"}
+    },
+    {
+      "case_id": "rag-v1-citation-page-section-location",
+      "question": "构造来源位置时，page number、section title 和 chunk 序号的优先顺序是什么？",
+      "difficulty": "medium",
+      "type": "citation_sensitive",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-a03"],
+      "key_facts": ["优先页码", "无页码时用章节标题", "二者都没有时用从 1 开始的片段序号"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-a03"], "forbid_citations": false, "notes": "location contract。"}
+    },
+    {
+      "case_id": "rag-v1-citation-draft-vs-rendered",
+      "question": "请分别说明模型 draft 与最终 rendered answer 对 citation syntax 的要求。",
+      "difficulty": "hard",
+      "type": "citation_sensitive",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-a03"],
+      "key_facts": ["draft 正文禁止手写 [Sx]", "draft 用 source IDs 绑定证据", "最终答案由后端追加 [Sx]"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-a03"], "forbid_citations": false, "notes": "同一文档内多事实引用。"}
+    },
+    {
+      "case_id": "rag-v1-citation-agent-vs-rag",
+      "question": "RAG Citation 与 Agent tool-result citation 的证据绑定含义相同吗？",
+      "difficulty": "hard",
+      "type": "citation_sensitive",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-b03"],
+      "key_facts": ["不同", "RAG Citation 绑定实际送入回答模型的资料 chunk", "Agent citation 绑定工具返回或资料问答结果"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-b03"], "forbid_citations": false, "notes": "不因术语相同而引用 A03 替代。"}
+    },
+    {
+      "case_id": "rag-v1-citation-gold-mapping",
+      "question": "评测器看到 response 中的 original_filename 和运行时 material_id 后，怎样回到稳定的 expected_document_ids？",
+      "difficulty": "hard",
+      "type": "citation_sensitive",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-d01"],
+      "key_facts": ["导入时建立 document_id 到 Material ID 的映射", "用映射后的 ID 或 original filename 对照 manifest 稳定 document_id", "不能直接把运行时整数 ID 写进 gold"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 1, "must_cite_document_ids": ["lp-rag-v1-d01"], "forbid_citations": false, "notes": "评测映射 contract。"}
+    },
+    {
+      "case_id": "rag-v1-citation-multifact-sources",
+      "question": "回答‘默认上下文限制与 citation snapshot 字段’时，至少应引用哪些文档？",
+      "difficulty": "hard",
+      "type": "citation_sensitive",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-a02", "lp-rag-v1-a03"],
+      "key_facts": ["A02 支持最多六个来源、每片段 2200 字符、总 12000 字符", "A03 支持 citation 保存 rank、score、位置和正文摘录等快照"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 2, "must_cite_document_ids": ["lp-rag-v1-a02", "lp-rag-v1-a03"], "forbid_citations": false, "notes": "两个事实必须各有正确来源。"}
+    },
+    {
+      "case_id": "rag-v1-citation-refusal-empty",
+      "question": "当模型合法声明资料不足时，blocks、refusal reason 和 citations 应分别是什么状态？",
+      "difficulty": "medium",
+      "type": "citation_sensitive",
+      "answerable": true,
+      "expected_document_ids": ["lp-rag-v1-a03", "lp-rag-v1-d02"],
+      "key_facts": ["blocks 为空", "refusal reason 非空", "citations 为空"],
+      "citation_expectations": {"required": true, "minimum_distinct_documents": 2, "must_cite_document_ids": ["lp-rag-v1-a03", "lp-rag-v1-d02"], "forbid_citations": false, "notes": "问题本身可由 corpus 回答；不是要求当前问答拒答。"}
+    },
+    {
+      "case_id": "rag-v1-unanswerable-weather",
+      "question": "明天上海浦东新区下午三点会下多少毫米的雨？",
+      "difficulty": "easy",
+      "type": "unanswerable",
+      "answerable": false,
+      "expected_document_ids": [],
+      "key_facts": [],
+      "citation_expectations": {"required": false, "minimum_distinct_documents": 0, "must_cite_document_ids": [], "forbid_citations": true, "notes": "Corpus 无天气数据。"}
+    },
+    {
+      "case_id": "rag-v1-unanswerable-medication",
+      "question": "阿莫西林治疗成人急性鼻窦炎的标准处方剂量是多少？",
+      "difficulty": "medium",
+      "type": "unanswerable",
+      "answerable": false,
+      "expected_document_ids": [],
+      "key_facts": [],
+      "citation_expectations": {"required": false, "minimum_distinct_documents": 0, "must_cite_document_ids": [], "forbid_citations": true, "notes": "Corpus 无医疗处方资料。"}
+    },
+    {
+      "case_id": "rag-v1-unanswerable-tax-law",
+      "question": "2026 年中国个人所得税专项附加扣除的最新法定金额分别是多少？",
+      "difficulty": "hard",
+      "type": "unanswerable",
+      "answerable": false,
+      "expected_document_ids": [],
+      "key_facts": [],
+      "citation_expectations": {"required": false, "minimum_distinct_documents": 0, "must_cite_document_ids": [], "forbid_citations": true, "notes": "Corpus 无税法资料。"}
+    },
+    {
+      "case_id": "rag-v1-unanswerable-faiss-benchmark",
+      "question": "FAISS IndexFlatIP 在一百万条 1024 维向量上的官方 QPS 基准是多少？",
+      "difficulty": "hard",
+      "type": "unanswerable",
+      "answerable": false,
+      "expected_document_ids": [],
+      "key_facts": [],
+      "citation_expectations": {"required": false, "minimum_distinct_documents": 0, "must_cite_document_ids": [], "forbid_citations": true, "notes": "Corpus 提到 FAISS 配置但没有 QPS benchmark，是主题相似的 genuine absent case。"}
+    },
+    {
+      "case_id": "rag-v1-unanswerable-bge-training-data",
+      "question": "BAAI/bge-m3 的训练语料总 token 数和各语言占比分别是多少？",
+      "difficulty": "hard",
+      "type": "unanswerable",
+      "answerable": false,
+      "expected_document_ids": [],
+      "key_facts": [],
+      "citation_expectations": {"required": false, "minimum_distinct_documents": 0, "must_cite_document_ids": [], "forbid_citations": true, "notes": "Corpus 仅记录 runtime model name/config，不含模型训练数据。"}
+    },
+    {
+      "case_id": "rag-v1-unanswerable-langgraph-release",
+      "question": "LangGraph 2.0 的正式发布日期和 breaking changes 清单是什么？",
+      "difficulty": "hard",
+      "type": "unanswerable",
+      "answerable": false,
+      "expected_document_ids": [],
+      "key_facts": [],
+      "citation_expectations": {"required": false, "minimum_distinct_documents": 0, "must_cite_document_ids": [], "forbid_citations": true, "notes": "Corpus 描述本项目使用 LangGraph，不含外部 release history。"}
+    },
+    {
+      "case_id": "rag-v1-unanswerable-project-accuracy",
+      "question": "LearnPilot 在十万真实用户上的学习效果提升百分比是多少？",
+      "difficulty": "medium",
+      "type": "unanswerable",
+      "answerable": false,
+      "expected_document_ids": [],
+      "key_facts": [],
+      "citation_expectations": {"required": false, "minimum_distinct_documents": 0, "must_cite_document_ids": [], "forbid_citations": true, "notes": "Corpus 明确不支持真实教育效果主张。"}
+    }
+  ]
+}

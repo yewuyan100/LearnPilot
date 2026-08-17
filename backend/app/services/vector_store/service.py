@@ -1,5 +1,4 @@
 from collections import Counter
-from datetime import datetime, timezone
 import logging
 from threading import Lock
 from time import perf_counter
@@ -9,6 +8,7 @@ from fastapi import status
 from sqlalchemy.orm import Session
 
 from app.core.config import Settings
+from app.core.clock import clock_from_settings
 from app.core.errors import AppError
 from app.repositories.material_chunks import MaterialChunkRepository
 from app.repositories.materials import MaterialRepository
@@ -21,6 +21,7 @@ from app.schemas.material_chunk import (
 from app.services.embedding.base import Embedder, EmbeddingError
 from app.services.vector_store.faiss_store import FaissStore, VectorStoreError
 from app.services.vector_store.manifest import FaissManifest, chunks_checksum
+from app.services.material_state import touch_material
 
 
 logger = logging.getLogger("personal_learning.knowledge_index")
@@ -32,6 +33,7 @@ class MaterialIndexService:
         self.db = db
         self.settings = settings
         self.embedder = embedder
+        self.clock = clock_from_settings(settings)
         self.materials = MaterialRepository(db)
         self.chunks = MaterialChunkRepository(db)
         self.store = FaissStore(
@@ -56,12 +58,13 @@ class MaterialIndexService:
             chunks = self.chunks.list_indexable()
             if not chunks:
                 self.store.clear()
-                now = datetime.now(timezone.utc)
+                now = self.clock.now()
                 for material in materials:
                     material.indexing_status = "completed"
                     material.indexed_chunk_count = 0
                     material.indexed_at = now
                     material.error_message = None
+                    touch_material(material, now)
                 self.db.commit()
                 return MaterialIndexBuildResult(
                     index_version=None,
@@ -71,13 +74,15 @@ class MaterialIndexService:
                     built_at=now,
                 )
 
+            indexing_started_at = self.clock.now()
             for material in materials:
                 material.indexing_status = "indexing"
                 material.error_message = None
+                touch_material(material, indexing_started_at)
             self.db.commit()
 
             vectors = self.embedder.embed_documents([chunk.content for chunk in chunks])
-            built_at = datetime.now(timezone.utc)
+            built_at = self.clock.now()
             manifest = FaissManifest(
                 index_version=uuid4().hex,
                 model_name=self.embedder.model_name,
@@ -97,6 +102,7 @@ class MaterialIndexService:
                 material.indexed_chunk_count = counts.get(material.id, 0)
                 material.indexed_at = built_at
                 material.error_message = None
+                touch_material(material, built_at)
             self.db.commit()
             logger.info(
                 "material_index_built embedding_model=%s embedding_dimension=%s "
@@ -123,6 +129,7 @@ class MaterialIndexService:
                     if isinstance(exc, (EmbeddingError, VectorStoreError))
                     else "资料索引构建失败，请查看后端日志。"
                 )
+                touch_material(material, self.clock.now())
             self.db.commit()
             logger.exception(
                 "material_index_build_failed error_type=%s index_build_duration_ms=%s",
@@ -238,6 +245,8 @@ class MaterialIndexService:
                 [hit.chunk_id for hit in hits],
                 material_ids,
             )
+            retrieved_count = len(hits)
+            filtered_count = len(hits) - len(rows)
             candidates = [
                 (hit, rows[hit.chunk_id])
                 for hit in hits
@@ -276,6 +285,8 @@ class MaterialIndexService:
                 index_version=manifest.index_version,
                 results=results,
                 duration_ms=duration_ms,
+                retrieved_count=retrieved_count,
+                filtered_count=filtered_count,
             )
         except AppError:
             raise

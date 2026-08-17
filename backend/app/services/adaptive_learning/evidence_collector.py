@@ -4,6 +4,7 @@ from hashlib import sha256
 
 from sqlalchemy import select
 
+from app.core.clock import clock_from_settings
 from app.models import (
     ActivityQuestion, DailyTask, LearningActivity, LearningSession,
     MasteryEvidence, QuizAnswer, QuizAttempt, WrongAnswer,
@@ -21,7 +22,7 @@ class LearningEvidenceCollector:
     def __init__(self, db, settings, *, now: datetime | None = None):
         self.db = db
         self.settings = settings
-        self.now = now or settings.adaptive_fixed_now or datetime.now(timezone.utc)
+        self.now = now or clock_from_settings(settings).now()
 
     def _weight(self, evidence_type: str) -> float:
         return {
@@ -32,6 +33,8 @@ class LearningEvidenceCollector:
             EvidenceType.task_completion: self.settings.mastery_task_weight,
             EvidenceType.learning_session: self.settings.mastery_session_weight,
             EvidenceType.self_assessment: self.settings.mastery_self_assessment_weight,
+            EvidenceType.diagnostic_assessment: self.settings.mastery_diagnostic_weight,
+            EvidenceType.diagnostic_adjustment: self.settings.mastery_diagnostic_weight,
         }[EvidenceType(evidence_type)]
 
     def add(

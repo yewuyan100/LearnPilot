@@ -33,7 +33,10 @@ class MaterialRepository:
         return list(
             self.db.scalars(
                 select(Material)
-                .where(Material.ingestion_status == "completed")
+                .where(
+                    Material.ingestion_status == "completed",
+                    Material.deletion_status == "active",
+                )
                 .order_by(Material.id)
             )
         )

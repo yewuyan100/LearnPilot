@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://learnpilot.local/schemas/rag-demo-gold-cases-v1.schema.json",
+  "title": "LearnPilot RAG Gold Cases Contract V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "corpus_id", "corpus_version", "cases"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "corpus_id": {"const": "learnpilot-rag-demo-corpus"},
+    "corpus_version": {"const": "v1"},
+    "cases": {
+      "type": "array",
+      "minItems": 48,
+      "maxItems": 48,
+      "items": {"$ref": "#/$defs/case"}
+    }
+  },
+  "$defs": {
+    "citation_expectations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "minimum_distinct_documents", "must_cite_document_ids", "forbid_citations"],
+      "properties": {
+        "required": {"type": "boolean"},
+        "minimum_distinct_documents": {"type": "integer", "minimum": 0, "maximum": 15},
+        "must_cite_document_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^lp-rag-v1-[a-d][0-9]{2}$"}
+        },
+        "forbid_citations": {"type": "boolean"},
+        "notes": {"type": "string"}
+      }
+    },
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "case_id",
+        "question",
+        "difficulty",
+        "type",
+        "answerable",
+        "expected_document_ids",
+        "key_facts",
+        "citation_expectations"
+      ],
+      "properties": {
+        "case_id": {"type": "string", "pattern": "^rag-v1-[a-z0-9-]+$"},
+        "question": {"type": "string", "minLength": 4, "maxLength": 2000},
+        "difficulty": {"enum": ["easy", "medium", "hard"]},
+        "type": {
+          "enum": [
+            "single_doc_fact",
+            "semantic_paraphrase",
+            "multi_doc",
+            "rerank_disambiguation",
+            "citation_sensitive",
+            "unanswerable"
+          ]
+        },
+        "answerable": {"type": "boolean"},
+        "expected_document_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^lp-rag-v1-[a-d][0-9]{2}$"}
+        },
+        "key_facts": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "citation_expectations": {"$ref": "#/$defs/citation_expectations"},
+        "notes": {"type": "string"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"answerable": {"const": false}}, "required": ["answerable"]},
+          "then": {
+            "properties": {
+              "type": {"const": "unanswerable"},
+              "expected_document_ids": {"maxItems": 0},
+              "key_facts": {"maxItems": 0},
+              "citation_expectations": {
+                "properties": {
+                  "required": {"const": false},
+                  "minimum_distinct_documents": {"const": 0},
+                  "must_cite_document_ids": {"maxItems": 0},
+                  "forbid_citations": {"const": true}
+                }
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "expected_document_ids": {"minItems": 1},
+              "key_facts": {"minItems": 1},
+              "citation_expectations": {
+                "properties": {
+                  "required": {"const": true},
+                  "minimum_distinct_documents": {"minimum": 1},
+                  "forbid_citations": {"const": false}
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {"properties": {"type": {"const": "multi_doc"}}, "required": ["type"]},
+          "then": {
+            "properties": {
+              "expected_document_ids": {"minItems": 2},
+              "citation_expectations": {
+                "properties": {"minimum_distinct_documents": {"minimum": 2}}
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

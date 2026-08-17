@@ -1,0 +1,1386 @@
+{
+  "schema_version": "1.0.0",
+  "corpus_ref": {
+    "corpus_id": "learnpilot-rag-real-world-corpus",
+    "corpus_version": "v1"
+  },
+  "anchor_count": 89,
+  "anchors": [
+    {
+      "evidence_id": "ev-rw-bge-capabilities",
+      "document_id": "rw-rag-bge-m3",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-rag-bge-m3.md",
+        "start_line": 3,
+        "end_line": 6,
+        "section_title": "BGE-M3 introduction",
+        "region": "early"
+      },
+      "anchor_text_hash": "c5e197662e114a6915488398e66b9b67abc7cefa0ec7a2da976301273149533e",
+      "excerpt": "In this project, we introduce BGE-M3, which is distinguished for its versatility in Multi-Functionality, Multi-Linguality, and Multi-Granularity. - Multi-Functionality: It can simultaneously perform the three common retrieval functionalities of embedding model: dense retrieval, multi-vector retrieval, and sparse retrieval. - Multi-Linguality: It can support more than 100 working languages. - Multi-Granularity: It ...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-bge-pipeline",
+      "document_id": "rw-rag-bge-m3",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-rag-bge-m3.md",
+        "start_line": 10,
+        "end_line": 21,
+        "section_title": "Suggestions for retrieval pipeline in RAG",
+        "region": "early"
+      },
+      "anchor_text_hash": "5dee7f35807b2494f11f2bbf7233b043e3ceeb42b1c2e720f05f04c824c8ec5d",
+      "excerpt": "**Some suggestions for retrieval pipeline in RAG** We recommend to use following pipeline: hybrid retrieval + re-ranking. - Hybrid retrieval leverages the strengths of various methods, offering higher accuracy and stronger generalization capabilities. A classic example: using both embedding retrieval and the BM25 algorithm. Now, you can try to use BGE-M3, which supports both embedding and sparse retrieval. This al...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-bge-miracl-correction",
+      "document_id": "rw-rag-bge-m3",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-rag-bge-m3.md",
+        "start_line": 24,
+        "end_line": 38,
+        "section_title": "News",
+        "region": "early"
+      },
+      "anchor_text_hash": "081eee3daeb58c142b292eb832c37573d8088bf747e7c7257855b8389d9a197c",
+      "excerpt": "## News: - 2024/7/1: **We update the MIRACL evaluation results of BGE-M3**. To reproduce the new results, you can refer to: [bge-m3_miracl_2cr](https://huggingface.co/datasets/hanhainebula/bge-m3_miracl_2cr). We have also updated our [paper](https://arxiv.org/pdf/2402.03216) on arXiv. <details> <summary> Details </summary> > The previous test results were lower because we mistakenly removed the passages that have ...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-bge-specs",
+      "document_id": "rw-rag-bge-m3",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-rag-bge-m3.md",
+        "start_line": 42,
+        "end_line": 53,
+        "section_title": "Specs",
+        "region": "early"
+      },
+      "anchor_text_hash": "a6e25219680dd3d03855888dc4be1e380ba273f8e8c5d70d8d4ec9be0d866c3f",
+      "excerpt": "## Specs - Model | Model Name | Dimension | Sequence Length | Introduction | |:----:|:---:|:---:|:---:| | [BAAI/bge-m3](https://huggingface.co/BAAI/bge-m3) | 1024 | 8192 | multilingual; unified fine-tuning (dense, sparse, and colbert) from bge-m3-unsupervised| | [BAAI/bge-m3-unsupervised](https://huggingface.co/BAAI/bge-m3-unsupervised) | 1024 | 8192 | multilingual; contrastive learning from bge-m3-retromae | | [B...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-bge-methods",
+      "document_id": "rw-rag-bge-m3",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-rag-bge-m3.md",
+        "start_line": 64,
+        "end_line": 70,
+        "section_title": "FAQ: different retrieval methods",
+        "region": "early"
+      },
+      "anchor_text_hash": "09deae8299455c7fe6e545e2c31d87874c0d6bd557a3d0f5a7a3a4f8b97cafea",
+      "excerpt": "## FAQ **1. Introduction for different retrieval methods** - Dense retrieval: map the text into a single embedding, e.g., [DPR](https://arxiv.org/abs/2004.04906), [BGE-v1.5](https://github.com/FlagOpen/FlagEmbedding) - Sparse retrieval (lexical matching): a vector of size equal to the vocabulary, with the majority of positions set to zero, calculating a weight only for tokens present in the text. e.g., BM25, [unic...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-bge-no-query-instruction",
+      "document_id": "rw-rag-bge-m3",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-rag-bge-m3.md",
+        "start_line": 73,
+        "end_line": 79,
+        "section_title": "FAQ: use in other projects",
+        "region": "middle"
+      },
+      "anchor_text_hash": "16e08df7a06e6d607c43503744891a7c0bdbe60ee2b78afe56273feed6a2bbc6",
+      "excerpt": "**2. How to use BGE-M3 in other projects?** For embedding retrieval, you can employ the BGE-M3 model using the same approach as BGE. The only difference is that the BGE-M3 model no longer requires adding instructions to the queries. For hybrid retrieval, you can use [Vespa](https://github.com/vespa-engine/pyvespa/blob/master/docs/sphinx/source/examples/mother-of-all-embedding-models-cloud.ipynb ) and [Milvus](http...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-bge-dense-usage",
+      "document_id": "rw-rag-bge-m3",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-rag-bge-m3.md",
+        "start_line": 109,
+        "end_line": 132,
+        "section_title": "Generate Embedding for text: Dense Embedding",
+        "region": "middle"
+      },
+      "anchor_text_hash": "fcacc497a7c5c6723579166bc2269a7634ee26d19a6c3aa08fff5041b0ed85e5",
+      "excerpt": "### Generate Embedding for text - Dense Embedding ```python from FlagEmbedding import BGEM3FlagModel model = BGEM3FlagModel('BAAI/bge-m3', use_fp16=True, devices=['cuda:0']) # Setting use_fp16 to True speeds up computation with a slight performance degradation sentences_1 = [\"What is BGE M3?\", \"Defination of BM25\"] sentences_2 = [\"BGE M3 is an embedding model supporting dense retrieval, lexical matching and multi-...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-bge-sparse-usage",
+      "document_id": "rw-rag-bge-m3",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-rag-bge-m3.md",
+        "start_line": 136,
+        "end_line": 162,
+        "section_title": "Sparse Embedding (Lexical Weight)",
+        "region": "middle"
+      },
+      "anchor_text_hash": "296425c464540e2d72ea3abd3de3a0bc2ab5e0af74f89766b59dd8b1087a7f5d",
+      "excerpt": "- Sparse Embedding (Lexical Weight) ```python from FlagEmbedding import BGEM3FlagModel model = BGEM3FlagModel('BAAI/bge-m3', use_fp16=True) # Setting use_fp16 to True speeds up computation with a slight performance degradation sentences_1 = [\"What is BGE M3?\", \"Defination of BM25\"] sentences_2 = [\"BGE M3 is an embedding model supporting dense retrieval, lexical matching and multi-vector interaction.\", \"BM25 is a b...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-bge-score-weights",
+      "document_id": "rw-rag-bge-m3",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-rag-bge-m3.md",
+        "start_line": 184,
+        "end_line": 207,
+        "section_title": "Compute score for text pairs",
+        "region": "deep"
+      },
+      "anchor_text_hash": "99f3b0917dfea4d9838525bee5d8d1a3854ed12d90b92fc2b9679a4f818909eb",
+      "excerpt": "### Compute score for text pairs Input a list of text pairs, you can get the scores computed by different methods. ```python from FlagEmbedding import BGEM3FlagModel model = BGEM3FlagModel('BAAI/bge-m3', use_fp16=True) sentences_1 = [\"What is BGE M3?\", \"Defination of BM25\"] sentences_2 = [\"BGE M3 is an embedding model supporting dense retrieval, lexical matching and multi-vector interaction.\", \"BM25 is a bag-of-wo...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-bge-long-eval",
+      "document_id": "rw-rag-bge-m3",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-rag-bge-m3.md",
+        "start_line": 224,
+        "end_line": 252,
+        "section_title": "Evaluation: Our results",
+        "region": "deep"
+      },
+      "anchor_text_hash": "e4e1906943d1aa4dbadf42ed5c059c942abb659bd00ec501b3034de44acf8ca1",
+      "excerpt": "### Our results - Multilingual (MIRACL dataset) ![avatar](./imgs/miracl.jpg) - Cross-lingual (MKQA dataset) ![avatar](./imgs/mkqa.jpg) - Long Document Retrieval - MLDR: ![avatar](./imgs/long.jpg) Please note that [MLDR](https://huggingface.co/datasets/Shitao/MLDR) is a document retrieval dataset we constructed via LLM, covering 13 languages, including test set, validation set, and training set. We utilized the tra...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-bge-training",
+      "document_id": "rw-rag-bge-m3",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-rag-bge-m3.md",
+        "start_line": 258,
+        "end_line": 266,
+        "section_title": "Training",
+        "region": "deep"
+      },
+      "anchor_text_hash": "ca90fc50b2dd7d6a4c4107a29f8e432e8968e9301cdbe713851287656cc160d4",
+      "excerpt": "## Training - Self-knowledge Distillation: combining multiple outputs from different retrieval modes as reward signal to enhance the performance of single mode(especially for sparse retrieval and multi-vec(colbert) retrival) - Efficient Batching: Improve the efficiency when fine-tuning on long text. The small-batch strategy is simple but effective, which also can used to fine-tune large embedding model. - MCLS: A ...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-faiss-purpose",
+      "document_id": "rw-rag-faiss-overview",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-rag-faiss-overview.md",
+        "start_line": 1,
+        "end_line": 3,
+        "section_title": "Faiss",
+        "region": "early"
+      },
+      "anchor_text_hash": "44332f1aed5c7139503466a86a27ee3d69e15ee69aeba058f866767c25b9fdb2",
+      "excerpt": "# Faiss Faiss is a library for efficient similarity search and clustering of dense vectors. It contains algorithms that search in sets of vectors of any size, up to ones that possibly do not fit in RAM. It also contains supporting code for evaluation and parameter tuning. Faiss is written in C++ with complete wrappers for Python/numpy. Some of the most useful algorithms are implemented on the GPU. It is developed ...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-faiss-distance",
+      "document_id": "rw-rag-faiss-overview",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-rag-faiss-overview.md",
+        "start_line": 9,
+        "end_line": 15,
+        "section_title": "Introduction",
+        "region": "early"
+      },
+      "anchor_text_hash": "d2a992d14be11917fe80515dc75ced279801e1f48b2a783ec81bb7c268821c43",
+      "excerpt": "## Introduction Faiss contains several methods for similarity search. It assumes that the instances are represented as vectors and are identified by an integer, and that the vectors can be compared with L2 (Euclidean) distances or dot products. Vectors that are similar to a query vector are those that have the lowest L2 distance or the highest dot product with the query vector. It also supports cosine similarity, ...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-faiss-install",
+      "document_id": "rw-rag-faiss-overview",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-rag-faiss-overview.md",
+        "start_line": 17,
+        "end_line": 19,
+        "section_title": "Installing",
+        "region": "middle"
+      },
+      "anchor_text_hash": "94849b490dcb0759c4c87a6deede00d328ed3b3508df14d7fad085164121d46d",
+      "excerpt": "## Installing Faiss comes with precompiled libraries for Anaconda in Python, see [faiss-cpu](https://anaconda.org/pytorch/faiss-cpu), [faiss-gpu](https://anaconda.org/pytorch/faiss-gpu) and [faiss-gpu-cuvs](https://anaconda.org/pytorch/faiss-gpu-cuvs). The library is mostly implemented in C++, the only dependency is a [BLAS](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms) implementation. Optional G...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-faiss-tradeoffs",
+      "document_id": "rw-rag-faiss-overview",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-rag-faiss-overview.md",
+        "start_line": 21,
+        "end_line": 32,
+        "section_title": "How Faiss works",
+        "region": "middle"
+      },
+      "anchor_text_hash": "584857a6d173c12344012a66da37dd0beb0d370a1cb725c0183ba4b2ef4186a3",
+      "excerpt": "## How Faiss works Faiss is built around an index type that stores a set of vectors, and provides a function to search in them with L2 and/or dot product vector comparison. Some index types are simple baselines, such as exact search. Most of the available indexing structures correspond to various trade-offs with respect to - search time - search quality - memory used per index vector - training time - adding time ...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-faiss-docs",
+      "document_id": "rw-rag-faiss-overview",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-rag-faiss-overview.md",
+        "start_line": 34,
+        "end_line": 41,
+        "section_title": "Full documentation of Faiss",
+        "region": "deep"
+      },
+      "anchor_text_hash": "4a1c2895c15675b62c87ca6c486a45086a7c55b69cd7868110a6af94b21a2dad",
+      "excerpt": "## Full documentation of Faiss The following are entry points for documentation: - the full documentation can be found on the [wiki page](https://github.com/facebookresearch/faiss/wiki), including a [tutorial](https://github.com/facebookresearch/faiss/wiki/Getting-started), a [FAQ](https://github.com/facebookresearch/faiss/wiki/FAQ) and a [troubleshooting section](https://github.com/facebookresearch/faiss/wiki/Tro...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-faiss-license",
+      "document_id": "rw-rag-faiss-overview",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-rag-faiss-overview.md",
+        "start_line": 88,
+        "end_line": 92,
+        "section_title": "Legal",
+        "region": "deep"
+      },
+      "anchor_text_hash": "c918ea4160de158bb3fe8ad02c34899a8ae559bf3ec091ff3aa78bf95564ee2e",
+      "excerpt": "## Legal Faiss is MIT-licensed, refer to the [LICENSE file](https://github.com/facebookresearch/faiss/blob/main/LICENSE) in the top level directory. Copyright © Meta Platforms, Inc.",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-agent-overview-purpose",
+      "document_id": "rw-agent-langgraph-overview",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-langgraph-overview.md",
+        "start_line": 22,
+        "end_line": 33,
+        "section_title": "Repository overview",
+        "region": "early"
+      },
+      "anchor_text_hash": "a325a3906f87659672179b65c8ca85bc9b989acab8d6b485131b8ea00f97ed40",
+      "excerpt": "<br> Trusted by companies shaping the future of agents – including Klarna, Replit, Elastic, and more – LangGraph is a low-level orchestration framework for building, managing, and deploying long-running, stateful agents. ```bash pip install -U langgraph ``` > [!TIP] > If you're looking to quickly build agents, check out **[Deep Agents](https://docs.langchain.com/oss/python/deepagents/overview)** — a higher-level p...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-agent-overview-capabilities",
+      "document_id": "rw-agent-langgraph-overview",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-langgraph-overview.md",
+        "start_line": 35,
+        "end_line": 46,
+        "section_title": "Why use LangGraph?",
+        "region": "middle"
+      },
+      "anchor_text_hash": "9c4065e0151576379bb8016217fcad4843acf70d51f60a8bd09a23f565569ad4",
+      "excerpt": "## Why use LangGraph? LangGraph provides low-level supporting infrastructure for *any* long-running, stateful workflow or agent: - **[Durable execution](https://docs.langchain.com/oss/python/langgraph/durable-execution)** — Build agents that persist through failures and can run for extended periods, automatically resuming from exactly where they left off. - **[Human-in-the-loop](https://docs.langchain.com/oss/pyth...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-agent-overview-ecosystem",
+      "document_id": "rw-agent-langgraph-overview",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-langgraph-overview.md",
+        "start_line": 48,
+        "end_line": 57,
+        "section_title": "LangGraph ecosystem",
+        "region": "middle"
+      },
+      "anchor_text_hash": "b7a0aacd52681d795c0ce4d1e96242e3324167409e5a6f5884298ecff4cebf64",
+      "excerpt": "## LangGraph ecosystem While LangGraph can be used standalone, it also integrates seamlessly with any LangChain product, giving developers a full suite of tools for building agents. To improve your LLM application development, pair LangGraph with: - [Deep Agents](https://docs.langchain.com/oss/python/deepagents/overview) – Build agents that can plan, use subagents, and leverage file systems for complex tasks. - [L...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-agent-overview-resources",
+      "document_id": "rw-agent-langgraph-overview",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-langgraph-overview.md",
+        "start_line": 61,
+        "end_line": 75,
+        "section_title": "Documentation and Additional resources",
+        "region": "deep"
+      },
+      "anchor_text_hash": "59455e64fc4b7cd2ce9cedafc74581acf1d1c2c7402548daacaff11872cebe0a",
+      "excerpt": "## Documentation - [docs.langchain.com](https://docs.langchain.com/oss/python/langgraph/overview) – Comprehensive documentation, including conceptual overviews and guides - [reference.langchain.com/python/langgraph](https://reference.langchain.com/python/langgraph) – API reference docs for LangGraph packages - [LangGraph Quickstart](https://docs.langchain.com/oss/python/langgraph/quickstart) – Get started building...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-agent-overview-inspiration",
+      "document_id": "rw-agent-langgraph-overview",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-langgraph-overview.md",
+        "start_line": 80,
+        "end_line": 82,
+        "section_title": "Acknowledgements",
+        "region": "deep"
+      },
+      "anchor_text_hash": "def26b6e721bb5eac826b9ccb86cafb9549b05d9a17fa642aba71fbccb328045",
+      "excerpt": "## Acknowledgements LangGraph is inspired by [Pregel](https://research.google/pubs/pub37252/) and [Apache Beam](https://beam.apache.org/). The public interface draws inspiration from [NetworkX](https://networkx.org/documentation/latest/). LangGraph is built by LangChain Inc, the creators of LangChain, but can be used without LangChain.",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-persist-overview",
+      "document_id": "rw-agent-persistence",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-persistence.txt",
+        "start_line": 14,
+        "end_line": 21,
+        "section_title": "Persistence overview",
+        "region": "early"
+      },
+      "anchor_text_hash": "bb61e8fdbf7a513cace0d00e478afff294a4756605b9e123de06c26202e034bb",
+      "excerpt": "Persistence lets LangGraph applications keep useful information beyond a single graph run. It matters when an agent needs to continue a conversation, resume after an interruption, recover from a failure, or remember information across interactions. LangGraph provides two complementary persistence systems: - **[Checkpointers](/oss/langgraph/checkpointers)** persist a thread's graph state as checkpoints. Use them fo...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-persist-quickstart",
+      "document_id": "rw-agent-persistence",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-persistence.txt",
+        "start_line": 23,
+        "end_line": 63,
+        "section_title": "Quickstart",
+        "region": "early"
+      },
+      "anchor_text_hash": "1c55216241a9bdc9ada25921bbfdc6dad94b2a02350ad4e6d78d9af935063ea6",
+      "excerpt": "## Quickstart Compile your graph with a checkpointer, a store, or both: :::python ```python from langgraph.checkpoint.memory import InMemorySaver from langgraph.store.memory import InMemoryStore checkpointer = InMemorySaver() store = InMemoryStore() graph = builder.compile(checkpointer=checkpointer, store=store) result = graph.invoke( {\"messages\": [{\"role\": \"user\", \"content\": \"Hi, my name is Bob.\"}]}, {\"configurab...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-persist-comparison",
+      "document_id": "rw-agent-persistence",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-persistence.txt",
+        "start_line": 65,
+        "end_line": 74,
+        "section_title": "Checkpointer vs. store",
+        "region": "middle"
+      },
+      "anchor_text_hash": "4573053a53ce330011910291079101e904649aefb8c941b6607000a53d11df51",
+      "excerpt": "## Checkpointer vs. store | | Checkpointer | Store | | ---- | ---- | ---- | | Persists | Graph state snapshots | Application-defined key-value data | | Scope | A single thread | Across threads | | Memory type | Short-term, thread-scoped memory | Long-term, cross-thread memory | | Use for | Conversation continuity, human-in-the-loop, time travel, and fault tolerance | User preferences, facts, and shared knowledge |...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-persist-thread-id",
+      "document_id": "rw-agent-persistence",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-persistence.txt",
+        "start_line": 78,
+        "end_line": 89,
+        "section_title": "PostgresSaver: thread_id too long",
+        "region": "middle"
+      },
+      "anchor_text_hash": "529ad6ada59c0a5a03217fcce5adadbe7f943e7ee524098b130a7df34372fadb",
+      "excerpt": "### PostgresSaver: `thread_id` too long When using `PostgresSaver` (or `AsyncPostgresSaver`), the `thread_id` is stored in a column with limited length. If your `thread_id` exceeds the column size, you will see a database error. **Fix:** Keep `thread_id` values under 255 characters. Use a UUID or hash if you need deterministic IDs: :::python ```python import uuid config = {\"configurable\": {\"thread_id\": str(uuid.uu...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-persist-memorysaver",
+      "document_id": "rw-agent-persistence",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-persistence.txt",
+        "start_line": 92,
+        "end_line": 100,
+        "section_title": "MemorySaver does not persist between restarts",
+        "region": "middle"
+      },
+      "anchor_text_hash": "7cee128b0e98146c848d03c05371245a46691545053f2994d44b2219b33362cc",
+      "excerpt": "### `MemorySaver` does not persist between restarts `MemorySaver` and `InMemorySaver` store checkpoints in RAM. When the process restarts, all checkpoints are lost. **Fix:** Use a persistent checkpointer for production: - `PostgresSaver`: PostgreSQL with async support - `SqliteSaver`: Local file-based storage for development",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-persist-pruning",
+      "document_id": "rw-agent-persistence",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-persistence.txt",
+        "start_line": 101,
+        "end_line": 114,
+        "section_title": "Checkpoints growing unboundedly",
+        "region": "deep"
+      },
+      "anchor_text_hash": "e05cb680bd1461f25d95280fa18a1b6cbfd4a6b9055f21a6855d1d7823128ea9",
+      "excerpt": "### Checkpoints growing unboundedly Over long conversations, checkpoints accumulate. This can increase latency and storage costs. **Fix:** Prune old checkpoints periodically or set a retention policy: :::python ```python from langgraph.checkpoint.postgres import PostgresSaver checkpointer = PostgresSaver.from_conn_string(\"postgresql://...\") checkpointer.setup() # Creates tables with indexes # Consider adding a cro...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-persist-subgraph",
+      "document_id": "rw-agent-persistence",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-persistence.txt",
+        "start_line": 117,
+        "end_line": 126,
+        "section_title": "State access from parent graph to subgraph",
+        "region": "deep"
+      },
+      "anchor_text_hash": "fdcc4608ed77cd155895a6f4cf2b0fad80409fd0eba7d09359bac33bf7dfc122",
+      "excerpt": "### State access from parent graph to subgraph When a subgraph updates state, the parent graph may not see the changes immediately. This is because each subgraph manages its own checkpoint namespace. **Fix:** Use [shared state via Store](/oss/langgraph/stores) for data that needs to cross graph boundaries, or configure your subgraph to write to the parent checkpoint. ## Next steps - [Use checkpointers](/oss/langgr...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-interrupt-mechanism",
+      "document_id": "rw-agent-interrupts",
+      "locator": {
+        "kind": "PDF_PAGE",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-interrupts.pdf",
+        "page_number": 2,
+        "region": "early"
+      },
+      "anchor_text_hash": "b6a8c8bbb24eb388f9612679293707637fb1c1b042f2c3a91b8a9657c211d372",
+      "excerpt": "from langgraph.types import interrupt def approval_node(state: State): # Pause and ask for approval approved = interrupt(\"Do you approve this action?\") # When you resume, Command(resume=...) returns that value here return {\"approved\": approved} ``` ::: :::js ```typescript import { interrupt } from \"@langchain/langgraph\"; async function approvalNode(state: State) { // Pause and ask for approval const approved = int...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-interrupt-resume",
+      "document_id": "rw-agent-interrupts",
+      "locator": {
+        "kind": "PDF_PAGE",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-interrupts.pdf",
+        "page_number": 3,
+        "region": "early"
+      },
+      "anchor_text_hash": "17babc909a503b2fa8adfe0924815714768d626dec0f1094ed1cb7aed2b04404",
+      "excerpt": "eam()`/`stream_events()`. The other `Command` parameters (`update`, `goto`, `graph`) are des igned for [returning from node functions](/oss/langgraph/graph-api#command). Do not pass `Co mmand(update=...)` as input to continue multi-turn conversations—pass a plain input dict ins tead. </Warning> ::: :::js ```typescript import { Command } from \"@langchain/langgraph\"; // Initial run - hits the interrupt and pauses //...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-interrupt-streaming",
+      "document_id": "rw-agent-interrupts",
+      "locator": {
+        "kind": "PDF_PAGE",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-interrupts.pdf",
+        "page_number": 4,
+        "region": "early"
+      },
+      "anchor_text_hash": "83b80de9c5ef08564647b7115db1a56bdd35d033522581ea279a05a24bc67821",
+      "excerpt": "- Detect interrupts via `stream.interrupted` and read their payloads from `stream.interrupts ` - Resume execution by calling `stream_events` again with `Command(resume=...)` and repeat un til `stream.interrupted` is false :::python <LanggraphInterruptsHitlStreamPy /> - **`stream.messages`**: Chat-model output as content blocks; iterate each `message.text` fo r token deltas. For nested subgraphs, read message chunk...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-interrupt-multiple",
+      "document_id": "rw-agent-interrupts",
+      "locator": {
+        "kind": "PDF_PAGE",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-interrupts.pdf",
+        "page_number": 5,
+        "region": "middle"
+      },
+      "anchor_text_hash": "c83962a244d4c67b20c1090b1d44c916ce67c279e145e3442b1a92e26dc5e0f7",
+      "excerpt": "const graph = new StateGraph(State) .addNode(\"a\", nodeA) .addNode(\"b\", nodeB) .addEdge(START, \"a\") .addEdge(START, \"b\") .addEdge(\"a\", END) .addEdge(\"b\", END) .compile({ checkpointer: new MemorySaver() }); const config = { configurable: { thread_id: \"1\" } }; async function main() { // Step 1: invoke - both parallel nodes hit interrupt() and pause const interruptedResult = await graph.invoke({ vals: [] }, config); c...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-interrupt-approval",
+      "document_id": "rw-agent-interrupts",
+      "locator": {
+        "kind": "PDF_PAGE",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-interrupts.pdf",
+        "page_number": 6,
+        "region": "middle"
+      },
+      "anchor_text_hash": "997680bb2909538d8c2f9cfeb41eaa4db72dc429a70ebb16937f31453c76f7ad",
+      "excerpt": "const approvalNode: typeof State.Node = (state) => { // Pause execution; payload surfaces in result.__interrupt__ const isApproved = interrupt({ question: \"Do you want to proceed?\", details: state.actionDetails }); // Route based on the response if (isApproved) { return new Command({ goto: \"proceed\" }); // Runs after the resume payload is provided } else { return new Command({ goto: \"cancel\" }); } } ``` ::: :::pyt...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-interrupt-review-edit",
+      "document_id": "rw-agent-interrupts",
+      "locator": {
+        "kind": "PDF_PAGE",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-interrupts.pdf",
+        "page_number": 8,
+        "region": "middle"
+      },
+      "anchor_text_hash": "bb6b747526233950c46d7e7ae0db78e7bb088dbb4eebb40aad070beb1a35bda3",
+      "excerpt": "```typescript await graph.invoke( new Command({ resume: \"The edited and improved text\" }), // Value becomes the return from interrupt() config ); ``` ::: <Accordion title=\"Full example\"> :::python <LanggraphInterruptsReviewPy /> ::: :::js ```typescript import { Command, MemorySaver, START, END, StateGraph, StateSchema, interrupt, } from \"@langchain/langgraph\"; import * as z from \"zod\"; const State = new StateSchem...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-interrupt-tool-approval",
+      "document_id": "rw-agent-interrupts",
+      "locator": {
+        "kind": "PDF_PAGE",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-interrupts.pdf",
+        "page_number": 9,
+        "region": "middle"
+      },
+      "anchor_text_hash": "fd2e76d962c87feab28da3eb02e01f19a511c4901e38ec9f242ce600c439e2b7",
+      "excerpt": "from langgraph.types import interrupt @tool def send_email(to: str, subject: str, body: str): \"\"\"Send an email to a recipient.\"\"\" # Pause before sending; payload surfaces on stream.interrupts when using event streaming response = interrupt({ \"action\": \"send_email\", \"to\": to, \"subject\": subject, \"body\": body, \"message\": \"Approve sending this email?\" }) if response.get(\"action\") == \"approve\": # Resume value can over...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-interrupt-validation",
+      "document_id": "rw-agent-interrupts",
+      "locator": {
+        "kind": "PDF_PAGE",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-interrupts.pdf",
+        "page_number": 13,
+        "region": "deep"
+      },
+      "anchor_text_hash": "09a303cc3d3cdfeadf22ecfc726937ebd95d2f85582b1d2fd5e3c407334a7447",
+      "excerpt": ". When the answer is invalid, the conditional edge loops back and the next interrupt re-prom pts with the updated question. No code runs more than once per resume. ::: :::js The correct pattern: 1. Store the re-prompt question in state (e.g. `pendingQuestion`). 2. In the node, call `interrupt()` **exactly once**, passing the current question from state . 3. If the answer is invalid, return the updated `pendingQues...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-interrupt-restart-rule",
+      "document_id": "rw-agent-interrupts",
+      "locator": {
+        "kind": "PDF_PAGE",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-interrupts.pdf",
+        "page_number": 14,
+        "region": "deep"
+      },
+      "anchor_text_hash": "223b6224b12ea2a606ff410012bca113a644264848765cce5b66f272b6f27023",
+      "excerpt": "// Provide valid data; route returns END and the graph finishes const final = await graph.invoke(new Command({ resume: 30 }), config); console.log(final.age); // -> 30 ``` ::: </Accordion> ## Rules of interrupts When you call @[`interrupt`] within a node, LangGraph suspends execution by raising an excep tion that signals the runtime to pause. This exception propagates up through the call stack and is caught by the...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-interrupt-try-catch",
+      "document_id": "rw-agent-interrupts",
+      "locator": {
+        "kind": "PDF_PAGE",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-interrupts.pdf",
+        "page_number": 15,
+        "region": "deep"
+      },
+      "anchor_text_hash": "dec9e1ee71f7d1f26c747a4ff2c91df0870a1465c1342ebccda985c116da1fa1",
+      "excerpt": "exception and the interrupt will not be passed back to the graph. * Separate @[`interrupt`] calls from error-prone code * Conditionally catch errors if needed <CodeGroup> ```typescript Separating logic const nodeA: GraphNode<typeof State> = async (state) => { // Good: interrupting first, then handling error conditions separately const name = interrupt(\"What's your name?\"); try { await fetchData(); // This can fail...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-interrupt-order",
+      "document_id": "rw-agent-interrupts",
+      "locator": {
+        "kind": "PDF_PAGE",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-interrupts.pdf",
+        "page_number": 16,
+        "region": "deep"
+      },
+      "anchor_text_hash": "f561ff56d00e3e1680a02c877674956c04d39e1d16a9a65cba5a127867901572",
+      "excerpt": "\"city\": city } ``` ::: :::js ```typescript async function nodeA(state: State) { // Good: interrupt calls happen in the same order every time const name = interrupt(\"What's your name?\"); const age = interrupt(\"What's your age?\"); const city = interrupt(\"What's your city?\"); return { name, age, city }; } ``` ::: * Do not conditionally skip @[`interrupt`] calls within a node * Do not loop @[`interrupt`] calls using l...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-interrupt-serializable",
+      "document_id": "rw-agent-interrupts",
+      "locator": {
+        "kind": "PDF_PAGE",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-interrupts.pdf",
+        "page_number": 17,
+        "region": "deep"
+      },
+      "anchor_text_hash": "ec63479061faf2e5ddf3b4fe5e6734a63ef37cdc08fe72b993b977ca9395c2be",
+      "excerpt": "// The number of interrupts changes between executions const results = []; for (const item of state.dynamicList || []) { // List might change between runs const result = interrupt(`Approve ${item}?`); results.push(result); } return { results }; } ``` </CodeGroup> ::: ### Do not return complex values in `interrupt` calls Depending on which checkpointer is used, complex values may not be serializable (e.g. you ca n'...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-interrupt-complex-values",
+      "document_id": "rw-agent-interrupts",
+      "locator": {
+        "kind": "PDF_PAGE",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-interrupts.pdf",
+        "page_number": 18,
+        "region": "deep"
+      },
+      "anchor_text_hash": "539b3f89247355ab2c3383d4c20c6decdc9d4d699eae921fe9ded2ffb25ebbee",
+      "excerpt": ":::python <CodeGroup> ```python Functions def validate_input(value): return len(value) > 0 def node_a(state: State): # Bad: passing a function to interrupt # The function cannot be serialized response = interrupt({ \"question\": \"What's your name?\", \"validator\": validate_input # This will fail }) return {\"name\": response} ``` ```python Class instances class DataProcessor: def __init__(self, config): self.config = co...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-interrupt-side-effects",
+      "document_id": "rw-agent-interrupts",
+      "locator": {
+        "kind": "PDF_PAGE",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-interrupts.pdf",
+        "page_number": 19,
+        "region": "deep"
+      },
+      "anchor_text_hash": "3bab89a31bf5c5bf0089a667c65b118b1625f5b1f96f8b738540ee167080723a",
+      "excerpt": "execution. As an example, you might have an API call to update a record inside of a node. If @[`interru pt`] is called after that call is made, it will be re-run multiple times when the node is re sumed, potentially overwriting the initial update or creating duplicate records. * Use idempotent operations before @[`interrupt`] * Place side effects after @[`interrupt`] calls * Separate side effects into separate nod...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-interrupt-side-effects-nodes",
+      "document_id": "rw-agent-interrupts",
+      "locator": {
+        "kind": "PDF_PAGE",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-interrupts.pdf",
+        "page_number": 20,
+        "region": "deep"
+      },
+      "anchor_text_hash": "9af930ecc1382bcda05995f1c4dd557076af0a054f590ac39f860d7d2154e00d",
+      "excerpt": "```typescript Side effects after interrupt const nodeA: GraphNode<typeof State> = async (state) => { // Good: placing side effect after the interrupt // This ensures it only runs once after approval is received const approved = interrupt(\"Approve this change?\"); if (approved) { await db.createAuditLog({ userId: state.userId, action: \"approved\" }); } return { approved }; } ``` ```typescript Separating into differen...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-interrupt-duplicate-risk",
+      "document_id": "rw-agent-interrupts",
+      "locator": {
+        "kind": "PDF_PAGE",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-interrupts.pdf",
+        "page_number": 21,
+        "region": "deep"
+      },
+      "anchor_text_hash": "332a35b25c0caa06d546927b6e817c01aa013c6416d53e9f7e03d9a6c46ce84c",
+      "excerpt": "// Bad: creating a new record before interrupt // This will create duplicate records on each resume const auditId = await db.createAuditLog({ userId: state.userId, action: \"pending_approval\", timestamp: new Date() }); const approved = interrupt(\"Approve this change?\"); return { approved, auditId }; } ``` ```typescript Appending to arrays const nodeA: GraphNode<typeof State> = async (state) => { // Bad: appending t...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-interrupt-static",
+      "document_id": "rw-agent-interrupts",
+      "locator": {
+        "kind": "PDF_PAGE",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-interrupts.pdf",
+        "page_number": 22,
+        "region": "deep"
+      },
+      "anchor_text_hash": "a14f6773576b643950638b19ef862cf92bef2f83a15cbfb20a3acd092737a000",
+      "excerpt": "To debug and test a graph, you can use static interrupts as breakpoints to step through the graph execution one node at a time. Static interrupts are triggered at defined points either before or after a node executes. You can set these by specifying `interruptBefore` and `int erruptAfter` when compiling the graph. ::: <Note> Static interrupts are **not** recommended for human-in-the-loop workflows. Use the @[`in t...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-interrupt-runtime-static",
+      "document_id": "rw-agent-interrupts",
+      "locator": {
+        "kind": "PDF_PAGE",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-interrupts.pdf",
+        "page_number": 23,
+        "region": "deep"
+      },
+      "anchor_text_hash": "9b4e248e1311e84dd32ab33953ba9c9297aec5c367de08d4bb4b7169385777fd",
+      "excerpt": "</Tab> <Tab title=\"At run time\"> :::python ```python config = { \"configurable\": { \"thread_id\": \"some_thread\" } } # Run the graph until the breakpoint graph.invoke( inputs, interrupt_before=[\"node_a\"], # [!code highlight] interrupt_after=[\"node_b\", \"node_c\"], # [!code highlight] config=config, ) # Resume the graph graph.invoke(None, config=config) # [!code highlight] ``` 1. `graph.invoke` is called with the `interr...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-async-tldr",
+      "document_id": "rw-backend-fastapi-async",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-async.md",
+        "start_line": 5,
+        "end_line": 53,
+        "section_title": "In a hurry?",
+        "region": "early"
+      },
+      "anchor_text_hash": "279342831b201865dd2227c1bfe87228026e99f9a81c8f7c942da8f715e7e4be",
+      "excerpt": "## In a hurry? { #in-a-hurry } <abbr title=\"too long; didn't read\"><strong>TL;DR:</strong></abbr> If you are using third party libraries that tell you to call them with `await`, like: ```Python results = await some_library() ``` Then, declare your *path operation functions* with `async def` like: ```Python hl_lines=\"2\" @app.get('/') async def read_results(): results = await some_library() return results ``` /// no...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-async-io-bound",
+      "document_id": "rw-backend-fastapi-async",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-async.md",
+        "start_line": 67,
+        "end_line": 94,
+        "section_title": "Asynchronous Code",
+        "region": "early"
+      },
+      "anchor_text_hash": "54679770618418c1bb59c0deac8362214e9db316fa7b5287709d9cd7195f881c",
+      "excerpt": "## Asynchronous Code { #asynchronous-code } Asynchronous code just means that the language 💬 has a way to tell the computer / program 🤖 that at some point in the code, it 🤖 will have to wait for *something else* to finish somewhere else. Let's say that *something else* is called \"slow-file\" 📝. So, during that time, the computer can go and do some other work, while \"slow-file\" 📝 finishes. Then the computer / progra...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-async-concurrency-web",
+      "document_id": "rw-backend-fastapi-async",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-async.md",
+        "start_line": 236,
+        "end_line": 260,
+        "section_title": "Burger Conclusion",
+        "region": "middle"
+      },
+      "anchor_text_hash": "cafb9e6f6d85fcc975bf7f707bbe503a0b0bdaf8b6b650f113e4105ea9f84d4f",
+      "excerpt": "### Burger Conclusion { #burger-conclusion } In this scenario of \"fast food burgers with your crush\", as there is a lot of waiting 🕙, it makes a lot more sense to have a concurrent system ⏸🔀⏯. This is the case for most of the web applications. Many, many users, but your server is waiting 🕙 for their not-so-good connection to send their requests. And then waiting 🕙 again for the responses to come back. This \"waitin...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-async-cpu-bound",
+      "document_id": "rw-backend-fastapi-async",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-async.md",
+        "start_line": 270,
+        "end_line": 301,
+        "section_title": "Concurrency + Parallelism",
+        "region": "middle"
+      },
+      "anchor_text_hash": "ecdda37801e245b21aa7931842aa1500a7e0e754f1b87131ac6f19ae1a7f3927",
+      "excerpt": "There's no waiting 🕙 anywhere, just a lot of work to be done, in multiple places of the house. You could have turns as in the burgers example, first the living room, then the kitchen, but as you are not waiting 🕙 for anything, just cleaning and cleaning, the turns wouldn't affect anything. It would take the same amount of time to finish with or without turns (concurrency) and you would have done the same amount of...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-async-await-rules",
+      "document_id": "rw-backend-fastapi-async",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-async.md",
+        "start_line": 303,
+        "end_line": 360,
+        "section_title": "async and await",
+        "region": "deep"
+      },
+      "anchor_text_hash": "c76061334fde1434e1a576866360c0e9ef9494e2f50d4a867d42f4c84de99e4e",
+      "excerpt": "## `async` and `await` { #async-and-await } Modern versions of Python have a very intuitive way to define asynchronous code. This makes it look just like normal \"sequential\" code and do the \"awaiting\" for you at the right moments. When there is an operation that will require waiting before giving the results and has support for these new Python features, you can code it like: ```Python burgers = await get_burgers(...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-async-anyio",
+      "document_id": "rw-backend-fastapi-async",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-async.md",
+        "start_line": 364,
+        "end_line": 386,
+        "section_title": "Write your own async code",
+        "region": "deep"
+      },
+      "anchor_text_hash": "aee1d8029bfdfdcb297d1037af465bb7e311a1b4361775af9f1310b993f6e9a4",
+      "excerpt": "### Write your own async code { #write-your-own-async-code } Starlette (and **FastAPI**) are based on [AnyIO](https://anyio.readthedocs.io/en/stable/), which makes it compatible with both Python's standard library [asyncio](https://docs.python.org/3/library/asyncio-task.html) and [Trio](https://trio.readthedocs.io/en/stable/). In particular, you can directly use [AnyIO](https://anyio.readthedocs.io/en/stable/) for...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-async-coroutine",
+      "document_id": "rw-backend-fastapi-async",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-async.md",
+        "start_line": 388,
+        "end_line": 402,
+        "section_title": "Coroutines",
+        "region": "deep"
+      },
+      "anchor_text_hash": "08210de6c181a626002f91e3488f7b763e7f38e87d8643f778600b5f605b9ddf",
+      "excerpt": "## Coroutines { #coroutines } **Coroutine** is just the very fancy term for the thing returned by an `async def` function. Python knows that it is something like a function, that it can start and that it will end at some point, but that it might be paused ⏸ internally too, whenever there is an `await` inside of it. But all this functionality of using asynchronous code with `async` and `await` is many times summari...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-async-threadpool",
+      "document_id": "rw-backend-fastapi-async",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-async.md",
+        "start_line": 416,
+        "end_line": 438,
+        "section_title": "Very Technical Details",
+        "region": "deep"
+      },
+      "anchor_text_hash": "0290f7c54ff71a2edfdd58339e9a79c73a42208378447e3a75d75e6134911be4",
+      "excerpt": "### Path operation functions { #path-operation-functions } When you declare a *path operation function* with normal `def` instead of `async def`, it is run in an external threadpool that is then awaited, instead of being called directly (as it would block the server). If you are coming from another async framework that does not work in the way described above and you are used to defining trivial compute-only *path...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-deps-meaning",
+      "document_id": "rw-backend-fastapi-dependencies",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-dependencies.md",
+        "start_line": 7,
+        "end_line": 20,
+        "section_title": "What is Dependency Injection",
+        "region": "early"
+      },
+      "anchor_text_hash": "f48758d42f48c84d8c5417c24fcc91d59852776f3122a0079afbc24d90ffaf19",
+      "excerpt": "## What is \"Dependency Injection\" { #what-is-dependency-injection } **\"Dependency Injection\"** means, in programming, that there is a way for your code (in this case, your *path operation functions*) to declare things that it requires to work and use: \"dependencies\". And then, that system (in this case **FastAPI**) will take care of doing whatever is needed to provide your code with those needed dependencies (\"inj...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-deps-dependable",
+      "document_id": "rw-backend-fastapi-dependencies",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-dependencies.md",
+        "start_line": 28,
+        "end_line": 52,
+        "section_title": "Create a dependency",
+        "region": "early"
+      },
+      "anchor_text_hash": "bfe30809cdd9dac0063dc67571f12ae32fccf15cc332b699682630bd88020aa5",
+      "excerpt": "### Create a dependency, or \"dependable\" { #create-a-dependency-or-dependable } Let's first focus on the dependency. It is just a function that can take all the same parameters that a *path operation function* can take: {* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8:9] *} That's it. **2 lines**. And it has the same shape and structure that all your *path operation functions* have. You can think of it ...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-deps-call",
+      "document_id": "rw-backend-fastapi-dependencies",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-dependencies.md",
+        "start_line": 68,
+        "end_line": 113,
+        "section_title": "Declare the dependency",
+        "region": "middle"
+      },
+      "anchor_text_hash": "d4a08fe5df5e87c7de8206f1f77e2b8eb71ed300a6a05bab5ccf8372e3193696",
+      "excerpt": "### Declare the dependency, in the \"dependant\" { #declare-the-dependency-in-the-dependant } The same way you use `Body`, `Query`, etc. with your *path operation function* parameters, use `Depends` with a new parameter: {* ../../docs_src/dependencies/tutorial001_an_py310.py hl[13,18] *} Although you use `Depends` in the parameters of your function the same way you use `Body`, `Query`, etc, `Depends` works a bit dif...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-deps-annotated",
+      "document_id": "rw-backend-fastapi-dependencies",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-dependencies.md",
+        "start_line": 117,
+        "end_line": 141,
+        "section_title": "Share Annotated dependencies",
+        "region": "middle"
+      },
+      "anchor_text_hash": "e6a2bb5cc68e626901d0394c49c190c8deba21c96ba146c0897ebf23db994423",
+      "excerpt": "## Share `Annotated` dependencies { #share-annotated-dependencies } In the examples above, you see that there's a tiny bit of **code duplication**. When you need to use the `common_parameters()` dependency, you have to write the whole parameter with the type annotation and `Depends()`: ```Python commons: Annotated[dict, Depends(common_parameters)] ``` But because we are using `Annotated`, we can store that `Annota...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-deps-mixed-async",
+      "document_id": "rw-backend-fastapi-dependencies",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-dependencies.md",
+        "start_line": 143,
+        "end_line": 155,
+        "section_title": "To async or not to async",
+        "region": "middle"
+      },
+      "anchor_text_hash": "535c21d85cca75c527c8f98628e9e40d8f2fedc418900ee45ebcff14a739c9ce",
+      "excerpt": "## To `async` or not to `async` { #to-async-or-not-to-async } As dependencies will also be called by **FastAPI** (the same as your *path operation functions*), the same rules apply while defining your functions. You can use `async def` or normal `def`. And you can declare dependencies with `async def` inside of normal `def` *path operation functions*, or `def` dependencies inside of `async def` *path operation fun...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-deps-openapi",
+      "document_id": "rw-backend-fastapi-dependencies",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-dependencies.md",
+        "start_line": 159,
+        "end_line": 175,
+        "section_title": "Integrated with OpenAPI",
+        "region": "deep"
+      },
+      "anchor_text_hash": "24321ba6e2c9ea2d877149926c0f9e1f068aa50aebfa63804f04047d7b0c7438",
+      "excerpt": "## Integrated with OpenAPI { #integrated-with-openapi } All the request declarations, validations and requirements of your dependencies (and sub-dependencies) will be integrated in the same OpenAPI schema. So, the interactive docs will have all the information from these dependencies too: <img src=\"/img/tutorial/dependencies/image01.png\"> ## Simple usage { #simple-usage } If you look at it, *path operation functio...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-deps-hierarchy",
+      "document_id": "rw-backend-fastapi-dependencies",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-dependencies.md",
+        "start_line": 206,
+        "end_line": 250,
+        "section_title": "Simple and Powerful",
+        "region": "deep"
+      },
+      "anchor_text_hash": "1999a9afb480fb5fd4b11c3941ccf8db15e9494e706ba530f7f04578587318ca",
+      "excerpt": "## Simple and Powerful { #simple-and-powerful } Although the hierarchical dependency injection system is very simple to define and use, it's still very powerful. You can define dependencies that in turn can define dependencies themselves. In the end, a hierarchical tree of dependencies is built, and the **Dependency Injection** system takes care of solving all these dependencies for you (and their sub-dependencies...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-errors-client-range",
+      "document_id": "rw-backend-fastapi-errors",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-errors.md",
+        "start_line": 3,
+        "end_line": 20,
+        "section_title": "Handling Errors",
+        "region": "early"
+      },
+      "anchor_text_hash": "a56d25a5a8a942cb7b13ee4369170747d2b12ba739ade5b6ab7a88ef3a30f327",
+      "excerpt": "There are many situations in which you need to report an error to a client that is using your API. This client could be a browser with a frontend, a code from someone else, an IoT device, etc. You could need to tell the client that: * The client doesn't have enough privileges for that operation. * The client doesn't have access to that resource. * The item the client was trying to access doesn't exist. * etc. In t...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-errors-http-exception",
+      "document_id": "rw-backend-fastapi-errors",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-errors.md",
+        "start_line": 22,
+        "end_line": 68,
+        "section_title": "Use HTTPException",
+        "region": "early"
+      },
+      "anchor_text_hash": "7fe15bfbf116807e56ecc8ab43150c12ab017f419595de33d2f734157b604f62",
+      "excerpt": "## Use `HTTPException` { #use-httpexception } To return HTTP responses with errors to the client you use `HTTPException`. ### Import `HTTPException` { #import-httpexception } {* ../../docs_src/handling_errors/tutorial001_py310.py hl[1] *} ### Raise an `HTTPException` in your code { #raise-an-httpexception-in-your-code } `HTTPException` is a normal Python exception with additional data relevant for APIs. Because it...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-errors-custom-headers",
+      "document_id": "rw-backend-fastapi-errors",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-errors.md",
+        "start_line": 72,
+        "end_line": 80,
+        "section_title": "Add custom headers",
+        "region": "middle"
+      },
+      "anchor_text_hash": "2cee4f67f874615e95105c30dfb44d52f54ec4e1668e113f9d9f63cda4fa7e18",
+      "excerpt": "## Add custom headers { #add-custom-headers } There are some situations where it's useful to be able to add custom headers to the HTTP error. For example, for some types of security. You probably won't need to use it directly in your code. But in case you needed it for an advanced scenario, you can add custom headers: {* ../../docs_src/handling_errors/tutorial002_py310.py hl[14] *}",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-errors-custom-handler",
+      "document_id": "rw-backend-fastapi-errors",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-errors.md",
+        "start_line": 82,
+        "end_line": 108,
+        "section_title": "Install custom exception handlers",
+        "region": "middle"
+      },
+      "anchor_text_hash": "21de4974b3d4c5c3189c30c831c7dcf0d331961ceeb0a8c3d65030903c5b9ca6",
+      "excerpt": "## Install custom exception handlers { #install-custom-exception-handlers } You can add custom exception handlers with [the same exception utilities from Starlette](https://starlette.dev/exceptions/). Let's say you have a custom exception `UnicornException` that you (or a library you use) might `raise`. And you want to handle this exception globally with FastAPI. You could add a custom exception handler with `@app...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-errors-override-validation",
+      "document_id": "rw-backend-fastapi-errors",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-errors.md",
+        "start_line": 112,
+        "end_line": 154,
+        "section_title": "Override request validation exceptions",
+        "region": "middle"
+      },
+      "anchor_text_hash": "5103a772093b55280105e71975d803ccaba4d84b7ad4dfd11e179884f82cd46c",
+      "excerpt": "## Override the default exception handlers { #override-the-default-exception-handlers } **FastAPI** has some default exception handlers. These handlers are in charge of returning the default JSON responses when you `raise` an `HTTPException` and when the request has invalid data. You can override these exception handlers with your own. ### Override request validation exceptions { #override-request-validation-excep...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-errors-leak-warning",
+      "document_id": "rw-backend-fastapi-errors",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-errors.md",
+        "start_line": 172,
+        "end_line": 186,
+        "section_title": "RequestValidationError body warning",
+        "region": "deep"
+      },
+      "anchor_text_hash": "a99f598f363aa8daa0b08d9beafda855c8eb35159910a4b8cd90be103e3e5ba4",
+      "excerpt": "/// warning Have in mind that the `RequestValidationError` contains the information of the file name and line where the validation error happens so that you can show it in your logs with the relevant information if you want to. But that means that if you just convert it to a string and return that information directly, you could be leaking a bit of information about your system, that's why here the code extracts a...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-errors-fastapi-starlette",
+      "document_id": "rw-backend-fastapi-errors",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-errors.md",
+        "start_line": 218,
+        "end_line": 236,
+        "section_title": "FastAPI HTTPException vs Starlette HTTPException",
+        "region": "deep"
+      },
+      "anchor_text_hash": "601861d454339012b20283e956e55940d7037b81f4910ddf73009c0c788a0a3f",
+      "excerpt": "#### FastAPI's `HTTPException` vs Starlette's `HTTPException` { #fastapis-httpexception-vs-starlettes-httpexception } **FastAPI** has its own `HTTPException`. And **FastAPI**'s `HTTPException` error class inherits from Starlette's `HTTPException` error class. The only difference is that **FastAPI**'s `HTTPException` accepts any JSON-able data for the `detail` field, while Starlette's `HTTPException` only accepts s...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-errors-reuse-handlers",
+      "document_id": "rw-backend-fastapi-errors",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-errors.md",
+        "start_line": 238,
+        "end_line": 244,
+        "section_title": "Reuse FastAPI exception handlers",
+        "region": "deep"
+      },
+      "anchor_text_hash": "d871cb0cac6605cd3c1b6603a4677d1b9239f666bf21e8d59d880df180b8cfb7",
+      "excerpt": "### Reuse **FastAPI**'s exception handlers { #reuse-fastapis-exception-handlers } If you want to use the exception along with the same default exception handlers from **FastAPI**, you can import and reuse the default exception handlers from `fastapi.exception_handlers`: {* ../../docs_src/handling_errors/tutorial006_py310.py hl[2:5,15,21] *} In this example you are just printing the error with a very expressive mes...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-ragas-components",
+      "document_id": "rw-eval-ragas-workflow",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-ragas-workflow.md",
+        "start_line": 23,
+        "end_line": 29,
+        "section_title": "Build a Simple RAG System",
+        "region": "early"
+      },
+      "anchor_text_hash": "2ab3cb9527ec4950de0e3c093c1af226775258ac107af3db776f746e58e94c3e",
+      "excerpt": "### Build a Simple RAG System To build a simple RAG system, we need to define the following components: - Define a method to vectorize our docs - Define a method to retrieve the relevant docs - Define a method to generate the response",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-ragas-simple-retriever",
+      "document_id": "rw-eval-ragas-workflow",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-ragas-workflow.md",
+        "start_line": 46,
+        "end_line": 73,
+        "section_title": "Simple RAG implementation",
+        "region": "early"
+      },
+      "anchor_text_hash": "d24e30c82fde99fdcf45e7818393d38e5458939b0e31bf82559de512f1a5de9d",
+      "excerpt": "def load_documents(self, documents): \"\"\"Load documents and compute their embeddings.\"\"\" self.docs = documents self.doc_embeddings = self.embeddings.embed_texts(documents) def get_most_relevant_docs(self, query): \"\"\"Find the most relevant document for a given query.\"\"\" if not self.docs or not self.doc_embeddings: raise ValueError(\"Documents and their embeddings are not loaded.\") query_embedding = self.embeddings.em...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-ragas-collect-data",
+      "document_id": "rw-eval-ragas-workflow",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-ragas-workflow.md",
+        "start_line": 116,
+        "end_line": 164,
+        "section_title": "Collect Evaluation Data",
+        "region": "middle"
+      },
+      "anchor_text_hash": "1f105f9dc1f011d71bbb8d10113fcffe53168ff700d71a4f73fc6d71fcbedbda",
+      "excerpt": "## Collect Evaluation Data To collect evaluation data, we first need a set of queries to run against our RAG. We can run the queries through the RAG system and collect the `response`, `retrieved_contexts`for each query. You may also optionally prepare a set of golden answers for each query to evaluate the system's performance. ```python sample_queries = [ \"Who introduced the theory of relativity?\", \"Who was the fi...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-ragas-evaluate",
+      "document_id": "rw-eval-ragas-workflow",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-ragas-workflow.md",
+        "start_line": 166,
+        "end_line": 185,
+        "section_title": "Evaluate",
+        "region": "deep"
+      },
+      "anchor_text_hash": "21c374bf7cd73f2e51f2789c0fd319b04c6afcb1c9f6aebfc01b102726c3dbfe",
+      "excerpt": "## Evaluate We have successfully collected the evaluation data. Now, we can evaluate our RAG system on the collected dataset using a set of commonly used RAG evaluation metrics. You may choose any model as [evaluator LLM](./../howtos/customizations/customize_models.md) for evaluation. ```python from ragas import evaluate from ragas.llms import LangchainLLMWrapper evaluator_llm = LangchainLLMWrapper(llm) from ragas...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-ragas-embedding-interface",
+      "document_id": "rw-eval-ragas-workflow",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-ragas-workflow.md",
+        "start_line": 20,
+        "end_line": 21,
+        "section_title": "OpenAI Embeddings API note",
+        "region": "early"
+      },
+      "anchor_text_hash": "03e33d1604970de990183fcf583350b847d333e81c44bbaa8d4ce6bd8c3e30f0",
+      "excerpt": "!!! note \"OpenAI Embeddings API\" `ragas.embeddings.OpenAIEmbeddings` exposes `embed_text` (single) and `embed_texts` (batch), not `embed_query`/`embed_documents` like some LangChain wrappers. The example below uses `embed_texts` for documents and `embed_text` for the query. Please refer to [OpenAI embeddings implementation](https://docs.ragas.io/en/stable/references/embeddings/\\#ragas.embeddings.OpenAIEmbeddings)",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-precision-definition",
+      "document_id": "rw-eval-context-precision",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-context-precision.md",
+        "start_line": 1,
+        "end_line": 15,
+        "section_title": "Context Precision",
+        "region": "early"
+      },
+      "anchor_text_hash": "4797ec283f22f33cc10e8c648de99afe61e76f5071d742f754e1394565f151ae",
+      "excerpt": "# Context Precision Context Precision is a metric that evaluates the retriever's ability to rank relevant chunks higher than irrelevant ones for a given query in the retrieved context. Specifically, it assesses the degree to which relevant chunks in the retrieved context are placed at the top of the ranking. It is calculated as the mean of the precision@k for each chunk in the context. Precision@k is the ratio of ...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-precision-reference-response",
+      "document_id": "rw-eval-context-precision",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-context-precision.md",
+        "start_line": 19,
+        "end_line": 66,
+        "section_title": "Context Precision and Context Utilization",
+        "region": "early"
+      },
+      "anchor_text_hash": "068abe1f953620f8113f28f65b32486b1d75a3e05abc26a6062e9748d432a503",
+      "excerpt": "### Context Precision The `ContextPrecision` metric evaluates whether retrieved contexts are useful for answering a question by comparing each context against a reference answer. Use this when you have a reference answer available. ```python from openai import AsyncOpenAI from ragas.llms import llm_factory from ragas.metrics.collections import ContextPrecision # Setup LLM client = AsyncOpenAI() llm = llm_factory(\"...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-precision-rank-effect",
+      "document_id": "rw-eval-context-precision",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-context-precision.md",
+        "start_line": 63,
+        "end_line": 113,
+        "section_title": "Context Utilization rank example",
+        "region": "middle"
+      },
+      "anchor_text_hash": "0aa40b23ae85758ca04a6ea6bc74c7da62bdf8e98bb006fe496dc9cf51c22e18",
+      "excerpt": "### Context Utilization The `ContextUtilization` metric evaluates whether retrieved contexts are useful by comparing each context against the generated response. Use this when you don't have a reference answer but have the response that was generated. ```python from openai import AsyncOpenAI from ragas.llms import llm_factory from ragas.metrics.collections import ContextUtilization # Setup LLM client = AsyncOpenAI...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-precision-deprecation",
+      "document_id": "rw-eval-context-precision",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-context-precision.md",
+        "start_line": 115,
+        "end_line": 121,
+        "section_title": "Legacy Metrics API",
+        "region": "middle"
+      },
+      "anchor_text_hash": "04787850294cb81c66a5fd868ae9cc36b52b41f2e4a164fe111a97b6d28e13e1",
+      "excerpt": "## Legacy Metrics API The following examples use the legacy metrics API pattern. For new projects, we recommend using the collections-based API shown above. !!! warning \"Deprecation Timeline\" This API will be deprecated in version 0.4 and removed in version 1.0. Please migrate to the collections-based API shown above.",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-precision-without-reference",
+      "document_id": "rw-eval-context-precision",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-context-precision.md",
+        "start_line": 144,
+        "end_line": 167,
+        "section_title": "Context Precision without reference",
+        "region": "middle"
+      },
+      "anchor_text_hash": "f5ec550c09746472c36b022ed908da7644952f0d5656dd472e14fccbe19807f5",
+      "excerpt": "### Context Precision without reference The `LLMContextPrecisionWithoutReference` metric can be used without the availability of a reference answer. To estimate if the retrieved contexts are relevant, this method uses the LLM to compare each chunk in `retrieved_contexts` with the `response`. #### Example ```python from ragas import SingleTurnSample from ragas.metrics import LLMContextPrecisionWithoutReference cont...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-precision-with-reference",
+      "document_id": "rw-eval-context-precision",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-context-precision.md",
+        "start_line": 170,
+        "end_line": 193,
+        "section_title": "Context Precision with reference",
+        "region": "deep"
+      },
+      "anchor_text_hash": "346670bcc31d4d0b73f589f15d359455d62d969a37b9463371450a235d647fcf",
+      "excerpt": "### Context Precision with reference The `LLMContextPrecisionWithReference` metric can be used when you have both retrieved contexts and also a reference response associated with a `user_input`. To estimate if the retrieved contexts are relevant, this method uses the LLM to compare each chunk in `retrieved_contexts` with the `reference`. #### Example ```python from ragas import SingleTurnSample from ragas.metrics ...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-precision-nonllm",
+      "document_id": "rw-eval-context-precision",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-context-precision.md",
+        "start_line": 196,
+        "end_line": 225,
+        "section_title": "Non LLM Based Context Precision",
+        "region": "deep"
+      },
+      "anchor_text_hash": "80491ad45cd3a13992b396aa3e6b730a5a9d2af70da50a228601d1ef893c5e02",
+      "excerpt": "## Non LLM Based Context Precision This metric uses non-LLM-based methods (such as [Levenshtein distance measure](https://en.wikipedia.org/wiki/Levenshtein_distance)) to determine whether a retrieved context is relevant. ### Context Precision with reference contexts The `NonLLMContextPrecisionWithReference` metric is designed for scenarios where both retrieved contexts and reference contexts are available for a `u...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-precision-id-based",
+      "document_id": "rw-eval-context-precision",
+      "locator": {
+        "kind": "SOURCE_LINES",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-context-precision.md",
+        "start_line": 227,
+        "end_line": 257,
+        "section_title": "ID Based Context Precision",
+        "region": "deep"
+      },
+      "anchor_text_hash": "fa30107d509786c967d6e98a356790078dd8dd4a604c4738df7ca75210653f5f",
+      "excerpt": "## ID Based Context Precision IDBasedContextPrecision provides a direct and efficient way to measure precision by comparing the IDs of retrieved contexts with reference context IDs. This metric is particularly useful when you have a unique ID system for your documents and want to evaluate retrieval performance without comparing the actual content. The metric computes precision using retrieved_context_ids and refer...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-otel-trace-overview",
+      "document_id": "rw-eval-otel-traces",
+      "locator": {
+        "kind": "PDF_PAGE",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-otel-traces.pdf",
+        "page_number": 1,
+        "region": "early"
+      },
+      "anchor_text_hash": "1e27b25efb5427a9e63f8f4a1e60733667ae40e3aec53b738dd5c22decb5e25b",
+      "excerpt": "--- title: Traces weight: 1 description: The path of a request through your application. cSpell:ignore: Guten --- **Traces** give us the big picture of what happens when a request is made to an application. Whether your application is a monolith with a single database or a sophisticated mesh of services, traces are essential to understanding the full \"path\" a request takes in your application. Let's explore this w...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-otel-parent-child",
+      "document_id": "rw-eval-otel-traces",
+      "locator": {
+        "kind": "PDF_PAGE",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-otel-traces.pdf",
+        "page_number": 2,
+        "region": "early"
+      },
+      "anchor_text_hash": "39ec28cbdca7da8230f1d7ff3664d376cf4a06e668c8fed2c18b3232c2b73364",
+      "excerpt": "\"timestamp\": \"2022-04-29T18:52:58.114585Z\", \"attributes\": { \"event_attributes\": 1 } } ] } ``` This span encapsulates specific tasks, like saying greetings, and its parent is the `hello` span. Note that it shares the same `trace_id` as the root span, indicating it's a part of the same trace. Additionally, it has a `parent_id` that matches the `span_id` of the `hello` span. `hello-salutations` span: ```json { \"name\"...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-otel-propagation-span",
+      "document_id": "rw-eval-otel-traces",
+      "locator": {
+        "kind": "PDF_PAGE",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-otel-traces.pdf",
+        "page_number": 3,
+        "region": "middle"
+      },
+      "anchor_text_hash": "23e9457debe36547240ffe92d7971e86d14100c42ebd4b9e315d3eb81c788616",
+      "excerpt": "for debugging and development-time, the OpenTelemetry Collector, or any open source or vendor backend of your choice. ## Context Propagation Context Propagation is the core concept that enables Distributed Tracing. With Context Propagation, Spans can be correlated with each other and assembled into a trace, regardless of where Spans are generated. To learn more about this topic, see the concept page on [Context Pr...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-otel-attributes-events",
+      "document_id": "rw-eval-otel-traces",
+      "locator": {
+        "kind": "PDF_PAGE",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-otel-traces.pdf",
+        "page_number": 4,
+        "region": "middle"
+      },
+      "anchor_text_hash": "6e59cd18a52cdb8758ca2b9574c7e905d3988c2445c80ef89e3a03245feee45e",
+      "excerpt": "Span context is the part of a span that is serialized and propagated alongside [Distributed Context](#context-propagation) and [Baggage](../baggage). Because Span Context contains the Trace ID, it is used when creating [Span Links](#span-links). ### Attributes Attributes are key-value pairs that contain metadata that you can use to annotate a Span to carry information about the operation it is tracking. For exampl...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-otel-links-status",
+      "document_id": "rw-eval-otel-traces",
+      "locator": {
+        "kind": "PDF_PAGE",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-otel-traces.pdf",
+        "page_number": 5,
+        "region": "deep"
+      },
+      "anchor_text_hash": "376c10519c3d296c29ae6a822143c087a488ef8d2310583df4a06f3d9db7dd25",
+      "excerpt": "You can link the last span from the first trace to the first span in the second trace. Now, they are causally associated with one another. Links are optional but serve as a good way to associate trace spans with one another. For more information see [Span Links](/docs/specs/otel/trace/api/#link). ### Span Status Each span has a status. The three possible values are: - `Unset` - `Error` - `Ok` The default value is ...",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    },
+    {
+      "evidence_id": "ev-rw-otel-async-spans",
+      "document_id": "rw-eval-otel-traces",
+      "locator": {
+        "kind": "PDF_PAGE",
+        "source_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-otel-traces.pdf",
+        "page_number": 6,
+        "region": "deep"
+      },
+      "anchor_text_hash": "b7df1cee455d47a2144af144d7584a839e7de88204e0a41b7fc7465651c020ad",
+      "excerpt": "start long after the producer span has already ended. ## Specification For more information, see the [traces specification](/docs/specs/otel/overview/#tracing-signal). 6",
+      "language": "en",
+      "notes": "Frozen source representation; hash covers the complete normalized locator text."
+    }
+  ]
+}

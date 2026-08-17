@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "learnpilot-rag-post-c-production-integrity-v1",
+  "status": "FROZEN",
+  "hash_algorithm": "SHA-256",
+  "strict_equality_required": true,
+  "authorized_p1_run_id": "20260816T072424Z-p1resume",
+  "authorized_depth_decoupling_run_id": "20260816T101548Z-depthdecouple",
+  "authorized_generation_coverage_run_id": "20260816T122526Z-gencoveragep1",
+  "latest_rebaseline_run_id": "20260816T130718Z-onefinalclosure",
+  "source_file_list": "evals/rag_real_world_corpus/v1/failure_analysis_v1/failure_analysis_manifest.json#frozen_bindings.production_code.baseline_sha256",
+  "file_count": 15,
+  "baseline_sha256": {
+    "backend/app/api/routes/materials.py": "8220c330e275b23d401e206daa28e06627ba5b6d4d54d64a828803e76dfbd7af",
+    "backend/app/api/routes/rag.py": "625e79b074411c661e7b51bdabcd0ff3e25b76f9e785506db839071941b4fce3",
+    "backend/app/core/config.py": "9139819d216665b3d4ff8bd303cabbf86813accd4b07ec7e612d9c31075d2adf",
+    "backend/app/services/embedding/bge_m3.py": "f854f413502bde196e55ab5281639a4467badc2970b63b7878f6243f81e8130f",
+    "backend/app/services/llm/openai_compatible.py": "129bdd27d85296d960eb12bebc3dfe06ca85f2ad3a043eb4e8673adedaf20e68",
+    "backend/app/services/material_processing/chunking.py": "35340d010b8072b60c918f85f24fff477e22a19c7a08665457031fa2689b2a54",
+    "backend/app/services/material_processing/pipeline.py": "9f4114b62261259edfe7815da59cf50399041cd618b7d1cba1c56858acb4ab65",
+    "backend/app/services/rag/grounding.py": "742ef8a6fbee3b16fc690ddb7e9829e03a48652e6bb2c19342eaad9cabb302cb",
+    "backend/app/services/rag/prompts.py": "c9764840562cb5520e35144f5bd6d758297b03f2ed171aa0ff7f0844cdf70cfb",
+    "backend/app/services/rag/query_rewriter.py": "043cbd139cc3861e95245312c038111f7da5d2ae69b355f354096f131772b1b3",
+    "backend/app/services/rag/retrieval.py": "2bfaf8e68afbd7527a07be43f541d57a4e1ac36220f9f6996550a8077f13a1c5",
+    "backend/app/services/rag/service.py": "70204c485ea90699c5836aef2f0b2249ba80261db1cbb6f99a3c773d574b7ec9",
+    "backend/app/services/rag/validation.py": "0bbcbf3f0e4ba3beb74ccab0e64f5ca5b945b36c058d4adb78b7fd3985329494",
+    "backend/app/services/vector_store/faiss_store.py": "e7b66dbe96a871b3956d9e23b8157567636670b2204dacfa5b3cc36303f7599a",
+    "backend/app/services/vector_store/service.py": "585d87602dfb72433c4793ea4c979e4afb57c36f53fe6ba22ad6adf480047ac4"
+  },
+  "authorized_rebaseline": [
+    {
+      "path": "backend/app/core/config.py",
+      "old_sha256": "b36a39b5e36273e71a6ac605f72304208f3eefc2d9763b36286640ec09881054",
+      "new_sha256": "3efa2f17b3bfbcc16abcff4416e866419564371326cfec6d2297c51fa216a8be"
+    },
+    {
+      "path": "backend/app/services/rag/retrieval.py",
+      "old_sha256": "1209b7ff0714072f9dd396e03636dc3cfb17fbd2ba58795bcc4ad1d01ef7387a",
+      "new_sha256": "3e724fada5d5ce47e12734d02394237d3a7f929536a03e2bd1f316db29b97576"
+    },
+    {
+      "path": "backend/app/services/rag/service.py",
+      "old_sha256": "01edadb0d56c0724c3aa6beebbb006b0b891409d276cc2fb03f61f83c8cfe42b",
+      "new_sha256": "a1c940c0f6d405749b74ff6b7e96722acede00d3517112de1c18139c891eca74"
+    },
+    {
+      "path": "backend/app/core/config.py",
+      "old_sha256": "3efa2f17b3bfbcc16abcff4416e866419564371326cfec6d2297c51fa216a8be",
+      "new_sha256": "9139819d216665b3d4ff8bd303cabbf86813accd4b07ec7e612d9c31075d2adf"
+    },
+    {
+      "path": "backend/app/services/rag/retrieval.py",
+      "old_sha256": "3e724fada5d5ce47e12734d02394237d3a7f929536a03e2bd1f316db29b97576",
+      "new_sha256": "2bfaf8e68afbd7527a07be43f541d57a4e1ac36220f9f6996550a8077f13a1c5"
+    },
+    {
+      "path": "backend/app/services/rag/service.py",
+      "old_sha256": "a1c940c0f6d405749b74ff6b7e96722acede00d3517112de1c18139c891eca74",
+      "new_sha256": "70204c485ea90699c5836aef2f0b2249ba80261db1cbb6f99a3c773d574b7ec9"
+    },
+    {
+      "path": "backend/app/services/rag/prompts.py",
+      "old_sha256": "fbd463bb3789f21885f832a47f1f1a67a7d4a31bd76de1ad38744f690e31c49c",
+      "new_sha256": "c9764840562cb5520e35144f5bd6d758297b03f2ed171aa0ff7f0844cdf70cfb",
+      "authority_run_id": "20260816T122526Z-gencoveragep1",
+      "rebaseline_run_id": "20260816T130718Z-onefinalclosure"
+    }
+  ]
+}

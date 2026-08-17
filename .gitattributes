@@ -1,0 +1,2 @@
+# Canonical evaluation corpora and reports preserve upstream whitespace byte-for-byte.
+evals/** -whitespace

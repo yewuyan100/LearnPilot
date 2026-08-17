@@ -1,0 +1,22 @@
+{
+  "status": "complete",
+  "run_id": "20260813T131304Z-ac0a8cee",
+  "corpus": "learnpilot-rag-real-world-corpus@v1",
+  "document_count": 11,
+  "chunk_count": 442,
+  "validation": {
+    "all_documents_imported": true,
+    "all_processing_completed": true,
+    "actual_matches_projection": true,
+    "faiss_matches_chunks": true,
+    "unique_material_ids": true,
+    "unique_chunk_ids": true,
+    "unique_chunk_content_hashes": 441,
+    "duplicate_chunk_occurrences": 1,
+    "production_paths_unchanged": true,
+    "production_sources_unchanged": true,
+    "no_answer_evaluation_state": true,
+    "temporary_service_stopped": true,
+    "runtime_deleted": true
+  }
+}

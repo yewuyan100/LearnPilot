@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm": "normalized lowercase alphanumeric token 5-gram set similarity",
+  "near_duplicate_threshold": "jaccard >= 0.80 OR smaller-document containment >= 0.92",
+  "exact_duplicate_hashes": [],
+  "near_duplicates": [],
+  "top_pairs": [
+    {
+      "left": "rw-agent-persistence",
+      "right": "rw-agent-interrupts",
+      "jaccard_5gram": 0.001437,
+      "smaller_document_containment": 0.014851
+    },
+    {
+      "left": "rw-backend-fastapi-async",
+      "right": "rw-backend-fastapi-dependencies",
+      "jaccard_5gram": 0.001009,
+      "smaller_document_containment": 0.003682
+    },
+    {
+      "left": "rw-backend-fastapi-dependencies",
+      "right": "rw-backend-fastapi-errors",
+      "jaccard_5gram": 0.000782,
+      "smaller_document_containment": 0.001665
+    },
+    {
+      "left": "rw-rag-faiss-overview",
+      "right": "rw-eval-context-precision",
+      "jaccard_5gram": 0.00056,
+      "smaller_document_containment": 0.00116
+    },
+    {
+      "left": "rw-backend-fastapi-async",
+      "right": "rw-backend-fastapi-errors",
+      "jaccard_5gram": 0.000416,
+      "smaller_document_containment": 0.001665
+    },
+    {
+      "left": "rw-rag-bge-m3",
+      "right": "rw-backend-fastapi-errors",
+      "jaccard_5gram": 0.000328,
+      "smaller_document_containment": 0.000833
+    },
+    {
+      "left": "rw-backend-fastapi-dependencies",
+      "right": "rw-eval-otel-traces",
+      "jaccard_5gram": 0.0003,
+      "smaller_document_containment": 0.000736
+    },
+    {
+      "left": "rw-rag-bge-m3",
+      "right": "rw-backend-fastapi-async",
+      "jaccard_5gram": 0.000183,
+      "smaller_document_containment": 0.000541
+    },
+    {
+      "left": "rw-rag-bge-m3",
+      "right": "rw-rag-faiss-overview",
+      "jaccard_5gram": 0.0,
+      "smaller_document_containment": 0.0
+    },
+    {
+      "left": "rw-rag-bge-m3",
+      "right": "rw-agent-langgraph-overview",
+      "jaccard_5gram": 0.0,
+      "smaller_document_containment": 0.0
+    },
+    {
+      "left": "rw-rag-bge-m3",
+      "right": "rw-agent-persistence",
+      "jaccard_5gram": 0.0,
+      "smaller_document_containment": 0.0
+    },
+    {
+      "left": "rw-rag-bge-m3",
+      "right": "rw-agent-interrupts",
+      "jaccard_5gram": 0.0,
+      "smaller_document_containment": 0.0
+    },
+    {
+      "left": "rw-rag-bge-m3",
+      "right": "rw-backend-fastapi-dependencies",
+      "jaccard_5gram": 0.0,
+      "smaller_document_containment": 0.0
+    },
+    {
+      "left": "rw-rag-bge-m3",
+      "right": "rw-eval-ragas-workflow",
+      "jaccard_5gram": 0.0,
+      "smaller_document_containment": 0.0
+    },
+    {
+      "left": "rw-rag-bge-m3",
+      "right": "rw-eval-context-precision",
+      "jaccard_5gram": 0.0,
+      "smaller_document_containment": 0.0
+    }
+  ]
+}

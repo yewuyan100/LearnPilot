@@ -1,9 +1,9 @@
-from datetime import date, datetime, time, timedelta
+from datetime import datetime, time, timedelta
 
 from fastapi import APIRouter
 from sqlalchemy import func, select
 
-from app.api.deps import DbSession
+from app.api.deps import AppClock, DbSession
 from app.models.course import Course
 from app.models.daily_task import DailyTask
 from app.models.knowledge_point import KnowledgePoint
@@ -15,8 +15,8 @@ router = APIRouter(tags=["dashboard"])
 
 
 @router.get("/progress", response_model=ProgressResponse)
-def progress(db: DbSession) -> ProgressResponse:
-    today = date.today()
+def progress(db: DbSession, clock: AppClock) -> ProgressResponse:
+    today = clock.today()
     start_date = today - timedelta(days=6)
     start_at = datetime.combine(start_date, time.min)
     daily_sessions = []
@@ -75,7 +75,7 @@ def progress(db: DbSession) -> ProgressResponse:
 
 
 @router.get("/review-items", response_model=ReviewResponse)
-def review_items(db: DbSession) -> ReviewResponse:
+def review_items(db: DbSession, clock: AppClock) -> ReviewResponse:
     points = db.scalars(
         select(KnowledgePoint)
         .where(KnowledgePoint.status.in_(["learning", "not_started"]))
@@ -83,7 +83,7 @@ def review_items(db: DbSession) -> ReviewResponse:
     ).all()
     tasks = db.scalars(
         select(DailyTask)
-        .where(DailyTask.status.in_(["pending", "in_progress"]), DailyTask.scheduled_date < date.today())
+        .where(DailyTask.status.in_(["pending", "in_progress"]), DailyTask.scheduled_date < clock.today())
         .order_by(DailyTask.scheduled_date)
     ).all()
     return ReviewResponse(
@@ -108,4 +108,3 @@ def review_items(db: DbSession) -> ReviewResponse:
             for task in tasks
         ],
     )
-

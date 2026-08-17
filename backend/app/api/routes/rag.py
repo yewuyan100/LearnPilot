@@ -101,6 +101,9 @@ def ask(
         request_id=payload.request_id,
         top_k=payload.top_k,
         material_ids=payload.material_ids,
+        learning_goal_id=payload.learning_goal_id,
+        course_id=payload.course_id,
+        knowledge_point_id=payload.knowledge_point_id,
     )
 
 
@@ -118,7 +121,8 @@ def stream_answer(
     provider: LLMProviderDep,
 ) -> StreamingResponse:
     def generate() -> Iterator[str]:
-        yield _event("accepted", {"request_id": payload.request_id})
+        yield _event("run.started", {"request_id": payload.request_id})
+        yield _event("retrieval.started", {"request_id": payload.request_id})
         try:
             result = service(db, settings, embedder, provider).ask(
                 conversation_id=conversation_id,
@@ -126,17 +130,20 @@ def stream_answer(
                 request_id=payload.request_id,
                 top_k=payload.top_k,
                 material_ids=payload.material_ids,
+                learning_goal_id=payload.learning_goal_id,
+                course_id=payload.course_id,
+                knowledge_point_id=payload.knowledge_point_id,
             )
-            yield _event("retrieval", result.retrieval.model_dump(mode="json"))
+            yield _event("retrieval.completed", result.retrieval.model_dump(mode="json"))
+            yield _event("generation.completed", {"message_id": result.assistant_message.id})
+            yield _event("answer.completed", {
+                "message_id": result.assistant_message.id,
+                "text": result.assistant_message.content,
+            })
             yield _event(
-                "message_start", {"message_id": result.assistant_message.id}
-            )
-            content = result.assistant_message.content
-            for index in range(0, len(content), 36):
-                yield _event("delta", {"text": content[index : index + 36]})
-            yield _event(
-                "citations",
+                "artifact.created",
                 {
+                    "kind": "citations",
                     "items": [
                         citation.model_dump(mode="json")
                         for citation in result.assistant_message.citations
@@ -144,7 +151,7 @@ def stream_answer(
                 },
             )
             yield _event(
-                "done",
+                "run.completed",
                 {
                     "message_id": result.assistant_message.id,
                     "idempotent_replay": result.idempotent_replay,
@@ -153,7 +160,7 @@ def stream_answer(
         except Exception as exc:
             code = getattr(exc, "code", "stream_error")
             message = getattr(exc, "message", "资料问答暂时不可用")
-            yield _event("error", {"code": code, "message": message})
+            yield _event("run.failed", {"code": code, "message": message})
 
     return StreamingResponse(
         generate(),

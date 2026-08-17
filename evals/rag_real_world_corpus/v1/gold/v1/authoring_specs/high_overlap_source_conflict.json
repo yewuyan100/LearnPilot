@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0.0",
+  "case_type": "high_overlap_source_conflict",
+  "cumulative_authored_count": 72,
+  "cases": [
+    {
+      "slug": "stress-conflict-bge-faiss-compression",
+      "tier": "STRESS",
+      "case_type": "high_overlap_source_conflict",
+      "question": "For the claim that a compressed vector index may omit original vectors and lose search precision, which source is required, and why is BGE-M3's embedding documentation insufficient?",
+      "language": "en",
+      "topic": "rag_retrieval",
+      "difficulty": "stress",
+      "groups": [["faiss-distance", "faiss-tradeoffs"]],
+      "claims": [
+        {"text": "The Faiss overview states that some index methods compress vectors, may not retain the original vectors, and can provide less precise search.", "groups": [0], "mode": "SEMANTIC_REVIEW", "terms": null}
+      ],
+      "secondary": [],
+      "accepts": [["rw-rag-bge-m3", ["bge-dense-usage"], "Supports how dense embeddings are generated, but not Faiss index-storage behavior."]],
+      "distractors": [["rw-eval-context-precision", "UNSUPPORTED for the claim about index compression and retention of original vectors."]],
+      "region": "mixed", "absent": null
+    },
+    {
+      "slug": "stress-conflict-interrupt-persistence-resume",
+      "tier": "STRESS",
+      "case_type": "high_overlap_source_conflict",
+      "question": "Which LangGraph source is required to justify Command(resume=...) returning the external value into a paused node, and what can the persistence source support without replacing it?",
+      "language": "en",
+      "topic": "agent_engineering",
+      "difficulty": "stress",
+      "groups": [["interrupt-mechanism", "interrupt-resume"]],
+      "claims": [
+        {"text": "The interrupts PDF defines suspension and Command(resume=...) returning the external value into the node.", "groups": [0], "mode": "SEMANTIC_REVIEW", "terms": null}
+      ],
+      "secondary": [],
+      "accepts": [["rw-agent-persistence", ["persist-overview"], "Supports the need for checkpointed thread state and continuity around interruption."]],
+      "distractors": [["rw-agent-langgraph-overview", "UNSUPPORTED for the detailed Command resume contract."]],
+      "region": "mixed", "absent": null
+    },
+    {
+      "slug": "stress-conflict-fastapi-handler-type",
+      "tier": "STRESS",
+      "case_type": "high_overlap_source_conflict",
+      "question": "Among FastAPI's async, dependency, and error documents, which one supports registering a handler for StarletteHTTPException, and what limited support can the dependency document still provide?",
+      "language": "en",
+      "topic": "ai_app_backend",
+      "difficulty": "stress",
+      "groups": [["errors-fastapi-starlette", "errors-reuse-handlers"], ["errors-fastapi-starlette"], ["errors-reuse-handlers"]],
+      "claims": [
+        {"text": "The error-handling document explains the FastAPI/Starlette HTTPException relationship and handler reuse.", "groups": [1, 2], "mode": "SEMANTIC_REVIEW", "terms": null},
+        {"text": "Registering the Starlette base type allows handling errors raised by Starlette and extensions as well as FastAPI code.", "groups": [0], "mode": "SEMANTIC_REVIEW", "terms": null}
+      ],
+      "secondary": [],
+      "accepts": [["rw-backend-fastapi-dependencies", ["deps-call"], "Supports that dependency execution precedes and feeds the endpoint, but not exception-class registration."]],
+      "distractors": [["rw-backend-fastapi-async", "UNSUPPORTED for exception handler type selection."]],
+      "region": "deep", "absent": null
+    },
+    {
+      "slug": "stress-conflict-ragas-reference-mode",
+      "tier": "STRESS",
+      "case_type": "high_overlap_source_conflict",
+      "question": "区分有 reference 与无 reference 的 context precision 变体时，哪份 Ragas 来源是必需证据，通用 workflow 来源只能间接支持什么？",
+      "language": "zh-CN",
+      "topic": "evaluation_reliability",
+      "difficulty": "stress",
+      "groups": [["precision-with-reference"], ["precision-without-reference"]],
+      "claims": [
+        {"text": "The context-precision document states that the with-reference variant compares retrieved contexts with reference, while the without-reference variant compares them with response.", "groups": [0, 1], "mode": "SEMANTIC_REVIEW", "terms": null}
+      ],
+      "secondary": [],
+      "accepts": [["rw-eval-ragas-workflow", ["ragas-collect-data"], "Supports that response, retrieved_contexts, and optional reference are dataset fields."]],
+      "distractors": [["rw-eval-otel-traces", "UNSUPPORTED for Ragas metric input modes."]],
+      "region": "deep", "absent": null
+    }
+  ]
+}

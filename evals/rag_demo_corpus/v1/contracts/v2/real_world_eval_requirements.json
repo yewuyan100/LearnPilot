@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "target": "Real-world Corpus V1",
+  "status": "requirements_only",
+  "corpus_shape": {
+    "substantial_document_count": {"minimum": 8, "maximum": 15},
+    "expected_chunk_count": {"minimum": 200, "maximum": 500},
+    "topic_design": "multiple overlapping topic families with plausible distractors",
+    "formats": ["PDF", "Markdown", "TXT"],
+    "document_lengths": "mixed, including realistic long documents"
+  },
+  "source_governance": [
+    "stable document_id",
+    "source URL or project-owned provenance",
+    "version/date",
+    "license or use-rights evidence",
+    "content SHA-256",
+    "ingestion type"
+  ],
+  "gold_requirements": [
+    "claim-level required/optional semantics",
+    "AND-of-OR required evidence groups",
+    "reviewed acceptable supporting evidence",
+    "explicit irrelevant/disallowed evidence where justified",
+    "versioned semantic review records",
+    "near-boundary unanswerable cases",
+    "raw candidate, final context, citation, and answer observability"
+  ],
+  "quality_gate": [
+    "all document and claim references validate",
+    "corpus and contract versions are independently frozen",
+    "no personal knowledge-base or production database content",
+    "no broad production-quality claim from Controlled Corpus V1"
+  ]
+}

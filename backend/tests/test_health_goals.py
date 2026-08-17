@@ -5,6 +5,20 @@ def test_health(client):
     assert response.json() == {"status": "ok"}
 
 
+def test_meta_reports_safe_runtime_status_without_secrets(client):
+    test_client, _ = client
+    response = test_client.get("/api/meta")
+    assert response.status_code == 200
+    body = response.json()
+    assert body["embedding_model"] == "fake/bge-m3"
+    assert body["embedding_local_only"] is True
+    assert body["index_ready"] is False
+    assert body["llm_configured"] is False
+    assert body["llm_model"] is None
+    assert "llm_api_key" not in body
+    assert "llm_base_url" not in body
+
+
 def test_goal_crud_and_persistence(client, goal_payload):
     test_client, _ = client
     created = test_client.post("/api/learning-goals", json=goal_payload)
@@ -35,4 +49,3 @@ def test_goal_validation(client):
     )
     assert response.status_code == 422
     assert response.json()["error"]["code"] == "validation_error"
-

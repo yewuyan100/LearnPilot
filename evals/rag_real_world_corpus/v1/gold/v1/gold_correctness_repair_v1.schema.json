@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://learnpilot.local/schemas/gold-correctness-repair-v1.json",
+  "title": "LearnPilot Real-world Gold Correctness Repair V1 Change Log",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "repair_version", "repair_date", "pre_repair_gold_sha256", "post_repair_gold_sha256", "frozen_review_sha256", "repairs", "affected_cases", "affected_case_ids", "repair_records", "status"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "repair_version": {"const": "gold-correctness-repair-v1"},
+    "repair_date": {"type": "string", "minLength": 1},
+    "pre_repair_gold_sha256": {"$ref": "#/$defs/sha256"},
+    "post_repair_gold_sha256": {"$ref": "#/$defs/sha256"},
+    "frozen_review_sha256": {"$ref": "#/$defs/sha256"},
+    "repairs": {"const": 9},
+    "affected_cases": {"const": 8},
+    "affected_case_ids": {"type": "array", "minItems": 8, "maxItems": 8, "uniqueItems": true, "items": {"type": "string", "pattern": "^rw-gold-v1-[a-z0-9-]+$"}},
+    "repair_records": {"type": "array", "minItems": 9, "maxItems": 9, "items": {"$ref": "#/$defs/repair_record"}},
+    "status": {"const": "COMPLETE"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "repair_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repair_id", "case_id", "claim_id", "defect_category", "old_value", "new_value", "root_cause", "repair_type", "information_need_preserved", "why_not_baseline_driven", "source_review_reference", "source_review_sha256"],
+      "properties": {
+        "repair_id": {"type": "string", "pattern": "^repair-[0-9]{2}$"},
+        "case_id": {"type": "string", "pattern": "^rw-gold-v1-[a-z0-9-]+$"},
+        "claim_id": {"type": ["string", "null"]},
+        "defect_category": {"enum": ["A", "B", "C", "D", "E", "F"]},
+        "old_value": {"type": "object", "minProperties": 1},
+        "new_value": {"type": "object", "minProperties": 1},
+        "root_cause": {"type": "string", "minLength": 1},
+        "repair_type": {"enum": ["GROUP_LOGIC", "CLAIM_NARROWING", "CLAIM_SPLIT", "ANCHOR_REBIND", "ROLE_RECLASSIFICATION"]},
+        "information_need_preserved": {"const": true},
+        "why_not_baseline_driven": {"type": "string", "minLength": 1},
+        "source_review_reference": {"const": "independent_semantic_verification_v1"},
+        "source_review_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  }
+}

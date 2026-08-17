@@ -3,10 +3,8 @@ from dataclasses import dataclass
 from app.api.deps import get_llm_provider
 from app.main import app
 from app.services.llm.base import LLMUsage, StructuredLLMResult
-from app.services.llm.schemas import QueryRewriteResult, RagModelAnswer
+from app.services.llm.schemas import QueryRewriteResult
 from app.services.rag.query_rewriter import rewrite_query
-from app.services.rag.types import RagSource
-from app.services.rag.validation import validate_answer
 
 
 class FakeLLMProvider:
@@ -59,8 +57,10 @@ def test_rag_conversation_answer_citation_idempotency_and_snapshot(client):
         [
             {
                 "answerable": True,
-                "answer_markdown": "Tools 让模型请求受控动作。[S1]",
-                "cited_source_ids": ["S1"],
+                "blocks": [{
+                    "content_markdown": "Tools 让模型请求受控动作。",
+                    "source_ids": ["S1"],
+                }],
                 "refusal_reason": None,
             }
         ]
@@ -83,6 +83,7 @@ def test_rag_conversation_answer_citation_idempotency_and_snapshot(client):
     assert answered.status_code == 200, answered.text
     body = answered.json()
     assert body["assistant_message"]["answerable"] is True
+    assert body["assistant_message"]["content"].endswith("[S1]")
     assert body["assistant_message"]["citations"][0]["source_label"] == "S1"
     assert body["assistant_message"]["citations"][0]["source_available"] is True
     assert provider.calls == 1
@@ -132,8 +133,10 @@ def test_rag_sse_only_streams_validated_content(client):
         [
             {
                 "answerable": True,
-                "answer_markdown": "Transport 承载客户端和服务端通信。[S1]",
-                "cited_source_ids": ["S1"],
+                "blocks": [{
+                    "content_markdown": "Transport 承载客户端和服务端通信。",
+                    "source_ids": ["S1"],
+                }],
                 "refusal_reason": None,
             }
         ]
@@ -151,9 +154,18 @@ def test_rag_sse_only_streams_validated_content(client):
     assert response.status_code == 200
     event_order = [
         text.index(f"event: {name}")
-        for name in ["accepted", "retrieval", "message_start", "delta", "citations", "done"]
+        for name in [
+            "run.started",
+            "retrieval.started",
+            "retrieval.completed",
+            "generation.completed",
+            "answer.completed",
+            "artifact.created",
+            "run.completed",
+        ]
     ]
     assert event_order == sorted(event_order)
+    assert "event: answer.delta" not in text
     assert "Transport" in text
 
 
@@ -165,8 +177,10 @@ def test_rag_api_missing_archive_conflict_and_injection(client):
         [
             {
                 "answerable": True,
-                "answer_markdown": "Tools 执行动作。[S1]",
-                "cited_source_ids": ["S1"],
+                "blocks": [{
+                    "content_markdown": "Tools 执行动作。",
+                    "source_ids": ["S1"],
+                }],
                 "refusal_reason": None,
             }
         ]
@@ -212,27 +226,35 @@ def test_rag_repairs_invalid_citation_once_and_then_refuses(client):
         [
             {
                 "answerable": True,
-                "answer_markdown": "无效来源。[S9]",
-                "cited_source_ids": ["S9"],
+                "blocks": [{
+                    "content_markdown": "无效来源。",
+                    "source_ids": ["S9"],
+                }],
                 "refusal_reason": None,
             },
             {
                 "answerable": True,
-                "answer_markdown": "修复后的回答。[S1]",
-                "cited_source_ids": ["S1"],
+                "blocks": [{
+                    "content_markdown": "修复后的回答。",
+                    "source_ids": ["S1"],
+                }],
                 "refusal_reason": None,
             },
             {
                 "answerable": True,
-                "answer_markdown": "仍然无效。[S9]",
-                "cited_source_ids": ["S9"],
+                "blocks": [{
+                    "content_markdown": "仍然无效。",
+                    "source_ids": ["S9"],
+                }],
                 "refusal_reason": None,
             },
             {
-                "answerable": False,
-                "answer_markdown": "拒答不应引用。[S1]",
-                "cited_source_ids": ["S1"],
-                "refusal_reason": "资料不足",
+                "answerable": True,
+                "blocks": [{
+                    "content_markdown": "仍然手写引用。[S1]",
+                    "source_ids": ["S1"],
+                }],
+                "refusal_reason": None,
             },
         ]
     )
@@ -257,35 +279,11 @@ def test_rag_repairs_invalid_citation_once_and_then_refuses(client):
     body = refused.json()["assistant_message"]
     assert body["answerable"] is False
     assert body["citations"] == []
+    assert body["refusal_reason"] == "grounded_answer_invalid"
     assert provider.calls == 4
 
 
-def test_citation_validation_and_query_rewrite_rules():
-    sources = [
-        RagSource("S1", 1, 0.9, 1, 1, "a.txt", 0, "source", None, None)
-    ]
-    valid, _ = validate_answer(
-        RagModelAnswer(
-            answerable=True,
-            answer_markdown="结论。[S1] 再次引用。[S1]",
-            cited_source_ids=["S1"],
-            refusal_reason=None,
-        ),
-        sources,
-    )
-    assert valid is True
-    invalid, reason = validate_answer(
-        RagModelAnswer(
-            answerable=True,
-            answer_markdown="结论。[S9]",
-            cited_source_ids=["S9"],
-            refusal_reason=None,
-        ),
-        sources,
-    )
-    assert invalid is False
-    assert reason == "citation_source_invalid"
-
+def test_query_rewrite_rules():
     from app.core.config import Settings
 
     provider = FakeLLMProvider(

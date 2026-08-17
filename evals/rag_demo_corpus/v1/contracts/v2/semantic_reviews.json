@@ -1,0 +1,2279 @@
+{
+  "schema_version": "2.0.0",
+  "review_version": "v2.0.0",
+  "baseline_run_id": "20260813T095948Z-f8aaaae2",
+  "corpus_ref": {
+    "corpus_id": "learnpilot-rag-demo-corpus",
+    "corpus_version": "v1"
+  },
+  "case_count": 48,
+  "cases": [
+    {
+      "case_id": "rag-v1-single-default-chunk-size",
+      "frozen_answer": "LearnPilot 默认的 chunk size 是 800 字符，overlap 是 120 字符。[S6]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-single-default-chunk-size",
+          "claim_id": "rag-v1-single-default-chunk-size-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "LearnPilot 默认的 chunk size 是 800 字符，overlap 是 120 字符。[S6]",
+          "supporting_document_ids": [
+            "lp-rag-v1-c03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-single-default-chunk-size",
+          "claim_id": "rag-v1-single-default-chunk-size-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "LearnPilot 默认的 chunk size 是 800 字符，overlap 是 120 字符。[S6]",
+          "supporting_document_ids": [
+            "lp-rag-v1-c03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-c03",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-paraphrase-delete-history",
+      "frozen_answer": "原资料被移除后，之前回答中的证据线索不会完全消失。系统在删除资料时，会将历史 RAG Citation 的外键设为 NULL，但保留快照字段，包括原文件名、位置和正文摘录。因此，旧回答仍保留当时的引用证据，可以解释其依据。[S1][S2]\n\n具体来说，删除资料后，chunk/material 外键会变为 NULL，但原文件名、位置和摘录仍保留。source_available=false 表示原始 chunk 已不可回查，但这不表示历史摘录被删除。因此，历史回答仍可解释，只是无法回查原始 chunk。[S2]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-paraphrase-delete-history",
+          "claim_id": "rag-v1-paraphrase-delete-history-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "原资料被移除后，之前回答中的证据线索不会完全消失。系统在删除资料时，会将历史 RAG Citation 的外键设为 NULL，但保留快照字段，包括原文件名、位置和正文摘录。因此，旧回答仍保留当时的引用证据，可以解释其依据。[S1][S2]\n\n具体来说，删除资料后，chunk/material 外键会变为 NULL，但原文件名、位置和摘录仍保留。source_available=false 表示原始 chunk 已不可回查，但这不表示历史摘录被删除。因此，历史回答仍可解释，只是无法回查原始 chunk。[S2]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-paraphrase-delete-history",
+          "claim_id": "rag-v1-paraphrase-delete-history-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "原资料被移除后，之前回答中的证据线索不会完全消失。系统在删除资料时，会将历史 RAG Citation 的外键设为 NULL，但保留快照字段，包括原文件名、位置和正文摘录。因此，旧回答仍保留当时的引用证据，可以解释其依据。[S1][S2]\n\n具体来说，删除资料后，chunk/material 外键会变为 NULL，但原文件名、位置和摘录仍保留。source_available=false 表示原始 chunk 已不可回查，但这不表示历史摘录被删除。因此，历史回答仍可解释，只是无法回查原始 chunk。[S2]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-a04",
+          "evidence_role": "ACCEPTABLE_SUPPORT",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        },
+        {
+          "document_id": "lp-rag-v1-a03",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-multidoc-controlled-write",
+      "frozen_answer": "Agent 写操作的限制：一次 Agent 运行最多四个工具步骤，其中最多三个读取工具和一个写入工具。复合计划必须先读取、后写入；写入之后不能继续读取，也不能循环调用。多次写入或写后读取会在执行前被拒绝。[S1]\n\n写工具不能直接执行：会改变学习数据的工具不能在初始运行中直接执行。图只能冻结工具名和参数，生成确认记录，然后中断等待用户决定。写工具必须通过人工确认；模型不能自行批准，也不能通过把写请求伪装成读取请求来绕过确认。[S1][S2]\n\n确认步骤：写工具执行前，系统先在业务审计记录中保存 ToolCall 与 Confirmation，然后冻结待执行工具名和参数并计算 SHA-256 快照哈希。图在确认节点调用 interrupt。此时业务写入尚未发生，用户看到的是可检查的确认卡片。确认接口校验决定是否冲突、确认是否过期、参数快照和哈希是否仍一致。批准后以 Command(resume=...) 恢复原运行，真正的业务写入只发生在恢复后的 write-tool 节点。拒绝不会执行写工具。[S3]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-multidoc-controlled-write",
+          "claim_id": "rag-v1-multidoc-controlled-write-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "Agent 写操作的限制：一次 Agent 运行最多四个工具步骤，其中最多三个读取工具和一个写入工具。复合计划必须先读取、后写入；写入之后不能继续读取，也不能循环调用。多次写入或写后读取会在执行前被拒绝。[S1]\n\n写工具不能直接执行：会改变学习数据的工具不能在初始运行中直接执行。图只能冻结工具名和参数，生成确认记录，然后中断等待用户决定。写工具必须通过人工确认；模型不能自行批准，也不能通过把写请求伪装成读取请求来绕过确认。[S1][S2]\n\n确认步骤：写工具执行前，系统先在业务审计记录中保存 ToolCall 与 Confirmation，然后冻结待执行工具名和参数并计算 SHA-256 快照哈希。图在确认节点调用 interrupt。此时业务写入尚未发生，用户看到的是可检查的确认卡片。确认接口校验决定是否冲突、确认是否过期、参数快照和哈希是否仍一致。批准后以 Command(resume=...) 恢复原运行，真正的业务写入只发生在恢复后的 write-tool 节点。拒绝不会执行写工具。[S3]",
+          "supporting_document_ids": [
+            "lp-rag-v1-b01"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-multidoc-controlled-write",
+          "claim_id": "rag-v1-multidoc-controlled-write-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "Agent 写操作的限制：一次 Agent 运行最多四个工具步骤，其中最多三个读取工具和一个写入工具。复合计划必须先读取、后写入；写入之后不能继续读取，也不能循环调用。多次写入或写后读取会在执行前被拒绝。[S1]\n\n写工具不能直接执行：会改变学习数据的工具不能在初始运行中直接执行。图只能冻结工具名和参数，生成确认记录，然后中断等待用户决定。写工具必须通过人工确认；模型不能自行批准，也不能通过把写请求伪装成读取请求来绕过确认。[S1][S2]\n\n确认步骤：写工具执行前，系统先在业务审计记录中保存 ToolCall 与 Confirmation，然后冻结待执行工具名和参数并计算 SHA-256 快照哈希。图在确认节点调用 interrupt。此时业务写入尚未发生，用户看到的是可检查的确认卡片。确认接口校验决定是否冲突、确认是否过期、参数快照和哈希是否仍一致。批准后以 Command(resume=...) 恢复原运行，真正的业务写入只发生在恢复后的 write-tool 节点。拒绝不会执行写工具。[S3]",
+          "supporting_document_ids": [
+            "lp-rag-v1-b02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-multidoc-controlled-write",
+          "claim_id": "rag-v1-multidoc-controlled-write-claim-03",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "Agent 写操作的限制：一次 Agent 运行最多四个工具步骤，其中最多三个读取工具和一个写入工具。复合计划必须先读取、后写入；写入之后不能继续读取，也不能循环调用。多次写入或写后读取会在执行前被拒绝。[S1]\n\n写工具不能直接执行：会改变学习数据的工具不能在初始运行中直接执行。图只能冻结工具名和参数，生成确认记录，然后中断等待用户决定。写工具必须通过人工确认；模型不能自行批准，也不能通过把写请求伪装成读取请求来绕过确认。[S1][S2]\n\n确认步骤：写工具执行前，系统先在业务审计记录中保存 ToolCall 与 Confirmation，然后冻结待执行工具名和参数并计算 SHA-256 快照哈希。图在确认节点调用 interrupt。此时业务写入尚未发生，用户看到的是可检查的确认卡片。确认接口校验决定是否冲突、确认是否过期、参数快照和哈希是否仍一致。批准后以 Command(resume=...) 恢复原运行，真正的业务写入只发生在恢复后的 write-tool 节点。拒绝不会执行写工具。[S3]",
+          "supporting_document_ids": [
+            "lp-rag-v1-b02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-b01",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        },
+        {
+          "document_id": "lp-rag-v1-b03",
+          "evidence_role": "ACCEPTABLE_SUPPORT",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        },
+        {
+          "document_id": "lp-rag-v1-b02",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-rerank-candidate-expansion",
+      "frozen_answer": "默认 RAG top_k=6 时，RAG 层向 MaterialIndexService 请求的候选上限是 min(SEARCH_TOP_K_MAX, max(top_k * 3, top_k))。在默认 RAG top_k=6、搜索最大值 20 时，这个接口请求最多 18 个候选。[S1]\n\n系统没有独立的 cross-encoder reranker。所谓“排序辨析”只能评价现有的向量分数、稳定排序、范围过滤和后续去重选择，不能假设系统执行了第二个排序模型。[S3]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-rerank-candidate-expansion",
+          "claim_id": "rag-v1-rerank-candidate-expansion-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "默认 RAG top_k=6 时，RAG 层向 MaterialIndexService 请求的候选上限是 min(SEARCH_TOP_K_MAX, max(top_k * 3, top_k))。在默认 RAG top_k=6、搜索最大值 20 时，这个接口请求最多 18 个候选。[S1]\n\n系统没有独立的 cross-encoder reranker。所谓“排序辨析”只能评价现有的向量分数、稳定排序、范围过滤和后续去重选择，不能假设系统执行了第二个排序模型。[S3]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-rerank-candidate-expansion",
+          "claim_id": "rag-v1-rerank-candidate-expansion-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "默认 RAG top_k=6 时，RAG 层向 MaterialIndexService 请求的候选上限是 min(SEARCH_TOP_K_MAX, max(top_k * 3, top_k))。在默认 RAG top_k=6、搜索最大值 20 时，这个接口请求最多 18 个候选。[S1]\n\n系统没有独立的 cross-encoder reranker。所谓“排序辨析”只能评价现有的向量分数、稳定排序、范围过滤和后续去重选择，不能假设系统执行了第二个排序模型。[S3]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a01"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-a02",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        },
+        {
+          "document_id": "lp-rag-v1-a01",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-citation-source-label-lifetime",
+      "frozen_answer": "S1 这类标识是临时 source ID，由系统在每次回答时分配，用于在单次回答中引用来源，不能跨两次回答当作稳定文档 ID。稳定的评测标识应使用 Corpus Manifest 中的 document ID，该 ID 为每篇文档分配，并记录 title、topic、source type、source reference、version/date、language、预期 ingestion type、仓库相对路径和内容 SHA-256。文件内容变化会产生新的校验和，并形成新的 corpus version，而不是静默覆盖已有版本。[S1][S2]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-citation-source-label-lifetime",
+          "claim_id": "rag-v1-citation-source-label-lifetime-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "S1 这类标识是临时 source ID，由系统在每次回答时分配，用于在单次回答中引用来源，不能跨两次回答当作稳定文档 ID。稳定的评测标识应使用 Corpus Manifest 中的 document ID，该 ID 为每篇文档分配，并记录 title、topic、source type、source reference、version/date、language、预期 ingestion type、仓库相对路径和内容 SHA-256。文件内容变化会产生新的校验和，并形成新的 corpus version，而不是静默覆盖已有版本。[S1][S2]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a02",
+            "lp-rag-v1-a03",
+            "lp-rag-v1-d01"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-citation-source-label-lifetime",
+          "claim_id": "rag-v1-citation-source-label-lifetime-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "S1 这类标识是临时 source ID，由系统在每次回答时分配，用于在单次回答中引用来源，不能跨两次回答当作稳定文档 ID。稳定的评测标识应使用 Corpus Manifest 中的 document ID，该 ID 为每篇文档分配，并记录 title、topic、source type、source reference、version/date、language、预期 ingestion type、仓库相对路径和内容 SHA-256。文件内容变化会产生新的校验和，并形成新的 corpus version，而不是静默覆盖已有版本。[S1][S2]",
+          "supporting_document_ids": [
+            "lp-rag-v1-d01",
+            "lp-rag-v1-d03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-d03",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        },
+        {
+          "document_id": "lp-rag-v1-a03",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-unanswerable-gpu-price",
+      "frozen_answer": "当前资料不足以可靠回答这个问题。请补充相关资料，或缩小问题范围后重试。",
+      "expected_answerable": false,
+      "actual_answerable": false,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-unanswerable-gpu-price",
+          "claim_id": "rag-v1-unanswerable-gpu-price-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "当前资料不足以可靠回答这个问题。请补充相关资料，或缩小问题范围后重试。",
+          "supporting_document_ids": [],
+          "review_reason": "The frozen answer correctly refuses and cites no corpus evidence for genuinely absent knowledge.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-single-query-rewrite-guard",
+      "frozen_answer": "当查询改写结果引入当前问题与历史之外的新英文实体时，系统会回退到原问题。[S4]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-single-query-rewrite-guard",
+          "claim_id": "rag-v1-single-query-rewrite-guard-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "当查询改写结果引入当前问题与历史之外的新英文实体时，系统会回退到原问题。[S4]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a01"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-a01",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-single-score-threshold",
+      "frozen_answer": "默认最低相关度是 0.35，低于该阈值的候选不会进入上下文。[S1]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-single-score-threshold",
+          "claim_id": "rag-v1-single-score-threshold-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "默认最低相关度是 0.35，低于该阈值的候选不会进入上下文。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-a02",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-single-grounding-repair-limit",
+      "frozen_answer": "Grounded answer 初稿不符合 evidence contract 时，只允许一次受控修复；修复仍失败时系统稳定拒答，不会把未校验草稿暴露给用户。[S5]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-single-grounding-repair-limit",
+          "claim_id": "rag-v1-single-grounding-repair-limit-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "Grounded answer 初稿不符合 evidence contract 时，只允许一次受控修复；修复仍失败时系统稳定拒答，不会把未校验草稿暴露给用户。[S5]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-a03",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-single-agent-step-limits",
+      "frozen_answer": "一次 Agent 运行最多四个工具步骤，其中最多三个读取工具和一个写入工具。[S1]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-single-agent-step-limits",
+          "claim_id": "rag-v1-single-agent-step-limits-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "一次 Agent 运行最多四个工具步骤，其中最多三个读取工具和一个写入工具。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-b01"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-single-agent-step-limits",
+          "claim_id": "rag-v1-single-agent-step-limits-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "一次 Agent 运行最多四个工具步骤，其中最多三个读取工具和一个写入工具。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-b01"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-single-agent-step-limits",
+          "claim_id": "rag-v1-single-agent-step-limits-claim-03",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "一次 Agent 运行最多四个工具步骤，其中最多三个读取工具和一个写入工具。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-b01"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-b01",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-single-idempotent-approval",
+      "frozen_answer": "不允许。根据资料，幂等性由多层约束共同提供，包括 ToolCall 的 run ID 与 step index 唯一、业务写服务接受稳定 request ID，以及已经完成的确认会重放原结果。重复批准不能再次创建任务或第二次修改同一业务对象。[S1]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-single-idempotent-approval",
+          "claim_id": "rag-v1-single-idempotent-approval-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "不允许。根据资料，幂等性由多层约束共同提供，包括 ToolCall 的 run ID 与 step index 唯一、业务写服务接受稳定 request ID，以及已经完成的确认会重放原结果。重复批准不能再次创建任务或第二次修改同一业务对象。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-b02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-single-idempotent-approval",
+          "claim_id": "rag-v1-single-idempotent-approval-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "不允许。根据资料，幂等性由多层约束共同提供，包括 ToolCall 的 run ID 与 step index 唯一、业务写服务接受稳定 request ID，以及已经完成的确认会重放原结果。重复批准不能再次创建任务或第二次修改同一业务对象。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-b02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-b02",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-single-api-error-shape",
+      "frozen_answer": "LearnPilot 的统一 API 错误响应使用 `{\"error\":{\"code\",\"message\",\"details\"}}` 结构，即由 `code`、`message` 和 `details` 三个字段组成。[S1]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-single-api-error-shape",
+          "claim_id": "rag-v1-single-api-error-shape-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "LearnPilot 的统一 API 错误响应使用 `{\"error\":{\"code\",\"message\",\"details\"}}` 结构，即由 `code`、`message` 和 `details` 三个字段组成。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-c01"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-c01",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-single-corpus-version-change",
+      "frozen_answer": "文件内容变化必须产生新的校验和，并应形成新的 corpus version，而不是静默覆盖已经用于基线的 V1。[S1]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-single-corpus-version-change",
+          "claim_id": "rag-v1-single-corpus-version-change-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "文件内容变化必须产生新的校验和，并应形成新的 corpus version，而不是静默覆盖已经用于基线的 V1。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-d03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-single-corpus-version-change",
+          "claim_id": "rag-v1-single-corpus-version-change-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "文件内容变化必须产生新的校验和，并应形成新的 corpus version，而不是静默覆盖已经用于基线的 V1。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-d03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-d03",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-paraphrase-inner-product-cosine",
+      "frozen_answer": "因为文档向量和查询向量都做了 L2 归一化，所以内积与余弦相似度在数学上等价。在向量已归一化的前提下，内积排序与余弦相似度排序等价，因此返回的 score 越大表示语义越接近。[S1]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-paraphrase-inner-product-cosine",
+          "claim_id": "rag-v1-paraphrase-inner-product-cosine-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "因为文档向量和查询向量都做了 L2 归一化，所以内积与余弦相似度在数学上等价。在向量已归一化的前提下，内积排序与余弦相似度排序等价，因此返回的 score 越大表示语义越接近。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a01"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-paraphrase-inner-product-cosine",
+          "claim_id": "rag-v1-paraphrase-inner-product-cosine-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "因为文档向量和查询向量都做了 L2 归一化，所以内积与余弦相似度在数学上等价。在向量已归一化的前提下，内积排序与余弦相似度排序等价，因此返回的 score 越大表示语义越接近。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a01"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-a01",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-paraphrase-source-diversity",
+      "frozen_answer": "系统通过第一轮选择中的每份资料配额来避免单篇长文档占满上下文。默认最多 6 个来源时，每份资料先取最多 3 个。如果受配额影响而未凑足目标数量，第二轮会从剩余唯一候选中补齐，因此该配额是多样性优先规则，不是绝对上限。[S2]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-paraphrase-source-diversity",
+          "claim_id": "rag-v1-paraphrase-source-diversity-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "系统通过第一轮选择中的每份资料配额来避免单篇长文档占满上下文。默认最多 6 个来源时，每份资料先取最多 3 个。如果受配额影响而未凑足目标数量，第二轮会从剩余唯一候选中补齐，因此该配额是多样性优先规则，不是绝对上限。[S2]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-paraphrase-source-diversity",
+          "claim_id": "rag-v1-paraphrase-source-diversity-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "系统通过第一轮选择中的每份资料配额来避免单篇长文档占满上下文。默认最多 6 个来源时，每份资料先取最多 3 个。如果受配额影响而未凑足目标数量，第二轮会从剩余唯一候选中补齐，因此该配额是多样性优先规则，不是绝对上限。[S2]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-paraphrase-source-diversity",
+          "claim_id": "rag-v1-paraphrase-source-diversity-claim-03",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "系统通过第一轮选择中的每份资料配额来避免单篇长文档占满上下文。默认最多 6 个来源时，每份资料先取最多 3 个。如果受配额影响而未凑足目标数量，第二轮会从剩余唯一候选中补齐，因此该配额是多样性优先规则，不是绝对上限。[S2]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-a02",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-paraphrase-duplicate-upload",
+      "frozen_answer": "不会。当前上传契约没有按内容哈希或原文件名做去重，因此同一文件可以被多次上传，并产生不同 Material ID。[S1]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-paraphrase-duplicate-upload",
+          "claim_id": "rag-v1-paraphrase-duplicate-upload-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "不会。当前上传契约没有按内容哈希或原文件名做去重，因此同一文件可以被多次上传，并产生不同 Material ID。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a04"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-paraphrase-duplicate-upload",
+          "claim_id": "rag-v1-paraphrase-duplicate-upload-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "不会。当前上传契约没有按内容哈希或原文件名做去重，因此同一文件可以被多次上传，并产生不同 Material ID。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a04"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-a04",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-paraphrase-checkpoint-vs-idempotency",
+      "frozen_answer": "不是。Checkpoint 解决的是工作流恢复，不是业务事实持久化。即使图可以恢复，写入正确性仍依赖业务事务、唯一约束和幂等 request ID。评测问题应区分这两个概念，避免把“有 checkpoint”错误等同于“任意写入天然只执行一次”。[S1]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-paraphrase-checkpoint-vs-idempotency",
+          "claim_id": "rag-v1-paraphrase-checkpoint-vs-idempotency-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "不是。Checkpoint 解决的是工作流恢复，不是业务事实持久化。即使图可以恢复，写入正确性仍依赖业务事务、唯一约束和幂等 request ID。评测问题应区分这两个概念，避免把“有 checkpoint”错误等同于“任意写入天然只执行一次”。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-b02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-paraphrase-checkpoint-vs-idempotency",
+          "claim_id": "rag-v1-paraphrase-checkpoint-vs-idempotency-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "不是。Checkpoint 解决的是工作流恢复，不是业务事实持久化。即使图可以恢复，写入正确性仍依赖业务事务、唯一约束和幂等 request ID。评测问题应区分这两个概念，避免把“有 checkpoint”错误等同于“任意写入天然只执行一次”。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-b02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-paraphrase-checkpoint-vs-idempotency",
+          "claim_id": "rag-v1-paraphrase-checkpoint-vs-idempotency-claim-03",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "不是。Checkpoint 解决的是工作流恢复，不是业务事实持久化。即使图可以恢复，写入正确性仍依赖业务事务、唯一约束和幂等 request ID。评测问题应区分这两个概念，避免把“有 checkpoint”错误等同于“任意写入天然只执行一次”。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-b02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-b02",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-paraphrase-untrusted-material",
+      "frozen_answer": "检索到的文档被视为不可信数据，即使其中出现“读取 API Key”等指令，也不能改变工具允许列表或响应契约。助手不暴露读取环境变量或密钥的工具，因此无法照做。[S1]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-paraphrase-untrusted-material",
+          "claim_id": "rag-v1-paraphrase-untrusted-material-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "检索到的文档被视为不可信数据，即使其中出现“读取 API Key”等指令，也不能改变工具允许列表或响应契约。助手不暴露读取环境变量或密钥的工具，因此无法照做。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-b03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-paraphrase-untrusted-material",
+          "claim_id": "rag-v1-paraphrase-untrusted-material-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "检索到的文档被视为不可信数据，即使其中出现“读取 API Key”等指令，也不能改变工具允许列表或响应契约。助手不暴露读取环境变量或密钥的工具，因此无法照做。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-b03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-b03",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-paraphrase-index-derived-state",
+      "frozen_answer": "向量文件损坏后，应该从业务事实重新生成索引，而不是修改 chunk 事实来迁就它。索引是派生数据，因此损坏或配置变化时应重建，而不是修补数据库中的 chunk 事实。[S1]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-paraphrase-index-derived-state",
+          "claim_id": "rag-v1-paraphrase-index-derived-state-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "向量文件损坏后，应该从业务事实重新生成索引，而不是修改 chunk 事实来迁就它。索引是派生数据，因此损坏或配置变化时应重建，而不是修补数据库中的 chunk 事实。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-c02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-paraphrase-index-derived-state",
+          "claim_id": "rag-v1-paraphrase-index-derived-state-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "向量文件损坏后，应该从业务事实重新生成索引，而不是修改 chunk 事实来迁就它。索引是派生数据，因此损坏或配置变化时应重建，而不是修补数据库中的 chunk 事实。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-c02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-c02",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-paraphrase-scanned-pdf",
+      "frozen_answer": "当前资料不足以可靠回答这个问题。请补充相关资料，或缩小问题范围后重试。",
+      "expected_answerable": true,
+      "actual_answerable": false,
+      "answerability_correct": false,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-paraphrase-scanned-pdf",
+          "claim_id": "rag-v1-paraphrase-scanned-pdf-claim-01",
+          "verdict": "NOT_SUPPORTED",
+          "supporting_answer_span": "",
+          "supporting_document_ids": [
+            "lp-rag-v1-c03"
+          ],
+          "review_reason": "The frozen answer refused despite C03 being present in final context.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-paraphrase-scanned-pdf",
+          "claim_id": "rag-v1-paraphrase-scanned-pdf-claim-02",
+          "verdict": "NOT_SUPPORTED",
+          "supporting_answer_span": "",
+          "supporting_document_ids": [
+            "lp-rag-v1-c03"
+          ],
+          "review_reason": "The refusal does not state that extraction failure is explicit.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [],
+      "case_verdict": "FAIL",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-multidoc-retrieval-to-context",
+      "frozen_answer": "从 normalized query embedding 到最终 S1…Sn 上下文主要分为两个阶段：\n\n**第一阶段：向量检索与候选生成**\n\n查询向量与文档向量均使用相同的 Embedding 模型（默认 BAAI/bge-m3）编码，并做 L2 归一化。向量索引使用 FAISS IndexFlatIP，在归一化前提下内积排序等价于余弦相似度排序。系统先从 FAISS 取得当前索引中的全部命中，再回查 SQLite 中的 MaterialChunk 和 Material，过滤未完成解析、进入删除流程、已归档或不在指定资料范围内的记录，并按 score 降序稳定排序，截取候选上限（默认 RAG top_k=6 时最多 18 个候选）。[S2][S5]\n\n**第二阶段：确定性过滤、去重与上下文构建**\n\n候选集先按最低相关度阈值（默认 0.35）过滤，再移除同一资料内相邻且正文高度重合的重复片段（重叠 60–240 字符视为重复）。随后按每份资料配额（默认每份最多 3 个）进行第一轮选择，若未凑足目标数量则从剩余唯一候选中补齐。最终来源数量不超过请求 top K 和 RAG_MAX_SOURCES 的较小值，每个来源正文默认最多 2200 字符，总上下文默认最多 12000 字符。来源按最终顺序重新编号为 S1、S2 等，并包装成独立的只读数据块供回答模型使用。[S5][S6]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-multidoc-retrieval-to-context",
+          "claim_id": "rag-v1-multidoc-retrieval-to-context-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "从 normalized query embedding 到最终 S1…Sn 上下文主要分为两个阶段：\n\n**第一阶段：向量检索与候选生成**\n\n查询向量与文档向量均使用相同的 Embedding 模型（默认 BAAI/bge-m3）编码，并做 L2 归一化。向量索引使用 FAISS IndexFlatIP，在归一化前提下内积排序等价于余弦相似度排序。系统先从 FAISS 取得当前索引中的全部命中，再回查 SQLite 中的 MaterialChunk 和 Material，过滤未完成解析、进入删除流程、已归档或不在指定资料范围内的记录，并按 score 降序稳定排序，截取候选上限（默认 RAG top_k=6 时最多 18 个候选）。[S2][S5]\n\n**第二阶段：确定性过滤、去重与上下文构建**\n\n候选集先按最低相关度阈值（默认 0.35）过滤，再移除同一资料内相邻且正文高度重合的重复片段（重叠 60–240 字符视为重复）。随后按每份资料配额（默认每份最多 3 个）进行第一轮选择，若未凑足目标数量则从剩余唯一候选中补齐。最终来源数量不超过请求 top K 和 RAG_MAX_SOURCES 的较小值，每个来源正文默认最多 2200 字符，总上下文默认最多 12000 字符。来源按最终顺序重新编号为 S1、S2 等，并包装成独立的只读数据块供回答模型使用。[S5][S6]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a01"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-multidoc-retrieval-to-context",
+          "claim_id": "rag-v1-multidoc-retrieval-to-context-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "从 normalized query embedding 到最终 S1…Sn 上下文主要分为两个阶段：\n\n**第一阶段：向量检索与候选生成**\n\n查询向量与文档向量均使用相同的 Embedding 模型（默认 BAAI/bge-m3）编码，并做 L2 归一化。向量索引使用 FAISS IndexFlatIP，在归一化前提下内积排序等价于余弦相似度排序。系统先从 FAISS 取得当前索引中的全部命中，再回查 SQLite 中的 MaterialChunk 和 Material，过滤未完成解析、进入删除流程、已归档或不在指定资料范围内的记录，并按 score 降序稳定排序，截取候选上限（默认 RAG top_k=6 时最多 18 个候选）。[S2][S5]\n\n**第二阶段：确定性过滤、去重与上下文构建**\n\n候选集先按最低相关度阈值（默认 0.35）过滤，再移除同一资料内相邻且正文高度重合的重复片段（重叠 60–240 字符视为重复）。随后按每份资料配额（默认每份最多 3 个）进行第一轮选择，若未凑足目标数量则从剩余唯一候选中补齐。最终来源数量不超过请求 top K 和 RAG_MAX_SOURCES 的较小值，每个来源正文默认最多 2200 字符，总上下文默认最多 12000 字符。来源按最终顺序重新编号为 S1、S2 等，并包装成独立的只读数据块供回答模型使用。[S5][S6]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-a01",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        },
+        {
+          "document_id": "lp-rag-v1-a02",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        },
+        {
+          "document_id": "lp-rag-v1-a03",
+          "evidence_role": "ACCEPTABLE_SUPPORT",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-multidoc-delete-new-vs-old",
+      "frozen_answer": "资料删除后，新检索不会命中已删除的资料。系统先将 Material 标记为 deletion pending，使其退出可索引集合，然后重建 FAISS；索引更新成功后才删除原始文件和 Material 数据。[S1]\n\n历史回答仍保留当时的引用证据。删除原资料后，chunk/material 外键会变为 NULL，但原文件名、位置和摘录仍保留，历史回答仍可解释。source_available=false 表示原始 chunk 已不可回查，不表示历史摘录被删除。[S2]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-multidoc-delete-new-vs-old",
+          "claim_id": "rag-v1-multidoc-delete-new-vs-old-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "资料删除后，新检索不会命中已删除的资料。系统先将 Material 标记为 deletion pending，使其退出可索引集合，然后重建 FAISS；索引更新成功后才删除原始文件和 Material 数据。[S1]\n\n历史回答仍保留当时的引用证据。删除原资料后，chunk/material 外键会变为 NULL，但原文件名、位置和摘录仍保留，历史回答仍可解释。source_available=false 表示原始 chunk 已不可回查，不表示历史摘录被删除。[S2]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a04"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-multidoc-delete-new-vs-old",
+          "claim_id": "rag-v1-multidoc-delete-new-vs-old-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "资料删除后，新检索不会命中已删除的资料。系统先将 Material 标记为 deletion pending，使其退出可索引集合，然后重建 FAISS；索引更新成功后才删除原始文件和 Material 数据。[S1]\n\n历史回答仍保留当时的引用证据。删除原资料后，chunk/material 外键会变为 NULL，但原文件名、位置和摘录仍保留，历史回答仍可解释。source_available=false 表示原始 chunk 已不可回查，不表示历史摘录被删除。[S2]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-a04",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        },
+        {
+          "document_id": "lp-rag-v1-a03",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-multidoc-agent-safety-plan",
+      "frozen_answer": "该计划触犯多项限制：\n\n- 读取环境变量：Agent 不暴露环境变量工具，因此该操作不在允许列表内，计划校验器会拒绝未知工具。\n- 修改分数：修改分数属于写操作，且写工具必须通过人工确认，模型不能自行批准。\n- 继续查询：一次运行最多一个写工具，且写入后不能继续查询；复合计划必须先读取、后写入，写入后不能继续读取。\n- 整体计划：该计划包含未知工具和危险参数，计划校验器会拒绝。[S1][S2]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-multidoc-agent-safety-plan",
+          "claim_id": "rag-v1-multidoc-agent-safety-plan-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "该计划触犯多项限制：\n\n- 读取环境变量：Agent 不暴露环境变量工具，因此该操作不在允许列表内，计划校验器会拒绝未知工具。\n- 修改分数：修改分数属于写操作，且写工具必须通过人工确认，模型不能自行批准。\n- 继续查询：一次运行最多一个写工具，且写入后不能继续查询；复合计划必须先读取、后写入，写入后不能继续读取。\n- 整体计划：该计划包含未知工具和危险参数，计划校验器会拒绝。[S1][S2]",
+          "supporting_document_ids": [
+            "lp-rag-v1-b03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-multidoc-agent-safety-plan",
+          "claim_id": "rag-v1-multidoc-agent-safety-plan-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "该计划触犯多项限制：\n\n- 读取环境变量：Agent 不暴露环境变量工具，因此该操作不在允许列表内，计划校验器会拒绝未知工具。\n- 修改分数：修改分数属于写操作，且写工具必须通过人工确认，模型不能自行批准。\n- 继续查询：一次运行最多一个写工具，且写入后不能继续查询；复合计划必须先读取、后写入，写入后不能继续读取。\n- 整体计划：该计划包含未知工具和危险参数，计划校验器会拒绝。[S1][S2]",
+          "supporting_document_ids": [
+            "lp-rag-v1-b01",
+            "lp-rag-v1-b03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-multidoc-agent-safety-plan",
+          "claim_id": "rag-v1-multidoc-agent-safety-plan-claim-03",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "该计划触犯多项限制：\n\n- 读取环境变量：Agent 不暴露环境变量工具，因此该操作不在允许列表内，计划校验器会拒绝未知工具。\n- 修改分数：修改分数属于写操作，且写工具必须通过人工确认，模型不能自行批准。\n- 继续查询：一次运行最多一个写工具，且写入后不能继续查询；复合计划必须先读取、后写入，写入后不能继续读取。\n- 整体计划：该计划包含未知工具和危险参数，计划校验器会拒绝。[S1][S2]",
+          "supporting_document_ids": [
+            "lp-rag-v1-b01",
+            "lp-rag-v1-b03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-b03",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        },
+        {
+          "document_id": "lp-rag-v1-b01",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-multidoc-http-transaction-errors",
+      "frozen_answer": "stale index 和 LLM provider failure 在接口语义上不同：stale index 属于检索阶段的问题，系统会返回资料不足答复（answerable=false 且 citations 为空），而 LLM provider failure 属于基础设施故障，接口应返回 503，不应被统计为正确拒答。[S2]\n\n在持久化职责上，stale index 与索引一致性相关，系统通过状态字段、内容校验和、维护任务和可重试重建收敛，而 LLM provider failure 是模型服务不可用，属于基础设施错误，不应伪装成“没有答案”。[S1][S6]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-multidoc-http-transaction-errors",
+          "claim_id": "rag-v1-multidoc-http-transaction-errors-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "stale index 和 LLM provider failure 在接口语义上不同：stale index 属于检索阶段的问题，系统会返回资料不足答复（answerable=false 且 citations 为空），而 LLM provider failure 属于基础设施故障，接口应返回 503，不应被统计为正确拒答。[S2]\n\n在持久化职责上，stale index 与索引一致性相关，系统通过状态字段、内容校验和、维护任务和可重试重建收敛，而 LLM provider failure 是模型服务不可用，属于基础设施错误，不应伪装成“没有答案”。[S1][S6]",
+          "supporting_document_ids": [
+            "lp-rag-v1-c02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-multidoc-http-transaction-errors",
+          "claim_id": "rag-v1-multidoc-http-transaction-errors-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "stale index 和 LLM provider failure 在接口语义上不同：stale index 属于检索阶段的问题，系统会返回资料不足答复（answerable=false 且 citations 为空），而 LLM provider failure 属于基础设施故障，接口应返回 503，不应被统计为正确拒答。[S2]\n\n在持久化职责上，stale index 与索引一致性相关，系统通过状态字段、内容校验和、维护任务和可重试重建收敛，而 LLM provider failure 是模型服务不可用，属于基础设施错误，不应伪装成“没有答案”。[S1][S6]",
+          "supporting_document_ids": [
+            "lp-rag-v1-c01",
+            "lp-rag-v1-d02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-multidoc-http-transaction-errors",
+          "claim_id": "rag-v1-multidoc-http-transaction-errors-claim-03",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "stale index 和 LLM provider failure 在接口语义上不同：stale index 属于检索阶段的问题，系统会返回资料不足答复（answerable=false 且 citations 为空），而 LLM provider failure 属于基础设施故障，接口应返回 503，不应被统计为正确拒答。[S2]\n\n在持久化职责上，stale index 与索引一致性相关，系统通过状态字段、内容校验和、维护任务和可重试重建收敛，而 LLM provider failure 是模型服务不可用，属于基础设施错误，不应伪装成“没有答案”。[S1][S6]",
+          "supporting_document_ids": [
+            "lp-rag-v1-c02",
+            "lp-rag-v1-c01",
+            "lp-rag-v1-d02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-c02",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        },
+        {
+          "document_id": "lp-rag-v1-d02",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        },
+        {
+          "document_id": "lp-rag-v1-c01",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-multidoc-ingestion-reproducibility",
+      "frozen_answer": "离线 Corpus Manifest 为每篇文档分配稳定 document ID，记录 title、topic、source type、source reference、version/date、language、预期 ingestion type、仓库相对路径和内容 SHA-256。文件内容变化必须产生新的校验和，并应形成新的 corpus version，而不是静默覆盖已经用于基线的 V1。[S1]\n\n运行时 FAISS Manifest 记录一次导入后的 chunk IDs、Embedding 配置、维度、内容校验和、索引校验和和随机 index version。它描述某次运行时派生索引，不能与 Corpus Manifest 合并，也不能用 index version 代替 corpus version。[S1]\n\nFAISS Manifest 还保存模型名、模型 revision、向量维度、是否归一化、距离度量、chunk ID 映射、内容校验和、索引校验和与 index version。搜索时必须同时满足模型配置、维度和校验和契约；内容表与索引不一致时，运行时报告 stale index，而不是在旧索引上继续回答。[S2]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-multidoc-ingestion-reproducibility",
+          "claim_id": "rag-v1-multidoc-ingestion-reproducibility-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "离线 Corpus Manifest 为每篇文档分配稳定 document ID，记录 title、topic、source type、source reference、version/date、language、预期 ingestion type、仓库相对路径和内容 SHA-256。文件内容变化必须产生新的校验和，并应形成新的 corpus version，而不是静默覆盖已经用于基线的 V1。[S1]\n\n运行时 FAISS Manifest 记录一次导入后的 chunk IDs、Embedding 配置、维度、内容校验和、索引校验和和随机 index version。它描述某次运行时派生索引，不能与 Corpus Manifest 合并，也不能用 index version 代替 corpus version。[S1]\n\nFAISS Manifest 还保存模型名、模型 revision、向量维度、是否归一化、距离度量、chunk ID 映射、内容校验和、索引校验和与 index version。搜索时必须同时满足模型配置、维度和校验和契约；内容表与索引不一致时，运行时报告 stale index，而不是在旧索引上继续回答。[S2]",
+          "supporting_document_ids": [
+            "lp-rag-v1-d03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-multidoc-ingestion-reproducibility",
+          "claim_id": "rag-v1-multidoc-ingestion-reproducibility-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "离线 Corpus Manifest 为每篇文档分配稳定 document ID，记录 title、topic、source type、source reference、version/date、language、预期 ingestion type、仓库相对路径和内容 SHA-256。文件内容变化必须产生新的校验和，并应形成新的 corpus version，而不是静默覆盖已经用于基线的 V1。[S1]\n\n运行时 FAISS Manifest 记录一次导入后的 chunk IDs、Embedding 配置、维度、内容校验和、索引校验和和随机 index version。它描述某次运行时派生索引，不能与 Corpus Manifest 合并，也不能用 index version 代替 corpus version。[S1]\n\nFAISS Manifest 还保存模型名、模型 revision、向量维度、是否归一化、距离度量、chunk ID 映射、内容校验和、索引校验和与 index version。搜索时必须同时满足模型配置、维度和校验和契约；内容表与索引不一致时，运行时报告 stale index，而不是在旧索引上继续回答。[S2]",
+          "supporting_document_ids": [
+            "lp-rag-v1-d03",
+            "lp-rag-v1-a01"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-multidoc-ingestion-reproducibility",
+          "claim_id": "rag-v1-multidoc-ingestion-reproducibility-claim-03",
+          "verdict": "NOT_SUPPORTED",
+          "supporting_answer_span": "",
+          "supporting_document_ids": [
+            "lp-rag-v1-c03"
+          ],
+          "review_reason": "The frozen answer does not discuss parser/chunker influence; this V2 claim is optional.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-d03",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        },
+        {
+          "document_id": "lp-rag-v1-a01",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-multidoc-eval-via-public-api",
+      "frozen_answer": "正式 RAG eval 应在隔离存储中通过公开 HTTP path 执行，因为评测客户端应依赖公开 HTTP 响应，不直接读取 SQLite 或 FAISS 推断结果。通过 API 创建隔离会话、提交唯一 request ID，并从响应中的 retrieval summary、answerability 和 citations 计算指标。[S1]\n\n一次正式 eval run 必须记录 corpus version、manifest schema、gold schema、Embedding model/revision/dimension、索引 version、RAG 配置、prompt version、LLM model 和运行时间。缺少其中任何关键配置时，不应把结果与另一轮直接比较。[S2]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-multidoc-eval-via-public-api",
+          "claim_id": "rag-v1-multidoc-eval-via-public-api-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "正式 RAG eval 应在隔离存储中通过公开 HTTP path 执行，因为评测客户端应依赖公开 HTTP 响应，不直接读取 SQLite 或 FAISS 推断结果。通过 API 创建隔离会话、提交唯一 request ID，并从响应中的 retrieval summary、answerability 和 citations 计算指标。[S1]\n\n一次正式 eval run 必须记录 corpus version、manifest schema、gold schema、Embedding model/revision/dimension、索引 version、RAG 配置、prompt version、LLM model 和运行时间。缺少其中任何关键配置时，不应把结果与另一轮直接比较。[S2]",
+          "supporting_document_ids": [
+            "lp-rag-v1-c01"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-multidoc-eval-via-public-api",
+          "claim_id": "rag-v1-multidoc-eval-via-public-api-claim-02",
+          "verdict": "NOT_SUPPORTED",
+          "supporting_answer_span": "",
+          "supporting_document_ids": [
+            "lp-rag-v1-d01"
+          ],
+          "review_reason": "The frozen answer says isolated session but omits preventing personal knowledge-base contamination.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-multidoc-eval-via-public-api",
+          "claim_id": "rag-v1-multidoc-eval-via-public-api-claim-03",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "正式 RAG eval 应在隔离存储中通过公开 HTTP path 执行，因为评测客户端应依赖公开 HTTP 响应，不直接读取 SQLite 或 FAISS 推断结果。通过 API 创建隔离会话、提交唯一 request ID，并从响应中的 retrieval summary、answerability 和 citations 计算指标。[S1]\n\n一次正式 eval run 必须记录 corpus version、manifest schema、gold schema、Embedding model/revision/dimension、索引 version、RAG 配置、prompt version、LLM model 和运行时间。缺少其中任何关键配置时，不应把结果与另一轮直接比较。[S2]",
+          "supporting_document_ids": [
+            "lp-rag-v1-d01",
+            "lp-rag-v1-d03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-c01",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        },
+        {
+          "document_id": "lp-rag-v1-d01",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "FAIL",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-multidoc-reprocess-identity",
+      "frozen_answer": "适合留在跨运行 gold truth 的标识是稳定 document ID。Corpus Manifest 为每篇文档分配稳定 document ID，gold case 保存 expected document IDs，且 gold contract 只保存稳定 document IDs。[S1][S2]\n\n不适合留在跨运行 gold truth 的标识包括：数据库 chunk ID、Material ID、以及每次检索产生的 source label（如 S1、S2）。Material ID 由每次隔离导入产生，chunk 主键是数据库自增整数，成功重新处理可能产生新的 chunk 主键，因此 gold case 不应持久绑定数据库 chunk ID。[S2][S3]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-multidoc-reprocess-identity",
+          "claim_id": "rag-v1-multidoc-reprocess-identity-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "适合留在跨运行 gold truth 的标识是稳定 document ID。Corpus Manifest 为每篇文档分配稳定 document ID，gold case 保存 expected document IDs，且 gold contract 只保存稳定 document IDs。[S1][S2]\n\n不适合留在跨运行 gold truth 的标识包括：数据库 chunk ID、Material ID、以及每次检索产生的 source label（如 S1、S2）。Material ID 由每次隔离导入产生，chunk 主键是数据库自增整数，成功重新处理可能产生新的 chunk 主键，因此 gold case 不应持久绑定数据库 chunk ID。[S2][S3]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a04"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-multidoc-reprocess-identity",
+          "claim_id": "rag-v1-multidoc-reprocess-identity-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "适合留在跨运行 gold truth 的标识是稳定 document ID。Corpus Manifest 为每篇文档分配稳定 document ID，gold case 保存 expected document IDs，且 gold contract 只保存稳定 document IDs。[S1][S2]\n\n不适合留在跨运行 gold truth 的标识包括：数据库 chunk ID、Material ID、以及每次检索产生的 source label（如 S1、S2）。Material ID 由每次隔离导入产生，chunk 主键是数据库自增整数，成功重新处理可能产生新的 chunk 主键，因此 gold case 不应持久绑定数据库 chunk ID。[S2][S3]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a04",
+            "lp-rag-v1-d01"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-multidoc-reprocess-identity",
+          "claim_id": "rag-v1-multidoc-reprocess-identity-claim-03",
+          "verdict": "NOT_SUPPORTED",
+          "supporting_answer_span": "",
+          "supporting_document_ids": [
+            "lp-rag-v1-d01"
+          ],
+          "review_reason": "The frozen answer omits optional chunk_index/content_hash detail.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-d03",
+          "evidence_role": "ACCEPTABLE_SUPPORT",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        },
+        {
+          "document_id": "lp-rag-v1-d01",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        },
+        {
+          "document_id": "lp-rag-v1-a04",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-rerank-agent-numeric-source",
+      "frozen_answer": "Agent 一次运行最多四个工具步骤，其中最多三个读取工具和一个写入工具。[S1]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-rerank-agent-numeric-source",
+          "claim_id": "rag-v1-rerank-agent-numeric-source-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "Agent 一次运行最多四个工具步骤，其中最多三个读取工具和一个写入工具。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-b01"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-rerank-agent-numeric-source",
+          "claim_id": "rag-v1-rerank-agent-numeric-source-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "Agent 一次运行最多四个工具步骤，其中最多三个读取工具和一个写入工具。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-b01"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-b01",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-rerank-citation-rendering",
+      "frozen_answer": "引用标记由后端确定性渲染。每个 block 的 source IDs 被去重后按声明顺序追加，全部 block 再用空行连接。[S1]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-rerank-citation-rendering",
+          "claim_id": "rag-v1-rerank-citation-rendering-claim-01",
+          "verdict": "NOT_SUPPORTED",
+          "supporting_answer_span": "",
+          "supporting_document_ids": [
+            "lp-rag-v1-a03"
+          ],
+          "review_reason": "The answer identifies backend rendering but does not separately state the optional draft prohibition.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-rerank-citation-rendering",
+          "claim_id": "rag-v1-rerank-citation-rendering-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "引用标记由后端确定性渲染。每个 block 的 source IDs 被去重后按声明顺序追加，全部 block 再用空行连接。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-a03",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-rerank-delete-order",
+      "frozen_answer": "资料删除时，系统先把 Material 标为 deletion pending，使其退出可索引集合，然后重建 FAISS；索引更新成功后才删除原始文件和 Material 数据。[S1]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-rerank-delete-order",
+          "claim_id": "rag-v1-rerank-delete-order-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "资料删除时，系统先把 Material 标为 deletion pending，使其退出可索引集合，然后重建 FAISS；索引更新成功后才删除原始文件和 Material 数据。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a04"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-rerank-delete-order",
+          "claim_id": "rag-v1-rerank-delete-order-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "资料删除时，系统先把 Material 标为 deletion pending，使其退出可索引集合，然后重建 FAISS；索引更新成功后才删除原始文件和 Material 数据。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a04"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-a04",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-rerank-confirmation-timing",
+      "frozen_answer": "写工具在用户批准并恢复（resume）之后才执行。系统在确认节点调用 interrupt 时，业务写入尚未发生，用户看到的是可检查的确认卡片；批准后以 Command(resume=...) 恢复原运行，真正的业务写入只发生在恢复后的 write-tool 节点。拒绝则不会执行写工具。[S1]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-rerank-confirmation-timing",
+          "claim_id": "rag-v1-rerank-confirmation-timing-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "写工具在用户批准并恢复（resume）之后才执行。系统在确认节点调用 interrupt 时，业务写入尚未发生，用户看到的是可检查的确认卡片；批准后以 Command(resume=...) 恢复原运行，真正的业务写入只发生在恢复后的 write-tool 节点。拒绝则不会执行写工具。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-b02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-rerank-confirmation-timing",
+          "claim_id": "rag-v1-rerank-confirmation-timing-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "写工具在用户批准并恢复（resume）之后才执行。系统在确认节点调用 interrupt 时，业务写入尚未发生，用户看到的是可检查的确认卡片；批准后以 Command(resume=...) 恢复原运行，真正的业务写入只发生在恢复后的 write-tool 节点。拒绝则不会执行写工具。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-b02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-b02",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-rerank-stream-validation",
+      "frozen_answer": "RAG SSE 不是直接转发未经校验的模型 token。后端会先验证并持久化回答，再发送事件。传输中断不会撤销已经完成的数据库事实，页面可以重新读取会话获得最终状态。[S1]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-rerank-stream-validation",
+          "claim_id": "rag-v1-rerank-stream-validation-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "RAG SSE 不是直接转发未经校验的模型 token。后端会先验证并持久化回答，再发送事件。传输中断不会撤销已经完成的数据库事实，页面可以重新读取会话获得最终状态。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-c01"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-rerank-stream-validation",
+          "claim_id": "rag-v1-rerank-stream-validation-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "RAG SSE 不是直接转发未经校验的模型 token。后端会先验证并持久化回答，再发送事件。传输中断不会撤销已经完成的数据库事实，页面可以重新读取会话获得最终状态。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-c01"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-c01",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-rerank-storage-responsibility",
+      "frozen_answer": "根据系统设计，业务库（SQLite）是 Material、Chunk、会话、消息与引用的事实来源。[S2]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-rerank-storage-responsibility",
+          "claim_id": "rag-v1-rerank-storage-responsibility-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "根据系统设计，业务库（SQLite）是 Material、Chunk、会话、消息与引用的事实来源。[S2]",
+          "supporting_document_ids": [
+            "lp-rag-v1-c02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-rerank-storage-responsibility",
+          "claim_id": "rag-v1-rerank-storage-responsibility-claim-02",
+          "verdict": "NOT_SUPPORTED",
+          "supporting_answer_span": "",
+          "supporting_document_ids": [
+            "lp-rag-v1-c02"
+          ],
+          "review_reason": "The answer omits optional checkpoint and FAISS role detail.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-c02",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-rerank-fixture-vs-corpus",
+      "frozen_answer": "为了触发单个安全断言而写入攻击句子的短文档，应归类为 test fixture，而不是 demo corpus。[S1][S3]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-rerank-fixture-vs-corpus",
+          "claim_id": "rag-v1-rerank-fixture-vs-corpus-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "为了触发单个安全断言而写入攻击句子的短文档，应归类为 test fixture，而不是 demo corpus。[S1][S3]",
+          "supporting_document_ids": [
+            "lp-rag-v1-d01"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-rerank-fixture-vs-corpus",
+          "claim_id": "rag-v1-rerank-fixture-vs-corpus-claim-02",
+          "verdict": "NOT_SUPPORTED",
+          "supporting_answer_span": "",
+          "supporting_document_ids": [
+            "lp-rag-v1-d01"
+          ],
+          "review_reason": "The answer classifies correctly but omits the optional distribution rationale.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-d01",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        },
+        {
+          "document_id": "lp-rag-v1-b03",
+          "evidence_role": "ACCEPTABLE_SUPPORT",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-citation-block-source-binding",
+      "frozen_answer": "一个可回答的 evidence block 至少需要绑定一个或多个真实支持它的 source ID，且这些 source ID 必须属于本次实际上下文。后端会验证 source ID 是否属于本次实际上下文，每个 block 是否有来源，以及正文是否为空等。[S1]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-citation-block-source-binding",
+          "claim_id": "rag-v1-citation-block-source-binding-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "一个可回答的 evidence block 至少需要绑定一个或多个真实支持它的 source ID，且这些 source ID 必须属于本次实际上下文。后端会验证 source ID 是否属于本次实际上下文，每个 block 是否有来源，以及正文是否为空等。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-citation-block-source-binding",
+          "claim_id": "rag-v1-citation-block-source-binding-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "一个可回答的 evidence block 至少需要绑定一个或多个真实支持它的 source ID，且这些 source ID 必须属于本次实际上下文。后端会验证 source ID 是否属于本次实际上下文，每个 block 是否有来源，以及正文是否为空等。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-a03",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-citation-page-section-location",
+      "frozen_answer": "构造来源位置时，优先使用页码；没有页码时使用章节标题；二者都没有时使用从 1 开始显示的片段序号。[S3]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-citation-page-section-location",
+          "claim_id": "rag-v1-citation-page-section-location-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "构造来源位置时，优先使用页码；没有页码时使用章节标题；二者都没有时使用从 1 开始显示的片段序号。[S3]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-citation-page-section-location",
+          "claim_id": "rag-v1-citation-page-section-location-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "构造来源位置时，优先使用页码；没有页码时使用章节标题；二者都没有时使用从 1 开始显示的片段序号。[S3]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-citation-page-section-location",
+          "claim_id": "rag-v1-citation-page-section-location-claim-03",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "构造来源位置时，优先使用页码；没有页码时使用章节标题；二者都没有时使用从 1 开始显示的片段序号。[S3]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-a03",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-citation-draft-vs-rendered",
+      "frozen_answer": "模型 draft 中，每个 evidence block 的正文必须使用自然 Markdown，不能自行书写引用标记。[S2]\n\n最终 rendered answer 的引用标记由后端确定性渲染：每个 block 的 source IDs 去重后按声明顺序追加，全部 block 再用空行连接。[S2]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-citation-draft-vs-rendered",
+          "claim_id": "rag-v1-citation-draft-vs-rendered-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "模型 draft 中，每个 evidence block 的正文必须使用自然 Markdown，不能自行书写引用标记。[S2]\n\n最终 rendered answer 的引用标记由后端确定性渲染：每个 block 的 source IDs 去重后按声明顺序追加，全部 block 再用空行连接。[S2]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-citation-draft-vs-rendered",
+          "claim_id": "rag-v1-citation-draft-vs-rendered-claim-02",
+          "verdict": "NOT_SUPPORTED",
+          "supporting_answer_span": "",
+          "supporting_document_ids": [
+            "lp-rag-v1-a03"
+          ],
+          "review_reason": "The frozen answer omits that draft evidence blocks bind source IDs.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-citation-draft-vs-rendered",
+          "claim_id": "rag-v1-citation-draft-vs-rendered-claim-03",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "模型 draft 中，每个 evidence block 的正文必须使用自然 Markdown，不能自行书写引用标记。[S2]\n\n最终 rendered answer 的引用标记由后端确定性渲染：每个 block 的 source IDs 去重后按声明顺序追加，全部 block 再用空行连接。[S2]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-a03",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "FAIL",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-citation-agent-vs-rag",
+      "frozen_answer": "RAG Citation 与 Agent tool-result citation 的证据绑定含义不同。RAG Citation 绑定实际送入回答模型的资料 chunk；Agent citation 绑定工具返回或资料问答结果。[S1]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-citation-agent-vs-rag",
+          "claim_id": "rag-v1-citation-agent-vs-rag-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "RAG Citation 与 Agent tool-result citation 的证据绑定含义不同。RAG Citation 绑定实际送入回答模型的资料 chunk；Agent citation 绑定工具返回或资料问答结果。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-b03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-citation-agent-vs-rag",
+          "claim_id": "rag-v1-citation-agent-vs-rag-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "RAG Citation 与 Agent tool-result citation 的证据绑定含义不同。RAG Citation 绑定实际送入回答模型的资料 chunk；Agent citation 绑定工具返回或资料问答结果。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-b03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-citation-agent-vs-rag",
+          "claim_id": "rag-v1-citation-agent-vs-rag-claim-03",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "RAG Citation 与 Agent tool-result citation 的证据绑定含义不同。RAG Citation 绑定实际送入回答模型的资料 chunk；Agent citation 绑定工具返回或资料问答结果。[S1]",
+          "supporting_document_ids": [
+            "lp-rag-v1-b03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-b03",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-citation-gold-mapping",
+      "frozen_answer": "评测器需要借助受控 corpus 导入器维护的 document_id → material_id 映射来回到稳定的 expected_document_ids。具体来说，导入器必须自行维护该映射，以避免无意重复导入；评测时，通过 response citation 中的 original filename 或映射后的 ID 判定命中。[S1][S2]\n\n在离线评测中，数据库整数 ID 是一次运行时导入的标识，不是 corpus 的稳定文档标识；因此必须用 manifest 中的 document_id 对照导入后的 Material ID。Corpus Manifest 为每篇文档分配稳定 document ID，而 FAISS Manifest 记录的是运行时派生索引的 chunk IDs 等，二者不能合并。[S4][S5]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-citation-gold-mapping",
+          "claim_id": "rag-v1-citation-gold-mapping-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "评测器需要借助受控 corpus 导入器维护的 document_id → material_id 映射来回到稳定的 expected_document_ids。具体来说，导入器必须自行维护该映射，以避免无意重复导入；评测时，通过 response citation 中的 original filename 或映射后的 ID 判定命中。[S1][S2]\n\n在离线评测中，数据库整数 ID 是一次运行时导入的标识，不是 corpus 的稳定文档标识；因此必须用 manifest 中的 document_id 对照导入后的 Material ID。Corpus Manifest 为每篇文档分配稳定 document ID，而 FAISS Manifest 记录的是运行时派生索引的 chunk IDs 等，二者不能合并。[S4][S5]",
+          "supporting_document_ids": [
+            "lp-rag-v1-d01"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-citation-gold-mapping",
+          "claim_id": "rag-v1-citation-gold-mapping-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "评测器需要借助受控 corpus 导入器维护的 document_id → material_id 映射来回到稳定的 expected_document_ids。具体来说，导入器必须自行维护该映射，以避免无意重复导入；评测时，通过 response citation 中的 original filename 或映射后的 ID 判定命中。[S1][S2]\n\n在离线评测中，数据库整数 ID 是一次运行时导入的标识，不是 corpus 的稳定文档标识；因此必须用 manifest 中的 document_id 对照导入后的 Material ID。Corpus Manifest 为每篇文档分配稳定 document ID，而 FAISS Manifest 记录的是运行时派生索引的 chunk IDs 等，二者不能合并。[S4][S5]",
+          "supporting_document_ids": [
+            "lp-rag-v1-d01"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-citation-gold-mapping",
+          "claim_id": "rag-v1-citation-gold-mapping-claim-03",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "评测器需要借助受控 corpus 导入器维护的 document_id → material_id 映射来回到稳定的 expected_document_ids。具体来说，导入器必须自行维护该映射，以避免无意重复导入；评测时，通过 response citation 中的 original filename 或映射后的 ID 判定命中。[S1][S2]\n\n在离线评测中，数据库整数 ID 是一次运行时导入的标识，不是 corpus 的稳定文档标识；因此必须用 manifest 中的 document_id 对照导入后的 Material ID。Corpus Manifest 为每篇文档分配稳定 document ID，而 FAISS Manifest 记录的是运行时派生索引的 chunk IDs 等，二者不能合并。[S4][S5]",
+          "supporting_document_ids": [
+            "lp-rag-v1-d01"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-d01",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        },
+        {
+          "document_id": "lp-rag-v1-a04",
+          "evidence_role": "ACCEPTABLE_SUPPORT",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        },
+        {
+          "document_id": "lp-rag-v1-d03",
+          "evidence_role": "ACCEPTABLE_SUPPORT",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        },
+        {
+          "document_id": "lp-rag-v1-a01",
+          "evidence_role": "ACCEPTABLE_SUPPORT",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-citation-multifact-sources",
+      "frozen_answer": "默认上下文限制：每个来源正文默认最多 2200 字符，总上下文默认最多 12000 字符。[S1]\n\ncitation snapshot 字段：每条 citation 保存 assistant message ID、source label、rank、score、chunk ID、material ID、原文件名、chunk 序号、页码、章节标题、正文摘录和学习范围快照。[S3]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-citation-multifact-sources",
+          "claim_id": "rag-v1-citation-multifact-sources-claim-01",
+          "verdict": "NOT_SUPPORTED",
+          "supporting_answer_span": "",
+          "supporting_document_ids": [
+            "lp-rag-v1-a02"
+          ],
+          "review_reason": "The frozen answer omits the six-source maximum; splitting the V1 composite fact exposes the omission.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-citation-multifact-sources",
+          "claim_id": "rag-v1-citation-multifact-sources-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "默认上下文限制：每个来源正文默认最多 2200 字符，总上下文默认最多 12000 字符。[S1]\n\ncitation snapshot 字段：每条 citation 保存 assistant message ID、source label、rank、score、chunk ID、material ID、原文件名、chunk 序号、页码、章节标题、正文摘录和学习范围快照。[S3]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-citation-multifact-sources",
+          "claim_id": "rag-v1-citation-multifact-sources-claim-03",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "默认上下文限制：每个来源正文默认最多 2200 字符，总上下文默认最多 12000 字符。[S1]\n\ncitation snapshot 字段：每条 citation 保存 assistant message ID、source label、rank、score、chunk ID、material ID、原文件名、chunk 序号、页码、章节标题、正文摘录和学习范围快照。[S3]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-citation-multifact-sources",
+          "claim_id": "rag-v1-citation-multifact-sources-claim-04",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "默认上下文限制：每个来源正文默认最多 2200 字符，总上下文默认最多 12000 字符。[S1]\n\ncitation snapshot 字段：每条 citation 保存 assistant message ID、source label、rank、score、chunk ID、material ID、原文件名、chunk 序号、页码、章节标题、正文摘录和学习范围快照。[S3]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-a02",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        },
+        {
+          "document_id": "lp-rag-v1-a03",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "FAIL",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-citation-refusal-empty",
+      "frozen_answer": "当模型合法声明资料不足时，answerable 必须为 false，blocks 必须为空数组，refusal reason 必须为非空字符串。后端不会为拒答保存 citation，因此 citations 为空。[S1][S2]",
+      "expected_answerable": true,
+      "actual_answerable": true,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-citation-refusal-empty",
+          "claim_id": "rag-v1-citation-refusal-empty-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "当模型合法声明资料不足时，answerable 必须为 false，blocks 必须为空数组，refusal reason 必须为非空字符串。后端不会为拒答保存 citation，因此 citations 为空。[S1][S2]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a03"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-citation-refusal-empty",
+          "claim_id": "rag-v1-citation-refusal-empty-claim-02",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "当模型合法声明资料不足时，answerable 必须为 false，blocks 必须为空数组，refusal reason 必须为非空字符串。后端不会为拒答保存 citation，因此 citations 为空。[S1][S2]",
+          "supporting_document_ids": [
+            "lp-rag-v1-a03",
+            "lp-rag-v1-d02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        },
+        {
+          "case_id": "rag-v1-citation-refusal-empty",
+          "claim_id": "rag-v1-citation-refusal-empty-claim-03",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "当模型合法声明资料不足时，answerable 必须为 false，blocks 必须为空数组，refusal reason 必须为非空字符串。后端不会为拒答保存 citation，因此 citations 为空。[S1][S2]",
+          "supporting_document_ids": [
+            "lp-rag-v1-d02"
+          ],
+          "review_reason": "The frozen answer states the required claim and the listed frozen corpus evidence grounds it.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [
+        {
+          "document_id": "lp-rag-v1-a03",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        },
+        {
+          "document_id": "lp-rag-v1-d02",
+          "evidence_role": "REQUIRED",
+          "materially_supports_answer": true,
+          "review_reason": "Frozen corpus content supports an answer claim."
+        }
+      ],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-unanswerable-weather",
+      "frozen_answer": "当前资料不足以可靠回答这个问题。请补充相关资料，或缩小问题范围后重试。",
+      "expected_answerable": false,
+      "actual_answerable": false,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-unanswerable-weather",
+          "claim_id": "rag-v1-unanswerable-weather-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "当前资料不足以可靠回答这个问题。请补充相关资料，或缩小问题范围后重试。",
+          "supporting_document_ids": [],
+          "review_reason": "The frozen answer correctly refuses and cites no corpus evidence for genuinely absent knowledge.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-unanswerable-medication",
+      "frozen_answer": "当前资料不足以可靠回答这个问题。请补充相关资料，或缩小问题范围后重试。",
+      "expected_answerable": false,
+      "actual_answerable": false,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-unanswerable-medication",
+          "claim_id": "rag-v1-unanswerable-medication-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "当前资料不足以可靠回答这个问题。请补充相关资料，或缩小问题范围后重试。",
+          "supporting_document_ids": [],
+          "review_reason": "The frozen answer correctly refuses and cites no corpus evidence for genuinely absent knowledge.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-unanswerable-tax-law",
+      "frozen_answer": "当前资料不足以可靠回答这个问题。请补充相关资料，或缩小问题范围后重试。",
+      "expected_answerable": false,
+      "actual_answerable": false,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-unanswerable-tax-law",
+          "claim_id": "rag-v1-unanswerable-tax-law-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "当前资料不足以可靠回答这个问题。请补充相关资料，或缩小问题范围后重试。",
+          "supporting_document_ids": [],
+          "review_reason": "The frozen answer correctly refuses and cites no corpus evidence for genuinely absent knowledge.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-unanswerable-faiss-benchmark",
+      "frozen_answer": "当前资料不足以可靠回答这个问题。请补充相关资料，或缩小问题范围后重试。",
+      "expected_answerable": false,
+      "actual_answerable": false,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-unanswerable-faiss-benchmark",
+          "claim_id": "rag-v1-unanswerable-faiss-benchmark-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "当前资料不足以可靠回答这个问题。请补充相关资料，或缩小问题范围后重试。",
+          "supporting_document_ids": [],
+          "review_reason": "The frozen answer correctly refuses and cites no corpus evidence for genuinely absent knowledge.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-unanswerable-bge-training-data",
+      "frozen_answer": "当前资料不足以可靠回答这个问题。请补充相关资料，或缩小问题范围后重试。",
+      "expected_answerable": false,
+      "actual_answerable": false,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-unanswerable-bge-training-data",
+          "claim_id": "rag-v1-unanswerable-bge-training-data-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "当前资料不足以可靠回答这个问题。请补充相关资料，或缩小问题范围后重试。",
+          "supporting_document_ids": [],
+          "review_reason": "The frozen answer correctly refuses and cites no corpus evidence for genuinely absent knowledge.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-unanswerable-langgraph-release",
+      "frozen_answer": "当前资料不足以可靠回答这个问题。请补充相关资料，或缩小问题范围后重试。",
+      "expected_answerable": false,
+      "actual_answerable": false,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-unanswerable-langgraph-release",
+          "claim_id": "rag-v1-unanswerable-langgraph-release-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "当前资料不足以可靠回答这个问题。请补充相关资料，或缩小问题范围后重试。",
+          "supporting_document_ids": [],
+          "review_reason": "The frozen answer correctly refuses and cites no corpus evidence for genuinely absent knowledge.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    },
+    {
+      "case_id": "rag-v1-unanswerable-project-accuracy",
+      "frozen_answer": "当前资料不足以可靠回答这个问题。请补充相关资料，或缩小问题范围后重试。",
+      "expected_answerable": false,
+      "actual_answerable": false,
+      "answerability_correct": true,
+      "claim_reviews": [
+        {
+          "case_id": "rag-v1-unanswerable-project-accuracy",
+          "claim_id": "rag-v1-unanswerable-project-accuracy-claim-01",
+          "verdict": "SUPPORTED",
+          "supporting_answer_span": "当前资料不足以可靠回答这个问题。请补充相关资料，或缩小问题范围后重试。",
+          "supporting_document_ids": [],
+          "review_reason": "The frozen answer correctly refuses and cites no corpus evidence for genuinely absent knowledge.",
+          "reviewer_mode": "AI_ASSISTED_MANUAL",
+          "review_version": "v2.0.0"
+        }
+      ],
+      "citation_reviews": [],
+      "case_verdict": "PASS",
+      "reviewer_mode": "AI_ASSISTED_MANUAL",
+      "review_version": "v2.0.0",
+      "review_notes": "Gold was fixed before answer comparison; verdict uses the frozen baseline answer."
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, ForeignKey, Index, Integer, String, Text, UniqueConstraint
+from sqlalchemy import Boolean, ForeignKey, Index, Integer, JSON, String, Text, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.db.base import Base, TimestampMixin
@@ -36,6 +36,7 @@ class RagMessage(TimestampMixin, Base):
     request_id: Mapped[str | None] = mapped_column(String(64), nullable=True)
     original_query: Mapped[str | None] = mapped_column(String(2000), nullable=True)
     retrieval_query: Mapped[str | None] = mapped_column(String(2000), nullable=True)
+    retrieval_scope: Mapped[dict] = mapped_column(JSON, default=dict, nullable=False)
     answerable: Mapped[bool | None] = mapped_column(Boolean, nullable=True)
     refusal_reason: Mapped[str | None] = mapped_column(String(64), nullable=True)
     prompt_version: Mapped[str | None] = mapped_column(String(64), nullable=True)

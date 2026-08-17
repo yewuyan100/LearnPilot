@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import Boolean, ForeignKey, Index, JSON, String, Text, UniqueConstraint
+from sqlalchemy import Boolean, CheckConstraint, ForeignKey, Index, JSON, String, Text, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.db.base import Base, TimestampMixin
@@ -8,11 +8,21 @@ from app.db.base import Base, TimestampMixin
 
 class AgentConversation(TimestampMixin, Base):
     __tablename__ = "agent_conversations"
+    __table_args__ = (
+        CheckConstraint(
+            "(context_type = 'general' AND context_id IS NULL) OR "
+            "(context_type IN ('goal', 'material', 'lesson') AND context_id IS NOT NULL)",
+            name="ck_agent_conversation_context_valid",
+        ),
+        Index("ix_agent_conversations_context", "context_type", "context_id", "updated_at"),
+    )
 
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = mapped_column(String(200), nullable=False)
     status: Mapped[str] = mapped_column(String(24), default="active", index=True)
     thread_id: Mapped[str] = mapped_column(String(64), unique=True, nullable=False)
+    context_type: Mapped[str] = mapped_column(String(16), default="general", nullable=False)
+    context_id: Mapped[int | None] = mapped_column(nullable=True)
     last_message_at: Mapped[datetime | None] = mapped_column(nullable=True)
 
 
@@ -36,6 +46,9 @@ class AgentRun(TimestampMixin, Base):
     )
 
     id: Mapped[int] = mapped_column(primary_key=True)
+    harness_run_id: Mapped[int | None] = mapped_column(
+        ForeignKey("harness_runs.id", ondelete="RESTRICT"), nullable=True, index=True
+    )
     conversation_id: Mapped[int] = mapped_column(ForeignKey("agent_conversations.id", ondelete="CASCADE"), index=True)
     request_id: Mapped[str] = mapped_column(String(64), nullable=False)
     input_text: Mapped[str] = mapped_column(Text, nullable=False)

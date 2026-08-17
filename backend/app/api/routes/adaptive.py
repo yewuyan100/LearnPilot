@@ -1,11 +1,31 @@
 from fastapi import APIRouter, Query
 
-from app.api.deps import AppSettings, DbSession
+from app.api.deps import AppClock, AppSettings, DbSession
+from app.core.errors import AppError
 from app.schemas.daily_task import DailyTaskRead
 from app.services.adaptive_learning.schemas import RecommendationDecisionRequest, RecommendationRead
 from app.services.adaptive_learning.service import AdaptiveLearningService
+from app.services.adaptive_learning.lifecycle import adaptive_refresh_status, retry_adaptive_refresh
 
 router = APIRouter(prefix="/adaptive-recommendations", tags=["adaptive recommendations"])
+
+
+@router.get("/refresh-status/{knowledge_point_id}")
+def get_refresh_status(knowledge_point_id: int, db: DbSession) -> dict:
+    return adaptive_refresh_status(db, knowledge_point_id) or {
+        "status": "idle",
+        "entity_id": str(knowledge_point_id),
+    }
+
+
+@router.post("/refresh-tasks/{task_id}/retry")
+def retry_refresh_task(
+    task_id: int, db: DbSession, settings: AppSettings, clock: AppClock
+) -> dict:
+    try:
+        return retry_adaptive_refresh(db, settings, task_id, clock=clock)
+    except ValueError as exc:
+        raise AppError("adaptive_refresh_task_not_found", "掌握状态更新任务不存在", 404) from exc
 
 
 @router.get("", response_model=list[RecommendationRead])

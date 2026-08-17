@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime, timezone
 from hashlib import sha256
 from math import ceil
 
@@ -10,6 +9,7 @@ from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from app.core.config import Settings
+from app.core.clock import clock_from_settings
 from app.core.errors import AppError
 from app.models.activity_question import ActivityQuestion
 from app.models.course import Course
@@ -30,6 +30,7 @@ class WrongAnswerService:
     def __init__(self, db: Session, settings: Settings):
         self.db = db
         self.settings = settings
+        self.clock = clock_from_settings(settings)
 
     def create_for_attempt(
         self,
@@ -89,7 +90,7 @@ class WrongAnswerService:
             return
         mapping = activity.source_scope.get("wrong_answer_map") or {}
         by_question = {answer.question_id: answer for answer in answers}
-        now = datetime.now(timezone.utc)
+        now = self.clock.now()
         for question in questions:
             wrong_id = mapping.get(str(question.id))
             if not wrong_id:
@@ -212,7 +213,7 @@ class WrongAnswerService:
         wrong = self._get(wrong_id)
         wrong.status = value
         if value == "resolved":
-            wrong.resolved_at = datetime.now(timezone.utc)
+            wrong.resolved_at = self.clock.now()
         elif value in {"active", "dismissed"}:
             wrong.resolved_at = None
         self.db.commit()
@@ -220,6 +221,7 @@ class WrongAnswerService:
         try_refresh_adaptive_learning(
             self.db, self.settings, wrong.knowledge_point_id,
             trigger_type="review_completed", trigger_source_id=wrong.id,
+            clock=self.clock,
         )
         return self._serialize(wrong)
 
@@ -282,7 +284,7 @@ class WrongAnswerService:
             generation_config_hash=config_hash,
             prompt_version="wrong-answer-review-v1",
             model_name=None,
-            published_at=datetime.now(timezone.utc),
+            published_at=self.clock.now(),
         )
         self.db.add(activity)
         self.db.flush()
@@ -337,7 +339,7 @@ class WrongAnswerService:
             activity_id=activity.id,
             learning_session_id=learning_session_id,
             status="in_progress",
-            started_at=datetime.now(timezone.utc),
+            started_at=self.clock.now(),
         )
         self.db.add(attempt)
         self.db.commit()

@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import json
 import logging
-from datetime import datetime, timezone
 from hashlib import sha256
 from math import ceil
 from threading import Lock
@@ -12,9 +11,11 @@ from sqlalchemy import delete, func, select
 from sqlalchemy.orm import Session
 
 from app.core.config import Settings
+from app.core.clock import clock_from_settings
 from app.core.errors import AppError
 from app.models.activity_question import ActivityQuestion
 from app.models.course import Course
+from app.models.learning_goal import LearningGoal
 from app.models.knowledge_point import KnowledgePoint
 from app.models.learning_activity import LearningActivity
 from app.models.question_source import QuestionSource
@@ -40,6 +41,7 @@ from app.services.learning_activities.validator import (
     validate_generated_activity,
 )
 from app.services.llm.base import LLMProvider
+from app.services.material_learning import MaterialScopeResolver
 
 
 logger = logging.getLogger("personal_learning.activities")
@@ -63,6 +65,7 @@ class ActivityGenerationService:
         self.settings = settings
         self.embedder = embedder
         self.provider = provider
+        self.clock = clock_from_settings(settings)
 
     def _get(self, activity_id: int) -> LearningActivity:
         activity = self.db.get(LearningActivity, activity_id)
@@ -75,12 +78,22 @@ class ActivityGenerationService:
             )
         return activity
 
-    def _validate_scope(self, request: ActivityGenerateRequest) -> tuple[Course | None, KnowledgePoint | None]:
+    def _validate_scope(
+        self, request: ActivityGenerateRequest
+    ) -> tuple[LearningGoal | None, Course | None, KnowledgePoint | None]:
         if request.question_count > self.settings.activity_max_question_count:
             raise AppError(
                 "activity_generation_invalid",
                 f"题目数量不能超过 {self.settings.activity_max_question_count}",
                 status.HTTP_422_UNPROCESSABLE_ENTITY,
+            )
+        goal = (
+            self.db.get(LearningGoal, request.learning_goal_id)
+            if request.learning_goal_id else None
+        )
+        if request.learning_goal_id and goal is None:
+            raise AppError(
+                "learning_goal_not_found", "学习目标不存在", status.HTTP_404_NOT_FOUND
             )
         course = self.db.get(Course, request.course_id) if request.course_id else None
         if request.course_id and course is None:
@@ -100,7 +113,20 @@ class ActivityGenerationService:
                 "知识点不属于所选课程",
                 status.HTTP_422_UNPROCESSABLE_ENTITY,
             )
-        return course, point
+        point_course = self.db.get(Course, point.course_id) if point else None
+        if goal and course and course.learning_goal_id != goal.id:
+            raise AppError(
+                "activity_generation_invalid",
+                "课程不属于所选学习目标",
+                status.HTTP_422_UNPROCESSABLE_ENTITY,
+            )
+        if goal and point_course and point_course.learning_goal_id != goal.id:
+            raise AppError(
+                "activity_generation_invalid",
+                "知识点不属于所选学习目标",
+                status.HTTP_422_UNPROCESSABLE_ENTITY,
+            )
+        return goal, course, point
 
     def generate(self, request: ActivityGenerateRequest) -> ActivityDetail:
         with ACTIVITY_GENERATION_LOCK:
@@ -122,7 +148,7 @@ class ActivityGenerationService:
                     status.HTTP_409_CONFLICT,
                 )
             return self.detail(existing.id, include_secrets=True)
-        course, point = self._validate_scope(request)
+        goal, course, point = self._validate_scope(request)
         query_parts = [
             point.title if point else "",
             point.description if point else "",
@@ -131,13 +157,43 @@ class ActivityGenerationService:
             request.description,
         ]
         query = " ".join(part.strip() for part in query_parts if part and part.strip())
-        sources = retrieve_activity_sources(
-            db=self.db,
-            settings=self.settings,
-            embedder=self.embedder,
-            query=query,
-            material_ids=request.material_ids,
-        )
+        if request.source_mode == "materials":
+            scope = MaterialScopeResolver(self.db).resolve_combined_scope(
+                learning_goal_id=request.learning_goal_id,
+                course_id=request.course_id,
+                knowledge_point_id=request.knowledge_point_id,
+                material_ids=request.material_ids,
+                searchable_only=True,
+            )
+            if scope.empty:
+                raise AppError(
+                    "activity_source_scope_empty",
+                    "所选学习范围还没有可用于生成活动的已索引资料",
+                    status.HTTP_422_UNPROCESSABLE_ENTITY,
+                    {"requested_scope": scope.requested_scope},
+                )
+            sources = retrieve_activity_sources(
+                db=self.db,
+                settings=self.settings,
+                embedder=self.embedder,
+                query=query,
+                material_ids=scope.resolved_material_ids,
+            )
+            scope_record = {
+                "requested_scope": scope.requested_scope,
+                "resolved_material_ids": scope.resolved_material_ids,
+            }
+        else:
+            sources = []
+            scope_record = {
+                "requested_scope": {
+                    "learning_goal_id": request.learning_goal_id,
+                    "course_id": request.course_id,
+                    "knowledge_point_id": request.knowledge_point_id,
+                    "material_ids": None,
+                },
+                "resolved_material_ids": [],
+            }
         if self.provider is None:
             raise AppError(
                 "llm_not_configured",
@@ -159,7 +215,9 @@ class ActivityGenerationService:
             knowledge_point_id=point.id if point else None,
             source_scope={
                 "kind": "generated",
-                "material_ids": request.material_ids,
+                "source_mode": request.source_mode,
+                "material_ids": scope_record["resolved_material_ids"],
+                **scope_record,
                 "difficulty": request.difficulty,
                 "question_types": [item.value for item in request.question_types],
             },
@@ -317,6 +375,7 @@ class ActivityGenerationService:
                 "course_title": course_title,
                 "knowledge_point_title": point_title,
                 "completed_attempt_count": completed,
+                "source_scope": activity.source_scope,
             }
         )
 
@@ -502,13 +561,16 @@ class ActivityGenerationService:
                     }
                 )
             )
+        requested_scope = activity.source_scope.get("requested_scope") or {}
         request = ActivityGenerateRequest.model_validate(
             {
                 "title": activity.title,
                 "description": activity.description,
                 "course_id": activity.course_id,
                 "knowledge_point_id": activity.knowledge_point_id,
+                "learning_goal_id": requested_scope.get("learning_goal_id"),
                 "material_ids": activity.source_scope.get("material_ids"),
+                "source_mode": activity.source_scope.get("source_mode", "materials"),
                 "question_types": list(
                     dict.fromkeys(question.question_type for question in questions)
                 ),
@@ -535,6 +597,6 @@ class ActivityGenerationService:
             )
         activity.validation_warnings = report.warnings
         activity.status = "published"
-        activity.published_at = datetime.now(timezone.utc)
+        activity.published_at = self.clock.now()
         self.db.commit()
         return self.detail(activity.id, include_secrets=False)

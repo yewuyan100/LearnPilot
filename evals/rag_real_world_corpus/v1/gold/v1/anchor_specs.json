@@ -1,0 +1,825 @@
+{
+  "schema_version": "1.0.0",
+  "status": "LOCATOR_SPECS_UNFROZEN",
+  "anchor_count": 89,
+  "anchors": [
+    {
+      "id": "bge-capabilities",
+      "doc": "rw-rag-bge-m3",
+      "lines": [
+        3,
+        6
+      ],
+      "section": "BGE-M3 introduction",
+      "region": "early"
+    },
+    {
+      "id": "bge-pipeline",
+      "doc": "rw-rag-bge-m3",
+      "lines": [
+        10,
+        21
+      ],
+      "section": "Suggestions for retrieval pipeline in RAG",
+      "region": "early"
+    },
+    {
+      "id": "bge-miracl-correction",
+      "doc": "rw-rag-bge-m3",
+      "lines": [
+        24,
+        38
+      ],
+      "section": "News",
+      "region": "early"
+    },
+    {
+      "id": "bge-specs",
+      "doc": "rw-rag-bge-m3",
+      "lines": [
+        42,
+        53
+      ],
+      "section": "Specs",
+      "region": "early"
+    },
+    {
+      "id": "bge-methods",
+      "doc": "rw-rag-bge-m3",
+      "lines": [
+        64,
+        70
+      ],
+      "section": "FAQ: different retrieval methods",
+      "region": "early"
+    },
+    {
+      "id": "bge-no-query-instruction",
+      "doc": "rw-rag-bge-m3",
+      "lines": [
+        73,
+        79
+      ],
+      "section": "FAQ: use in other projects",
+      "region": "middle"
+    },
+    {
+      "id": "bge-dense-usage",
+      "doc": "rw-rag-bge-m3",
+      "lines": [
+        109,
+        132
+      ],
+      "section": "Generate Embedding for text: Dense Embedding",
+      "region": "middle"
+    },
+    {
+      "id": "bge-sparse-usage",
+      "doc": "rw-rag-bge-m3",
+      "lines": [
+        136,
+        162
+      ],
+      "section": "Sparse Embedding (Lexical Weight)",
+      "region": "middle"
+    },
+    {
+      "id": "bge-score-weights",
+      "doc": "rw-rag-bge-m3",
+      "lines": [
+        184,
+        207
+      ],
+      "section": "Compute score for text pairs",
+      "region": "deep"
+    },
+    {
+      "id": "bge-long-eval",
+      "doc": "rw-rag-bge-m3",
+      "lines": [
+        224,
+        252
+      ],
+      "section": "Evaluation: Our results",
+      "region": "deep"
+    },
+    {
+      "id": "bge-training",
+      "doc": "rw-rag-bge-m3",
+      "lines": [
+        258,
+        266
+      ],
+      "section": "Training",
+      "region": "deep"
+    },
+    {
+      "id": "faiss-purpose",
+      "doc": "rw-rag-faiss-overview",
+      "lines": [
+        1,
+        3
+      ],
+      "section": "Faiss",
+      "region": "early"
+    },
+    {
+      "id": "faiss-distance",
+      "doc": "rw-rag-faiss-overview",
+      "lines": [
+        9,
+        15
+      ],
+      "section": "Introduction",
+      "region": "early"
+    },
+    {
+      "id": "faiss-install",
+      "doc": "rw-rag-faiss-overview",
+      "lines": [
+        17,
+        19
+      ],
+      "section": "Installing",
+      "region": "middle"
+    },
+    {
+      "id": "faiss-tradeoffs",
+      "doc": "rw-rag-faiss-overview",
+      "lines": [
+        21,
+        32
+      ],
+      "section": "How Faiss works",
+      "region": "middle"
+    },
+    {
+      "id": "faiss-docs",
+      "doc": "rw-rag-faiss-overview",
+      "lines": [
+        34,
+        41
+      ],
+      "section": "Full documentation of Faiss",
+      "region": "deep"
+    },
+    {
+      "id": "faiss-license",
+      "doc": "rw-rag-faiss-overview",
+      "lines": [
+        88,
+        92
+      ],
+      "section": "Legal",
+      "region": "deep"
+    },
+    {
+      "id": "agent-overview-purpose",
+      "doc": "rw-agent-langgraph-overview",
+      "lines": [
+        22,
+        33
+      ],
+      "section": "Repository overview",
+      "region": "early"
+    },
+    {
+      "id": "agent-overview-capabilities",
+      "doc": "rw-agent-langgraph-overview",
+      "lines": [
+        35,
+        46
+      ],
+      "section": "Why use LangGraph?",
+      "region": "middle"
+    },
+    {
+      "id": "agent-overview-ecosystem",
+      "doc": "rw-agent-langgraph-overview",
+      "lines": [
+        48,
+        57
+      ],
+      "section": "LangGraph ecosystem",
+      "region": "middle"
+    },
+    {
+      "id": "agent-overview-resources",
+      "doc": "rw-agent-langgraph-overview",
+      "lines": [
+        61,
+        75
+      ],
+      "section": "Documentation and Additional resources",
+      "region": "deep"
+    },
+    {
+      "id": "agent-overview-inspiration",
+      "doc": "rw-agent-langgraph-overview",
+      "lines": [
+        80,
+        82
+      ],
+      "section": "Acknowledgements",
+      "region": "deep"
+    },
+    {
+      "id": "persist-overview",
+      "doc": "rw-agent-persistence",
+      "lines": [
+        14,
+        21
+      ],
+      "section": "Persistence overview",
+      "region": "early"
+    },
+    {
+      "id": "persist-quickstart",
+      "doc": "rw-agent-persistence",
+      "lines": [
+        23,
+        63
+      ],
+      "section": "Quickstart",
+      "region": "early"
+    },
+    {
+      "id": "persist-comparison",
+      "doc": "rw-agent-persistence",
+      "lines": [
+        65,
+        74
+      ],
+      "section": "Checkpointer vs. store",
+      "region": "middle"
+    },
+    {
+      "id": "persist-thread-id",
+      "doc": "rw-agent-persistence",
+      "lines": [
+        78,
+        89
+      ],
+      "section": "PostgresSaver: thread_id too long",
+      "region": "middle"
+    },
+    {
+      "id": "persist-memorysaver",
+      "doc": "rw-agent-persistence",
+      "lines": [
+        92,
+        100
+      ],
+      "section": "MemorySaver does not persist between restarts",
+      "region": "middle"
+    },
+    {
+      "id": "persist-pruning",
+      "doc": "rw-agent-persistence",
+      "lines": [
+        101,
+        114
+      ],
+      "section": "Checkpoints growing unboundedly",
+      "region": "deep"
+    },
+    {
+      "id": "persist-subgraph",
+      "doc": "rw-agent-persistence",
+      "lines": [
+        117,
+        126
+      ],
+      "section": "State access from parent graph to subgraph",
+      "region": "deep"
+    },
+    {
+      "id": "interrupt-mechanism",
+      "doc": "rw-agent-interrupts",
+      "page": 2,
+      "region": "early",
+      "contains": "Graph execution gets suspended"
+    },
+    {
+      "id": "interrupt-resume",
+      "doc": "rw-agent-interrupts",
+      "page": 3,
+      "region": "early",
+      "contains": "thread_id is the durable pointer back to the saved checkpoint"
+    },
+    {
+      "id": "interrupt-streaming",
+      "doc": "rw-agent-interrupts",
+      "page": 4,
+      "region": "early",
+      "contains": "Detect interrupts via"
+    },
+    {
+      "id": "interrupt-multiple",
+      "doc": "rw-agent-interrupts",
+      "page": 5,
+      "region": "middle",
+      "contains": "resume all pending interrupts at once"
+    },
+    {
+      "id": "interrupt-approval",
+      "doc": "rw-agent-interrupts",
+      "page": 6,
+      "region": "middle",
+      "contains": "pass `True` to approve or `False` to reject"
+    },
+    {
+      "id": "interrupt-review-edit",
+      "doc": "rw-agent-interrupts",
+      "page": 8,
+      "region": "middle",
+      "contains": "Review and edit this content"
+    },
+    {
+      "id": "interrupt-tool-approval",
+      "doc": "rw-agent-interrupts",
+      "page": 9,
+      "region": "middle",
+      "contains": "Approve sending this email"
+    },
+    {
+      "id": "interrupt-validation",
+      "doc": "rw-agent-interrupts",
+      "page": 13,
+      "region": "deep",
+      "contains": "exactly once per invocation"
+    },
+    {
+      "id": "interrupt-restart-rule",
+      "doc": "rw-agent-interrupts",
+      "page": 14,
+      "region": "deep",
+      "contains": "Rules of interrupts"
+    },
+    {
+      "id": "interrupt-try-catch",
+      "doc": "rw-agent-interrupts",
+      "page": 15,
+      "region": "deep",
+      "contains": "Conditionally handling errors"
+    },
+    {
+      "id": "interrupt-order",
+      "doc": "rw-agent-interrupts",
+      "page": 16,
+      "region": "deep",
+      "contains": "same order every time"
+    },
+    {
+      "id": "interrupt-serializable",
+      "doc": "rw-agent-interrupts",
+      "page": 17,
+      "region": "deep",
+      "contains": "simple, JSON-serializable types"
+    },
+    {
+      "id": "interrupt-complex-values",
+      "doc": "rw-agent-interrupts",
+      "page": 18,
+      "region": "deep",
+      "contains": "function cannot be serialized"
+    },
+    {
+      "id": "interrupt-side-effects",
+      "doc": "rw-agent-interrupts",
+      "page": 19,
+      "region": "deep",
+      "contains": "Use idempotent operations before"
+    },
+    {
+      "id": "interrupt-side-effects-nodes",
+      "doc": "rw-agent-interrupts",
+      "page": 20,
+      "region": "deep",
+      "contains": "Separating into different nodes"
+    },
+    {
+      "id": "interrupt-duplicate-risk",
+      "doc": "rw-agent-interrupts",
+      "page": 21,
+      "region": "deep",
+      "contains": "create duplicate records on each resume"
+    },
+    {
+      "id": "interrupt-static",
+      "doc": "rw-agent-interrupts",
+      "page": 22,
+      "region": "deep",
+      "contains": "static interrupts as breakpoints"
+    },
+    {
+      "id": "interrupt-runtime-static",
+      "doc": "rw-agent-interrupts",
+      "page": 23,
+      "region": "deep",
+      "contains": "run-time configuration"
+    },
+    {
+      "id": "async-tldr",
+      "doc": "rw-backend-fastapi-async",
+      "lines": [
+        5,
+        53
+      ],
+      "section": "In a hurry?",
+      "region": "early"
+    },
+    {
+      "id": "async-io-bound",
+      "doc": "rw-backend-fastapi-async",
+      "lines": [
+        67,
+        94
+      ],
+      "section": "Asynchronous Code",
+      "region": "early"
+    },
+    {
+      "id": "async-concurrency-web",
+      "doc": "rw-backend-fastapi-async",
+      "lines": [
+        236,
+        260
+      ],
+      "section": "Burger Conclusion",
+      "region": "middle"
+    },
+    {
+      "id": "async-cpu-bound",
+      "doc": "rw-backend-fastapi-async",
+      "lines": [
+        270,
+        301
+      ],
+      "section": "Concurrency + Parallelism",
+      "region": "middle"
+    },
+    {
+      "id": "async-await-rules",
+      "doc": "rw-backend-fastapi-async",
+      "lines": [
+        303,
+        360
+      ],
+      "section": "async and await",
+      "region": "deep"
+    },
+    {
+      "id": "async-anyio",
+      "doc": "rw-backend-fastapi-async",
+      "lines": [
+        364,
+        386
+      ],
+      "section": "Write your own async code",
+      "region": "deep"
+    },
+    {
+      "id": "async-coroutine",
+      "doc": "rw-backend-fastapi-async",
+      "lines": [
+        388,
+        402
+      ],
+      "section": "Coroutines",
+      "region": "deep"
+    },
+    {
+      "id": "async-threadpool",
+      "doc": "rw-backend-fastapi-async",
+      "lines": [
+        416,
+        438
+      ],
+      "section": "Very Technical Details",
+      "region": "deep"
+    },
+    {
+      "id": "deps-meaning",
+      "doc": "rw-backend-fastapi-dependencies",
+      "lines": [
+        7,
+        20
+      ],
+      "section": "What is Dependency Injection",
+      "region": "early"
+    },
+    {
+      "id": "deps-dependable",
+      "doc": "rw-backend-fastapi-dependencies",
+      "lines": [
+        28,
+        52
+      ],
+      "section": "Create a dependency",
+      "region": "early"
+    },
+    {
+      "id": "deps-call",
+      "doc": "rw-backend-fastapi-dependencies",
+      "lines": [
+        68,
+        113
+      ],
+      "section": "Declare the dependency",
+      "region": "middle"
+    },
+    {
+      "id": "deps-annotated",
+      "doc": "rw-backend-fastapi-dependencies",
+      "lines": [
+        117,
+        141
+      ],
+      "section": "Share Annotated dependencies",
+      "region": "middle"
+    },
+    {
+      "id": "deps-mixed-async",
+      "doc": "rw-backend-fastapi-dependencies",
+      "lines": [
+        143,
+        155
+      ],
+      "section": "To async or not to async",
+      "region": "middle"
+    },
+    {
+      "id": "deps-openapi",
+      "doc": "rw-backend-fastapi-dependencies",
+      "lines": [
+        159,
+        175
+      ],
+      "section": "Integrated with OpenAPI",
+      "region": "deep"
+    },
+    {
+      "id": "deps-hierarchy",
+      "doc": "rw-backend-fastapi-dependencies",
+      "lines": [
+        206,
+        250
+      ],
+      "section": "Simple and Powerful",
+      "region": "deep"
+    },
+    {
+      "id": "errors-client-range",
+      "doc": "rw-backend-fastapi-errors",
+      "lines": [
+        3,
+        20
+      ],
+      "section": "Handling Errors",
+      "region": "early"
+    },
+    {
+      "id": "errors-http-exception",
+      "doc": "rw-backend-fastapi-errors",
+      "lines": [
+        22,
+        68
+      ],
+      "section": "Use HTTPException",
+      "region": "early"
+    },
+    {
+      "id": "errors-custom-headers",
+      "doc": "rw-backend-fastapi-errors",
+      "lines": [
+        72,
+        80
+      ],
+      "section": "Add custom headers",
+      "region": "middle"
+    },
+    {
+      "id": "errors-custom-handler",
+      "doc": "rw-backend-fastapi-errors",
+      "lines": [
+        82,
+        108
+      ],
+      "section": "Install custom exception handlers",
+      "region": "middle"
+    },
+    {
+      "id": "errors-override-validation",
+      "doc": "rw-backend-fastapi-errors",
+      "lines": [
+        112,
+        154
+      ],
+      "section": "Override request validation exceptions",
+      "region": "middle"
+    },
+    {
+      "id": "errors-leak-warning",
+      "doc": "rw-backend-fastapi-errors",
+      "lines": [
+        172,
+        186
+      ],
+      "section": "RequestValidationError body warning",
+      "region": "deep"
+    },
+    {
+      "id": "errors-fastapi-starlette",
+      "doc": "rw-backend-fastapi-errors",
+      "lines": [
+        218,
+        236
+      ],
+      "section": "FastAPI HTTPException vs Starlette HTTPException",
+      "region": "deep"
+    },
+    {
+      "id": "errors-reuse-handlers",
+      "doc": "rw-backend-fastapi-errors",
+      "lines": [
+        238,
+        244
+      ],
+      "section": "Reuse FastAPI exception handlers",
+      "region": "deep"
+    },
+    {
+      "id": "ragas-components",
+      "doc": "rw-eval-ragas-workflow",
+      "lines": [
+        23,
+        29
+      ],
+      "section": "Build a Simple RAG System",
+      "region": "early"
+    },
+    {
+      "id": "ragas-simple-retriever",
+      "doc": "rw-eval-ragas-workflow",
+      "lines": [
+        46,
+        73
+      ],
+      "section": "Simple RAG implementation",
+      "region": "early"
+    },
+    {
+      "id": "ragas-collect-data",
+      "doc": "rw-eval-ragas-workflow",
+      "lines": [
+        116,
+        164
+      ],
+      "section": "Collect Evaluation Data",
+      "region": "middle"
+    },
+    {
+      "id": "ragas-evaluate",
+      "doc": "rw-eval-ragas-workflow",
+      "lines": [
+        166,
+        185
+      ],
+      "section": "Evaluate",
+      "region": "deep"
+    },
+    {
+      "id": "ragas-embedding-interface",
+      "doc": "rw-eval-ragas-workflow",
+      "lines": [
+        20,
+        21
+      ],
+      "section": "OpenAI Embeddings API note",
+      "region": "early"
+    },
+    {
+      "id": "precision-definition",
+      "doc": "rw-eval-context-precision",
+      "lines": [
+        1,
+        15
+      ],
+      "section": "Context Precision",
+      "region": "early"
+    },
+    {
+      "id": "precision-reference-response",
+      "doc": "rw-eval-context-precision",
+      "lines": [
+        19,
+        66
+      ],
+      "section": "Context Precision and Context Utilization",
+      "region": "early"
+    },
+    {
+      "id": "precision-rank-effect",
+      "doc": "rw-eval-context-precision",
+      "lines": [
+        63,
+        113
+      ],
+      "section": "Context Utilization rank example",
+      "region": "middle"
+    },
+    {
+      "id": "precision-deprecation",
+      "doc": "rw-eval-context-precision",
+      "lines": [
+        115,
+        121
+      ],
+      "section": "Legacy Metrics API",
+      "region": "middle"
+    },
+    {
+      "id": "precision-without-reference",
+      "doc": "rw-eval-context-precision",
+      "lines": [
+        144,
+        167
+      ],
+      "section": "Context Precision without reference",
+      "region": "middle"
+    },
+    {
+      "id": "precision-with-reference",
+      "doc": "rw-eval-context-precision",
+      "lines": [
+        170,
+        193
+      ],
+      "section": "Context Precision with reference",
+      "region": "deep"
+    },
+    {
+      "id": "precision-nonllm",
+      "doc": "rw-eval-context-precision",
+      "lines": [
+        196,
+        225
+      ],
+      "section": "Non LLM Based Context Precision",
+      "region": "deep"
+    },
+    {
+      "id": "precision-id-based",
+      "doc": "rw-eval-context-precision",
+      "lines": [
+        227,
+        257
+      ],
+      "section": "ID Based Context Precision",
+      "region": "deep"
+    },
+    {
+      "id": "otel-trace-overview",
+      "doc": "rw-eval-otel-traces",
+      "page": 1,
+      "region": "early",
+      "contains": "give us the big picture"
+    },
+    {
+      "id": "otel-parent-child",
+      "doc": "rw-eval-otel-traces",
+      "page": 2,
+      "region": "early",
+      "contains": "indicating it's a part of the same trace"
+    },
+    {
+      "id": "otel-propagation-span",
+      "doc": "rw-eval-otel-traces",
+      "page": 3,
+      "region": "middle",
+      "contains": "Context Propagation is the core concept"
+    },
+    {
+      "id": "otel-attributes-events",
+      "doc": "rw-eval-otel-traces",
+      "page": 4,
+      "region": "middle",
+      "contains": "Attributes are key-value pairs"
+    },
+    {
+      "id": "otel-links-status",
+      "doc": "rw-eval-otel-traces",
+      "page": 5,
+      "region": "deep",
+      "contains": "The three possible values are"
+    },
+    {
+      "id": "otel-async-spans",
+      "doc": "rw-eval-otel-traces",
+      "page": 6,
+      "region": "deep",
+      "contains": "start long after the producer span"
+    }
+  ]
+}

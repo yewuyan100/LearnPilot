@@ -1,0 +1,723 @@
+{
+  "schema_version": "1.0.0",
+  "schema_ref": "draft_shard.schema.json",
+  "draft_status": "UNVERIFIED",
+  "case_type": "long_doc_localization",
+  "expected_case_count": 10,
+  "cases": [
+    {
+      "case_id": "rw-gold-v1-long-bge-query-instruction",
+      "tier": "CORE",
+      "case_type": "long_doc_localization",
+      "information_need_key": "long-bge-query-instruction",
+      "question": "BGE-M3 用于 embedding retrieval 时，相比普通 BGE，query 预处理上有什么唯一差异？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "rag_retrieval",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "middle",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-long-bge-query-instruction-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-rag-bge-m3"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-bge-no-query-instruction"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-long-bge-query-instruction-claim-01",
+          "canonical_claim": "BGE-M3 no longer requires adding instructions to queries.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-long-bge-query-instruction-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-long-bge-query-instruction-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-long-bge-score-mix",
+      "tier": "CORE",
+      "case_type": "long_doc_localization",
+      "information_need_key": "long-bge-score-mix",
+      "question": "BGE-M3 文档的 text-pair 评分示例如何把 dense、sparse 和 ColBERT 三种得分组合起来？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "rag_retrieval",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "deep",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-long-bge-score-mix-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-rag-bge-m3"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-bge-score-weights"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-long-bge-score-mix-claim-01",
+          "canonical_claim": "compute_score accepts weights_for_different_modes and forms a weighted sum of dense, sparse, and ColBERT scores.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-long-bge-score-mix-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-bge-score-mix-claim-02",
+          "canonical_claim": "The shown weights are 0.4, 0.2, and 0.4.",
+          "required": true,
+          "evaluation_mode": "STRUCTURED_EXACT",
+          "evidence_group_ids": [
+            "eg-rw-long-bge-score-mix-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups.",
+          "deterministic_match": {
+            "all_terms": [
+              "0.4",
+              "0.2"
+            ]
+          }
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-long-bge-score-mix-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-long-bge-training",
+      "tier": "CORE",
+      "case_type": "long_doc_localization",
+      "information_need_key": "long-bge-training",
+      "question": "BGE-M3 的训练部分怎样同时处理多检索模式监督、长文本批处理效率和资源不足时的长文本能力？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "rag_retrieval",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "deep",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-long-bge-training-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-rag-bge-m3"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-bge-training"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-long-bge-training-claim-01",
+          "canonical_claim": "Self-knowledge distillation combines outputs from multiple retrieval modes as reward signals.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-long-bge-training-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-bge-training-claim-02",
+          "canonical_claim": "Efficient batching targets long-text fine-tuning efficiency.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-long-bge-training-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-bge-training-claim-03",
+          "canonical_claim": "MCLS improves long-text performance without fine-tuning when resources are insufficient.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-long-bge-training-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-long-bge-training-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-long-langgraph-positioning",
+      "tier": "CORE",
+      "case_type": "long_doc_localization",
+      "information_need_key": "long-langgraph-positioning",
+      "question": "LangGraph 在长文档开头如何定位自身：它面向哪类 agent，又强调给开发者哪两类底层控制？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "agent_engineering",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "early",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-long-langgraph-positioning-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-langgraph-overview"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-agent-overview-purpose"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-long-langgraph-positioning-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-langgraph-overview"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-agent-overview-capabilities"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-long-langgraph-positioning-claim-01",
+          "canonical_claim": "LangGraph positions itself as a low-level orchestration framework for long-running, stateful agents.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-long-langgraph-positioning-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-langgraph-positioning-claim-02",
+          "canonical_claim": "It emphasizes control over both agent workflows and agent state.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-long-langgraph-positioning-01",
+            "eg-rw-long-langgraph-positioning-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-long-langgraph-positioning-01",
+          "eg-rw-long-langgraph-positioning-02"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-long-interrupt-validation",
+      "tier": "CORE",
+      "case_type": "long_doc_localization",
+      "information_need_key": "long-interrupt-validation",
+      "question": "需要反复校验人工输入时，为什么不应在同一个节点里用 while 循环多次 interrupt，推荐的图结构是什么？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "agent_engineering",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "deep",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-long-interrupt-validation-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-interrupts"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-interrupt-validation"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-long-interrupt-validation-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-interrupts"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-interrupt-order"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-long-interrupt-validation-claim-01",
+          "canonical_claim": "The node should call interrupt exactly once using a question stored in state.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-long-interrupt-validation-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-interrupt-validation-claim-02",
+          "canonical_claim": "Invalid input should update state and a conditional edge should route back for another invocation.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-long-interrupt-validation-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-interrupt-validation-claim-03",
+          "canonical_claim": "Non-deterministic loops can change interrupt ordering across re-executions and are discouraged.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-long-interrupt-validation-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-long-interrupt-validation-01",
+          "eg-rw-long-interrupt-validation-02"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-long-interrupt-static",
+      "tier": "CORE",
+      "case_type": "long_doc_localization",
+      "information_need_key": "long-interrupt-static",
+      "question": "静态 interrupt 适合调试还是人工审批？它可以在编译时和运行时分别怎样指定暂停位置？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "agent_engineering",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "deep",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-long-interrupt-static-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-interrupts"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-interrupt-static"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-long-interrupt-static-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-interrupts"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-interrupt-runtime-static"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-long-interrupt-static-claim-01",
+          "canonical_claim": "Static interrupts are for debugging/testing as breakpoints, not recommended for human-in-the-loop workflows.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-long-interrupt-static-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-interrupt-static-claim-02",
+          "canonical_claim": "Compile-time configuration uses interrupt_before/interrupt_after on compilation.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-long-interrupt-static-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-interrupt-static-claim-03",
+          "canonical_claim": "Run-time invocation can provide interrupt_before/interrupt_after per invocation.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-long-interrupt-static-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-long-interrupt-static-01",
+          "eg-rw-long-interrupt-static-02"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-long-async-threadpool",
+      "tier": "CORE",
+      "case_type": "long_doc_localization",
+      "information_need_key": "long-async-threadpool",
+      "question": "FastAPI 对普通 def 的 path operation、普通 def 的 dependency，以及应用自己直接调用的普通 utility function，线程池处理有什么区别？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "ai_app_backend",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "deep",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-long-async-threadpool-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-async"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-async-threadpool"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-long-async-threadpool-claim-01",
+          "canonical_claim": "Normal def path operations run in an external threadpool and are awaited.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-long-async-threadpool-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-async-threadpool-claim-02",
+          "canonical_claim": "Normal def dependencies also run in the external threadpool.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-long-async-threadpool-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-async-threadpool-claim-03",
+          "canonical_claim": "A directly called normal def utility function is called directly, not automatically moved to the threadpool.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-long-async-threadpool-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-long-async-threadpool-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-long-deps-hierarchy",
+      "tier": "CORE",
+      "case_type": "long_doc_localization",
+      "information_need_key": "long-deps-hierarchy",
+      "question": "FastAPI 如何解析多层 sub-dependencies，并把这些层级要求反映到 API 文档里？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "ai_app_backend",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "deep",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-long-deps-hierarchy-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-dependencies"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-deps-hierarchy"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-long-deps-hierarchy-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-dependencies"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-deps-openapi"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-long-deps-hierarchy-claim-01",
+          "canonical_claim": "FastAPI builds and resolves a hierarchical dependency tree and injects results at each step.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-long-deps-hierarchy-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-deps-hierarchy-claim-02",
+          "canonical_claim": "Dependency requirements and validations are included in the OpenAPI schema and interactive docs.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-long-deps-hierarchy-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-long-deps-hierarchy-01",
+          "eg-rw-long-deps-hierarchy-02"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-long-precision-nonllm",
+      "tier": "CORE",
+      "case_type": "long_doc_localization",
+      "information_need_key": "long-precision-nonllm",
+      "question": "不使用 LLM 的 context precision 变体如何判断 retrieved context 是否相关，它还需要安装哪个额外包？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "evaluation_reliability",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "deep",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-long-precision-nonllm-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-context-precision"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-precision-nonllm"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-long-precision-nonllm-claim-01",
+          "canonical_claim": "It compares each retrieved context with reference contexts using a non-LLM similarity measure such as Levenshtein distance.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-long-precision-nonllm-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-precision-nonllm-claim-02",
+          "canonical_claim": "The example requires the rapidfuzz package.",
+          "required": true,
+          "evaluation_mode": "IDENTIFIER_EXACT",
+          "evidence_group_ids": [
+            "eg-rw-long-precision-nonllm-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups.",
+          "deterministic_match": {
+            "all_terms": [
+              "rapidfuzz"
+            ]
+          }
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-long-precision-nonllm-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-long-otel-links",
+      "tier": "CORE",
+      "case_type": "long_doc_localization",
+      "information_need_key": "long-otel-links",
+      "question": "When two operations are causally related but belong to separate traces, what OpenTelemetry mechanism associates them, and must they share a parent-child relationship?",
+      "query_language": "en",
+      "expected_answer_language": "en",
+      "primary_topic": "evaluation_reliability",
+      "secondary_topics": [],
+      "difficulty": "hard",
+      "answerable": true,
+      "localization_region": "deep",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-long-otel-links-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-otel-traces"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-otel-links-status"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-long-otel-links-claim-01",
+          "canonical_claim": "Span Links associate spans across traces causally.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-long-otel-links-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-long-otel-links-claim-02",
+          "canonical_claim": "Links are optional and do not require the spans to be in the same parent-child trace.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-long-otel-links-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-long-otel-links-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    }
+  ]
+}

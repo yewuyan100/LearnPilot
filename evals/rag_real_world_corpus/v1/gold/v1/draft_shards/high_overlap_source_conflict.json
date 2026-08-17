@@ -1,0 +1,335 @@
+{
+  "schema_version": "1.0.0",
+  "schema_ref": "draft_shard.schema.json",
+  "draft_status": "UNVERIFIED",
+  "case_type": "high_overlap_source_conflict",
+  "expected_case_count": 4,
+  "cases": [
+    {
+      "case_id": "rw-gold-v1-stress-conflict-bge-faiss-compression",
+      "tier": "STRESS",
+      "case_type": "high_overlap_source_conflict",
+      "information_need_key": "stress-conflict-bge-faiss-compression",
+      "question": "For the claim that a compressed vector index may omit original vectors and lose search precision, which source is required, and why is BGE-M3's embedding documentation insufficient?",
+      "query_language": "en",
+      "expected_answer_language": "en",
+      "primary_topic": "rag_retrieval",
+      "secondary_topics": [],
+      "difficulty": "stress",
+      "answerable": true,
+      "localization_region": "mixed",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-stress-conflict-bge-faiss-compression-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-rag-faiss-overview"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-faiss-distance",
+            "ev-rw-faiss-tradeoffs"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [
+        {
+          "document_id": "rw-rag-bge-m3",
+          "evidence_ids": [
+            "ev-rw-bge-dense-usage"
+          ],
+          "evidence_role": "ACCEPTABLE_SUPPORT",
+          "notes": "Supports how dense embeddings are generated, but not Faiss index-storage behavior."
+        }
+      ],
+      "plausible_distractor_documents": [
+        {
+          "document_id": "rw-eval-context-precision",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "UNSUPPORTED for the claim about index compression and retention of original vectors."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-stress-conflict-bge-faiss-compression-claim-01",
+          "canonical_claim": "The Faiss overview states that some index methods compress vectors, may not retain the original vectors, and can provide less precise search.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-stress-conflict-bge-faiss-compression-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-stress-conflict-bge-faiss-compression-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-stress-conflict-interrupt-persistence-resume",
+      "tier": "STRESS",
+      "case_type": "high_overlap_source_conflict",
+      "information_need_key": "stress-conflict-interrupt-persistence-resume",
+      "question": "Which LangGraph source is required to justify Command(resume=...) returning the external value into a paused node, and what can the persistence source support without replacing it?",
+      "query_language": "en",
+      "expected_answer_language": "en",
+      "primary_topic": "agent_engineering",
+      "secondary_topics": [],
+      "difficulty": "stress",
+      "answerable": true,
+      "localization_region": "mixed",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-stress-conflict-interrupt-persistence-resume-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-interrupts"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-interrupt-mechanism",
+            "ev-rw-interrupt-resume"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [
+        {
+          "document_id": "rw-agent-persistence",
+          "evidence_ids": [
+            "ev-rw-persist-overview"
+          ],
+          "evidence_role": "ACCEPTABLE_SUPPORT",
+          "notes": "Supports the need for checkpointed thread state and continuity around interruption."
+        }
+      ],
+      "plausible_distractor_documents": [
+        {
+          "document_id": "rw-agent-langgraph-overview",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "UNSUPPORTED for the detailed Command resume contract."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-stress-conflict-interrupt-persistence-resume-claim-01",
+          "canonical_claim": "The interrupts PDF defines suspension and Command(resume=...) returning the external value into the node.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-stress-conflict-interrupt-persistence-resume-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-stress-conflict-interrupt-persistence-resume-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-stress-conflict-fastapi-handler-type",
+      "tier": "STRESS",
+      "case_type": "high_overlap_source_conflict",
+      "information_need_key": "stress-conflict-fastapi-handler-type",
+      "question": "Among FastAPI's async, dependency, and error documents, which one supports registering a handler for StarletteHTTPException, and what limited support can the dependency document still provide?",
+      "query_language": "en",
+      "expected_answer_language": "en",
+      "primary_topic": "ai_app_backend",
+      "secondary_topics": [],
+      "difficulty": "stress",
+      "answerable": true,
+      "localization_region": "deep",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-stress-conflict-fastapi-handler-type-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-errors"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-errors-fastapi-starlette",
+            "ev-rw-errors-reuse-handlers"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-stress-conflict-fastapi-handler-type-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-errors"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-errors-fastapi-starlette"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-stress-conflict-fastapi-handler-type-03",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-errors"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-errors-reuse-handlers"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [
+        {
+          "document_id": "rw-backend-fastapi-dependencies",
+          "evidence_ids": [
+            "ev-rw-deps-call"
+          ],
+          "evidence_role": "ACCEPTABLE_SUPPORT",
+          "notes": "Supports that dependency execution precedes and feeds the endpoint, but not exception-class registration."
+        }
+      ],
+      "plausible_distractor_documents": [
+        {
+          "document_id": "rw-backend-fastapi-async",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "UNSUPPORTED for exception handler type selection."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-stress-conflict-fastapi-handler-type-claim-01",
+          "canonical_claim": "The error-handling document explains the FastAPI/Starlette HTTPException relationship and handler reuse.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-stress-conflict-fastapi-handler-type-02",
+            "eg-rw-stress-conflict-fastapi-handler-type-03"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-stress-conflict-fastapi-handler-type-claim-02",
+          "canonical_claim": "Registering the Starlette base type allows handling errors raised by Starlette and extensions as well as FastAPI code.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-stress-conflict-fastapi-handler-type-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-stress-conflict-fastapi-handler-type-01",
+          "eg-rw-stress-conflict-fastapi-handler-type-02",
+          "eg-rw-stress-conflict-fastapi-handler-type-03"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-stress-conflict-ragas-reference-mode",
+      "tier": "STRESS",
+      "case_type": "high_overlap_source_conflict",
+      "information_need_key": "stress-conflict-ragas-reference-mode",
+      "question": "区分有 reference 与无 reference 的 context precision 变体时，哪份 Ragas 来源是必需证据，通用 workflow 来源只能间接支持什么？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "evaluation_reliability",
+      "secondary_topics": [],
+      "difficulty": "stress",
+      "answerable": true,
+      "localization_region": "deep",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-stress-conflict-ragas-reference-mode-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-context-precision"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-precision-with-reference"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-stress-conflict-ragas-reference-mode-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-context-precision"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-precision-without-reference"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [
+        {
+          "document_id": "rw-eval-ragas-workflow",
+          "evidence_ids": [
+            "ev-rw-ragas-collect-data"
+          ],
+          "evidence_role": "ACCEPTABLE_SUPPORT",
+          "notes": "Supports that response, retrieved_contexts, and optional reference are dataset fields."
+        }
+      ],
+      "plausible_distractor_documents": [
+        {
+          "document_id": "rw-eval-otel-traces",
+          "evidence_ids": [],
+          "evidence_role": "UNSUPPORTED",
+          "notes": "UNSUPPORTED for Ragas metric input modes."
+        }
+      ],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-stress-conflict-ragas-reference-mode-claim-01",
+          "canonical_claim": "The context-precision document states that the with-reference variant compares retrieved contexts with reference, while the without-reference variant compares them with response.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-stress-conflict-ragas-reference-mode-01",
+            "eg-rw-stress-conflict-ragas-reference-mode-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-stress-conflict-ragas-reference-mode-01",
+          "eg-rw-stress-conflict-ragas-reference-mode-02"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    }
+  ]
+}

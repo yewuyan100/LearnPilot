@@ -1,0 +1,72 @@
+{
+  "$id": "learnpilot://rag-real-world/failure-analysis-v1/case-failure-analysis.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "cases": {
+      "items": {
+        "properties": {
+          "case_id": {
+            "type": "string"
+          },
+          "case_verdict": {
+            "enum": [
+              "CORRECT_REFUSAL",
+              "FAIL",
+              "FULL_PASS",
+              "INCORRECT_REFUSAL",
+              "PARTIAL_PASS"
+            ]
+          },
+          "claim_reviews": {
+            "minItems": 1,
+            "type": "array"
+          },
+          "primary_root_cause": {
+            "enum": [
+              "ANSWERABILITY_FALSE_NEGATIVE",
+              "CITATION_ONLY_FAILURE",
+              "EVAL_MAPPING_DIAGNOSTIC",
+              "GENERATION_EXTRACTION_ERROR",
+              "GENERATION_FACT_ERROR",
+              "GENERATION_OMISSION",
+              "GENERATION_OVERCLAIM",
+              "MULTI_DOC_SYNTHESIS_FAILURE",
+              "NO_FAILURE",
+              "OTHER_VERIFIED",
+              "RETRIEVAL_MISS",
+              "SELECTION_CONTEXT_BUDGET_MISS",
+              "SELECTION_DEDUP_MISS",
+              "SELECTION_DIVERSITY_MISS",
+              "SELECTION_RANKING_MISS",
+              "SELECTION_THRESHOLD_MISS"
+            ]
+          }
+        },
+        "required": [
+          "case_id",
+          "case_verdict",
+          "claim_reviews",
+          "primary_root_cause",
+          "primary_root_cause_reason",
+          "secondary_signals",
+          "addressability_class"
+        ],
+        "type": "object"
+      },
+      "maxItems": 72,
+      "minItems": 72,
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    }
+  },
+  "required": [
+    "schema_version",
+    "analysis_id",
+    "baseline_run_id",
+    "methodology",
+    "cases"
+  ],
+  "type": "object"
+}

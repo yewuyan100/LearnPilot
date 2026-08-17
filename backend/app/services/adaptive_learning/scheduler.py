@@ -3,6 +3,7 @@ from zoneinfo import ZoneInfo
 
 from sqlalchemy import select
 
+from app.core.clock import clock_from_settings
 from app.models import DailyTask, MasterySnapshot, ReviewSchedule, WrongAnswer
 from app.services.adaptive_learning.enums import ACTIVE_SCHEDULE_STATUSES
 from app.services.adaptive_learning.weak_points import WeakPointService, aware
@@ -12,7 +13,7 @@ class ReviewScheduler:
     def __init__(self, db, settings, *, now: datetime | None = None):
         self.db = db
         self.settings = settings
-        self.now = now or settings.adaptive_fixed_now or datetime.now(timezone.utc)
+        self.now = now or clock_from_settings(settings).now()
         self.zone = ZoneInfo(settings.app_timezone)
 
     def _midnight_utc(self, value) -> datetime:

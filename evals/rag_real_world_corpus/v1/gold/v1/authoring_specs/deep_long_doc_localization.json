@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "case_type": "deep_long_doc_localization",
+  "cumulative_authored_count": 64,
+  "cases": [
+    {
+      "slug": "stress-deep-bge-mldr-comparison",
+      "tier": "STRESS",
+      "case_type": "deep_long_doc_localization",
+      "question": "BGE-M3 深部评测段为何认为 MLDR 基线应与 Dense w.o.long 比较，MLDR 覆盖哪些数据划分与语言范围？",
+      "language": "zh-CN",
+      "topic": "rag_retrieval",
+      "difficulty": "stress",
+      "groups": [["bge-long-eval"]],
+      "claims": [
+        {"text": "MLDR covers 13 languages and includes test, validation, and training sets.", "groups": [0], "mode": "STRUCTURED_EXACT", "terms": ["13", "test", "validation", "training"]},
+        {"text": "Because MLDR training data enhanced BGE-M3's long-document retrieval, the document says comparison with Dense w.o.long is more equitable.", "groups": [0], "mode": "SEMANTIC_REVIEW", "terms": null}
+      ],
+      "secondary": [], "accepts": [], "distractors": [], "region": "deep", "absent": null
+    },
+    {
+      "slug": "stress-deep-interrupt-side-effects",
+      "tier": "STRESS",
+      "case_type": "deep_long_doc_localization",
+      "question": "Why can creating a record before interrupt() duplicate data after resume, and which two structural remedies does the interrupts guide recommend?",
+      "language": "en",
+      "topic": "agent_engineering",
+      "difficulty": "stress",
+      "groups": [["interrupt-side-effects", "interrupt-duplicate-risk"], ["interrupt-side-effects-nodes"]],
+      "claims": [
+        {"text": "Resume restarts the node, so a non-idempotent write before interrupt can execute again and create duplicates.", "groups": [0], "mode": "SEMANTIC_REVIEW", "terms": null},
+        {"text": "The write should be idempotent or moved into a separate node that is not replayed with the interrupting node.", "groups": [0, 1], "mode": "SEMANTIC_REVIEW", "terms": null}
+      ],
+      "secondary": [], "accepts": [], "distractors": [], "region": "deep", "absent": null
+    },
+    {
+      "slug": "stress-deep-async-call-kinds",
+      "tier": "STRESS",
+      "case_type": "deep_long_doc_localization",
+      "question": "FastAPI 的技术细节中，普通 def 路由、普通 def 依赖，以及业务代码直接调用的普通工具函数，三者的执行方式有何不同？",
+      "language": "zh-CN",
+      "topic": "ai_app_backend",
+      "difficulty": "stress",
+      "groups": [["async-threadpool"]],
+      "claims": [
+        {"text": "Normal def path operations run in an external threadpool and are awaited.", "groups": [0], "mode": "SEMANTIC_REVIEW", "terms": null},
+        {"text": "Normal def dependencies also run in that external threadpool.", "groups": [0], "mode": "SEMANTIC_REVIEW", "terms": null},
+        {"text": "A normal utility function called directly by application code is called directly rather than automatically moved to the threadpool.", "groups": [0], "mode": "SEMANTIC_REVIEW", "terms": null}
+      ],
+      "secondary": [], "accepts": [], "distractors": [], "region": "deep", "absent": null
+    },
+    {
+      "slug": "stress-deep-precision-id-versus-content",
+      "tier": "STRESS",
+      "case_type": "deep_long_doc_localization",
+      "question": "How does the ID-based context-precision variant decide relevance without comparing text, and what limitation follows from that input contract?",
+      "language": "en",
+      "topic": "evaluation_reliability",
+      "difficulty": "stress",
+      "groups": [["precision-id-based"]],
+      "claims": [
+        {"text": "It compares retrieved context IDs directly with reference context IDs.", "groups": [0], "mode": "SEMANTIC_REVIEW", "terms": null},
+        {"text": "It requires a meaningful unique-ID system and cannot infer semantic equivalence between differently identified passages.", "groups": [0], "mode": "SEMANTIC_REVIEW", "terms": null}
+      ],
+      "secondary": [], "accepts": [], "distractors": [], "region": "deep", "absent": null
+    }
+  ]
+}

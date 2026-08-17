@@ -1,0 +1,92 @@
+{
+  "arms": {
+    "dense_only": {
+      "hypothesis": "Repetition without architecture change should reproduce the frozen distribution within declared runtime variance; this analysis does not rerun it.",
+      "primary_metrics": [
+        "candidate_required_evidence_coverage",
+        "selected_required_evidence_coverage",
+        "reviewed_case_verdicts"
+      ],
+      "role": "Frozen control",
+      "target_case_ids": []
+    },
+    "dense_rerank": {
+      "hypothesis": "An independent reranker may promote already-retrieved required evidence above diversity/ranking selection losses.",
+      "null_hypothesis": "Reranking does not improve selected required-evidence coverage on candidate-hit cases.",
+      "primary_metrics": [
+        "selected_required_evidence_coverage",
+        "selected_anchor_diagnostic_coverage",
+        "answerability_after_sufficient_selection"
+      ],
+      "target_case_ids": [
+        "rw-gold-v1-semantic-deps-automatic",
+        "rw-gold-v1-long-bge-training",
+        "rw-gold-v1-long-deps-hierarchy",
+        "rw-gold-v1-long-interrupt-static",
+        "rw-gold-v1-long-otel-links",
+        "rw-gold-v1-multi-eval-stack",
+        "rw-gold-v1-multi-hybrid-index",
+        "rw-gold-v1-disambig-fastapi-async-deps",
+        "rw-gold-v1-disambig-interrupt-static",
+        "rw-gold-v1-disambig-ragas-metrics"
+      ]
+    },
+    "hybrid": {
+      "hypothesis": "Lexical/exact-term retrieval may add required evidence missing from dense candidates, especially identifiers, numeric defaults, API names, and explicit terminology.",
+      "null_hypothesis": "Hybrid does not improve required-evidence candidate coverage on these cases.",
+      "primary_metrics": [
+        "candidate_required_evidence_coverage",
+        "candidate_document_group_coverage"
+      ],
+      "target_case_ids": [
+        "rw-gold-v1-single-dependency-defaults",
+        "rw-gold-v1-multi-backend-control",
+        "rw-gold-v1-multi-error-observability",
+        "rw-gold-v1-multi-rag-tracing",
+        "rw-gold-v1-multi-retrieval-eval",
+        "rw-gold-v1-stress-cross-agent-api-replay",
+        "rw-gold-v1-stress-cross-embedding-api-concurrency",
+        "rw-gold-v1-stress-cross-persistence-tracing",
+        "rw-gold-v1-stress-cross-retrieval-evaluation"
+      ]
+    },
+    "hybrid_rerank": {
+      "hypothesis": "Hybrid may improve candidate recall and reranking may improve subsequent selection, but complementarity must be measured and is not presumed.",
+      "null_hypothesis": "The combined arm provides no complementary gain beyond its best single intervention.",
+      "primary_metrics": [
+        "candidate_required_evidence_coverage",
+        "selected_required_evidence_coverage",
+        "reviewed_case_verdicts"
+      ],
+      "requires_both_case_ids": [],
+      "target_case_ids": [
+        "rw-gold-v1-disambig-fastapi-async-deps",
+        "rw-gold-v1-disambig-interrupt-static",
+        "rw-gold-v1-disambig-ragas-metrics",
+        "rw-gold-v1-long-bge-training",
+        "rw-gold-v1-long-deps-hierarchy",
+        "rw-gold-v1-long-interrupt-static",
+        "rw-gold-v1-long-otel-links",
+        "rw-gold-v1-multi-backend-control",
+        "rw-gold-v1-multi-error-observability",
+        "rw-gold-v1-multi-eval-stack",
+        "rw-gold-v1-multi-hybrid-index",
+        "rw-gold-v1-multi-rag-tracing",
+        "rw-gold-v1-multi-retrieval-eval",
+        "rw-gold-v1-semantic-deps-automatic",
+        "rw-gold-v1-single-dependency-defaults",
+        "rw-gold-v1-stress-cross-agent-api-replay",
+        "rw-gold-v1-stress-cross-embedding-api-concurrency",
+        "rw-gold-v1-stress-cross-persistence-tracing",
+        "rw-gold-v1-stress-cross-retrieval-evaluation"
+      ]
+    }
+  },
+  "constraints": {
+    "hypotheses_are_not_optimizations": true,
+    "no_arm_is_presumed_best": true
+  },
+  "frozen_from_semantic_review_sha256": "671fe1a484dd6ff8986b34c0ebf0826f274bbb9ed6dda404f18ad0a2bd60a176",
+  "hypothesis_id": "learnpilot-rag-real-world-ablation-hypotheses-v1",
+  "schema_version": "1.0.0"
+}

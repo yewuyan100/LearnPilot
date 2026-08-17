@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0.0",
+  "task": "RAG_REAL_WORLD_GOLD_V1",
+  "llm_or_deepseek_call_count": 0,
+  "rag_answer_call_count": 0,
+  "rag_baseline_execution_count": 0,
+  "production_rag_write_count": 0,
+  "frozen_corpus_content_write_count": 0,
+  "controlled_v2_write_count": 0,
+  "final_validation_status": "PASS",
+  "notes": "Gold authoring and review used only the frozen project-owned corpus and deterministic local tooling. No answer model or retrieval baseline was invoked."
+}

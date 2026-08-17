@@ -1,0 +1,1422 @@
+{
+  "schema_version": "1.0.0",
+  "audit_version": "gold-correctness-repair-v1-audit",
+  "status": "PASS",
+  "gold_hash_transition": {
+    "old": "11b71513b00a63e158333eab5d26bc3aded858116f237b1b3b206dc3f444ba9c",
+    "new": "33a0b69901fa47e3fe45be0277228cd4a5519fe780fe5b9d2c52b1bfe614927a",
+    "changed": true,
+    "evaluation_manifest_bound": true
+  },
+  "scope_proof": {
+    "changed_case_count": 8,
+    "changed_case_ids": [
+      "rw-gold-v1-disambig-fastapi-async-deps",
+      "rw-gold-v1-disambig-fastapi-exceptions",
+      "rw-gold-v1-disambig-interrupt-static",
+      "rw-gold-v1-long-langgraph-positioning",
+      "rw-gold-v1-multi-rag-tracing",
+      "rw-gold-v1-semantic-checkpointer-store",
+      "rw-gold-v1-stress-conflict-fastapi-handler-type",
+      "rw-gold-v1-stress-conflict-ragas-reference-mode"
+    ],
+    "affected_case_ids_exact_match": true,
+    "unaffected_case_count": 64,
+    "unaffected_case_payloads_unchanged": 64,
+    "unaffected_case_payload_proof": [
+      {
+        "case_id": "rw-gold-v1-disambig-agent-memory",
+        "pre_repair_sha256": "9fc77a04ab5a45b2e8d8c9ef65bc7e98606c30363a2c2f9e25cb1c5db8999720",
+        "post_repair_sha256": "9fc77a04ab5a45b2e8d8c9ef65bc7e98606c30363a2c2f9e25cb1c5db8999720",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-agent-persist-interrupt",
+        "pre_repair_sha256": "b6327a70ef05b9ba3f6c84f8f68d863edfb97ea780d2412d0b54afbfa68c7360",
+        "post_repair_sha256": "b6327a70ef05b9ba3f6c84f8f68d863edfb97ea780d2412d0b54afbfa68c7360",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-bge-faiss",
+        "pre_repair_sha256": "aa1184e70be18b8cb882d46f8badbacd560f4067c96c2870c59e6d25893e83f1",
+        "post_repair_sha256": "aa1184e70be18b8cb882d46f8badbacd560f4067c96c2870c59e6d25893e83f1",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-bge-long",
+        "pre_repair_sha256": "d85d56efd3e8f4faec48a6da8af57320a2572f3f47eae97cd04fcc77b8f83662",
+        "post_repair_sha256": "d85d56efd3e8f4faec48a6da8af57320a2572f3f47eae97cd04fcc77b8f83662",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-fastapi-errors",
+        "pre_repair_sha256": "8436ccf6540df3483fb422189a092b619084be0b0ff4cc5124241096e2a2a82a",
+        "post_repair_sha256": "8436ccf6540df3483fb422189a092b619084be0b0ff4cc5124241096e2a2a82a",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-ragas-metrics",
+        "pre_repair_sha256": "53a4e748c4cf4bab67000ee2c6fab2d9907a539553a1a5aa60805407d9a6960a",
+        "post_repair_sha256": "53a4e748c4cf4bab67000ee2c6fab2d9907a539553a1a5aa60805407d9a6960a",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-ragas-otel",
+        "pre_repair_sha256": "97284d57558fd7ac4b0302af3da1374ce765f3983dc4355b3538fa0a67058ba0",
+        "post_repair_sha256": "97284d57558fd7ac4b0302af3da1374ce765f3983dc4355b3538fa0a67058ba0",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-long-async-threadpool",
+        "pre_repair_sha256": "95fad00ffe38e83fa2916c35cacb838ea120eaf6e1bd2ada2fcef3d2e878bd39",
+        "post_repair_sha256": "95fad00ffe38e83fa2916c35cacb838ea120eaf6e1bd2ada2fcef3d2e878bd39",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-long-bge-query-instruction",
+        "pre_repair_sha256": "ad93bfb1ca9f2e01e740af9a75a578a36a50a3a964a36ce3e81789381f1ae5d5",
+        "post_repair_sha256": "ad93bfb1ca9f2e01e740af9a75a578a36a50a3a964a36ce3e81789381f1ae5d5",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-long-bge-score-mix",
+        "pre_repair_sha256": "b202599d587876a419affbd153920662f3b99de92a514126cd097f5cd42af258",
+        "post_repair_sha256": "b202599d587876a419affbd153920662f3b99de92a514126cd097f5cd42af258",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-long-bge-training",
+        "pre_repair_sha256": "409cb56fc6a0747d00c0ee465acd335d6a870e16dc45c234d90e444fc879c784",
+        "post_repair_sha256": "409cb56fc6a0747d00c0ee465acd335d6a870e16dc45c234d90e444fc879c784",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-long-deps-hierarchy",
+        "pre_repair_sha256": "a647fff1357bc0be289c63991b8fdf7761f54e8aa59bcd20840b5b46c6898944",
+        "post_repair_sha256": "a647fff1357bc0be289c63991b8fdf7761f54e8aa59bcd20840b5b46c6898944",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-long-interrupt-static",
+        "pre_repair_sha256": "ac63452efd063c7433ee138c13e3ae8f3fdefdb1ba53b4974125087481a97bc3",
+        "post_repair_sha256": "ac63452efd063c7433ee138c13e3ae8f3fdefdb1ba53b4974125087481a97bc3",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-long-interrupt-validation",
+        "pre_repair_sha256": "e7fdd198ab74a57fb30cc0158daf3a73c4b1da953f25a57bd8951b7013cc516e",
+        "post_repair_sha256": "e7fdd198ab74a57fb30cc0158daf3a73c4b1da953f25a57bd8951b7013cc516e",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-long-otel-links",
+        "pre_repair_sha256": "916a89e0be19f072c0d2536fc605c8974dd2e7b3e06d6f3ca230ebc7ee503156",
+        "post_repair_sha256": "916a89e0be19f072c0d2536fc605c8974dd2e7b3e06d6f3ca230ebc7ee503156",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-long-precision-nonllm",
+        "pre_repair_sha256": "3d55d0fb7020c6f6e00e09f1c0a2325011174f01e7dab8e8086609e63ad7a855",
+        "post_repair_sha256": "3d55d0fb7020c6f6e00e09f1c0a2325011174f01e7dab8e8086609e63ad7a855",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-multi-agent-memory-hitl",
+        "pre_repair_sha256": "28d8afa0665c5f0a6de17d6c3a087ca4bca884a150fc9afa0d923e880853915d",
+        "post_repair_sha256": "28d8afa0665c5f0a6de17d6c3a087ca4bca884a150fc9afa0d923e880853915d",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-multi-agent-resume",
+        "pre_repair_sha256": "c7d154c54e88e45d31d6072a92c300adbe604f034ee2702ba90490f3ac7e5400",
+        "post_repair_sha256": "c7d154c54e88e45d31d6072a92c300adbe604f034ee2702ba90490f3ac7e5400",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-multi-async-dependency",
+        "pre_repair_sha256": "f774ebbb78afcb9a54555b6f5d18263853f1f056db76c7ded3e174d8dd276ce6",
+        "post_repair_sha256": "f774ebbb78afcb9a54555b6f5d18263853f1f056db76c7ded3e174d8dd276ce6",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-multi-backend-control",
+        "pre_repair_sha256": "377a0955cdc50004f2b6f91b238ea941099e05ddc9d96d0525893a1738f266e5",
+        "post_repair_sha256": "377a0955cdc50004f2b6f91b238ea941099e05ddc9d96d0525893a1738f266e5",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-multi-error-observability",
+        "pre_repair_sha256": "ed300741004625e3b573781ff2bacb59cd27a3bb8c2a15228ac4627eec68aa2d",
+        "post_repair_sha256": "ed300741004625e3b573781ff2bacb59cd27a3bb8c2a15228ac4627eec68aa2d",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-multi-eval-stack",
+        "pre_repair_sha256": "ea4c934f529a2328a40bc100af916d5fccdafd9628a7754dcb633395dc4667c9",
+        "post_repair_sha256": "ea4c934f529a2328a40bc100af916d5fccdafd9628a7754dcb633395dc4667c9",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-multi-faiss-context-precision",
+        "pre_repair_sha256": "24bcef25a7317ba92b0581a6671b1029e46e35bf4e4f6d90fe9fc88b546480de",
+        "post_repair_sha256": "24bcef25a7317ba92b0581a6671b1029e46e35bf4e4f6d90fe9fc88b546480de",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-multi-hybrid-index",
+        "pre_repair_sha256": "2872e20a241d4dfdf3c8a6cfe9e5d36e0330d7ad3342c360eee11d51621e64a6",
+        "post_repair_sha256": "2872e20a241d4dfdf3c8a6cfe9e5d36e0330d7ad3342c360eee11d51621e64a6",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-multi-retrieval-eval",
+        "pre_repair_sha256": "8c0697275a67f0c464296a4219d5e65f2cc166a9e0f3a0d375d5ebe85d95355c",
+        "post_repair_sha256": "8c0697275a67f0c464296a4219d5e65f2cc166a9e0f3a0d375d5ebe85d95355c",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-semantic-bge-functions",
+        "pre_repair_sha256": "d881fe6e857dfd6316327283a665ab502acbb9fbb1f3587365eaf63e4cff9336",
+        "post_repair_sha256": "d881fe6e857dfd6316327283a665ab502acbb9fbb1f3587365eaf63e4cff9336",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-semantic-context-order",
+        "pre_repair_sha256": "cc788190070f230782da50df2fc292dbd006028b4e7c2c30493e670bc9081b40",
+        "post_repair_sha256": "cc788190070f230782da50df2fc292dbd006028b4e7c2c30493e670bc9081b40",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-semantic-deps-automatic",
+        "pre_repair_sha256": "1b9502c447b224a2a8786b7d4b4fb50b1add2806f367351a5ea7b8e53daf49f0",
+        "post_repair_sha256": "1b9502c447b224a2a8786b7d4b4fb50b1add2806f367351a5ea7b8e53daf49f0",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-semantic-error-raise",
+        "pre_repair_sha256": "e85f410e6a043610802c35f2ca2823b12dedf47123b515561a4ebeae5f08fb78",
+        "post_repair_sha256": "e85f410e6a043610802c35f2ca2823b12dedf47123b515561a4ebeae5f08fb78",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-semantic-faiss-compression",
+        "pre_repair_sha256": "ec60c6617ddb68a22b0c1184a1fd5b58a5cae78190344213aaf57d52458e76a7",
+        "post_repair_sha256": "ec60c6617ddb68a22b0c1184a1fd5b58a5cae78190344213aaf57d52458e76a7",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-semantic-fastapi-blocking",
+        "pre_repair_sha256": "2a0ef85ea705014b9d3e8d6acdb1a95326fb2a95fb92e11a37afd252bc737c06",
+        "post_repair_sha256": "2a0ef85ea705014b9d3e8d6acdb1a95326fb2a95fb92e11a37afd252bc737c06",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-semantic-interrupt-replay",
+        "pre_repair_sha256": "4e7c37d22158974099c8d78a0ba20674da0bcb4a274a377221c4b06e07ec6c7d",
+        "post_repair_sha256": "4e7c37d22158974099c8d78a0ba20674da0bcb4a274a377221c4b06e07ec6c7d",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-semantic-ragas-data",
+        "pre_repair_sha256": "d7e63efd35520dd629ff8135ed4477a547f4e5d21aea4858db187e335a58d904",
+        "post_repair_sha256": "d7e63efd35520dd629ff8135ed4477a547f4e5d21aea4858db187e335a58d904",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-semantic-trace-correlation",
+        "pre_repair_sha256": "fea6333104420691edd7d70f7c636c834254875fdd3cf94ea25beb2c13ee1b18",
+        "post_repair_sha256": "fea6333104420691edd7d70f7c636c834254875fdd3cf94ea25beb2c13ee1b18",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-single-bge-shape",
+        "pre_repair_sha256": "c837a5987d315401cb8fc91db0ea29b2e5899550c2ac521aa8452e62ecaab822",
+        "post_repair_sha256": "c837a5987d315401cb8fc91db0ea29b2e5899550c2ac521aa8452e62ecaab822",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-single-dependency-defaults",
+        "pre_repair_sha256": "ced3f3307ed30047f8f67554a9c643f565ad107eba1a553a5d40042ff6cfc097",
+        "post_repair_sha256": "ced3f3307ed30047f8f67554a9c643f565ad107eba1a553a5d40042ff6cfc097",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-single-error-response",
+        "pre_repair_sha256": "1fec1879f43b7f096f98b7995e90ede15fc484e06ad2ffe3c5b336c512398ac8",
+        "post_repair_sha256": "1fec1879f43b7f096f98b7995e90ede15fc484e06ad2ffe3c5b336c512398ac8",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-single-faiss-cosine",
+        "pre_repair_sha256": "d611cb32c1c476144b1d9389f3afe6d087ff7c05ca1f9251683e7ad41f015080",
+        "post_repair_sha256": "d611cb32c1c476144b1d9389f3afe6d087ff7c05ca1f9251683e7ad41f015080",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-single-interrupt-status",
+        "pre_repair_sha256": "e93ee3bc35b64c0c3c31e90ec9b4dc97de0756b3339c3af940497ef57defc2cf",
+        "post_repair_sha256": "e93ee3bc35b64c0c3c31e90ec9b4dc97de0756b3339c3af940497ef57defc2cf",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-single-langgraph-js",
+        "pre_repair_sha256": "4067286fe106a7fe65018302d7a4fefea6113188ba0ebfe949dbffa6c5b8aba0",
+        "post_repair_sha256": "4067286fe106a7fe65018302d7a4fefea6113188ba0ebfe949dbffa6c5b8aba0",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-single-otel-status",
+        "pre_repair_sha256": "eefe9d4b488cd08397a5feca2ebabeada3ecc53e7a6f51bf8eb597d1c5dfc681",
+        "post_repair_sha256": "eefe9d4b488cd08397a5feca2ebabeada3ecc53e7a6f51bf8eb597d1c5dfc681",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-single-persist-thread-id",
+        "pre_repair_sha256": "3c827af5389d8dc9809754d1470ad2c1743b65390aea498efd371f565a20a746",
+        "post_repair_sha256": "3c827af5389d8dc9809754d1470ad2c1743b65390aea498efd371f565a20a746",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-single-precision-id",
+        "pre_repair_sha256": "fae8776272ac1dc5eddfefbaf484736ba73025d5882603c3dc6b11a30d8090b8",
+        "post_repair_sha256": "fae8776272ac1dc5eddfefbaf484736ba73025d5882603c3dc6b11a30d8090b8",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-single-ragas-dataset",
+        "pre_repair_sha256": "ad7c761c59ec311cd6e4823b172ad9e0fec20ba05b6ac489d3090b2b34454178",
+        "post_repair_sha256": "ad7c761c59ec311cd6e4823b172ad9e0fec20ba05b6ac489d3090b2b34454178",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-stress-conflict-bge-faiss-compression",
+        "pre_repair_sha256": "c1d033348e72ea259d2ad84fd7769b940860c3e50fa3c0942fdc30df1cf632df",
+        "post_repair_sha256": "c1d033348e72ea259d2ad84fd7769b940860c3e50fa3c0942fdc30df1cf632df",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-stress-conflict-interrupt-persistence-resume",
+        "pre_repair_sha256": "87a85481e0bfebd8ef8c7fab7ad04430086d248c52495b54ea64c8fc75712a77",
+        "post_repair_sha256": "87a85481e0bfebd8ef8c7fab7ad04430086d248c52495b54ea64c8fc75712a77",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-stress-cross-agent-api-replay",
+        "pre_repair_sha256": "2668773f44d8c665c066e6d6765348b82a53d93edcbbdc4f5c801ce5c745ec86",
+        "post_repair_sha256": "2668773f44d8c665c066e6d6765348b82a53d93edcbbdc4f5c801ce5c745ec86",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-stress-cross-embedding-api-concurrency",
+        "pre_repair_sha256": "aed8bf879e44a4ed99b5417c862aee13bd74bbd27aa675ed1d6de6913fc834a9",
+        "post_repair_sha256": "aed8bf879e44a4ed99b5417c862aee13bd74bbd27aa675ed1d6de6913fc834a9",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-stress-cross-persistence-tracing",
+        "pre_repair_sha256": "6e5e7274f495e86ea9f5d282ca9240fcde1b777428fdd6a44e309be3f746fa54",
+        "post_repair_sha256": "6e5e7274f495e86ea9f5d282ca9240fcde1b777428fdd6a44e309be3f746fa54",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-stress-cross-retrieval-evaluation",
+        "pre_repair_sha256": "c48073461b264926fa3a9ef9b38d1fcbd5bc0c6b3160c2d8d2076d3fe1e016cb",
+        "post_repair_sha256": "c48073461b264926fa3a9ef9b38d1fcbd5bc0c6b3160c2d8d2076d3fe1e016cb",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-stress-deep-async-call-kinds",
+        "pre_repair_sha256": "cd0f241a62d153e46525a94447ea946cdf80ca565c092e762c8b880cc5bed083",
+        "post_repair_sha256": "cd0f241a62d153e46525a94447ea946cdf80ca565c092e762c8b880cc5bed083",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-stress-deep-bge-mldr-comparison",
+        "pre_repair_sha256": "0443c9b7acc13180baa199def42b5d2e9eb3c8607e2f869eeb2a5334482c07c3",
+        "post_repair_sha256": "0443c9b7acc13180baa199def42b5d2e9eb3c8607e2f869eeb2a5334482c07c3",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-stress-deep-interrupt-side-effects",
+        "pre_repair_sha256": "69c338c68d3ba7579d60305248949fc3d686a403fd2128d3fe6dea0c26abdbda",
+        "post_repair_sha256": "69c338c68d3ba7579d60305248949fc3d686a403fd2128d3fe6dea0c26abdbda",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-stress-deep-precision-id-versus-content",
+        "pre_repair_sha256": "9653dc528d4a7a4416905d9369aaa03abfedc2207ecf52407e1542892e555881",
+        "post_repair_sha256": "9653dc528d4a7a4416905d9369aaa03abfedc2207ecf52407e1542892e555881",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-unanswerable-bge-language-counts",
+        "pre_repair_sha256": "b1319228a3abbf8fc5b630d62056d06291540fdef5dc5eaa57062d317873da62",
+        "post_repair_sha256": "b1319228a3abbf8fc5b630d62056d06291540fdef5dc5eaa57062d317873da62",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-unanswerable-bge-optimal-weights",
+        "pre_repair_sha256": "6d67105ce32b7efc84aa9a7e8bb2af3bbae9745a23bace0c8c21c4212925f3f3",
+        "post_repair_sha256": "6d67105ce32b7efc84aa9a7e8bb2af3bbae9745a23bace0c8c21c4212925f3f3",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-unanswerable-checkpoint-encryption",
+        "pre_repair_sha256": "99e1e347231499d546342398483e8a921cc3c7e51cffae6f52c31ef142c9c5d8",
+        "post_repair_sha256": "99e1e347231499d546342398483e8a921cc3c7e51cffae6f52c31ef142c9c5d8",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-unanswerable-dependency-depth",
+        "pre_repair_sha256": "760d47400a46f0faeb6a45305237af62444205abf983efaca91f695aa25e174d",
+        "post_repair_sha256": "760d47400a46f0faeb6a45305237af62444205abf983efaca91f695aa25e174d",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-unanswerable-faiss-p95-latency",
+        "pre_repair_sha256": "462dd01279d69692ecdc78bcf1fb5966d4dc38f28dcb529b66346fecda1d5d4d",
+        "post_repair_sha256": "462dd01279d69692ecdc78bcf1fb5966d4dc38f28dcb529b66346fecda1d5d4d",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-unanswerable-interrupt-timeout",
+        "pre_repair_sha256": "da3115db19ae179e5f5b7158c114818a17ace9c4cb62b1f555e4c938fc526445",
+        "post_repair_sha256": "da3115db19ae179e5f5b7158c114818a17ace9c4cb62b1f555e4c938fc526445",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-unanswerable-precision-pass-threshold",
+        "pre_repair_sha256": "b41c061f03f94d3faee04e3b4cc04676a7193884f6e1bafe2b6b728ac73fe1f0",
+        "post_repair_sha256": "b41c061f03f94d3faee04e3b4cc04676a7193884f6e1bafe2b6b728ac73fe1f0",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-unanswerable-ragas-minimum-score",
+        "pre_repair_sha256": "05e9d6dc1e82e19e67f1dc4686062f04d224ad90ac489879dd841f66b36a6028",
+        "post_repair_sha256": "05e9d6dc1e82e19e67f1dc4686062f04d224ad90ac489879dd841f66b36a6028",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-unanswerable-threadpool-workers",
+        "pre_repair_sha256": "0db39979d05ba9a1f75bff644997de013b6936c1d6b0350f8f9455ee723d6448",
+        "post_repair_sha256": "0db39979d05ba9a1f75bff644997de013b6936c1d6b0350f8f9455ee723d6448",
+        "unchanged": true
+      },
+      {
+        "case_id": "rw-gold-v1-unanswerable-trace-retention",
+        "pre_repair_sha256": "a074b62c0d3947fe1e63e4dcc16680bf0baf547dfd89c0cb1db92131dc4cd31a",
+        "post_repair_sha256": "a074b62c0d3947fe1e63e4dcc16680bf0baf547dfd89c0cb1db92131dc4cd31a",
+        "unchanged": true
+      }
+    ],
+    "previously_supported_semantic_claim_count": 96,
+    "previously_supported_semantic_claims_unchanged": 96
+  },
+  "distribution_before": {
+    "case_count": 72,
+    "claim_count": 132,
+    "evidence_group_count": 91,
+    "required_anchor_reference_count": 114,
+    "case_type_distribution": {
+      "cross_topic_multi_doc": 4,
+      "deep_long_doc_localization": 4,
+      "high_overlap_source_conflict": 4,
+      "long_doc_localization": 10,
+      "multi_doc_synthesis": 10,
+      "semantic_paraphrase": 10,
+      "single_doc_fact": 10,
+      "source_disambiguation": 10,
+      "unanswerable_near_boundary": 10
+    },
+    "topic_distribution": {
+      "agent_engineering": 18,
+      "ai_app_backend": 18,
+      "evaluation_reliability": 19,
+      "rag_retrieval": 17
+    },
+    "query_language_distribution": {
+      "en": 18,
+      "zh-CN": 54
+    },
+    "difficulty_distribution": {
+      "easy": 10,
+      "hard": 31,
+      "medium": 19,
+      "stress": 12
+    },
+    "acceptable_support_record_count": 12,
+    "unsupported_record_count": 24,
+    "group_document_reference_count": 92,
+    "distinct_required_document_participation": 86,
+    "candidate_multi_document_case_count": 21,
+    "candidate_required_document_count_distribution": {
+      "0": 10,
+      "1": 41,
+      "2": 18,
+      "3": 3
+    },
+    "minimum_hitting_set_distribution": {
+      "0": 10,
+      "1": 42,
+      "2": 17,
+      "3": 3
+    },
+    "role_record_counts": {
+      "REQUIRED_GROUP": 91,
+      "ACCEPTABLE_SUPPORT": 12,
+      "UNSUPPORTED": 24
+    }
+  },
+  "distribution_after": {
+    "case_count": 72,
+    "claim_count": 132,
+    "evidence_group_count": 100,
+    "required_anchor_reference_count": 117,
+    "group_document_reference_count": 100,
+    "distinct_required_document_participation": 86,
+    "candidate_multi_document_case_count": 21,
+    "candidate_required_document_count_distribution": {
+      "0": 10,
+      "1": 41,
+      "2": 18,
+      "3": 3
+    },
+    "minimum_hitting_set_distribution": {
+      "0": 10,
+      "1": 41,
+      "2": 18,
+      "3": 3
+    },
+    "case_type_distribution": {
+      "cross_topic_multi_doc": 4,
+      "deep_long_doc_localization": 4,
+      "high_overlap_source_conflict": 4,
+      "long_doc_localization": 10,
+      "multi_doc_synthesis": 10,
+      "semantic_paraphrase": 10,
+      "single_doc_fact": 10,
+      "source_disambiguation": 10,
+      "unanswerable_near_boundary": 10
+    },
+    "topic_distribution": {
+      "agent_engineering": 18,
+      "ai_app_backend": 18,
+      "evaluation_reliability": 19,
+      "rag_retrieval": 17
+    },
+    "query_language_distribution": {
+      "en": 18,
+      "zh-CN": 54
+    },
+    "difficulty_distribution": {
+      "easy": 10,
+      "hard": 31,
+      "medium": 19,
+      "stress": 12
+    },
+    "role_record_counts": {
+      "REQUIRED_GROUP": 100,
+      "ACCEPTABLE_SUPPORT": 11,
+      "UNSUPPORTED": 25
+    },
+    "per_document_exposure": {
+      "rw-agent-interrupts": {
+        "required_distinct_case_count": 12,
+        "acceptable_support_case_count": 0,
+        "unsupported_case_count": 1
+      },
+      "rw-agent-langgraph-overview": {
+        "required_distinct_case_count": 3,
+        "acceptable_support_case_count": 3,
+        "unsupported_case_count": 1
+      },
+      "rw-agent-persistence": {
+        "required_distinct_case_count": 7,
+        "acceptable_support_case_count": 2,
+        "unsupported_case_count": 1
+      },
+      "rw-backend-fastapi-async": {
+        "required_distinct_case_count": 7,
+        "acceptable_support_case_count": 0,
+        "unsupported_case_count": 5
+      },
+      "rw-backend-fastapi-dependencies": {
+        "required_distinct_case_count": 6,
+        "acceptable_support_case_count": 2,
+        "unsupported_case_count": 2
+      },
+      "rw-backend-fastapi-errors": {
+        "required_distinct_case_count": 8,
+        "acceptable_support_case_count": 0,
+        "unsupported_case_count": 1
+      },
+      "rw-eval-context-precision": {
+        "required_distinct_case_count": 11,
+        "acceptable_support_case_count": 0,
+        "unsupported_case_count": 4
+      },
+      "rw-eval-otel-traces": {
+        "required_distinct_case_count": 7,
+        "acceptable_support_case_count": 0,
+        "unsupported_case_count": 5
+      },
+      "rw-eval-ragas-workflow": {
+        "required_distinct_case_count": 6,
+        "acceptable_support_case_count": 2,
+        "unsupported_case_count": 1
+      },
+      "rw-rag-bge-m3": {
+        "required_distinct_case_count": 11,
+        "acceptable_support_case_count": 1,
+        "unsupported_case_count": 2
+      },
+      "rw-rag-faiss-overview": {
+        "required_distinct_case_count": 8,
+        "acceptable_support_case_count": 1,
+        "unsupported_case_count": 2
+      }
+    }
+  },
+  "distribution_change_explanation": "Case/claim/taxonomy/topic/language/difficulty and distinct required-document exposure are unchanged. Group and anchor-reference counts increase only because seven frozen OR/AND defects were repaired, one existing anchor was added for the LangGraph claim, and the previously supported FastAPI sibling claim retained its original OR group. ACCEPTABLE_SUPPORT decreases by one and UNSUPPORTED increases by one solely from the frozen case-local role correction.",
+  "anchor_audit": {
+    "anchor_count": 89,
+    "pass_count": 89,
+    "new_anchor_count": 0,
+    "records": [
+      {
+        "evidence_id": "ev-rw-bge-capabilities",
+        "document_id": "rw-rag-bge-m3",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-bge-pipeline",
+        "document_id": "rw-rag-bge-m3",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-bge-miracl-correction",
+        "document_id": "rw-rag-bge-m3",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-bge-specs",
+        "document_id": "rw-rag-bge-m3",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-bge-methods",
+        "document_id": "rw-rag-bge-m3",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-bge-no-query-instruction",
+        "document_id": "rw-rag-bge-m3",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-bge-dense-usage",
+        "document_id": "rw-rag-bge-m3",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-bge-sparse-usage",
+        "document_id": "rw-rag-bge-m3",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-bge-score-weights",
+        "document_id": "rw-rag-bge-m3",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-bge-long-eval",
+        "document_id": "rw-rag-bge-m3",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-bge-training",
+        "document_id": "rw-rag-bge-m3",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-faiss-purpose",
+        "document_id": "rw-rag-faiss-overview",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-faiss-distance",
+        "document_id": "rw-rag-faiss-overview",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-faiss-install",
+        "document_id": "rw-rag-faiss-overview",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-faiss-tradeoffs",
+        "document_id": "rw-rag-faiss-overview",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-faiss-docs",
+        "document_id": "rw-rag-faiss-overview",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-faiss-license",
+        "document_id": "rw-rag-faiss-overview",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-agent-overview-purpose",
+        "document_id": "rw-agent-langgraph-overview",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-agent-overview-capabilities",
+        "document_id": "rw-agent-langgraph-overview",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-agent-overview-ecosystem",
+        "document_id": "rw-agent-langgraph-overview",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-agent-overview-resources",
+        "document_id": "rw-agent-langgraph-overview",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-agent-overview-inspiration",
+        "document_id": "rw-agent-langgraph-overview",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-persist-overview",
+        "document_id": "rw-agent-persistence",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-persist-quickstart",
+        "document_id": "rw-agent-persistence",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-persist-comparison",
+        "document_id": "rw-agent-persistence",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-persist-thread-id",
+        "document_id": "rw-agent-persistence",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-persist-memorysaver",
+        "document_id": "rw-agent-persistence",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-persist-pruning",
+        "document_id": "rw-agent-persistence",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-persist-subgraph",
+        "document_id": "rw-agent-persistence",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-interrupt-mechanism",
+        "document_id": "rw-agent-interrupts",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-interrupt-resume",
+        "document_id": "rw-agent-interrupts",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-interrupt-streaming",
+        "document_id": "rw-agent-interrupts",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-interrupt-multiple",
+        "document_id": "rw-agent-interrupts",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-interrupt-approval",
+        "document_id": "rw-agent-interrupts",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-interrupt-review-edit",
+        "document_id": "rw-agent-interrupts",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-interrupt-tool-approval",
+        "document_id": "rw-agent-interrupts",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-interrupt-validation",
+        "document_id": "rw-agent-interrupts",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-interrupt-restart-rule",
+        "document_id": "rw-agent-interrupts",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-interrupt-try-catch",
+        "document_id": "rw-agent-interrupts",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-interrupt-order",
+        "document_id": "rw-agent-interrupts",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-interrupt-serializable",
+        "document_id": "rw-agent-interrupts",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-interrupt-complex-values",
+        "document_id": "rw-agent-interrupts",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-interrupt-side-effects",
+        "document_id": "rw-agent-interrupts",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-interrupt-side-effects-nodes",
+        "document_id": "rw-agent-interrupts",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-interrupt-duplicate-risk",
+        "document_id": "rw-agent-interrupts",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-interrupt-static",
+        "document_id": "rw-agent-interrupts",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-interrupt-runtime-static",
+        "document_id": "rw-agent-interrupts",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-async-tldr",
+        "document_id": "rw-backend-fastapi-async",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-async-io-bound",
+        "document_id": "rw-backend-fastapi-async",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-async-concurrency-web",
+        "document_id": "rw-backend-fastapi-async",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-async-cpu-bound",
+        "document_id": "rw-backend-fastapi-async",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-async-await-rules",
+        "document_id": "rw-backend-fastapi-async",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-async-anyio",
+        "document_id": "rw-backend-fastapi-async",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-async-coroutine",
+        "document_id": "rw-backend-fastapi-async",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-async-threadpool",
+        "document_id": "rw-backend-fastapi-async",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-deps-meaning",
+        "document_id": "rw-backend-fastapi-dependencies",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-deps-dependable",
+        "document_id": "rw-backend-fastapi-dependencies",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-deps-call",
+        "document_id": "rw-backend-fastapi-dependencies",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-deps-annotated",
+        "document_id": "rw-backend-fastapi-dependencies",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-deps-mixed-async",
+        "document_id": "rw-backend-fastapi-dependencies",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-deps-openapi",
+        "document_id": "rw-backend-fastapi-dependencies",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-deps-hierarchy",
+        "document_id": "rw-backend-fastapi-dependencies",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-errors-client-range",
+        "document_id": "rw-backend-fastapi-errors",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-errors-http-exception",
+        "document_id": "rw-backend-fastapi-errors",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-errors-custom-headers",
+        "document_id": "rw-backend-fastapi-errors",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-errors-custom-handler",
+        "document_id": "rw-backend-fastapi-errors",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-errors-override-validation",
+        "document_id": "rw-backend-fastapi-errors",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-errors-leak-warning",
+        "document_id": "rw-backend-fastapi-errors",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-errors-fastapi-starlette",
+        "document_id": "rw-backend-fastapi-errors",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-errors-reuse-handlers",
+        "document_id": "rw-backend-fastapi-errors",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-ragas-components",
+        "document_id": "rw-eval-ragas-workflow",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-ragas-simple-retriever",
+        "document_id": "rw-eval-ragas-workflow",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-ragas-collect-data",
+        "document_id": "rw-eval-ragas-workflow",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-ragas-evaluate",
+        "document_id": "rw-eval-ragas-workflow",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-ragas-embedding-interface",
+        "document_id": "rw-eval-ragas-workflow",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-precision-definition",
+        "document_id": "rw-eval-context-precision",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-precision-reference-response",
+        "document_id": "rw-eval-context-precision",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-precision-rank-effect",
+        "document_id": "rw-eval-context-precision",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-precision-deprecation",
+        "document_id": "rw-eval-context-precision",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-precision-without-reference",
+        "document_id": "rw-eval-context-precision",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-precision-with-reference",
+        "document_id": "rw-eval-context-precision",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-precision-nonllm",
+        "document_id": "rw-eval-context-precision",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-precision-id-based",
+        "document_id": "rw-eval-context-precision",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-otel-trace-overview",
+        "document_id": "rw-eval-otel-traces",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-otel-parent-child",
+        "document_id": "rw-eval-otel-traces",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-otel-propagation-span",
+        "document_id": "rw-eval-otel-traces",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-otel-attributes-events",
+        "document_id": "rw-eval-otel-traces",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-otel-links-status",
+        "document_id": "rw-eval-otel-traces",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      },
+      {
+        "evidence_id": "ev-rw-otel-async-spans",
+        "document_id": "rw-eval-otel-traces",
+        "locator_resolved": true,
+        "source_hash_matches_manifest": true,
+        "anchor_hash_matches": true,
+        "runtime_id_leakage": false,
+        "status": "PASS"
+      }
+    ]
+  },
+  "immutability": {
+    "frozen_real_world_corpus": {
+      "monitored_file_count": 40,
+      "mismatch_count": 0,
+      "mismatches": []
+    },
+    "controlled_corpus_v2": {
+      "monitored_file_count": 10,
+      "mismatch_count": 0,
+      "mismatches": []
+    },
+    "production_rag": {
+      "monitored_file_count": 21,
+      "mismatch_count": 0,
+      "mismatches": []
+    }
+  },
+  "frozen_review_sha256": "89bf00e924579c1c68a88a952797d4bfb73bccab0f7ba8ffe28bb74e5888279d",
+  "post_repair_semantic_verification_sha256": "e0aa718b0167154f62abfeb8f2f03b1529e5d3890a56bfb9a1257004ce4653bb",
+  "repair_change_log_sha256": "8be6d5214fcb32fe4b6423b035c71f05df9b21355a2889c414e4415fd1980557",
+  "execution_audit": {
+    "deepseek_calls": 0,
+    "other_llm_calls": 0,
+    "production_rag_ask_calls": 0,
+    "real_world_baseline_executions": 0,
+    "embedding_executions": 0,
+    "faiss_retrieval_executions": 0
+  },
+  "final_status": {
+    "gold_correctness_repair_v1": "COMPLETE",
+    "rag_real_world_gold_dataset_v1": "READY_FOR_FINAL_FREEZE",
+    "do_not_run_baseline": true
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "run_id": "20260816T140758Z-finalproductaudit",
+  "status": "PLAN_ONLY",
+  "ready_for_repository_cleanup": "YES",
+  "executed": false,
+  "guardrails": [
+    "Preserve the current dirty worktree and user changes.",
+    "Create an explicit keep-list before any delete or move.",
+    "Never delete .env, the current databases, .venv-cuda, node_modules or D:/AIModels during repository cleanup without separate authority.",
+    "Retain machine-readable summaries/hashes before removing large binary evaluation payloads.",
+    "Use exact resolved paths and a dry-run inventory before every recursive operation."
+  ],
+  "steps": [
+    {
+      "order": 1,
+      "action": "Freeze keep-list",
+      "targets": ["production source", "migrations", "CUDA launcher", "canonical gold/frozen eval", "latest RAG closure", "final usability evidence", "final product audit"],
+      "mutation": false
+    },
+    {
+      "order": 2,
+      "action": "Remove disposable .tmp content after exact path review",
+      "targets": ["duplicated reranker snapshot", "incomplete Hugging Face downloads", "ONNX scratch environment", "temporary browser profiles"],
+      "estimated_surface_bytes": 7329848273,
+      "mutation": "future_cleanup_only"
+    },
+    {
+      "order": 3,
+      "action": "Separate canonical JSON/MD evidence from large historical model/runtime payloads",
+      "targets": ["old ONNX export model directory", "old isolated SQLite/FAISS/upload runtime copies", "failed intermediate RAG runs"],
+      "mutation": "future_cleanup_only"
+    },
+    {
+      "order": 4,
+      "action": "Archive superseded narrative reports",
+      "targets": ["root V1-V12 task/progress reports", "old RAG research reports", "duplicated visual reports"],
+      "destination_policy": "one dated docs/history or release-archive location chosen during cleanup",
+      "mutation": "future_cleanup_only"
+    },
+    {
+      "order": 5,
+      "action": "Remove caches and generated browser state",
+      "targets": ["__pycache__", "*.pyc", ".pytest_cache", "chrome-profile directories", "empty tmp"],
+      "mutation": "future_cleanup_only"
+    },
+    {
+      "order": 6,
+      "action": "Post-cleanup verification",
+      "checks": ["git status/diff inventory", "backend CUDA startup/health", "frontend startup", "canonical backend/frontend tests", "latest evidence manifest integrity"],
+      "mutation": false
+    }
+  ],
+  "files_deleted_now": 0,
+  "files_moved_now": 0
+}

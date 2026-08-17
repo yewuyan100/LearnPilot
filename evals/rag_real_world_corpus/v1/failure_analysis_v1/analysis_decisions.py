@@ -1,0 +1,312 @@
+"""Audited case, deterministic-claim, and citation decisions for analysis V1."""
+
+from __future__ import annotations
+
+
+ROOT_CAUSE_DECISIONS: dict[str, dict[str, object]] = {
+    "rw-gold-v1-single-dependency-defaults": {
+        "primary_root_cause": "RETRIEVAL_MISS",
+        "root_cause_reason": "The candidate pool contains a boundary fragment stating limit=100 but no candidate contains the required skip=0 fact; the selected context is therefore insufficient before the model refuses.",
+        "affected_required_groups": ["eg-rw-single-dependency-defaults-01"],
+        "stage_evidence": {"candidate_required_evidence_missing": True, "selected_required_evidence_sufficient": False, "lexical_signature": ["common_parameters", "skip", "0", "limit", "100"]},
+        "addressability_class": "HYBRID_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-semantic-checkpointer-store": {
+        "primary_root_cause": "CITATION_ONLY_FAILURE",
+        "root_cause_reason": "The answer fulfills both semantic claims, but it cites only rw-agent-persistence and omits the required rw-agent-langgraph-overview source group and the two-document citation obligation.",
+        "affected_required_groups": ["eg-rw-semantic-checkpointer-store-01"],
+        "stage_evidence": {"answer_semantically_correct": True, "missing_required_citation_document": "rw-agent-langgraph-overview"},
+        "addressability_class": "CITATION_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-semantic-deps-automatic": {
+        "primary_root_cause": "SELECTION_DIVERSITY_MISS",
+        "root_cause_reason": "The exact dependency-call chunk (candidate rank 7) is present but diversity-deferred; selected chunks explain injection generally but omit the explicit pass-the-callable-to-Depends obligation.",
+        "affected_required_groups": ["eg-rw-semantic-deps-automatic-01"],
+        "stage_evidence": {"candidate_required_evidence_ranks": [7], "selection_stage": "DIVERSITY_DEFERRED", "selected_required_evidence_sufficient": False},
+        "addressability_class": "RERANKER_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-long-bge-score-mix": {
+        "primary_root_cause": "ANSWERABILITY_FALSE_NEGATIVE",
+        "root_cause_reason": "The score-weight evidence is selected at rank 1, including the required dense/sparse weighting example, yet the model says the context does not explain score combination and refuses.",
+        "affected_required_groups": ["eg-rw-long-bge-score-mix-01"],
+        "stage_evidence": {"candidate_required_evidence_ranks": [1, 2, 5, 6, 8, 10], "selected_required_evidence_sufficient": True, "model_refused": True},
+        "addressability_class": "ANSWERABILITY_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-long-bge-training": {
+        "primary_root_cause": "SELECTION_DIVERSITY_MISS",
+        "root_cause_reason": "The required BGE-M3 training passage is candidate rank 15 but diversity-deferred; the six selected chunks cover capabilities and usage rather than the training obligations, so the refusal has an upstream selection cause.",
+        "affected_required_groups": ["eg-rw-long-bge-training-01"],
+        "stage_evidence": {"candidate_required_evidence_ranks": [15], "selection_stage": "DIVERSITY_DEFERRED", "selected_required_evidence_sufficient": False},
+        "addressability_class": "RERANKER_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-long-deps-hierarchy": {
+        "primary_root_cause": "SELECTION_DIVERSITY_MISS",
+        "root_cause_reason": "Hierarchy/OpenAPI evidence exists in candidates, but the semantically complete hierarchy and OpenAPI chunks at ranks 7, 12, and 14 are diversity-deferred; the selected boundary-mapped chunk covers only the OpenAPI half.",
+        "affected_required_groups": ["eg-rw-long-deps-hierarchy-01", "eg-rw-long-deps-hierarchy-02"],
+        "stage_evidence": {"candidate_required_evidence_ranks": [1, 7, 12, 14], "selection_stage": "DIVERSITY_DEFERRED", "selected_required_evidence_sufficient": False},
+        "addressability_class": "RERANKER_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-long-interrupt-static": {
+        "primary_root_cause": "SELECTION_DIVERSITY_MISS",
+        "root_cause_reason": "The static-interrupt and runtime-configuration anchors are candidates at ranks 10, 13, and 17 but are diversity-deferred; the selected boundary fragment only exposes debugging use, causing two obligations to be omitted.",
+        "affected_required_groups": ["eg-rw-long-interrupt-static-01", "eg-rw-long-interrupt-static-02"],
+        "stage_evidence": {"candidate_required_evidence_ranks": [10, 13, 17], "selection_stage": "DIVERSITY_DEFERRED", "selected_required_evidence_sufficient": False},
+        "addressability_class": "RERANKER_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-long-interrupt-validation": {
+        "primary_root_cause": "GENERATION_OMISSION",
+        "root_cause_reason": "Selected S1 and S6 provide the once-per-node/state/conditional-edge pattern and unstable interrupt-order warning; the answer uses the loop guidance but omits question-in-state and nondeterministic-order details.",
+        "affected_required_groups": ["eg-rw-long-interrupt-validation-01", "eg-rw-long-interrupt-validation-02"],
+        "stage_evidence": {"selected_required_evidence_sufficient": True, "model_refused": False, "omitted_obligations": ["question stored in state", "nondeterministic interrupt ordering"]},
+        "addressability_class": "GENERATION_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-long-langgraph-positioning": {
+        "primary_root_cause": "GENERATION_OMISSION",
+        "root_cause_reason": "Both positioning anchors are selected at ranks 1 and 2, but the answer stops at low-level infrastructure and does not explicitly state fine-grained control over workflow and state.",
+        "affected_required_groups": ["eg-rw-long-langgraph-positioning-02"],
+        "stage_evidence": {"candidate_required_evidence_ranks": [1, 2], "selected_required_evidence_sufficient": True, "omitted_obligations": ["fine-grained workflow and state control"]},
+        "addressability_class": "GENERATION_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-long-otel-links": {
+        "primary_root_cause": "SELECTION_DIVERSITY_MISS",
+        "root_cause_reason": "The complete span-link/status passage is present at candidate ranks 4 and 5 but diversity-deferred; selected S1 supports causal non-hierarchical association but not the optional-link qualification.",
+        "affected_required_groups": ["eg-rw-long-otel-links-01"],
+        "stage_evidence": {"candidate_required_evidence_ranks": [4, 5], "selection_stage": "DIVERSITY_DEFERRED", "selected_required_evidence_sufficient": False},
+        "addressability_class": "RERANKER_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-multi-agent-resume": {
+        "primary_root_cause": "CITATION_ONLY_FAILURE",
+        "root_cause_reason": "The answer correctly explains checkpointer persistence and thread_id resumption, but both citations resolve to rw-agent-interrupts; the required rw-agent-persistence source and two-document coverage are missing.",
+        "affected_required_groups": ["eg-rw-multi-agent-resume-01"],
+        "stage_evidence": {"answer_semantically_correct": True, "missing_required_citation_document": "rw-agent-persistence"},
+        "addressability_class": "CITATION_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-multi-backend-control": {
+        "primary_root_cause": "RETRIEVAL_MISS",
+        "root_cause_reason": "The selected/candidate pool covers async handling and generic dependencies, but no candidate contains the required authentication/authorization subdependency semantics or the HTTPException immediate-client-error passage.",
+        "affected_required_groups": ["eg-rw-multi-backend-control-02", "eg-rw-multi-backend-control-03"],
+        "stage_evidence": {"candidate_required_evidence_missing": True, "selected_required_evidence_sufficient": False, "lexical_signature": ["authentication", "authorization", "HTTPException"]},
+        "addressability_class": "HYBRID_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-multi-error-observability": {
+        "primary_root_cause": "RETRIEVAL_MISS",
+        "root_cause_reason": "The OpenTelemetry status passage is selected, but the candidate pool lacks the HTTPException raise/terminate passage and supplies only generic error-handler/client-range fragments, leaving the first claim under-supported.",
+        "affected_required_groups": ["eg-rw-multi-error-observability-01"],
+        "stage_evidence": {"candidate_required_evidence_missing": True, "selected_required_evidence_sufficient": False, "lexical_signature": ["HTTPException", "raise", "terminate"]},
+        "addressability_class": "HYBRID_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-multi-eval-stack": {
+        "primary_root_cause": "SELECTION_DIVERSITY_MISS",
+        "root_cause_reason": "Workflow fields are available through a selected boundary fragment, but the reference-based and without-reference context-precision examples are candidates at ranks 10-13 and diversity-deferred; selected context is incomplete before refusal.",
+        "affected_required_groups": ["eg-rw-multi-eval-stack-02"],
+        "stage_evidence": {"candidate_required_evidence_ranks": [10, 11, 12, 13], "selection_stage": "DIVERSITY_DEFERRED", "selected_required_evidence_sufficient": False},
+        "addressability_class": "RERANKER_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-multi-hybrid-index": {
+        "primary_root_cause": "SELECTION_DIVERSITY_MISS",
+        "root_cause_reason": "The BGE pipeline recommendation is candidate rank 4 but diversity-deferred after three BGE chunks are chosen; selected context supports retrieval modes and Faiss but omits hybrid-plus-reranking guidance.",
+        "affected_required_groups": ["eg-rw-multi-hybrid-index-01"],
+        "stage_evidence": {"candidate_required_evidence_ranks": [4], "selection_stage": "DIVERSITY_DEFERRED", "selected_required_evidence_sufficient": False},
+        "addressability_class": "RERANKER_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-multi-rag-tracing": {
+        "primary_root_cause": "RETRIEVAL_MISS",
+        "root_cause_reason": "This is the sole document-group candidate miss: required Ragas workflow groups are absent from all 18 candidates, while only OpenTelemetry trace material is selected, so the refusal is upstream of answerability.",
+        "affected_required_groups": ["eg-rw-multi-rag-tracing-01", "eg-rw-multi-rag-tracing-03"],
+        "stage_evidence": {"candidate_required_evidence_missing": True, "candidate_required_document_missing": "rw-eval-ragas-workflow", "selected_required_evidence_sufficient": False, "lexical_signature": ["evaluation data", "trace", "span"]},
+        "addressability_class": "HYBRID_ADDRESSABLE",
+        "addressability_strength": "MEDIUM",
+    },
+    "rw-gold-v1-multi-retrieval-eval": {
+        "primary_root_cause": "RETRIEVAL_MISS",
+        "root_cause_reason": "Faiss and context-precision roles are present, but no candidate contains the required Ragas data-collection record that supplies retrieved_contexts for each user_input; selected evaluation context is therefore incomplete.",
+        "affected_required_groups": ["eg-rw-multi-retrieval-eval-02"],
+        "stage_evidence": {"candidate_required_evidence_missing": True, "selected_required_evidence_sufficient": False, "lexical_signature": ["Ragas", "retrieved_contexts", "user_input"]},
+        "addressability_class": "HYBRID_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-disambig-agent-persist-interrupt": {
+        "primary_root_cause": "ANSWERABILITY_FALSE_NEGATIVE",
+        "root_cause_reason": "Both required persistence and interrupt/resume groups are selected with their anchors, yet the model claims the supplied documents do not explain the distinction and refuses.",
+        "affected_required_groups": ["eg-rw-disambig-agent-persist-interrupt-01", "eg-rw-disambig-agent-persist-interrupt-02"],
+        "stage_evidence": {"selected_required_evidence_sufficient": True, "model_refused": True},
+        "addressability_class": "ANSWERABILITY_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-disambig-fastapi-async-deps": {
+        "primary_root_cause": "SELECTION_RANKING_MISS",
+        "root_cause_reason": "The dependency mixing rule is selected, but the endpoint-selection TLDR passage is candidate rank 12 and does not enter final context; the answer consequently omits thread-pool behavior.",
+        "affected_required_groups": ["eg-rw-disambig-fastapi-async-deps-01"],
+        "stage_evidence": {"candidate_required_evidence_ranks": [12], "selection_stage": "RANKING_OR_CAP", "selected_required_evidence_sufficient": False},
+        "addressability_class": "RERANKER_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-disambig-fastapi-errors": {
+        "primary_root_cause": "ANSWERABILITY_FALSE_NEGATIVE",
+        "root_cause_reason": "The required HTTPException passage is selected at rank 4 and directly states raise/terminate/client-error behavior, but the model says the material is insufficient and refuses.",
+        "affected_required_groups": ["eg-rw-disambig-fastapi-errors-01"],
+        "stage_evidence": {"candidate_required_evidence_ranks": [4, 5], "selected_required_evidence_sufficient": True, "model_refused": True},
+        "addressability_class": "ANSWERABILITY_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-disambig-interrupt-static": {
+        "primary_root_cause": "SELECTION_DIVERSITY_MISS",
+        "root_cause_reason": "The static-breakpoint and runtime-static chunks are candidates at ranks 13 and 14 but diversity-deferred; final context contains dynamic interrupt material instead, so refusal is selection-driven.",
+        "affected_required_groups": ["eg-rw-disambig-interrupt-static-01", "eg-rw-disambig-interrupt-static-02"],
+        "stage_evidence": {"candidate_required_evidence_ranks": [13, 14], "selection_stage": "DIVERSITY_DEFERRED", "selected_required_evidence_sufficient": False},
+        "addressability_class": "RERANKER_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-disambig-ragas-metrics": {
+        "primary_root_cause": "SELECTION_RANKING_MISS",
+        "root_cause_reason": "The context-precision definition is selected, but the workflow construction passage is candidate rank 15 and excluded; selected S6 only describes collecting fields, so EvaluationDataset construction is omitted.",
+        "affected_required_groups": ["eg-rw-disambig-ragas-metrics-01"],
+        "stage_evidence": {"candidate_required_evidence_ranks": [15], "selection_stage": "RANKING_OR_CAP", "selected_required_evidence_sufficient": False},
+        "addressability_class": "RERANKER_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-stress-cross-agent-api-replay": {
+        "primary_root_cause": "RETRIEVAL_MISS",
+        "root_cause_reason": "Node-restart evidence is selected, but no candidate contains the non-idempotent side-effect mitigation or HTTPException client-boundary passage required to complete the cross-topic answer.",
+        "affected_required_groups": ["eg-rw-stress-cross-agent-api-replay-01", "eg-rw-stress-cross-agent-api-replay-02"],
+        "stage_evidence": {"candidate_required_evidence_missing": True, "selected_required_evidence_sufficient": False, "lexical_signature": ["external API", "idempotent", "HTTPException"]},
+        "addressability_class": "HYBRID_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-stress-cross-embedding-api-concurrency": {
+        "primary_root_cause": "RETRIEVAL_MISS",
+        "root_cause_reason": "BGE use_fp16 and the blocking-library half of FastAPI guidance are selected, but the runtime async chunk begins after the await-capable branch; no candidate contains the missing await-call obligation.",
+        "affected_required_groups": ["eg-rw-stress-cross-embedding-api-concurrency-02"],
+        "stage_evidence": {"candidate_required_evidence_missing": True, "selected_required_evidence_sufficient": False, "runtime_chunk_boundary_loss": True, "lexical_signature": ["await", "async def", "normal def"]},
+        "addressability_class": "HYBRID_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-stress-cross-persistence-tracing": {
+        "primary_root_cause": "RETRIEVAL_MISS",
+        "root_cause_reason": "Generic persistence and span-link context are selected, but no candidate distinguishes a persistent checkpointer from an in-memory saver across process restart, leaving the first claim only partially supported.",
+        "affected_required_groups": ["eg-rw-stress-cross-persistence-tracing-01"],
+        "stage_evidence": {"candidate_required_evidence_missing": True, "selected_required_evidence_sufficient": False, "lexical_signature": ["persistent checkpointer", "in-memory", "process restart"]},
+        "addressability_class": "HYBRID_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-stress-cross-retrieval-evaluation": {
+        "primary_root_cause": "RETRIEVAL_MISS",
+        "root_cause_reason": "Selected context contains partial hybrid, Faiss trade-off, and score-example fragments, but candidates omit the full BGE hybrid-plus-reranking and context-precision definition obligations; refusal is upstream.",
+        "affected_required_groups": ["eg-rw-stress-cross-retrieval-evaluation-01", "eg-rw-stress-cross-retrieval-evaluation-03"],
+        "stage_evidence": {"candidate_required_evidence_missing": True, "selected_required_evidence_sufficient": False, "lexical_signature": ["hybrid retrieval", "reranking", "context precision"]},
+        "addressability_class": "HYBRID_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+    "rw-gold-v1-stress-conflict-ragas-reference-mode": {
+        "primary_root_cause": "GENERATION_OMISSION",
+        "root_cause_reason": "ID-based, with-reference, and without-reference examples are all selected, but the answer names the variants without explicitly stating their comparison targets: reference contexts versus generated response.",
+        "affected_required_groups": ["eg-rw-stress-conflict-ragas-reference-mode-01", "eg-rw-stress-conflict-ragas-reference-mode-02"],
+        "stage_evidence": {"selected_required_evidence_sufficient": True, "model_refused": False, "omitted_obligations": ["explicit comparison targets"]},
+        "addressability_class": "GENERATION_ADDRESSABLE",
+        "addressability_strength": "HIGH",
+    },
+}
+
+
+EVAL_MAPPING_CASES: dict[str, str] = {
+    "rw-gold-v1-single-bge-shape": "The answer and citation recover both numeric facts from a selected same-document boundary chunk, while the diagnostic stable-anchor mapper reports no anchor; this is a mapping false negative.",
+    "rw-gold-v1-single-langgraph-js": "The selected LangGraph overview boundary fragment directly contains LangGraph.js and the answer is exact, but the stable anchor is not attached to that runtime chunk.",
+    "rw-gold-v1-semantic-context-order": "The selected context semantically contains the order-swap example and both claims pass, although one required stable anchor is not mapped to the runtime chunk.",
+    "rw-gold-v1-semantic-faiss-compression": "The cited selected Faiss passage contains compression and precision trade-off semantics, so the selected-anchor miss is a runtime-boundary mapping diagnostic.",
+    "rw-gold-v1-long-precision-nonllm": "The selected context and citation support the non-LLM context-precision claim despite the runtime chunk lacking the stable evidence ID.",
+    "rw-gold-v1-multi-agent-memory-hitl": "All three cross-source claims and citations are supported; the selected anchor deficit reflects boundary IDs rather than missing answer evidence.",
+    "rw-gold-v1-multi-async-dependency": "The answer correctly integrates async endpoint and dependency execution rules from selected boundary chunks even though diagnostic anchors do not map.",
+    "rw-gold-v1-disambig-agent-memory": "The answer correctly separates checkpointer, Store, and interrupts from selected text; absent anchor IDs are diagnostic only.",
+    "rw-gold-v1-disambig-bge-faiss": "The answer correctly distinguishes BGE-M3 and Faiss using selected semantic equivalents, while one stable anchor is not mapped to its runtime chunk.",
+    "rw-gold-v1-stress-deep-bge-mldr-comparison": "The Chinese answer explicitly states 13 languages plus test, validation, and training sets; the STRUCTURED_EXACT matcher fails only because it requires the English tokens.",
+    "rw-gold-v1-stress-deep-interrupt-side-effects": "The answer and citations fully cover replay and idempotent side-effect placement; the selected-anchor miss is boundary mapping.",
+    "rw-gold-v1-stress-conflict-fastapi-handler-type": "The answer correctly resolves the handler-type conflict and cites supporting text; the remaining selected-anchor deficit is diagnostic mapping.",
+}
+
+
+DETERMINISTIC_FAILURE_REVIEWS: dict[str, dict[str, str]] = {
+    "rw-gold-v1-single-dependency-defaults-claim-01": {
+        "final_status": "FAIL",
+        "review_reason": "The model refuses and never states skip=0; that atomic fact is also absent from the candidate fragments.",
+        "failure_mode": "EVIDENCE_MISSING_THEN_REFUSAL",
+    },
+    "rw-gold-v1-single-dependency-defaults-claim-02": {
+        "final_status": "FAIL",
+        "review_reason": "A selected fragment states limit=100, but the model's global refusal omits it, so the claim remains unfulfilled.",
+        "failure_mode": "ANSWER_OMISSION_AFTER_PARTIAL_EVIDENCE",
+    },
+    "rw-gold-v1-long-bge-score-mix-claim-01": {
+        "final_status": "FAIL",
+        "review_reason": "The selected top-ranked score-weight passage is sufficient, but the model refuses and supplies none of the required structured values.",
+        "failure_mode": "FALSE_REFUSAL_WITH_SUFFICIENT_EVIDENCE",
+    },
+    "rw-gold-v1-stress-deep-bge-mldr-comparison-claim-01": {
+        "final_status": "PASS",
+        "review_reason": "The answer semantically contains all four obligations in Chinese: 13 languages and test, validation, and training sets; only the English-token exact matcher failed.",
+        "failure_mode": "EVAL_LANGUAGE_MAPPING_FALSE_NEGATIVE",
+    },
+}
+
+
+CITATION_STATUS_OVERRIDES: dict[tuple[str, str], tuple[str, str]] = {
+    ("rw-gold-v1-multi-error-observability", "S2"): (
+        "CITATION_PARTIALLY_SUPPORTS",
+        "The excerpt supports the statement that successful spans usually need not be marked Ok, but it does not by itself cover the answer's broader failure-status wording.",
+    ),
+    ("rw-gold-v1-disambig-fastapi-async-deps", "S4"): (
+        "CITATION_PARTIALLY_SUPPORTS",
+        "The excerpt identifies FastAPI's AnyIO/async foundation but does not itself contain the endpoint def/async selection guidance attributed to that document.",
+    ),
+    ("rw-gold-v1-stress-conflict-fastapi-handler-type", "S5"): (
+        "CITATION_UNNECESSARY",
+        "This dependency/OpenAPI excerpt is accurately described as irrelevant to exception handlers, but it is unnecessary to support the required handler-type answer.",
+    ),
+    ("rw-gold-v1-stress-conflict-fastapi-handler-type", "S6"): (
+        "CITATION_UNNECESSARY",
+        "This Annotated/type-information excerpt is a correctly identified distractor and adds no required support for the exception-handler claim.",
+    ),
+    ("rw-gold-v1-stress-conflict-ragas-reference-mode", "S4"): (
+        "CITATION_UNNECESSARY",
+        "The generic data-collection workflow is correctly labeled indirect, but it is unnecessary for distinguishing the context-precision reference modes.",
+    ),
+    ("rw-gold-v1-stress-conflict-ragas-reference-mode", "S5"): (
+        "CITATION_UNNECESSARY",
+        "The generic evaluate-call passage does not distinguish the reference modes and is unnecessary to the required answer.",
+    ),
+}
+
+
+ROOT_CAUSE_TAXONOMY = {
+    "RETRIEVAL_MISS",
+    "SELECTION_RANKING_MISS",
+    "SELECTION_THRESHOLD_MISS",
+    "SELECTION_DEDUP_MISS",
+    "SELECTION_DIVERSITY_MISS",
+    "SELECTION_CONTEXT_BUDGET_MISS",
+    "ANSWERABILITY_FALSE_NEGATIVE",
+    "GENERATION_FACT_ERROR",
+    "GENERATION_OMISSION",
+    "GENERATION_OVERCLAIM",
+    "GENERATION_EXTRACTION_ERROR",
+    "MULTI_DOC_SYNTHESIS_FAILURE",
+    "CITATION_ONLY_FAILURE",
+    "EVAL_MAPPING_DIAGNOSTIC",
+    "NO_FAILURE",
+    "OTHER_VERIFIED",
+}
+

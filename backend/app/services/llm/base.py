@@ -18,6 +18,7 @@ class StructuredLLMResult:
     usage: LLMUsage
     model: str
     latency_ms: int
+    finish_reason: str | None = None
 
 
 class LLMProvider(Protocol):

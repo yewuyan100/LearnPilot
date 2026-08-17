@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "distinct_information_need_count": 72,
+  "exact_duplicate_question_count": 0,
+  "near_duplicate_question_pair_count": 0,
+  "exact_source_sentence_question_count": 0,
+  "exact_source_sentence_case_ids": [],
+  "title_only_question_risk_count": 0,
+  "title_only_question_risk_case_ids": [],
+  "ambiguous_required_evidence_count": 0,
+  "unsupported_claim_expectation_count": 0,
+  "role_conflict_count": 0,
+  "notes": "Questions were authored from frozen sources before any baseline; exact-value cases retain necessary identifiers without copying source sentences."
+}

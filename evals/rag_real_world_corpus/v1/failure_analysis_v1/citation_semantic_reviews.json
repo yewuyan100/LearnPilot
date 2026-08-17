@@ -1,0 +1,2783 @@
+{
+  "case_summaries": [
+    {
+      "actual_citation_count": 1,
+      "case_id": "rw-gold-v1-single-bge-shape",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 0,
+      "case_id": "rw-gold-v1-single-dependency-defaults",
+      "machine_contract_pass": false,
+      "missing_required_group_count": 1,
+      "semantic_citation_status": "FAIL"
+    },
+    {
+      "actual_citation_count": 1,
+      "case_id": "rw-gold-v1-single-error-response",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 1,
+      "case_id": "rw-gold-v1-single-faiss-cosine",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 2,
+      "case_id": "rw-gold-v1-single-interrupt-status",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 1,
+      "case_id": "rw-gold-v1-single-langgraph-js",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 1,
+      "case_id": "rw-gold-v1-single-otel-status",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 1,
+      "case_id": "rw-gold-v1-single-persist-thread-id",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 1,
+      "case_id": "rw-gold-v1-single-precision-id",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 1,
+      "case_id": "rw-gold-v1-single-ragas-dataset",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 1,
+      "case_id": "rw-gold-v1-semantic-bge-functions",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 2,
+      "case_id": "rw-gold-v1-semantic-checkpointer-store",
+      "machine_contract_pass": false,
+      "missing_required_group_count": 1,
+      "semantic_citation_status": "FAIL"
+    },
+    {
+      "actual_citation_count": 2,
+      "case_id": "rw-gold-v1-semantic-context-order",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 2,
+      "case_id": "rw-gold-v1-semantic-deps-automatic",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 1,
+      "case_id": "rw-gold-v1-semantic-error-raise",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 1,
+      "case_id": "rw-gold-v1-semantic-faiss-compression",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 2,
+      "case_id": "rw-gold-v1-semantic-fastapi-blocking",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 1,
+      "case_id": "rw-gold-v1-semantic-interrupt-replay",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 1,
+      "case_id": "rw-gold-v1-semantic-ragas-data",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 1,
+      "case_id": "rw-gold-v1-semantic-trace-correlation",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 3,
+      "case_id": "rw-gold-v1-long-async-threadpool",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 1,
+      "case_id": "rw-gold-v1-long-bge-query-instruction",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 0,
+      "case_id": "rw-gold-v1-long-bge-score-mix",
+      "machine_contract_pass": false,
+      "missing_required_group_count": 1,
+      "semantic_citation_status": "FAIL"
+    },
+    {
+      "actual_citation_count": 0,
+      "case_id": "rw-gold-v1-long-bge-training",
+      "machine_contract_pass": false,
+      "missing_required_group_count": 1,
+      "semantic_citation_status": "FAIL"
+    },
+    {
+      "actual_citation_count": 0,
+      "case_id": "rw-gold-v1-long-deps-hierarchy",
+      "machine_contract_pass": false,
+      "missing_required_group_count": 2,
+      "semantic_citation_status": "FAIL"
+    },
+    {
+      "actual_citation_count": 1,
+      "case_id": "rw-gold-v1-long-interrupt-static",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 1,
+      "case_id": "rw-gold-v1-long-interrupt-validation",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 2,
+      "case_id": "rw-gold-v1-long-langgraph-positioning",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 1,
+      "case_id": "rw-gold-v1-long-otel-links",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 1,
+      "case_id": "rw-gold-v1-long-precision-nonllm",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 5,
+      "case_id": "rw-gold-v1-multi-agent-memory-hitl",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 2,
+      "case_id": "rw-gold-v1-multi-agent-resume",
+      "machine_contract_pass": false,
+      "missing_required_group_count": 1,
+      "semantic_citation_status": "FAIL"
+    },
+    {
+      "actual_citation_count": 2,
+      "case_id": "rw-gold-v1-multi-async-dependency",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 3,
+      "case_id": "rw-gold-v1-multi-backend-control",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 2,
+      "case_id": "rw-gold-v1-multi-error-observability",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PARTIAL"
+    },
+    {
+      "actual_citation_count": 0,
+      "case_id": "rw-gold-v1-multi-eval-stack",
+      "machine_contract_pass": false,
+      "missing_required_group_count": 2,
+      "semantic_citation_status": "FAIL"
+    },
+    {
+      "actual_citation_count": 2,
+      "case_id": "rw-gold-v1-multi-faiss-context-precision",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 4,
+      "case_id": "rw-gold-v1-multi-hybrid-index",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 0,
+      "case_id": "rw-gold-v1-multi-rag-tracing",
+      "machine_contract_pass": false,
+      "missing_required_group_count": 4,
+      "semantic_citation_status": "FAIL"
+    },
+    {
+      "actual_citation_count": 0,
+      "case_id": "rw-gold-v1-multi-retrieval-eval",
+      "machine_contract_pass": false,
+      "missing_required_group_count": 3,
+      "semantic_citation_status": "FAIL"
+    },
+    {
+      "actual_citation_count": 3,
+      "case_id": "rw-gold-v1-disambig-agent-memory",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 0,
+      "case_id": "rw-gold-v1-disambig-agent-persist-interrupt",
+      "machine_contract_pass": false,
+      "missing_required_group_count": 2,
+      "semantic_citation_status": "FAIL"
+    },
+    {
+      "actual_citation_count": 2,
+      "case_id": "rw-gold-v1-disambig-bge-faiss",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 3,
+      "case_id": "rw-gold-v1-disambig-bge-long",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 2,
+      "case_id": "rw-gold-v1-disambig-fastapi-async-deps",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PARTIAL"
+    },
+    {
+      "actual_citation_count": 0,
+      "case_id": "rw-gold-v1-disambig-fastapi-errors",
+      "machine_contract_pass": false,
+      "missing_required_group_count": 1,
+      "semantic_citation_status": "FAIL"
+    },
+    {
+      "actual_citation_count": 1,
+      "case_id": "rw-gold-v1-disambig-fastapi-exceptions",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 0,
+      "case_id": "rw-gold-v1-disambig-interrupt-static",
+      "machine_contract_pass": false,
+      "missing_required_group_count": 2,
+      "semantic_citation_status": "FAIL"
+    },
+    {
+      "actual_citation_count": 3,
+      "case_id": "rw-gold-v1-disambig-ragas-metrics",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 3,
+      "case_id": "rw-gold-v1-disambig-ragas-otel",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 0,
+      "case_id": "rw-gold-v1-unanswerable-bge-language-counts",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 0,
+      "case_id": "rw-gold-v1-unanswerable-bge-optimal-weights",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 0,
+      "case_id": "rw-gold-v1-unanswerable-checkpoint-encryption",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 0,
+      "case_id": "rw-gold-v1-unanswerable-dependency-depth",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 0,
+      "case_id": "rw-gold-v1-unanswerable-faiss-p95-latency",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 0,
+      "case_id": "rw-gold-v1-unanswerable-interrupt-timeout",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 0,
+      "case_id": "rw-gold-v1-unanswerable-precision-pass-threshold",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 0,
+      "case_id": "rw-gold-v1-unanswerable-ragas-minimum-score",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 0,
+      "case_id": "rw-gold-v1-unanswerable-threadpool-workers",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 0,
+      "case_id": "rw-gold-v1-unanswerable-trace-retention",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 3,
+      "case_id": "rw-gold-v1-stress-deep-async-call-kinds",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 2,
+      "case_id": "rw-gold-v1-stress-deep-bge-mldr-comparison",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 2,
+      "case_id": "rw-gold-v1-stress-deep-interrupt-side-effects",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 1,
+      "case_id": "rw-gold-v1-stress-deep-precision-id-versus-content",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 0,
+      "case_id": "rw-gold-v1-stress-cross-agent-api-replay",
+      "machine_contract_pass": false,
+      "missing_required_group_count": 2,
+      "semantic_citation_status": "FAIL"
+    },
+    {
+      "actual_citation_count": 2,
+      "case_id": "rw-gold-v1-stress-cross-embedding-api-concurrency",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 3,
+      "case_id": "rw-gold-v1-stress-cross-persistence-tracing",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 0,
+      "case_id": "rw-gold-v1-stress-cross-retrieval-evaluation",
+      "machine_contract_pass": false,
+      "missing_required_group_count": 3,
+      "semantic_citation_status": "FAIL"
+    },
+    {
+      "actual_citation_count": 1,
+      "case_id": "rw-gold-v1-stress-conflict-bge-faiss-compression",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 4,
+      "case_id": "rw-gold-v1-stress-conflict-fastapi-handler-type",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 3,
+      "case_id": "rw-gold-v1-stress-conflict-interrupt-persistence-resume",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    },
+    {
+      "actual_citation_count": 5,
+      "case_id": "rw-gold-v1-stress-conflict-ragas-reference-mode",
+      "machine_contract_pass": true,
+      "missing_required_group_count": 0,
+      "semantic_citation_status": "PASS"
+    }
+  ],
+  "citation_reviews": [
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-single-bge-shape",
+      "citation_review_id": "rw-gold-v1-single-bge-shape:S1:1",
+      "content_excerpt": "- Model\n\n| Model Name |  Dimension | Sequence Length | Introduction |\n|:----:|:---:|:---:|:---:|\n| BAAI/bge-m3 (https://huggingface.co/BAAI/bge-m3) | 1024 | 8192 | multilingual; unified fine-tuning (dense, sparse, and colbert) from bge-m3-unsupervised|\n| BAAI/bge-m3-unsupervised (https://huggingface.co/BAAI/bge-m3-unsupervised) | 1024 | 8192 | multilingual; contrastive learning from bge-m3-retromae |\n| BAAI/bge-m3-retromae (https://huggingface.co/BAAI/bge-m3-retromae) | -- | 8192 | multilingual; extend the max_length of xlm-roberta (https://huggingface.co/FacebookAI/xlm-roberta-large) to 8192 and further pretrained via retromae (https://github.com/staoxiao/RetroMAE)|\n| BAAI/bge-large-en-v1.5 (https://huggingface.co/BAAI/bge-large-en-v1.5) | 1024 | 512 | English model |",
+      "document_id": "rw-rag-bge-m3",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-single-bge-shape-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-single-bge-shape-claim-01",
+        "rw-gold-v1-single-bge-shape-claim-02"
+      ],
+      "review_reason": "The cited rw-rag-bge-m3 excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘- Model | Model Name | Dimension | Sequence Length | Introduction | |:----:|:---:|:---:|:---:| | BAAI/bge-m3 (https://huggingface.co/BAAI/bge-m3) | 1024 | 8192 | multilingual; unified fine-tuning (dense, sparse, and colb’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "访问不存在的 item_id='bar' 时，客户端会收到 HTTP 状态码 404（\"not found\" 错误），以及 JSON 响应： ```json { \"detail\": \"Item not found\" } ```",
+      "case_id": "rw-gold-v1-single-error-response",
+      "citation_review_id": "rw-gold-v1-single-error-response:S1:1",
+      "content_excerpt": "If the client requests http://example.com/items/foo (an item_id \"foo\"), that client will receive an HTTP status code of 200, and a JSON response of:\n\n{\n  \"item\": \"The Foo Wrestlers\"\n}\n\nBut if the client requests http://example.com/items/bar (a non-existent item_id \"bar\"), that client will receive an HTTP status code of 404 (the \"not found\" error), and a JSON response of:\n\n{\n  \"detail\": \"Item not found\"\n}\n\n/// tip\n\nWhen raising an HTTPException, you can pass any value that can be converted to JSON as the parameter detail, not only str.\n\nYou could pass a dict, a list, etc.\n\nThey are handled automatically by FastAPI and converted to JSON.\n\n///",
+      "document_id": "rw-backend-fastapi-errors",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-single-error-response-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-single-error-response-claim-01",
+        "rw-gold-v1-single-error-response-claim-02"
+      ],
+      "review_reason": "The cited rw-backend-fastapi-errors excerpt semantically supports the adjacent assertion ‘访问不存在的 item_id='bar' 时，客户端会收到 HTTP 状态码 404（\"not found\" 错误），以及 JSON 响应： ```json { \"detail\": \"Item not found\" } ```’; its supporting text begins ‘If the client requests http://example.com/items/foo (an item_id \"foo\"), that client will receive an HTTP status code of 200, and a JSON response of: { \"item\": \"The Foo Wrestlers\" } But if the client requests http://examp’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-single-faiss-cosine",
+      "citation_review_id": "rw-gold-v1-single-faiss-cosine:S1:1",
+      "content_excerpt": "Faiss contains several methods for similarity search. It assumes that the instances are represented as vectors and are identified by an integer, and that the vectors can be compared with L2 (Euclidean) distances or dot products. Vectors that are similar to a query vector are those that have the lowest L2 distance or the highest dot product with the query vector. It also supports cosine similarity, since this is a dot product on normalized vectors.",
+      "document_id": "rw-rag-faiss-overview",
+      "evidence_ids": [
+        "ev-rw-faiss-distance"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-single-faiss-cosine-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-single-faiss-cosine-claim-01"
+      ],
+      "review_reason": "The cited rw-rag-faiss-overview excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘Faiss contains several methods for similarity search. It assumes that the instances are represented as vectors and are identified by an integer, and that the vectors can be compared with L2 (Euclidean) distances or dot p’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-single-interrupt-status",
+      "citation_review_id": "rw-gold-v1-single-interrupt-status:S1:1",
+      "content_excerpt": "const approvalNode: typeof State.Node = (state) => {\n  // Pause execution; payload surfaces in result.__interrupt__\n  const isApproved = interrupt({\n    question: \"Do you want to proceed?\",\n    details: state.actionDetails\n  });\n  // Route based on the response\n  if (isApproved) {\n    return new Command({ goto: \"proceed\" }); // Runs after the resume payload is provided\n  } else {\n    return new Command({ goto: \"cancel\" });\n  }\n}\n```\n:::\n:::python\nWhen you resume the graph, pass `True` to approve or `False` to reject:\n```python\n# To approve\ngraph.stream_events(Command(resume=True), config=config, version=\"v3\").output\n# To reject\ngraph.stream_events(Command(resume=False), config=config, version=\"v3\").output\n```\n:::\n:::js",
+      "document_id": "rw-agent-interrupts",
+      "evidence_ids": [
+        "ev-rw-interrupt-approval"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-single-interrupt-status-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-single-interrupt-status-claim-01",
+        "rw-gold-v1-single-interrupt-status-claim-02"
+      ],
+      "review_reason": "The cited rw-agent-interrupts excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘const approvalNode: typeof State.Node = (state) => { // Pause execution; payload surfaces in result.__interrupt__ const isApproved = interrupt({ question: \"Do you want to proceed?\", details: state.actionDetails }); // Ro’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "[S1]",
+      "case_id": "rw-gold-v1-single-interrupt-status",
+      "citation_review_id": "rw-gold-v1-single-interrupt-status:S2:2",
+      "content_excerpt": ".addEdge(START, \"approval\")\n      .addEdge(\"proceed\", END)\n      .addEdge(\"cancel\", END);\n    // Use a more durable checkpointer in production\n    const checkpointer = new MemorySaver();\n    const graph = graphBuilder.compile({ checkpointer });\n    const config = { configurable: { thread_id: \"approval-123\" } };\n    const initial = await graph.invoke(\n      { actionDetails: \"Transfer $500\", status: \"pending\" },\n      config,\n    );\n    console.log(initial.__interrupt__);\n    // [{ value: { question: ..., details: ... } }]\n    // Resume with the decision; true routes to proceed, false to cancel\n    const resumed = await graph.invoke(new Command({ resume: true }), config);\n    console.log(resumed.status); // -> \"approved\"\n    ```\n    :::\n</Accordion>\n### Review and edit state",
+      "document_id": "rw-agent-interrupts",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-single-interrupt-status-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-single-interrupt-status-claim-01",
+        "rw-gold-v1-single-interrupt-status-claim-02"
+      ],
+      "review_reason": "The cited rw-agent-interrupts excerpt semantically supports the adjacent assertion ‘[S1]’; its supporting text begins ‘.addEdge(START, \"approval\") .addEdge(\"proceed\", END) .addEdge(\"cancel\", END); // Use a more durable checkpointer in production const checkpointer = new MemorySaver(); const graph = graphBuilder.compile({ checkpointer });’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S2",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-single-langgraph-js",
+      "citation_review_id": "rw-gold-v1-single-langgraph-js:S1:1",
+      "content_excerpt": "level package built on LangGraph for agents that can plan, use subagents, and leverage file systems for complex tasks.\n\nFor an equivalent JS/TS library, check out LangGraph.js (https://github.com/langchain-ai/langgraphjs) and the JS docs (https://docs.langchain.com/oss/javascript/langgraph/overview).",
+      "document_id": "rw-agent-langgraph-overview",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-single-langgraph-js-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-single-langgraph-js-claim-01"
+      ],
+      "review_reason": "The cited rw-agent-langgraph-overview excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘level package built on LangGraph for agents that can plan, use subagents, and leverage file systems for complex tasks. For an equivalent JS/TS library, check out LangGraph.js (https://github.com/langchain-ai/langgraphjs)’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-single-otel-status",
+      "citation_review_id": "rw-gold-v1-single-otel-status:S1:1",
+      "content_excerpt": "You can link the last span from the first trace to the first span in the second\ntrace. Now, they are causally associated with one another.\nLinks are optional but serve as a good way to associate trace spans with one\nanother.\nFor more information see [Span Links](/docs/specs/otel/trace/api/#link).\n### Span Status\nEach span has a status. The three possible values are:\n- `Unset`\n- `Error`\n- `Ok`\nThe default value is `Unset`. A span status that is `Unset` means that the\noperation it tracked successfully completed without an error.\nWhen a span status is `Error`, then that means some error occurred in the\noperation it tracks. For example, this could be due to an HTTP 500 error on a\nserver handling a request.\nWhen a span status is `Ok`, then that means the span was explicitly marked as",
+      "document_id": "rw-eval-otel-traces",
+      "evidence_ids": [
+        "ev-rw-otel-links-status"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-single-otel-status-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-single-otel-status-claim-01",
+        "rw-gold-v1-single-otel-status-claim-02"
+      ],
+      "review_reason": "The cited rw-eval-otel-traces excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘You can link the last span from the first trace to the first span in the second trace. Now, they are causally associated with one another. Links are optional but serve as a good way to associate trace spans with one anot’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-single-persist-thread-id",
+      "citation_review_id": "rw-gold-v1-single-persist-thread-id:S1:1",
+      "content_excerpt": "inters) | [Stores](/oss/langgraph/stores) |\n\n## Troubleshooting common issues\n\n### PostgresSaver: `thread_id` too long\n\nWhen using `PostgresSaver` (or `AsyncPostgresSaver`), the `thread_id` is stored in a column with limited length. If your `thread_id` exceeds the column size, you will see a database error.\n\n**Fix:** Keep `thread_id` values under 255 characters. Use a UUID or hash if you need deterministic IDs:\n\n:::python\n```python\nimport uuid\n\nconfig = {\"configurable\": {\"thread_id\": str(uuid.uuid4())[:255]}}\n```\n:::\n\n### `MemorySaver` does not persist between restarts\n\n`MemorySaver` and `InMemorySaver` store checkpoints in RAM. When the process restarts, all checkpoints are lost.\n\n**Fix:** Use a persistent checkpointer for production:",
+      "document_id": "rw-agent-persistence",
+      "evidence_ids": [
+        "ev-rw-persist-memorysaver",
+        "ev-rw-persist-thread-id"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-single-persist-thread-id-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-single-persist-thread-id-claim-01",
+        "rw-gold-v1-single-persist-thread-id-claim-02"
+      ],
+      "review_reason": "The cited rw-agent-persistence excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘inters) | [Stores](/oss/langgraph/stores) | ## Troubleshooting common issues ### PostgresSaver: `thread_id` too long When using `PostgresSaver` (or `AsyncPostgresSaver`), the `thread_id` is stored in a column with limite’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-single-precision-id",
+      "citation_review_id": "rw-gold-v1-single-precision-id:S1:1",
+      "content_excerpt": "from ragas import SingleTurnSample\nfrom ragas.metrics import IDBasedContextPrecision\n\nsample = SingleTurnSample(\n    retrieved_context_ids=[\"doc_1\", \"doc_2\", \"doc_3\", \"doc_4\"],\n    reference_context_ids=[\"doc_1\", \"doc_4\", \"doc_5\", \"doc_6\"]\n)\n\nid_precision = IDBasedContextPrecision()\nawait id_precision.single_turn_ascore(sample)\n\nOutput:\n0.5\n\nIn this example, out of the 4 retrieved context IDs, only 2 (\"doc_1\" and \"doc_4\") are found in the reference context IDs, resulting in a precision score of 0.5 or 50%.",
+      "document_id": "rw-eval-context-precision",
+      "evidence_ids": [
+        "ev-rw-precision-id-based"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-single-precision-id-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-single-precision-id-claim-01"
+      ],
+      "review_reason": "The cited rw-eval-context-precision excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘from ragas import SingleTurnSample from ragas.metrics import IDBasedContextPrecision sample = SingleTurnSample( retrieved_context_ids=[\"doc_1\", \"doc_2\", \"doc_3\", \"doc_4\"], reference_context_ids=[\"doc_1\", \"doc_4\", \"doc_5\"’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "from_list(dataset) ```",
+      "case_id": "rw-gold-v1-single-ragas-dataset",
+      "citation_review_id": "rw-gold-v1-single-ragas-dataset:S1:1",
+      "content_excerpt": "arwin introduced the theory of evolution by natural selection in his book 'On the Origin of Species'.\"\n]\n\ndataset = []\n\nfor query,reference in zip(sample_queries,expected_responses):\n\n    relevant_docs = rag.get_most_relevant_docs(query)\n    response = rag.generate_answer(query, relevant_docs)\n    dataset.append(\n        {\n            \"user_input\":query,\n            \"retrieved_contexts\":relevant_docs,\n            \"response\":response,\n            \"reference\":reference\n        }\n    )\n\nNow, load the dataset into EvaluationDataset object.\n\nfrom ragas import EvaluationDataset\nevaluation_dataset = EvaluationDataset.from_list(dataset)",
+      "document_id": "rw-eval-ragas-workflow",
+      "evidence_ids": [
+        "ev-rw-ragas-collect-data"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-single-ragas-dataset-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-single-ragas-dataset-claim-01"
+      ],
+      "review_reason": "The cited rw-eval-ragas-workflow excerpt semantically supports the adjacent assertion ‘from_list(dataset) ```’; its supporting text begins ‘arwin introduced the theory of evolution by natural selection in his book 'On the Origin of Species'.\" ] dataset = [] for query,reference in zip(sample_queries,expected_responses): relevant_docs = rag.get_most_relevant_d’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-semantic-bge-functions",
+      "citation_review_id": "rw-gold-v1-semantic-bge-functions:S1:1",
+      "content_excerpt": "In this project, we introduce BGE-M3, which is distinguished for its versatility in Multi-Functionality, Multi-Linguality, and Multi-Granularity.\n- Multi-Functionality: It can simultaneously perform the three common retrieval functionalities of embedding model: dense retrieval, multi-vector retrieval, and sparse retrieval.\n- Multi-Linguality: It can support more than 100 working languages.\n- Multi-Granularity: It is able to process inputs of different granularities, spanning from short sentences to long documents of up to 8192 tokens.\n\nFor more details, please refer to our paper: BGE M3-Embedding: Multi-Lingual, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation (https://arxiv.org/pdf/2402.03216.pdf)\n\nSome suggestions for retrieval pipeline in RAG",
+      "document_id": "rw-rag-bge-m3",
+      "evidence_ids": [
+        "ev-rw-bge-capabilities"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-semantic-bge-functions-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-semantic-bge-functions-claim-01"
+      ],
+      "review_reason": "The cited rw-rag-bge-m3 excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘In this project, we introduce BGE-M3, which is distinguished for its versatility in Multi-Functionality, Multi-Linguality, and Multi-Granularity. - Multi-Functionality: It can simultaneously perform the three common retr’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-semantic-checkpointer-store",
+      "citation_review_id": "rw-gold-v1-semantic-checkpointer-store:S1:1",
+      "content_excerpt": "r stores manually. The server handles persistence infrastructure behind the scenes.\n</Info>\n\n## Checkpointer vs. store\n\n| | Checkpointer | Store |\n| ---- | ---- | ---- |\n| Persists | Graph state snapshots | Application-defined key-value data |\n| Scope | A single thread | Across threads |\n| Memory type | Short-term, thread-scoped memory | Long-term, cross-thread memory |\n| Use for | Conversation continuity, human-in-the-loop, time travel, and fault tolerance | User preferences, facts, and shared knowledge |\n| Access pattern | Pass a `thread_id` in graph config | Read and write items from nodes or application code |\n| Full guide | [Checkpointers](/oss/langgraph/checkpointers) | [Stores](/oss/langgraph/stores) |\n\n## Troubleshooting common issues\n\n### PostgresSaver: `thread_id` too long",
+      "document_id": "rw-agent-persistence",
+      "evidence_ids": [
+        "ev-rw-persist-comparison"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-semantic-checkpointer-store-02",
+        "eg-rw-semantic-checkpointer-store-03"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-semantic-checkpointer-store-claim-01",
+        "rw-gold-v1-semantic-checkpointer-store-claim-02"
+      ],
+      "review_reason": "The cited rw-agent-persistence excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘r stores manually. The server handles persistence infrastructure behind the scenes. </Info> ## Checkpointer vs. store | | Checkpointer | Store | | ---- | ---- | ---- | | Persists | Graph state snapshots | Application-def’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-semantic-checkpointer-store",
+      "citation_review_id": "rw-gold-v1-semantic-checkpointer-store:S2:2",
+      "content_excerpt": "---\ntitle: Persistence\ndescription: LangGraph's persistence layer gives agents short-term memory through checkpointers and long-term memory through stores.\n---\n\n{/* Anchor stubs for backwards-compatible deep links */}\n<a id=\"checkpoints\" />\n<a id=\"threads\" />\n<a id=\"memory-store\" />\n<a id=\"checkpointer-libraries\" />\n<a id=\"pending-writes\" />\n<a id=\"durability-modes\" />\n\nPersistence lets LangGraph applications keep useful information beyond a single graph run. It matters when an agent needs to continue a conversation, resume after an interruption, recover from a failure, or remember information across interactions.\n\nLangGraph provides two complementary persistence systems:",
+      "document_id": "rw-agent-persistence",
+      "evidence_ids": [
+        "ev-rw-persist-overview"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-semantic-checkpointer-store-02",
+        "eg-rw-semantic-checkpointer-store-03"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-semantic-checkpointer-store-claim-01",
+        "rw-gold-v1-semantic-checkpointer-store-claim-02"
+      ],
+      "review_reason": "The cited rw-agent-persistence excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘--- title: Persistence description: LangGraph's persistence layer gives agents short-term memory through checkpointers and long-term memory through stores. --- {/* Anchor stubs for backwards-compatible deep links */} <a ’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S2",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-semantic-context-order",
+      "citation_review_id": "rw-gold-v1-semantic-context-order:S1:1",
+      "content_excerpt": "cision remains the same. However, if this irrelevant chunk is placed at the first position, context precision reduces:\n\nresult = await scorer.ascore(\n    user_input=\"Where is the Eiffel Tower located?\",\n    response=\"The Eiffel Tower is located in Paris.\",\n    retrieved_contexts=[\n        \"The Brandenburg Gate is located in Berlin.\",\n        \"The Eiffel Tower is located in Paris.\"\n    ]\n)\nprint(f\"Context Utilization Score: {result.value}\")\n\nOutput:\nContext Utilization Score: 0.49999999995",
+      "document_id": "rw-eval-context-precision",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-semantic-context-order-01",
+        "eg-rw-semantic-context-order-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-semantic-context-order-claim-01",
+        "rw-gold-v1-semantic-context-order-claim-02"
+      ],
+      "review_reason": "The cited rw-eval-context-precision excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘cision remains the same. However, if this irrelevant chunk is placed at the first position, context precision reduces: result = await scorer.ascore( user_input=\"Where is the Eiffel Tower located?\", response=\"The Eiffel T’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-semantic-context-order",
+      "citation_review_id": "rw-gold-v1-semantic-context-order:S2:2",
+      "content_excerpt": "Context Precision is a metric that evaluates the retriever's ability to rank relevant chunks higher than irrelevant ones for a given query in the retrieved context. Specifically, it assesses the degree to which relevant chunks in the retrieved context are placed at the top of the ranking.\n\nIt is calculated as the mean of the precision@k for each chunk in the context. Precision@k is the ratio of the number of relevant chunks at rank k to the total number of chunks at rank k.\n\n$$\n\\text{Context Precision@K} = \\frac{\\sum_{k=1}^{K} \\left( \\text{Precision@k} \\times v_k \\right)}{\\text{Total number of relevant items in the top } K \\text{ results}}\n$$\n\n$$\n\\text{Precision@k} = {\\text{true positives@k} \\over  (\\text{true positives@k} + \\text{false positives@k})}\n$$",
+      "document_id": "rw-eval-context-precision",
+      "evidence_ids": [
+        "ev-rw-precision-definition"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-semantic-context-order-01",
+        "eg-rw-semantic-context-order-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-semantic-context-order-claim-01",
+        "rw-gold-v1-semantic-context-order-claim-02"
+      ],
+      "review_reason": "The cited rw-eval-context-precision excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘Context Precision is a metric that evaluates the retriever's ability to rank relevant chunks higher than irrelevant ones for a given query in the retrieved context. Specifically, it assesses the degree to which relevant ’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S2",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-semantic-deps-automatic",
+      "citation_review_id": "rw-gold-v1-semantic-deps-automatic:S1:1",
+      "content_excerpt": "Although the hierarchical dependency injection system is very simple to define and use, it's still very powerful.\n\nYou can define dependencies that in turn can define dependencies themselves.\n\nIn the end, a hierarchical tree of dependencies is built, and the Dependency Injection system takes care of solving all these dependencies for you (and their sub-dependencies) and providing (injecting) the results at each step.\n\nFor example, let's say you have 4 API endpoints (*path operations*):\n\n* /items/public/\n* /items/private/\n* /users/{user_id}/activate\n* /items/pro/\n\nthen you could add different permission requirements for each of them just with dependencies and sub-dependencies:\n\ngraph TB",
+      "document_id": "rw-backend-fastapi-dependencies",
+      "evidence_ids": [
+        "ev-rw-deps-hierarchy"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-semantic-deps-automatic-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-semantic-deps-automatic-claim-01",
+        "rw-gold-v1-semantic-deps-automatic-claim-02"
+      ],
+      "review_reason": "The cited rw-backend-fastapi-dependencies excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘Although the hierarchical dependency injection system is very simple to define and use, it's still very powerful. You can define dependencies that in turn can define dependencies themselves. In the end, a hierarchical tr’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-semantic-deps-automatic",
+      "citation_review_id": "rw-gold-v1-semantic-deps-automatic:S3:2",
+      "content_excerpt": "If you look at it, *path operation functions* are declared to be used whenever a *path* and *operation* matches, and then FastAPI takes care of calling the function with the correct parameters, extracting the data from the request.\n\nActually, all (or most) of the web frameworks work in this same way.\n\nYou never call those functions directly. They are called by your framework (in this case, FastAPI).\n\nWith the Dependency Injection system, you can also tell FastAPI that your *path operation function* also \"depends\" on something else that should be executed before your *path operation function*, and FastAPI will take care of executing it and \"injecting\" the results.\n\nOther common terms for this same idea of \"dependency injection\" are:\n\n* resources\n* providers\n* services\n* injectables\n* compon",
+      "document_id": "rw-backend-fastapi-dependencies",
+      "evidence_ids": [
+        "ev-rw-deps-openapi"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-semantic-deps-automatic-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-semantic-deps-automatic-claim-01",
+        "rw-gold-v1-semantic-deps-automatic-claim-02"
+      ],
+      "review_reason": "The cited rw-backend-fastapi-dependencies excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘If you look at it, *path operation functions* are declared to be used whenever a *path* and *operation* matches, and then FastAPI takes care of calling the function with the correct parameters, extracting the data from t’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S3",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-semantic-error-raise",
+      "citation_review_id": "rw-gold-v1-semantic-error-raise:S1:1",
+      "content_excerpt": "HTTPException is a normal Python exception with additional data relevant for APIs.\n\nBecause it's a Python exception, you don't return it, you raise it.\n\nThis also means that if you are inside a utility function that you are calling inside of your *path operation function*, and you raise the HTTPException from inside of that utility function, it won't run the rest of the code in the *path operation function*, it will terminate that request right away and send the HTTP error from the HTTPException to the client.\n\nThe benefit of raising an exception over returning a value will be more evident in the section about Dependencies and Security.\n\nIn this example, when the client requests an item by an ID that doesn't exist, raise an exception with a status code of 404:\n\n{* ../../docs_src/handling_e",
+      "document_id": "rw-backend-fastapi-errors",
+      "evidence_ids": [
+        "ev-rw-errors-http-exception"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-semantic-error-raise-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-semantic-error-raise-claim-01",
+        "rw-gold-v1-semantic-error-raise-claim-02"
+      ],
+      "review_reason": "The cited rw-backend-fastapi-errors excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘HTTPException is a normal Python exception with additional data relevant for APIs. Because it's a Python exception, you don't return it, you raise it. This also means that if you are inside a utility function that you ar’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-semantic-faiss-compression",
+      "citation_review_id": "rw-gold-v1-semantic-faiss-compression:S2:1",
+      "content_excerpt": "Faiss is built around an index type that stores a set of vectors, and provides a function to search in them with L2 and/or dot product vector comparison. Some index types are simple baselines, such as exact search. Most of the available indexing structures correspond to various trade-offs with respect to\n\n- search time\n- search quality\n- memory used per index vector\n- training time\n- adding time\n- need for external data for unsupervised training\n\nThe optional GPU implementation provides what is likely (as of March 2017) the fastest exact and approximate (compressed-domain) nearest neighbor search implementation for high-dimensional vectors, fastest Lloyd's k-means, and fastest small k-selection algorithm known. The implementation is detailed here (https://arxiv.org/abs/1702.08734).",
+      "document_id": "rw-rag-faiss-overview",
+      "evidence_ids": [
+        "ev-rw-faiss-tradeoffs"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-semantic-faiss-compression-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-semantic-faiss-compression-claim-01",
+        "rw-gold-v1-semantic-faiss-compression-claim-02"
+      ],
+      "review_reason": "The cited rw-rag-faiss-overview excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘Faiss is built around an index type that stores a set of vectors, and provides a function to search in them with L2 and/or dot product vector comparison. Some index types are simple baselines, such as exact search. Most ’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S2",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-semantic-fastapi-blocking",
+      "citation_review_id": "rw-gold-v1-semantic-fastapi-blocking:S1:1",
+      "content_excerpt": "the case for most database libraries), then declare your *path operation functions* as normally, with just def, like:\n\n@app.get('/')\ndef results():\n    results = some_library()\n    return results\n\n---\n\nIf your application (somehow) doesn't have to communicate with anything else and wait for it to respond, use async def, even if you don't need to use await inside.\n\n---\n\nIf you just don't know, use normal def.\n\n---\n\nNote: You can mix def and async def in your *path operation functions* as much as you need and define each one using the best option for you. FastAPI will do the right thing with them.\n\nAnyway, in any of the cases above, FastAPI will still work asynchronously and be extremely fast.\n\nBut by following the steps above, it will be able to do some performance optimizations.",
+      "document_id": "rw-backend-fastapi-async",
+      "evidence_ids": [
+        "ev-rw-async-tldr"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-semantic-fastapi-blocking-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-semantic-fastapi-blocking-claim-01",
+        "rw-gold-v1-semantic-fastapi-blocking-claim-02"
+      ],
+      "review_reason": "The cited rw-backend-fastapi-async excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘the case for most database libraries), then declare your *path operation functions* as normally, with just def, like: @app.get('/') def results(): results = some_library() return results --- If your application (somehow)’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "[S1]",
+      "case_id": "rw-gold-v1-semantic-fastapi-blocking",
+      "citation_review_id": "rw-gold-v1-semantic-fastapi-blocking:S2:2",
+      "content_excerpt": "When you declare a *path operation function* with normal def instead of async def, it is run in an external threadpool that is then awaited, instead of being called directly (as it would block the server).\n\nIf you are coming from another async framework that does not work in the way described above and you are used to defining trivial compute-only *path operation functions* with plain def for a tiny performance gain (about 100 nanoseconds), please note that in FastAPI the effect would be quite opposite. In these cases, it's better to use async def unless your *path operation functions* use code that performs blocking <abbr title=\"Input/Output: disk reading or writing, network communications.\">I/O</abbr>.",
+      "document_id": "rw-backend-fastapi-async",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-semantic-fastapi-blocking-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-semantic-fastapi-blocking-claim-01",
+        "rw-gold-v1-semantic-fastapi-blocking-claim-02"
+      ],
+      "review_reason": "The cited rw-backend-fastapi-async excerpt semantically supports the adjacent assertion ‘[S1]’; its supporting text begins ‘When you declare a *path operation function* with normal def instead of async def, it is run in an external threadpool that is then awaited, instead of being called directly (as it would block the server). If you are com’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S2",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-semantic-interrupt-replay",
+      "citation_review_id": "rw-gold-v1-semantic-interrupt-replay:S1:1",
+      "content_excerpt": "he runtime restarts the ent\nire node from the beginning—it does not resume from the exact line where @[`interrupt`] was\ncalled. This means any code that ran before the @[`interrupt`] will execute again. Because o\nf this, there's a few important rules to follow when working with interrupts to ensure they\nbehave as expected.\n:::python\n### Do not wrap `interrupt` calls in try/except\nThe way that @[`interrupt`] pauses execution at the point of the call is by throwing a speci\nal exception. If you wrap the @[`interrupt`] call in a try/except block, you will catch this\n exception and the interrupt will not be passed back to the graph.\n*  Separate @[`interrupt`] calls from error-prone code\n*  Use specific exception types in try/except blocks\n<CodeGroup>\n```python Separating logic",
+      "document_id": "rw-agent-interrupts",
+      "evidence_ids": [
+        "ev-rw-interrupt-restart-rule"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-semantic-interrupt-replay-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-semantic-interrupt-replay-claim-01"
+      ],
+      "review_reason": "The cited rw-agent-interrupts excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘he runtime restarts the ent ire node from the beginning—it does not resume from the exact line where @[`interrupt`] was called. This means any code that ran before the @[`interrupt`] will execute again. Because o f this,’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-semantic-ragas-data",
+      "citation_review_id": "rw-gold-v1-semantic-ragas-data:S2:1",
+      "content_excerpt": "arwin introduced the theory of evolution by natural selection in his book 'On the Origin of Species'.\"\n]\n\ndataset = []\n\nfor query,reference in zip(sample_queries,expected_responses):\n\n    relevant_docs = rag.get_most_relevant_docs(query)\n    response = rag.generate_answer(query, relevant_docs)\n    dataset.append(\n        {\n            \"user_input\":query,\n            \"retrieved_contexts\":relevant_docs,\n            \"response\":response,\n            \"reference\":reference\n        }\n    )\n\nNow, load the dataset into EvaluationDataset object.\n\nfrom ragas import EvaluationDataset\nevaluation_dataset = EvaluationDataset.from_list(dataset)",
+      "document_id": "rw-eval-ragas-workflow",
+      "evidence_ids": [
+        "ev-rw-ragas-collect-data"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-semantic-ragas-data-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-semantic-ragas-data-claim-01",
+        "rw-gold-v1-semantic-ragas-data-claim-02"
+      ],
+      "review_reason": "The cited rw-eval-ragas-workflow excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘arwin introduced the theory of evolution by natural selection in his book 'On the Origin of Species'.\" ] dataset = [] for query,reference in zip(sample_queries,expected_responses): relevant_docs = rag.get_most_relevant_d’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S2",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-semantic-trace-correlation",
+      "citation_review_id": "rw-gold-v1-semantic-trace-correlation:S3:1",
+      "content_excerpt": "for debugging and development-time, the OpenTelemetry Collector, or any open\nsource or vendor backend of your choice.\n## Context Propagation\nContext Propagation is the core concept that enables Distributed Tracing. With\nContext Propagation, Spans can be correlated with each other and assembled into\na trace, regardless of where Spans are generated. To learn more about this\ntopic, see the concept page on [Context Propagation](../../context-propagation).\n## Spans\nA **span** represents a unit of work or operation. Spans are the building blocks\nof Traces. In OpenTelemetry, they include the following information:\n- Name\n- Parent span ID (empty for root spans)\n- Start and End Timestamps\n- [Span Context](#span-context)\n- [Attributes](#attributes)\n- [Span Events](#span-events)",
+      "document_id": "rw-eval-otel-traces",
+      "evidence_ids": [
+        "ev-rw-otel-propagation-span"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-semantic-trace-correlation-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-semantic-trace-correlation-claim-01"
+      ],
+      "review_reason": "The cited rw-eval-otel-traces excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘for debugging and development-time, the OpenTelemetry Collector, or any open source or vendor backend of your choice. ## Context Propagation Context Propagation is the core concept that enables Distributed Tracing. With ’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S3",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-long-async-threadpool",
+      "citation_review_id": "rw-gold-v1-long-async-threadpool:S2:1",
+      "content_excerpt": "Any other utility function that you call directly can be created with normal def or async def and FastAPI won't affect the way you call it.\n\nThis is in contrast to the functions that FastAPI calls for you: *path operation functions* and dependencies.\n\nIf your utility function is a normal function with def, it will be called directly (as you write it in your code), not in a threadpool, if the function is created with async def then you should await that function when you call it in your code.\n\n---\n\nAgain, these are very technical details that would probably be useful if you came searching for them.\n\nOtherwise, you should be good with the guidelines from the section above: <a href=\"#in-a-hurry\">In a hurry?</a>.",
+      "document_id": "rw-backend-fastapi-async",
+      "evidence_ids": [
+        "ev-rw-async-threadpool"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-long-async-threadpool-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-long-async-threadpool-claim-01",
+        "rw-gold-v1-long-async-threadpool-claim-02",
+        "rw-gold-v1-long-async-threadpool-claim-03"
+      ],
+      "review_reason": "The cited rw-backend-fastapi-async excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘Any other utility function that you call directly can be created with normal def or async def and FastAPI won't affect the way you call it. This is in contrast to the functions that FastAPI calls for you: *path operation’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S2",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-long-async-threadpool",
+      "citation_review_id": "rw-gold-v1-long-async-threadpool:S3:2",
+      "content_excerpt": "As dependencies will also be called by FastAPI (the same as your *path operation functions*), the same rules apply while defining your functions.\n\nYou can use async def or normal def.\n\nAnd you can declare dependencies with async def inside of normal def *path operation functions*, or def dependencies inside of async def *path operation functions*, etc.\n\nIt doesn't matter. FastAPI will know what to do.\n\n/// note\n\nIf you don't know, check the Async: *\"In a hurry?\"* (../../async.md#in-a-hurry) section about async and await in the docs.\n\n///",
+      "document_id": "rw-backend-fastapi-dependencies",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [],
+      "related_claim_ids": [],
+      "review_reason": "The cited rw-backend-fastapi-dependencies excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘As dependencies will also be called by FastAPI (the same as your *path operation functions*), the same rules apply while defining your functions. You can use async def or normal def. And you can declare dependencies with’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S3",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-long-async-threadpool",
+      "citation_review_id": "rw-gold-v1-long-async-threadpool:S4:3",
+      "content_excerpt": "When you declare a *path operation function* with normal def instead of async def, it is run in an external threadpool that is then awaited, instead of being called directly (as it would block the server).\n\nIf you are coming from another async framework that does not work in the way described above and you are used to defining trivial compute-only *path operation functions* with plain def for a tiny performance gain (about 100 nanoseconds), please note that in FastAPI the effect would be quite opposite. In these cases, it's better to use async def unless your *path operation functions* use code that performs blocking <abbr title=\"Input/Output: disk reading or writing, network communications.\">I/O</abbr>.",
+      "document_id": "rw-backend-fastapi-async",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-long-async-threadpool-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-long-async-threadpool-claim-01",
+        "rw-gold-v1-long-async-threadpool-claim-02",
+        "rw-gold-v1-long-async-threadpool-claim-03"
+      ],
+      "review_reason": "The cited rw-backend-fastapi-async excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘When you declare a *path operation function* with normal def instead of async def, it is run in an external threadpool that is then awaited, instead of being called directly (as it would block the server). If you are com’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S4",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-long-bge-query-instruction",
+      "citation_review_id": "rw-gold-v1-long-bge-query-instruction:S1:1",
+      "content_excerpt": "ectors to represent a text, e.g., ColBERT (https://arxiv.org/abs/2004.12832).\n\n2. How to use BGE-M3 in other projects?\n\nFor embedding retrieval, you can employ the BGE-M3 model using the same approach as BGE.\nThe only difference is that the BGE-M3 model no longer requires adding instructions to the queries.\n\nFor hybrid retrieval, you can use [Vespa](https://github.com/vespa-engine/pyvespa/blob/master/docs/sphinx/source/examples/mother-of-all-embedding-models-cloud.ipynb\n) and Milvus (https://github.com/milvus-io/pymilvus/blob/master/examples/hello_hybrid_sparse_dense.py).\n\n3. How to fine-tune bge-M3 model?\n\nYou can follow the common in this example (https://github.com/FlagOpen/FlagEmbedding/tree/master/examples/finetune/embedder#1-standard-model)\nto fine-tune the dense embedding.",
+      "document_id": "rw-rag-bge-m3",
+      "evidence_ids": [
+        "ev-rw-bge-no-query-instruction"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-long-bge-query-instruction-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-long-bge-query-instruction-claim-01"
+      ],
+      "review_reason": "The cited rw-rag-bge-m3 excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘ectors to represent a text, e.g., ColBERT (https://arxiv.org/abs/2004.12832). 2. How to use BGE-M3 in other projects? For embedding retrieval, you can employ the BGE-M3 model using the same approach as BGE. The only diff’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-long-interrupt-static",
+      "citation_review_id": "rw-gold-v1-long-interrupt-static:S3:1",
+      "content_excerpt": "g with interrupts\n:::python\nTo debug and test a graph, you can use static interrupts as breakpoints to step through the\ngraph execution one node at a time. Static interrupts are triggered at defined points either\n before or after a node executes. You can set these by specifying `interrupt_before` and `in\nterrupt_after` when compiling the graph.\n:::\n:::js\n21",
+      "document_id": "rw-agent-interrupts",
+      "evidence_ids": [
+        "ev-rw-interrupt-duplicate-risk"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-long-interrupt-static-01",
+        "eg-rw-long-interrupt-static-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-long-interrupt-static-claim-01",
+        "rw-gold-v1-long-interrupt-static-claim-02",
+        "rw-gold-v1-long-interrupt-static-claim-03"
+      ],
+      "review_reason": "The cited rw-agent-interrupts excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘g with interrupts :::python To debug and test a graph, you can use static interrupts as breakpoints to step through the graph execution one node at a time. Static interrupts are triggered at defined points either before ’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S3",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-long-interrupt-validation",
+      "citation_review_id": "rw-gold-v1-long-interrupt-validation:S1:1",
+      "content_excerpt": "### Validating human input\nSometimes you need to validate input from humans and re-prompt if the value is invalid. The\nrecommended approach is to call `interrupt()` **once per node invocation**, return from the\nnode with the error message stored in state, and use a **conditional edge** to loop back to\nthe node until a valid value is provided.\n<Warning>\n**Avoid `while True` + `interrupt()` loops inside a single node.** Because the node re-runs\nfrom the beginning on every resume (see [Rules of interrupts](#rules-of-interrupts)), a loop\n that calls `interrupt()` multiple times causes each resume to replay all previous iteration\ns: the first resume replays 1 iteration, the second replays 2, and so on. The result is expo\nnential re-execution of any code inside the loop body.\n</Warning>",
+      "document_id": "rw-agent-interrupts",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-long-interrupt-validation-01",
+        "eg-rw-long-interrupt-validation-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-long-interrupt-validation-claim-01",
+        "rw-gold-v1-long-interrupt-validation-claim-02",
+        "rw-gold-v1-long-interrupt-validation-claim-03"
+      ],
+      "review_reason": "The cited rw-agent-interrupts excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘### Validating human input Sometimes you need to validate input from humans and re-prompt if the value is invalid. The recommended approach is to call `interrupt()` **once per node invocation**, return from the node with’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-long-langgraph-positioning",
+      "citation_review_id": "rw-gold-v1-long-langgraph-positioning:S1:1",
+      "content_excerpt": "LangGraph provides low-level supporting infrastructure for *any* long-running, stateful workflow or agent:",
+      "document_id": "rw-agent-langgraph-overview",
+      "evidence_ids": [
+        "ev-rw-agent-overview-capabilities"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-long-langgraph-positioning-01",
+        "eg-rw-long-langgraph-positioning-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-long-langgraph-positioning-claim-01",
+        "rw-gold-v1-long-langgraph-positioning-claim-02"
+      ],
+      "review_reason": "The cited rw-agent-langgraph-overview excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘LangGraph provides low-level supporting infrastructure for *any* long-running, stateful workflow or agent:’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "[S1]",
+      "case_id": "rw-gold-v1-long-langgraph-positioning",
+      "citation_review_id": "rw-gold-v1-long-langgraph-positioning:S2:2",
+      "content_excerpt": "/url/https/twitter.com/langchain_oss.svg?style=social&label=Follow%20%40LangChain\" alt=\"Twitter / X\"></a>\n</div>\n\n<br>\n\nTrusted by companies shaping the future of agents – including Klarna, Replit, Elastic, and more – LangGraph is a low-level orchestration framework for building, managing, and deploying long-running, stateful agents.\n\npip install -U langgraph\n\n> [!TIP]\n> If you're looking to quickly build agents, check out Deep Agents (https://docs.langchain.com/oss/python/deepagents/overview) — a higher-level package built on LangGraph for agents that can plan, use subagents, and leverage file systems for complex tasks.",
+      "document_id": "rw-agent-langgraph-overview",
+      "evidence_ids": [
+        "ev-rw-agent-overview-purpose"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-long-langgraph-positioning-01",
+        "eg-rw-long-langgraph-positioning-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-long-langgraph-positioning-claim-01",
+        "rw-gold-v1-long-langgraph-positioning-claim-02"
+      ],
+      "review_reason": "The cited rw-agent-langgraph-overview excerpt semantically supports the adjacent assertion ‘[S1]’; its supporting text begins ‘/url/https/twitter.com/langchain_oss.svg?style=social&label=Follow%20%40LangChain\" alt=\"Twitter / X\"></a> </div> <br> Trusted by companies shaping the future of agents – including Klarna, Replit, Elastic, and more – Lang’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S2",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-long-otel-links",
+      "citation_review_id": "rw-gold-v1-long-otel-links:S1:1",
+      "content_excerpt": "span with one or more spans, implying\na causal relationship. For example, let’s say we have a distributed system where\nsome operations are tracked by a trace.\nIn response to some of these operations, an additional operation is queued to be\nexecuted, but its execution is asynchronous. We can track this subsequent\noperation with a trace as well.\nWe would like to associate the trace for the subsequent operations with the\nfirst trace, but we cannot predict when the subsequent operations will start. We\nneed to associate these two traces, so we will use a span link.\n4",
+      "document_id": "rw-eval-otel-traces",
+      "evidence_ids": [
+        "ev-rw-otel-attributes-events"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-long-otel-links-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-long-otel-links-claim-01",
+        "rw-gold-v1-long-otel-links-claim-02"
+      ],
+      "review_reason": "The cited rw-eval-otel-traces excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘span with one or more spans, implying a causal relationship. For example, let’s say we have a distributed system where some operations are tracked by a trace. In response to some of these operations, an additional operat’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-long-precision-nonllm",
+      "citation_review_id": "rw-gold-v1-long-precision-nonllm:S1:1",
+      "content_excerpt": "The NonLLMContextPrecisionWithReference metric is designed for scenarios where both retrieved contexts and reference contexts are available for a user_input. To determine if a retrieved context is relevant, this method compares each retrieved context or chunk in retrieved_contexts with every context in reference_contexts using a non-LLM-based similarity measure.\n\nNote that this metric would need the rapidfuzz package to be installed: pip install rapidfuzz.",
+      "document_id": "rw-eval-context-precision",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-long-precision-nonllm-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-long-precision-nonllm-claim-01",
+        "rw-gold-v1-long-precision-nonllm-claim-02"
+      ],
+      "review_reason": "The cited rw-eval-context-precision excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘The NonLLMContextPrecisionWithReference metric is designed for scenarios where both retrieved contexts and reference contexts are available for a user_input. To determine if a retrieved context is relevant, this method c’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-multi-agent-memory-hitl",
+      "citation_review_id": "rw-gold-v1-multi-agent-memory-hitl:S1:1",
+      "content_excerpt": "pointer = new MemorySaver();\nconst store = new MemoryStore();\n\nconst graph = builder.compile({ checkpointer, store });\n\nconst result = await graph.invoke(\n  { messages: [{ role: \"user\", content: \"Hi, my name is Bob.\" }] },\n  { configurable: { thread_id: \"thread-1\" } }\n);\n```\n:::\n\n<Info>\n**Agent Server handles persistence automatically**\nWhen using the [Agent Server](/langsmith/agent-server), you do not need to implement or configure checkpointers or stores manually. The server handles persistence infrastructure behind the scenes.\n</Info>\n\n## Checkpointer vs. store",
+      "document_id": "rw-agent-persistence",
+      "evidence_ids": [
+        "ev-rw-persist-quickstart"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-multi-agent-memory-hitl-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-multi-agent-memory-hitl-claim-01",
+        "rw-gold-v1-multi-agent-memory-hitl-claim-02"
+      ],
+      "review_reason": "The cited rw-agent-persistence excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘pointer = new MemorySaver(); const store = new MemoryStore(); const graph = builder.compile({ checkpointer, store }); const result = await graph.invoke( { messages: [{ role: \"user\", content: \"Hi, my name is Bob.\" }] }, {’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-multi-agent-memory-hitl",
+      "citation_review_id": "rw-gold-v1-multi-agent-memory-hitl:S2:2",
+      "content_excerpt": ".addEdge(START, \"approval\")\n      .addEdge(\"proceed\", END)\n      .addEdge(\"cancel\", END);\n    // Use a more durable checkpointer in production\n    const checkpointer = new MemorySaver();\n    const graph = graphBuilder.compile({ checkpointer });\n    const config = { configurable: { thread_id: \"approval-123\" } };\n    const initial = await graph.invoke(\n      { actionDetails: \"Transfer $500\", status: \"pending\" },\n      config,\n    );\n    console.log(initial.__interrupt__);\n    // [{ value: { question: ..., details: ... } }]\n    // Resume with the decision; true routes to proceed, false to cancel\n    const resumed = await graph.invoke(new Command({ resume: true }), config);\n    console.log(resumed.status); // -> \"approved\"\n    ```\n    :::\n</Accordion>\n### Review and edit state",
+      "document_id": "rw-agent-interrupts",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-multi-agent-memory-hitl-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-multi-agent-memory-hitl-claim-03"
+      ],
+      "review_reason": "The cited rw-agent-interrupts excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘.addEdge(START, \"approval\") .addEdge(\"proceed\", END) .addEdge(\"cancel\", END); // Use a more durable checkpointer in production const checkpointer = new MemorySaver(); const graph = graphBuilder.compile({ checkpointer });’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S2",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "[S2]",
+      "case_id": "rw-gold-v1-multi-agent-memory-hitl",
+      "citation_review_id": "rw-gold-v1-multi-agent-memory-hitl:S3:3",
+      "content_excerpt": "nvoking the graph using `Command`, which then b\necomes the return value of the `interrupt()` call from inside the node.\nUnlike static breakpoints (which pause before or after specific nodes), interrupts are **dyn\namic**: they can be placed anywhere in your code and can be conditional based on your applic\nation logic.\n:::python\n- **Checkpointing keeps your place:** the checkpointer writes the exact graph state so you c\nan resume later, even when in an error state.\n- **`thread_id` is your pointer:** set `config={\"configurable\": {\"thread_id\": ...}}` to tell\n the checkpointer which state to load.\n- **Interrupt payloads surface via `stream.interrupts`:** when using [event streaming](/oss/\nlanggraph/event-streaming) (`graph.stream_events(..., version=\"v3\")`), the values you pass t",
+      "document_id": "rw-agent-interrupts",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-multi-agent-memory-hitl-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-multi-agent-memory-hitl-claim-03"
+      ],
+      "review_reason": "The cited rw-agent-interrupts excerpt semantically supports the adjacent assertion ‘[S2]’; its supporting text begins ‘nvoking the graph using `Command`, which then b ecomes the return value of the `interrupt()` call from inside the node. Unlike static breakpoints (which pause before or after specific nodes), interrupts are **dyn amic**:’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S3",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "[S2]",
+      "case_id": "rw-gold-v1-multi-agent-memory-hitl",
+      "citation_review_id": "rw-gold-v1-multi-agent-memory-hitl:S4:4",
+      "content_excerpt": "ll pending interrupts at once\n  const resumeMap: Record<string, string> = {};\n  if (isInterrupted(interruptedResult)) {\n    for (const i of interruptedResult[INTERRUPT]) {\n      if (i.id != null) {\n        resumeMap[i.id] = `answer for ${i.value}`;\n      }\n    }\n  }\n  const result = await graph.invoke(new Command({ resume: resumeMap }), config);\n  console.log(\"Final state:\", result);\n  //> Final state: { vals: ['a:answer for question_a', 'b:answer for question_b'] }\n}\nmain().catch(console.error);\n```\n:::\n### Approve or reject\nOne of the most common uses of interrupts is to pause before a critical action and ask for a\npproval. For example, you might want to ask a human to approve an API call, a database chang\ne, or any other important decision.\n:::python\n```python",
+      "document_id": "rw-agent-interrupts",
+      "evidence_ids": [
+        "ev-rw-interrupt-multiple"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-multi-agent-memory-hitl-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-multi-agent-memory-hitl-claim-03"
+      ],
+      "review_reason": "The cited rw-agent-interrupts excerpt semantically supports the adjacent assertion ‘[S2]’; its supporting text begins ‘ll pending interrupts at once const resumeMap: Record<string, string> = {}; if (isInterrupted(interruptedResult)) { for (const i of interruptedResult[INTERRUPT]) { if (i.id != null) { resumeMap[i.id] = `answer for ${i.va’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S4",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "[S1]",
+      "case_id": "rw-gold-v1-multi-agent-memory-hitl",
+      "citation_review_id": "rw-gold-v1-multi-agent-memory-hitl:S5:5",
+      "content_excerpt": "rom a failure, or remember information across interactions.\n\nLangGraph provides two complementary persistence systems:\n\n- **[Checkpointers](/oss/langgraph/checkpointers)** persist a thread's graph state as checkpoints. Use them for short-term, thread-scoped memory, including conversation continuity, human-in-the-loop workflows, time travel, and fault tolerance.\n- **[Stores](/oss/langgraph/stores)** persist application-defined data outside the graph state. Use them for long-term, cross-thread memory, including user preferences, facts, and shared knowledge.\n\nMost applications can use both: a [checkpointer](/oss/langgraph/checkpointers) tracks the current thread, and a [store](/oss/langgraph/stores) tracks durable information across threads.\n\n## Quickstart",
+      "document_id": "rw-agent-persistence",
+      "evidence_ids": [
+        "ev-rw-persist-overview"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-multi-agent-memory-hitl-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-multi-agent-memory-hitl-claim-01",
+        "rw-gold-v1-multi-agent-memory-hitl-claim-02"
+      ],
+      "review_reason": "The cited rw-agent-persistence excerpt semantically supports the adjacent assertion ‘[S1]’; its supporting text begins ‘rom a failure, or remember information across interactions. LangGraph provides two complementary persistence systems: - **[Checkpointers](/oss/langgraph/checkpointers)** persist a thread's graph state as checkpoints. Use’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S5",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-multi-agent-resume",
+      "citation_review_id": "rw-gold-v1-multi-agent-resume:S1:1",
+      "content_excerpt": "pass to `interrupt()` re\nturn to the caller in the `__interrupt__` field so you know what the graph is waiting on.\n:::\nThe `thread_id` you choose is effectively your persistent cursor. Reusing it resumes the sam\ne checkpoint; using a new value starts a brand-new thread with an empty state.\n## Pause using `interrupt`\nThe @[`interrupt`] function pauses graph execution and returns a value to the caller. When y\nou call @[`interrupt`] within a node, LangGraph saves the current graph state and waits for\nyou to resume execution with input.\nTo use @[`interrupt`], you need:\n1. A **checkpointer** to persist the graph state (use a durable checkpointer in production)\n2. A **thread ID** in your config so the runtime knows which state to resume from",
+      "document_id": "rw-agent-interrupts",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-multi-agent-resume-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-multi-agent-resume-claim-02"
+      ],
+      "review_reason": "The cited rw-agent-interrupts excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘pass to `interrupt()` re turn to the caller in the `__interrupt__` field so you know what the graph is waiting on. ::: The `thread_id` you choose is effectively your persistent cursor. Reusing it resumes the sam e checkp’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-multi-agent-resume",
+      "citation_review_id": "rw-gold-v1-multi-agent-resume:S4:2",
+      "content_excerpt": "nvoking the graph using `Command`, which then b\necomes the return value of the `interrupt()` call from inside the node.\nUnlike static breakpoints (which pause before or after specific nodes), interrupts are **dyn\namic**: they can be placed anywhere in your code and can be conditional based on your applic\nation logic.\n:::python\n- **Checkpointing keeps your place:** the checkpointer writes the exact graph state so you c\nan resume later, even when in an error state.\n- **`thread_id` is your pointer:** set `config={\"configurable\": {\"thread_id\": ...}}` to tell\n the checkpointer which state to load.\n- **Interrupt payloads surface via `stream.interrupts`:** when using [event streaming](/oss/\nlanggraph/event-streaming) (`graph.stream_events(..., version=\"v3\")`), the values you pass t",
+      "document_id": "rw-agent-interrupts",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-multi-agent-resume-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-multi-agent-resume-claim-02"
+      ],
+      "review_reason": "The cited rw-agent-interrupts excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘nvoking the graph using `Command`, which then b ecomes the return value of the `interrupt()` call from inside the node. Unlike static breakpoints (which pause before or after specific nodes), interrupts are **dyn amic**:’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S4",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-multi-async-dependency",
+      "citation_review_id": "rw-gold-v1-multi-async-dependency:S2:1",
+      "content_excerpt": "As dependencies will also be called by FastAPI (the same as your *path operation functions*), the same rules apply while defining your functions.\n\nYou can use async def or normal def.\n\nAnd you can declare dependencies with async def inside of normal def *path operation functions*, or def dependencies inside of async def *path operation functions*, etc.\n\nIt doesn't matter. FastAPI will know what to do.\n\n/// note\n\nIf you don't know, check the Async: *\"In a hurry?\"* (../../async.md#in-a-hurry) section about async and await in the docs.\n\n///",
+      "document_id": "rw-backend-fastapi-dependencies",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-multi-async-dependency-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-multi-async-dependency-claim-01"
+      ],
+      "review_reason": "The cited rw-backend-fastapi-dependencies excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘As dependencies will also be called by FastAPI (the same as your *path operation functions*), the same rules apply while defining your functions. You can use async def or normal def. And you can declare dependencies with’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S2",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "[S2]",
+      "case_id": "rw-gold-v1-multi-async-dependency",
+      "citation_review_id": "rw-gold-v1-multi-async-dependency:S3:2",
+      "content_excerpt": "You can have multiple dependencies and sub-dependencies (tutorial/dependencies/sub-dependencies.md) requiring each other (as parameters of the function definitions), some of them might be created with async def and some with normal def. It would still work, and the ones created with normal def would be called on an external thread (from the threadpool) instead of being \"awaited\".",
+      "document_id": "rw-backend-fastapi-async",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-multi-async-dependency-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-multi-async-dependency-claim-02"
+      ],
+      "review_reason": "The cited rw-backend-fastapi-async excerpt semantically supports the adjacent assertion ‘[S2]’; its supporting text begins ‘You can have multiple dependencies and sub-dependencies (tutorial/dependencies/sub-dependencies.md) requiring each other (as parameters of the function definitions), some of them might be created with async def and some ’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S3",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-multi-backend-control",
+      "citation_review_id": "rw-gold-v1-multi-backend-control:S2:1",
+      "content_excerpt": "ons, can be used as dependencies in the next chapter.\n\n///\n\nWhenever a new request arrives, FastAPI will take care of:\n\n* Calling your dependency (\"dependable\") function with the correct parameters.\n* Get the result from your function.\n* Assign that result to the parameter in your *path operation function*.\n\ngraph TB\n\ncommon_parameters([\"common_parameters\"])\nread_items[\"/items/\"]\nread_users[\"/users/\"]\n\ncommon_parameters --> read_items\ncommon_parameters --> read_users\n\nThis way you write shared code once and FastAPI takes care of calling it for your *path operations*.\n\n/// tip\n\nNotice that you don't have to create a special class and pass it somewhere to FastAPI to \"register\" it or anything similar.\n\nYou just pass it to Depends and FastAPI knows how to do the rest.\n\n///",
+      "document_id": "rw-backend-fastapi-dependencies",
+      "evidence_ids": [
+        "ev-rw-deps-call"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-multi-backend-control-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-multi-backend-control-claim-02"
+      ],
+      "review_reason": "The cited rw-backend-fastapi-dependencies excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘ons, can be used as dependencies in the next chapter. /// Whenever a new request arrives, FastAPI will take care of: * Calling your dependency (\"dependable\") function with the correct parameters. * Get the result from yo’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S2",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-multi-backend-control",
+      "citation_review_id": "rw-gold-v1-multi-backend-control:S5:2",
+      "content_excerpt": "the case for most database libraries), then declare your *path operation functions* as normally, with just def, like:\n\n@app.get('/')\ndef results():\n    results = some_library()\n    return results\n\n---\n\nIf your application (somehow) doesn't have to communicate with anything else and wait for it to respond, use async def, even if you don't need to use await inside.\n\n---\n\nIf you just don't know, use normal def.\n\n---\n\nNote: You can mix def and async def in your *path operation functions* as much as you need and define each one using the best option for you. FastAPI will do the right thing with them.\n\nAnyway, in any of the cases above, FastAPI will still work asynchronously and be extremely fast.\n\nBut by following the steps above, it will be able to do some performance optimizations.",
+      "document_id": "rw-backend-fastapi-async",
+      "evidence_ids": [
+        "ev-rw-async-tldr"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-multi-backend-control-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-multi-backend-control-claim-01"
+      ],
+      "review_reason": "The cited rw-backend-fastapi-async excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘the case for most database libraries), then declare your *path operation functions* as normally, with just def, like: @app.get('/') def results(): results = some_library() return results --- If your application (somehow)’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S5",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-multi-backend-control",
+      "citation_review_id": "rw-gold-v1-multi-backend-control:S6:3",
+      "content_excerpt": "When a request contains invalid data, FastAPI internally raises a RequestValidationError.\n\nAnd it also includes a default exception handler for it.\n\nTo override it, import the RequestValidationError and use it with @app.exception_handler(RequestValidationError) to decorate the exception handler.\n\nThe exception handler will receive a Request and the exception.\n\n{* ../../docs_src/handling_errors/tutorial004_py310.py hl[2,14:19] *}\n\nNow, if you go to /items/foo, instead of getting the default JSON error with:\n\n{\n    \"detail\": [\n        {\n            \"loc\": [\n                \"path\",\n                \"item_id\"\n            ],\n            \"msg\": \"value is not a valid integer\",\n            \"type\": \"type_error.integer\"\n        }\n    ]\n}\n\nyou will get a text version, with:",
+      "document_id": "rw-backend-fastapi-errors",
+      "evidence_ids": [
+        "ev-rw-errors-override-validation"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-multi-backend-control-03"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-multi-backend-control-claim-03"
+      ],
+      "review_reason": "The cited rw-backend-fastapi-errors excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘When a request contains invalid data, FastAPI internally raises a RequestValidationError. And it also includes a default exception handler for it. To override it, import the RequestValidationError and use it with @app.ex’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S6",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-multi-error-observability",
+      "citation_review_id": "rw-gold-v1-multi-error-observability:S2:1",
+      "content_excerpt": "developer explicitly marks a span as successful. In most\ncases, it is not necessary to explicitly mark a span as `Ok`.\n### Span Kind\nWhen a span is created, it is one of `Client`, `Server`, `Internal`, `Producer`,\nor `Consumer`. This span kind provides a hint to the tracing backend as to how\nthe trace should be assembled. According to the OpenTelemetry specification, the\nparent of a server span is often a remote client span, and the child of a client\nspan is usually a server span. Similarly, the parent of a consumer span is\nalways a producer and the child of a producer span is always a consumer. If not\nprovided, the span kind is assumed to be internal.\nFor more information regarding SpanKind, see\n[SpanKind](/docs/specs/otel/trace/api/#spankind).\n#### Client",
+      "document_id": "rw-eval-otel-traces",
+      "evidence_ids": [
+        "ev-rw-otel-links-status"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-multi-error-observability-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-multi-error-observability-claim-02"
+      ],
+      "review_reason": "The excerpt supports the statement that successful spans usually need not be marked Ok, but it does not by itself cover the answer's broader failure-status wording.",
+      "semantic_status": "CITATION_PARTIALLY_SUPPORTS",
+      "source_label": "S2",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-multi-error-observability",
+      "citation_review_id": "rw-gold-v1-multi-error-observability:S4:2",
+      "content_excerpt": "There are many situations in which you need to report an error to a client that is using your API.\n\nThis client could be a browser with a frontend, a code from someone else, an IoT device, etc.\n\nYou could need to tell the client that:\n\n* The client doesn't have enough privileges for that operation.\n* The client doesn't have access to that resource.\n* The item the client was trying to access doesn't exist.\n* etc.\n\nIn these cases, you would normally return an HTTP status code in the range of 400 (from 400 to 499).\n\nThis is similar to the 200 HTTP status codes (from 200 to 299). Those \"200\" status codes mean that somehow there was a \"success\" in the request.\n\nThe status codes in the 400 range mean that there was an error from the client.\n\nRemember all those \"404 Not Found\" errors (and jokes)?",
+      "document_id": "rw-backend-fastapi-errors",
+      "evidence_ids": [
+        "ev-rw-errors-client-range"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-multi-error-observability-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-multi-error-observability-claim-01"
+      ],
+      "review_reason": "The cited rw-backend-fastapi-errors excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘There are many situations in which you need to report an error to a client that is using your API. This client could be a browser with a frontend, a code from someone else, an IoT device, etc. You could need to tell the ’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S4",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-multi-faiss-context-precision",
+      "citation_review_id": "rw-gold-v1-multi-faiss-context-precision:S1:1",
+      "content_excerpt": "Faiss is built around an index type that stores a set of vectors, and provides a function to search in them with L2 and/or dot product vector comparison. Some index types are simple baselines, such as exact search. Most of the available indexing structures correspond to various trade-offs with respect to\n\n- search time\n- search quality\n- memory used per index vector\n- training time\n- adding time\n- need for external data for unsupervised training\n\nThe optional GPU implementation provides what is likely (as of March 2017) the fastest exact and approximate (compressed-domain) nearest neighbor search implementation for high-dimensional vectors, fastest Lloyd's k-means, and fastest small k-selection algorithm known. The implementation is detailed here (https://arxiv.org/abs/1702.08734).",
+      "document_id": "rw-rag-faiss-overview",
+      "evidence_ids": [
+        "ev-rw-faiss-tradeoffs"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-multi-faiss-context-precision-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-multi-faiss-context-precision-claim-01",
+        "rw-gold-v1-multi-faiss-context-precision-claim-03"
+      ],
+      "review_reason": "The cited rw-rag-faiss-overview excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘Faiss is built around an index type that stores a set of vectors, and provides a function to search in them with L2 and/or dot product vector comparison. Some index types are simple baselines, such as exact search. Most ’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-multi-faiss-context-precision",
+      "citation_review_id": "rw-gold-v1-multi-faiss-context-precision:S2:2",
+      "content_excerpt": "Context Precision is a metric that evaluates the retriever's ability to rank relevant chunks higher than irrelevant ones for a given query in the retrieved context. Specifically, it assesses the degree to which relevant chunks in the retrieved context are placed at the top of the ranking.\n\nIt is calculated as the mean of the precision@k for each chunk in the context. Precision@k is the ratio of the number of relevant chunks at rank k to the total number of chunks at rank k.\n\n$$\n\\text{Context Precision@K} = \\frac{\\sum_{k=1}^{K} \\left( \\text{Precision@k} \\times v_k \\right)}{\\text{Total number of relevant items in the top } K \\text{ results}}\n$$\n\n$$\n\\text{Precision@k} = {\\text{true positives@k} \\over  (\\text{true positives@k} + \\text{false positives@k})}\n$$",
+      "document_id": "rw-eval-context-precision",
+      "evidence_ids": [
+        "ev-rw-precision-definition"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-multi-faiss-context-precision-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-multi-faiss-context-precision-claim-02",
+        "rw-gold-v1-multi-faiss-context-precision-claim-03"
+      ],
+      "review_reason": "The cited rw-eval-context-precision excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘Context Precision is a metric that evaluates the retriever's ability to rank relevant chunks higher than irrelevant ones for a given query in the retrieved context. Specifically, it assesses the degree to which relevant ’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S2",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-multi-hybrid-index",
+      "citation_review_id": "rw-gold-v1-multi-hybrid-index:S1:1",
+      "content_excerpt": "In this project, we introduce BGE-M3, which is distinguished for its versatility in Multi-Functionality, Multi-Linguality, and Multi-Granularity.\n- Multi-Functionality: It can simultaneously perform the three common retrieval functionalities of embedding model: dense retrieval, multi-vector retrieval, and sparse retrieval.\n- Multi-Linguality: It can support more than 100 working languages.\n- Multi-Granularity: It is able to process inputs of different granularities, spanning from short sentences to long documents of up to 8192 tokens.\n\nFor more details, please refer to our paper: BGE M3-Embedding: Multi-Lingual, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation (https://arxiv.org/pdf/2402.03216.pdf)\n\nSome suggestions for retrieval pipeline in RAG",
+      "document_id": "rw-rag-bge-m3",
+      "evidence_ids": [
+        "ev-rw-bge-capabilities"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-multi-hybrid-index-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-multi-hybrid-index-claim-01"
+      ],
+      "review_reason": "The cited rw-rag-bge-m3 excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘In this project, we introduce BGE-M3, which is distinguished for its versatility in Multi-Functionality, Multi-Linguality, and Multi-Granularity. - Multi-Functionality: It can simultaneously perform the three common retr’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "[S5]",
+      "case_id": "rw-gold-v1-multi-hybrid-index",
+      "citation_review_id": "rw-gold-v1-multi-hybrid-index:S4:2",
+      "content_excerpt": "Faiss is built around an index type that stores a set of vectors, and provides a function to search in them with L2 and/or dot product vector comparison. Some index types are simple baselines, such as exact search. Most of the available indexing structures correspond to various trade-offs with respect to\n\n- search time\n- search quality\n- memory used per index vector\n- training time\n- adding time\n- need for external data for unsupervised training\n\nThe optional GPU implementation provides what is likely (as of March 2017) the fastest exact and approximate (compressed-domain) nearest neighbor search implementation for high-dimensional vectors, fastest Lloyd's k-means, and fastest small k-selection algorithm known. The implementation is detailed here (https://arxiv.org/abs/1702.08734).",
+      "document_id": "rw-rag-faiss-overview",
+      "evidence_ids": [
+        "ev-rw-faiss-tradeoffs"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-multi-hybrid-index-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-multi-hybrid-index-claim-02"
+      ],
+      "review_reason": "The cited rw-rag-faiss-overview excerpt semantically supports the adjacent assertion ‘[S5]’; its supporting text begins ‘Faiss is built around an index type that stores a set of vectors, and provides a function to search in them with L2 and/or dot product vector comparison. Some index types are simple baselines, such as exact search. Most ’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S4",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-multi-hybrid-index",
+      "citation_review_id": "rw-gold-v1-multi-hybrid-index:S5:3",
+      "content_excerpt": "Faiss is a library for efficient similarity search and clustering of dense vectors. It contains algorithms that search in sets of vectors of any size, up to ones that possibly do not fit in RAM. It also contains supporting code for evaluation and parameter tuning. Faiss is written in C++ with complete wrappers for Python/numpy. Some of the most useful algorithms are implemented on the GPU. It is developed primarily at Meta's Fundamental AI Research (https://ai.facebook.com/) group.",
+      "document_id": "rw-rag-faiss-overview",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-multi-hybrid-index-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-multi-hybrid-index-claim-02"
+      ],
+      "review_reason": "The cited rw-rag-faiss-overview excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘Faiss is a library for efficient similarity search and clustering of dense vectors. It contains algorithms that search in sets of vectors of any size, up to ones that possibly do not fit in RAM. It also contains supporti’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S5",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "[S5][S4]",
+      "case_id": "rw-gold-v1-multi-hybrid-index",
+      "citation_review_id": "rw-gold-v1-multi-hybrid-index:S6:4",
+      "content_excerpt": "Faiss contains several methods for similarity search. It assumes that the instances are represented as vectors and are identified by an integer, and that the vectors can be compared with L2 (Euclidean) distances or dot products. Vectors that are similar to a query vector are those that have the lowest L2 distance or the highest dot product with the query vector. It also supports cosine similarity, since this is a dot product on normalized vectors.",
+      "document_id": "rw-rag-faiss-overview",
+      "evidence_ids": [
+        "ev-rw-faiss-distance"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-multi-hybrid-index-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-multi-hybrid-index-claim-02"
+      ],
+      "review_reason": "The cited rw-rag-faiss-overview excerpt semantically supports the adjacent assertion ‘[S5][S4]’; its supporting text begins ‘Faiss contains several methods for similarity search. It assumes that the instances are represented as vectors and are identified by an integer, and that the vectors can be compared with L2 (Euclidean) distances or dot p’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S6",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-disambig-agent-memory",
+      "citation_review_id": "rw-gold-v1-disambig-agent-memory:S1:1",
+      "content_excerpt": "rom a failure, or remember information across interactions.\n\nLangGraph provides two complementary persistence systems:\n\n- **[Checkpointers](/oss/langgraph/checkpointers)** persist a thread's graph state as checkpoints. Use them for short-term, thread-scoped memory, including conversation continuity, human-in-the-loop workflows, time travel, and fault tolerance.\n- **[Stores](/oss/langgraph/stores)** persist application-defined data outside the graph state. Use them for long-term, cross-thread memory, including user preferences, facts, and shared knowledge.\n\nMost applications can use both: a [checkpointer](/oss/langgraph/checkpointers) tracks the current thread, and a [store](/oss/langgraph/stores) tracks durable information across threads.\n\n## Quickstart",
+      "document_id": "rw-agent-persistence",
+      "evidence_ids": [
+        "ev-rw-persist-overview"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-disambig-agent-memory-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-disambig-agent-memory-claim-01"
+      ],
+      "review_reason": "The cited rw-agent-persistence excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘rom a failure, or remember information across interactions. LangGraph provides two complementary persistence systems: - **[Checkpointers](/oss/langgraph/checkpointers)** persist a thread's graph state as checkpoints. Use’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-disambig-agent-memory",
+      "citation_review_id": "rw-gold-v1-disambig-agent-memory:S2:2",
+      "content_excerpt": "-conditional-edge-py.mdx';\nInterrupts allow you to pause graph execution at specific points and wait for external input\n before continuing. This enables human-in-the-loop patterns where you need external input to\n proceed. When an interrupt is triggered, LangGraph saves the graph state using its [persist\nence](/oss/langgraph/persistence) layer and waits indefinitely until you resume execution.\nInterrupts work by calling the `interrupt()` function at any point in your graph nodes. The\nfunction accepts any JSON-serializable value which is surfaced to the caller. When you're re\nady to continue, you resume execution by re-invoking the graph using `Command`, which then b\necomes the return value of the `interrupt()` call from inside the node.",
+      "document_id": "rw-agent-interrupts",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-disambig-agent-memory-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-disambig-agent-memory-claim-02"
+      ],
+      "review_reason": "The cited rw-agent-interrupts excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘-conditional-edge-py.mdx'; Interrupts allow you to pause graph execution at specific points and wait for external input before continuing. This enables human-in-the-loop patterns where you need external input to proceed.’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S2",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "[S2]",
+      "case_id": "rw-gold-v1-disambig-agent-memory",
+      "citation_review_id": "rw-gold-v1-disambig-agent-memory:S3:3",
+      "content_excerpt": "pass to `interrupt()` re\nturn to the caller in the `__interrupt__` field so you know what the graph is waiting on.\n:::\nThe `thread_id` you choose is effectively your persistent cursor. Reusing it resumes the sam\ne checkpoint; using a new value starts a brand-new thread with an empty state.\n## Pause using `interrupt`\nThe @[`interrupt`] function pauses graph execution and returns a value to the caller. When y\nou call @[`interrupt`] within a node, LangGraph saves the current graph state and waits for\nyou to resume execution with input.\nTo use @[`interrupt`], you need:\n1. A **checkpointer** to persist the graph state (use a durable checkpointer in production)\n2. A **thread ID** in your config so the runtime knows which state to resume from",
+      "document_id": "rw-agent-interrupts",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-disambig-agent-memory-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-disambig-agent-memory-claim-02"
+      ],
+      "review_reason": "The cited rw-agent-interrupts excerpt semantically supports the adjacent assertion ‘[S2]’; its supporting text begins ‘pass to `interrupt()` re turn to the caller in the `__interrupt__` field so you know what the graph is waiting on. ::: The `thread_id` you choose is effectively your persistent cursor. Reusing it resumes the sam e checkp’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S3",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-disambig-bge-faiss",
+      "citation_review_id": "rw-gold-v1-disambig-bge-faiss:S1:1",
+      "content_excerpt": "product with the query vector. It also supports cosine similarity, since this is a dot product on normalized vectors.\n\nSome of the methods, like those based on binary vectors and compact quantization codes, solely use a compressed representation of the vectors and do not require to keep the original vectors. This generally comes at the cost of a less precise search but these methods can scale to billions of vectors in main memory on a single server. Other methods, like HNSW and NSG add an indexing structure on top of the raw vectors to make searching more efficient.",
+      "document_id": "rw-rag-faiss-overview",
+      "evidence_ids": [
+        "ev-rw-faiss-distance"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-disambig-bge-faiss-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-disambig-bge-faiss-claim-02"
+      ],
+      "review_reason": "The cited rw-rag-faiss-overview excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘product with the query vector. It also supports cosine similarity, since this is a dot product on normalized vectors. Some of the methods, like those based on binary vectors and compact quantization codes, solely use a c’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-disambig-bge-faiss",
+      "citation_review_id": "rw-gold-v1-disambig-bge-faiss:S4:2",
+      "content_excerpt": "Multi-Vector (ColBERT)\nfrom FlagEmbedding import BGEM3FlagModel\n\nmodel = BGEM3FlagModel('BAAI/bge-m3',  use_fp16=True)\n\nsentences_1 = [\"What is BGE M3?\", \"Defination of BM25\"]\nsentences_2 = [\"BGE M3 is an embedding model supporting dense retrieval, lexical matching and multi-vector interaction.\",\n               \"BM25 is a bag-of-words retrieval function that ranks a set of documents based on the query terms appearing in each document\"]\n\noutput_1 = model.encode(sentences_1, return_dense=True, return_sparse=True, return_colbert_vecs=True)\noutput_2 = model.encode(sentences_2, return_dense=True, return_sparse=True, return_colbert_vecs=True)",
+      "document_id": "rw-rag-bge-m3",
+      "evidence_ids": [
+        "ev-rw-bge-dense-usage",
+        "ev-rw-bge-score-weights",
+        "ev-rw-bge-sparse-usage"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-disambig-bge-faiss-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-disambig-bge-faiss-claim-01"
+      ],
+      "review_reason": "The cited rw-rag-bge-m3 excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘Multi-Vector (ColBERT) from FlagEmbedding import BGEM3FlagModel model = BGEM3FlagModel('BAAI/bge-m3', use_fp16=True) sentences_1 = [\"What is BGE M3?\", \"Defination of BM25\"] sentences_2 = [\"BGE M3 is an embedding model su’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S4",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-disambig-bge-long",
+      "citation_review_id": "rw-gold-v1-disambig-bge-long:S1:1",
+      "content_excerpt": "- Model\n\n| Model Name |  Dimension | Sequence Length | Introduction |\n|:----:|:---:|:---:|:---:|\n| BAAI/bge-m3 (https://huggingface.co/BAAI/bge-m3) | 1024 | 8192 | multilingual; unified fine-tuning (dense, sparse, and colbert) from bge-m3-unsupervised|\n| BAAI/bge-m3-unsupervised (https://huggingface.co/BAAI/bge-m3-unsupervised) | 1024 | 8192 | multilingual; contrastive learning from bge-m3-retromae |\n| BAAI/bge-m3-retromae (https://huggingface.co/BAAI/bge-m3-retromae) | -- | 8192 | multilingual; extend the max_length of xlm-roberta (https://huggingface.co/FacebookAI/xlm-roberta-large) to 8192 and further pretrained via retromae (https://github.com/staoxiao/RetroMAE)|\n| BAAI/bge-large-en-v1.5 (https://huggingface.co/BAAI/bge-large-en-v1.5) | 1024 | 512 | English model |",
+      "document_id": "rw-rag-bge-m3",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-disambig-bge-long-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-disambig-bge-long-claim-01"
+      ],
+      "review_reason": "The cited rw-rag-bge-m3 excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘- Model | Model Name | Dimension | Sequence Length | Introduction | |:----:|:---:|:---:|:---:| | BAAI/bge-m3 (https://huggingface.co/BAAI/bge-m3) | 1024 | 8192 | multilingual; unified fine-tuning (dense, sparse, and colb’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "[S1]",
+      "case_id": "rw-gold-v1-disambig-bge-long",
+      "citation_review_id": "rw-gold-v1-disambig-bge-long:S2:2",
+      "content_excerpt": "In this project, we introduce BGE-M3, which is distinguished for its versatility in Multi-Functionality, Multi-Linguality, and Multi-Granularity.\n- Multi-Functionality: It can simultaneously perform the three common retrieval functionalities of embedding model: dense retrieval, multi-vector retrieval, and sparse retrieval.\n- Multi-Linguality: It can support more than 100 working languages.\n- Multi-Granularity: It is able to process inputs of different granularities, spanning from short sentences to long documents of up to 8192 tokens.\n\nFor more details, please refer to our paper: BGE M3-Embedding: Multi-Lingual, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation (https://arxiv.org/pdf/2402.03216.pdf)\n\nSome suggestions for retrieval pipeline in RAG",
+      "document_id": "rw-rag-bge-m3",
+      "evidence_ids": [
+        "ev-rw-bge-capabilities"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-disambig-bge-long-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-disambig-bge-long-claim-01"
+      ],
+      "review_reason": "The cited rw-rag-bge-m3 excerpt semantically supports the adjacent assertion ‘[S1]’; its supporting text begins ‘In this project, we introduce BGE-M3, which is distinguished for its versatility in Multi-Functionality, Multi-Linguality, and Multi-Granularity. - Multi-Functionality: It can simultaneously perform the three common retr’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S2",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-disambig-bge-long",
+      "citation_review_id": "rw-gold-v1-disambig-bge-long:S4:3",
+      "content_excerpt": "Faiss is built around an index type that stores a set of vectors, and provides a function to search in them with L2 and/or dot product vector comparison. Some index types are simple baselines, such as exact search. Most of the available indexing structures correspond to various trade-offs with respect to\n\n- search time\n- search quality\n- memory used per index vector\n- training time\n- adding time\n- need for external data for unsupervised training\n\nThe optional GPU implementation provides what is likely (as of March 2017) the fastest exact and approximate (compressed-domain) nearest neighbor search implementation for high-dimensional vectors, fastest Lloyd's k-means, and fastest small k-selection algorithm known. The implementation is detailed here (https://arxiv.org/abs/1702.08734).",
+      "document_id": "rw-rag-faiss-overview",
+      "evidence_ids": [
+        "ev-rw-faiss-tradeoffs"
+      ],
+      "matching_required_evidence_group_ids": [],
+      "related_claim_ids": [],
+      "review_reason": "The cited rw-rag-faiss-overview excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘Faiss is built around an index type that stores a set of vectors, and provides a function to search in them with L2 and/or dot product vector comparison. Some index types are simple baselines, such as exact search. Most ’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S4",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-disambig-fastapi-async-deps",
+      "citation_review_id": "rw-gold-v1-disambig-fastapi-async-deps:S1:1",
+      "content_excerpt": "As dependencies will also be called by FastAPI (the same as your *path operation functions*), the same rules apply while defining your functions.\n\nYou can use async def or normal def.\n\nAnd you can declare dependencies with async def inside of normal def *path operation functions*, or def dependencies inside of async def *path operation functions*, etc.\n\nIt doesn't matter. FastAPI will know what to do.\n\n/// note\n\nIf you don't know, check the Async: *\"In a hurry?\"* (../../async.md#in-a-hurry) section about async and await in the docs.\n\n///",
+      "document_id": "rw-backend-fastapi-dependencies",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-disambig-fastapi-async-deps-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-disambig-fastapi-async-deps-claim-02"
+      ],
+      "review_reason": "The cited rw-backend-fastapi-dependencies excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘As dependencies will also be called by FastAPI (the same as your *path operation functions*), the same rules apply while defining your functions. You can use async def or normal def. And you can declare dependencies with’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-disambig-fastapi-async-deps",
+      "citation_review_id": "rw-gold-v1-disambig-fastapi-async-deps:S4:2",
+      "content_excerpt": "Starlette (and FastAPI) are based on AnyIO (https://anyio.readthedocs.io/en/stable/), which makes it compatible with both Python's standard library asyncio (https://docs.python.org/3/library/asyncio-task.html) and Trio (https://trio.readthedocs.io/en/stable/).\n\nIn particular, you can directly use AnyIO (https://anyio.readthedocs.io/en/stable/) for your advanced concurrency use cases that require more advanced patterns in your own code.\n\nAnd even if you were not using FastAPI, you could also write your own async applications with AnyIO (https://anyio.readthedocs.io/en/stable/) to be highly compatible and get its benefits (e.g. *structured concurrency*).",
+      "document_id": "rw-backend-fastapi-async",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-disambig-fastapi-async-deps-01",
+        "eg-rw-disambig-fastapi-async-deps-03"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-disambig-fastapi-async-deps-claim-01"
+      ],
+      "review_reason": "The excerpt identifies FastAPI's AnyIO/async foundation but does not itself contain the endpoint def/async selection guidance attributed to that document.",
+      "semantic_status": "CITATION_PARTIALLY_SUPPORTS",
+      "source_label": "S4",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-disambig-fastapi-exceptions",
+      "citation_review_id": "rw-gold-v1-disambig-fastapi-exceptions:S1:1",
+      "content_excerpt": "FastAPI has its own HTTPException.\n\nAnd FastAPI's HTTPException error class inherits from Starlette's HTTPException error class.\n\nThe only difference is that FastAPI's HTTPException accepts any JSON-able data for the detail field, while Starlette's HTTPException only accepts strings for it.\n\nSo, you can keep raising FastAPI's HTTPException as normally in your code.\n\nBut when you register an exception handler, you should register it for Starlette's HTTPException.\n\nThis way, if any part of Starlette's internal code, or a Starlette extension or plug-in, raises a Starlette HTTPException, your handler will be able to catch and handle it.\n\nIn this example, to be able to have both HTTPExceptions in the same code, Starlette's exceptions is renamed to StarletteHTTPException:\n\nfrom starlette.excepti",
+      "document_id": "rw-backend-fastapi-errors",
+      "evidence_ids": [
+        "ev-rw-errors-fastapi-starlette"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-disambig-fastapi-exceptions-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-disambig-fastapi-exceptions-claim-01",
+        "rw-gold-v1-disambig-fastapi-exceptions-claim-02"
+      ],
+      "review_reason": "The cited rw-backend-fastapi-errors excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘FastAPI has its own HTTPException. And FastAPI's HTTPException error class inherits from Starlette's HTTPException error class. The only difference is that FastAPI's HTTPException accepts any JSON-able data for the detai’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-disambig-ragas-metrics",
+      "citation_review_id": "rw-gold-v1-disambig-ragas-metrics:S1:1",
+      "content_excerpt": "Context Precision is a metric that evaluates the retriever's ability to rank relevant chunks higher than irrelevant ones for a given query in the retrieved context. Specifically, it assesses the degree to which relevant chunks in the retrieved context are placed at the top of the ranking.\n\nIt is calculated as the mean of the precision@k for each chunk in the context. Precision@k is the ratio of the number of relevant chunks at rank k to the total number of chunks at rank k.\n\n$$\n\\text{Context Precision@K} = \\frac{\\sum_{k=1}^{K} \\left( \\text{Precision@k} \\times v_k \\right)}{\\text{Total number of relevant items in the top } K \\text{ results}}\n$$\n\n$$\n\\text{Precision@k} = {\\text{true positives@k} \\over  (\\text{true positives@k} + \\text{false positives@k})}\n$$",
+      "document_id": "rw-eval-context-precision",
+      "evidence_ids": [
+        "ev-rw-precision-definition"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-disambig-ragas-metrics-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-disambig-ragas-metrics-claim-02"
+      ],
+      "review_reason": "The cited rw-eval-context-precision excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘Context Precision is a metric that evaluates the retriever's ability to rank relevant chunks higher than irrelevant ones for a given query in the retrieved context. Specifically, it assesses the degree to which relevant ’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "[S1]",
+      "case_id": "rw-gold-v1-disambig-ragas-metrics",
+      "citation_review_id": "rw-gold-v1-disambig-ragas-metrics:S2:2",
+      "content_excerpt": "from ragas import SingleTurnSample\nfrom ragas.metrics import IDBasedContextPrecision\n\nsample = SingleTurnSample(\n    retrieved_context_ids=[\"doc_1\", \"doc_2\", \"doc_3\", \"doc_4\"],\n    reference_context_ids=[\"doc_1\", \"doc_4\", \"doc_5\", \"doc_6\"]\n)\n\nid_precision = IDBasedContextPrecision()\nawait id_precision.single_turn_ascore(sample)\n\nOutput:\n0.5\n\nIn this example, out of the 4 retrieved context IDs, only 2 (\"doc_1\" and \"doc_4\") are found in the reference context IDs, resulting in a precision score of 0.5 or 50%.",
+      "document_id": "rw-eval-context-precision",
+      "evidence_ids": [
+        "ev-rw-precision-id-based"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-disambig-ragas-metrics-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-disambig-ragas-metrics-claim-02"
+      ],
+      "review_reason": "The cited rw-eval-context-precision excerpt semantically supports the adjacent assertion ‘[S1]’; its supporting text begins ‘from ragas import SingleTurnSample from ragas.metrics import IDBasedContextPrecision sample = SingleTurnSample( retrieved_context_ids=[\"doc_1\", \"doc_2\", \"doc_3\", \"doc_4\"], reference_context_ids=[\"doc_1\", \"doc_4\", \"doc_5\"’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S2",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-disambig-ragas-metrics",
+      "citation_review_id": "rw-gold-v1-disambig-ragas-metrics:S6:3",
+      "content_excerpt": "To collect evaluation data, we first need a set of queries to run against our RAG. We can run the queries through the RAG system and collect the response, retrieved_contextsfor each query. You may also optionally prepare a set of golden answers for each query to evaluate the system's performance.\n\nsample_queries = [\n    \"Who introduced the theory of relativity?\",\n    \"Who was the first computer programmer?\",\n    \"What did Isaac Newton contribute to science?\",\n    \"Who won two Nobel Prizes for research on radioactivity?\",\n    \"What is the theory of evolution by natural selection?\"\n]",
+      "document_id": "rw-eval-ragas-workflow",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-disambig-ragas-metrics-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-disambig-ragas-metrics-claim-01"
+      ],
+      "review_reason": "The cited rw-eval-ragas-workflow excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘To collect evaluation data, we first need a set of queries to run against our RAG. We can run the queries through the RAG system and collect the response, retrieved_contextsfor each query. You may also optionally prepare’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S6",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-disambig-ragas-otel",
+      "citation_review_id": "rw-gold-v1-disambig-ragas-otel:S1:1",
+      "content_excerpt": "for debugging and development-time, the OpenTelemetry Collector, or any open\nsource or vendor backend of your choice.\n## Context Propagation\nContext Propagation is the core concept that enables Distributed Tracing. With\nContext Propagation, Spans can be correlated with each other and assembled into\na trace, regardless of where Spans are generated. To learn more about this\ntopic, see the concept page on [Context Propagation](../../context-propagation).\n## Spans\nA **span** represents a unit of work or operation. Spans are the building blocks\nof Traces. In OpenTelemetry, they include the following information:\n- Name\n- Parent span ID (empty for root spans)\n- Start and End Timestamps\n- [Span Context](#span-context)\n- [Attributes](#attributes)\n- [Span Events](#span-events)",
+      "document_id": "rw-eval-otel-traces",
+      "evidence_ids": [
+        "ev-rw-otel-propagation-span"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-disambig-ragas-otel-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-disambig-ragas-otel-claim-02"
+      ],
+      "review_reason": "The cited rw-eval-otel-traces excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘for debugging and development-time, the OpenTelemetry Collector, or any open source or vendor backend of your choice. ## Context Propagation Context Propagation is the core concept that enables Distributed Tracing. With ’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-disambig-ragas-otel",
+      "citation_review_id": "rw-gold-v1-disambig-ragas-otel:S2:2",
+      "content_excerpt": "Context Precision is a metric that evaluates the retriever's ability to rank relevant chunks higher than irrelevant ones for a given query in the retrieved context. Specifically, it assesses the degree to which relevant chunks in the retrieved context are placed at the top of the ranking.\n\nIt is calculated as the mean of the precision@k for each chunk in the context. Precision@k is the ratio of the number of relevant chunks at rank k to the total number of chunks at rank k.\n\n$$\n\\text{Context Precision@K} = \\frac{\\sum_{k=1}^{K} \\left( \\text{Precision@k} \\times v_k \\right)}{\\text{Total number of relevant items in the top } K \\text{ results}}\n$$\n\n$$\n\\text{Precision@k} = {\\text{true positives@k} \\over  (\\text{true positives@k} + \\text{false positives@k})}\n$$",
+      "document_id": "rw-eval-context-precision",
+      "evidence_ids": [
+        "ev-rw-precision-definition"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-disambig-ragas-otel-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-disambig-ragas-otel-claim-01"
+      ],
+      "review_reason": "The cited rw-eval-context-precision excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘Context Precision is a metric that evaluates the retriever's ability to rank relevant chunks higher than irrelevant ones for a given query in the retrieved context. Specifically, it assesses the degree to which relevant ’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S2",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "[S1]",
+      "case_id": "rw-gold-v1-disambig-ragas-otel",
+      "citation_review_id": "rw-gold-v1-disambig-ragas-otel:S4:3",
+      "content_excerpt": "---\ntitle: Traces\nweight: 1\ndescription: The path of a request through your application.\ncSpell:ignore: Guten\n---\n**Traces** give us the big picture of what happens when a request is made to an\napplication. Whether your application is a monolith with a single database or a\nsophisticated mesh of services, traces are essential to understanding the full\n\"path\" a request takes in your application.\nLet's explore this with three units of work, represented as [Spans](#spans):\n> [!NOTE]\n>\n> The following JSON examples do not represent a specific format, and especially\n> not [OTLP/JSON](/docs/specs/otlp/#json-protobuf-encoding), which is more\n> verbose.\n`hello` span:\n```json\n{\n  \"name\": \"hello\",\n  \"context\": {\n    \"trace_id\": \"5b8aa5a2d2c872e8321cf37308d69df2\",\n    \"span_id\": \"051581bf3cb55c13\"",
+      "document_id": "rw-eval-otel-traces",
+      "evidence_ids": [
+        "ev-rw-otel-trace-overview"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-disambig-ragas-otel-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-disambig-ragas-otel-claim-02"
+      ],
+      "review_reason": "The cited rw-eval-otel-traces excerpt semantically supports the adjacent assertion ‘[S1]’; its supporting text begins ‘--- title: Traces weight: 1 description: The path of a request through your application. cSpell:ignore: Guten --- **Traces** give us the big picture of what happens when a request is made to an application. Whether your ’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S4",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-stress-deep-async-call-kinds",
+      "citation_review_id": "rw-gold-v1-stress-deep-async-call-kinds:S2:1",
+      "content_excerpt": "Any other utility function that you call directly can be created with normal def or async def and FastAPI won't affect the way you call it.\n\nThis is in contrast to the functions that FastAPI calls for you: *path operation functions* and dependencies.\n\nIf your utility function is a normal function with def, it will be called directly (as you write it in your code), not in a threadpool, if the function is created with async def then you should await that function when you call it in your code.\n\n---\n\nAgain, these are very technical details that would probably be useful if you came searching for them.\n\nOtherwise, you should be good with the guidelines from the section above: <a href=\"#in-a-hurry\">In a hurry?</a>.",
+      "document_id": "rw-backend-fastapi-async",
+      "evidence_ids": [
+        "ev-rw-async-threadpool"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-stress-deep-async-call-kinds-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-stress-deep-async-call-kinds-claim-01",
+        "rw-gold-v1-stress-deep-async-call-kinds-claim-02",
+        "rw-gold-v1-stress-deep-async-call-kinds-claim-03"
+      ],
+      "review_reason": "The cited rw-backend-fastapi-async excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘Any other utility function that you call directly can be created with normal def or async def and FastAPI won't affect the way you call it. This is in contrast to the functions that FastAPI calls for you: *path operation’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S2",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-stress-deep-async-call-kinds",
+      "citation_review_id": "rw-gold-v1-stress-deep-async-call-kinds:S3:2",
+      "content_excerpt": "As dependencies will also be called by FastAPI (the same as your *path operation functions*), the same rules apply while defining your functions.\n\nYou can use async def or normal def.\n\nAnd you can declare dependencies with async def inside of normal def *path operation functions*, or def dependencies inside of async def *path operation functions*, etc.\n\nIt doesn't matter. FastAPI will know what to do.\n\n/// note\n\nIf you don't know, check the Async: *\"In a hurry?\"* (../../async.md#in-a-hurry) section about async and await in the docs.\n\n///",
+      "document_id": "rw-backend-fastapi-dependencies",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [],
+      "related_claim_ids": [],
+      "review_reason": "The cited rw-backend-fastapi-dependencies excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘As dependencies will also be called by FastAPI (the same as your *path operation functions*), the same rules apply while defining your functions. You can use async def or normal def. And you can declare dependencies with’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S3",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-stress-deep-async-call-kinds",
+      "citation_review_id": "rw-gold-v1-stress-deep-async-call-kinds:S4:3",
+      "content_excerpt": "When you declare a *path operation function* with normal def instead of async def, it is run in an external threadpool that is then awaited, instead of being called directly (as it would block the server).\n\nIf you are coming from another async framework that does not work in the way described above and you are used to defining trivial compute-only *path operation functions* with plain def for a tiny performance gain (about 100 nanoseconds), please note that in FastAPI the effect would be quite opposite. In these cases, it's better to use async def unless your *path operation functions* use code that performs blocking <abbr title=\"Input/Output: disk reading or writing, network communications.\">I/O</abbr>.",
+      "document_id": "rw-backend-fastapi-async",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-stress-deep-async-call-kinds-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-stress-deep-async-call-kinds-claim-01",
+        "rw-gold-v1-stress-deep-async-call-kinds-claim-02",
+        "rw-gold-v1-stress-deep-async-call-kinds-claim-03"
+      ],
+      "review_reason": "The cited rw-backend-fastapi-async excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘When you declare a *path operation function* with normal def instead of async def, it is run in an external threadpool that is then awaited, instead of being called directly (as it would block the server). If you are com’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S4",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-stress-deep-bge-mldr-comparison",
+      "citation_review_id": "rw-gold-v1-stress-deep-bge-mldr-comparison:S1:1",
+      "content_excerpt": "r (./imgs/miracl.jpg)\n\n- Cross-lingual (MKQA dataset)\n\navatar (./imgs/mkqa.jpg)\n\n- Long Document Retrieval\n  - MLDR:\n  avatar (./imgs/long.jpg)\n  Please note that MLDR (https://huggingface.co/datasets/Shitao/MLDR) is a document retrieval dataset we constructed via LLM,\n  covering 13 languages, including test set, validation set, and training set.\n  We utilized the training set from MLDR to enhance the model's long document retrieval capabilities.\n  Therefore, comparing baselines with Dense w.o.long(fine-tuning without long document dataset) is more equitable.\n  Additionally, this long document retrieval dataset will be open-sourced to address the current lack of open-source multilingual long text retrieval datasets.",
+      "document_id": "rw-rag-bge-m3",
+      "evidence_ids": [
+        "ev-rw-bge-long-eval"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-stress-deep-bge-mldr-comparison-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-stress-deep-bge-mldr-comparison-claim-01",
+        "rw-gold-v1-stress-deep-bge-mldr-comparison-claim-02"
+      ],
+      "review_reason": "The cited rw-rag-bge-m3 excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘r (./imgs/miracl.jpg) - Cross-lingual (MKQA dataset) avatar (./imgs/mkqa.jpg) - Long Document Retrieval - MLDR: avatar (./imgs/long.jpg) Please note that MLDR (https://huggingface.co/datasets/Shitao/MLDR) is a document r’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "[S1]",
+      "case_id": "rw-gold-v1-stress-deep-bge-mldr-comparison",
+      "citation_review_id": "rw-gold-v1-stress-deep-bge-mldr-comparison:S2:2",
+      "content_excerpt": "this benchmark, BGE-M3 achieves top performance in both English and other languages, surpassing models such as OpenAI.\n- 2024/3/2: Release unified fine-tuning example (https://github.com/FlagOpen/FlagEmbedding/tree/master/examples/finetune/embedder#2-bge-m3) and data (https://huggingface.co/datasets/Shitao/bge-m3-data)\n- 2024/2/6: We release the MLDR (https://huggingface.co/datasets/Shitao/MLDR) (a long document retrieval dataset covering 13 languages) and evaluation pipeline (https://github.com/FlagOpen/FlagEmbedding/tree/master/research/C_MTEB/MLDR).",
+      "document_id": "rw-rag-bge-m3",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-stress-deep-bge-mldr-comparison-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-stress-deep-bge-mldr-comparison-claim-01",
+        "rw-gold-v1-stress-deep-bge-mldr-comparison-claim-02"
+      ],
+      "review_reason": "The cited rw-rag-bge-m3 excerpt semantically supports the adjacent assertion ‘[S1]’; its supporting text begins ‘this benchmark, BGE-M3 achieves top performance in both English and other languages, surpassing models such as OpenAI. - 2024/3/2: Release unified fine-tuning example (https://github.com/FlagOpen/FlagEmbedding/tree/maste’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S2",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-stress-deep-interrupt-side-effects",
+      "citation_review_id": "rw-gold-v1-stress-deep-interrupt-side-effects:S1:1",
+      "content_excerpt": "//  Bad: creating a new record before interrupt\n  // This will create duplicate records on each resume\n  const auditId = await db.createAuditLog({\n    userId: state.userId,\n    action: \"pending_approval\",\n    timestamp: new Date()\n  });\n  const approved = interrupt(\"Approve this change?\");\n  return { approved, auditId };\n}\n```\n```typescript Appending to arrays\nconst nodeA: GraphNode<typeof State> = async (state) => {\n  //  Bad: appending to an array before interrupt\n  // This will add duplicate entries on each resume\n  await db.appendToHistory(state.userId, \"approval_requested\");\n  const approved = interrupt(\"Approve this change?\");\n  return { approved };\n}\n```\n</CodeGroup>\n:::\n## Using with subgraphs called as functions",
+      "document_id": "rw-agent-interrupts",
+      "evidence_ids": [
+        "ev-rw-interrupt-duplicate-risk"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-stress-deep-interrupt-side-effects-01",
+        "eg-rw-stress-deep-interrupt-side-effects-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-stress-deep-interrupt-side-effects-claim-01",
+        "rw-gold-v1-stress-deep-interrupt-side-effects-claim-02"
+      ],
+      "review_reason": "The cited rw-agent-interrupts excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘// Bad: creating a new record before interrupt // This will create duplicate records on each resume const auditId = await db.createAuditLog({ userId: state.userId, action: \"pending_approval\", timestamp: new Date() }); co’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "[S1]",
+      "case_id": "rw-gold-v1-stress-deep-interrupt-side-effects",
+      "citation_review_id": "rw-gold-v1-stress-deep-interrupt-side-effects:S2:2",
+      "content_excerpt": "execution.\nAs an example, you might have an API call to update a record inside of a node. If @[`interru\npt`] is called after that call is made, it will be re-run multiple times when the node is re\nsumed, potentially overwriting the initial update or creating duplicate records.\n*  Use idempotent operations before @[`interrupt`]\n*  Place side effects after @[`interrupt`] calls\n*  Separate side effects into separate nodes when possible\n:::python\n<CodeGroup>\n```python Idempotent operations\ndef node_a(state: State):\n    #  Good: using upsert operation which is idempotent\n    # Running this multiple times will have the same result\n    db.upsert_user(\n        user_id=state[\"user_id\"],\n        status=\"pending_approval\"\n    )\n    approved = interrupt(\"Approve this change?\")",
+      "document_id": "rw-agent-interrupts",
+      "evidence_ids": [
+        "ev-rw-interrupt-side-effects"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-stress-deep-interrupt-side-effects-01",
+        "eg-rw-stress-deep-interrupt-side-effects-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-stress-deep-interrupt-side-effects-claim-01",
+        "rw-gold-v1-stress-deep-interrupt-side-effects-claim-02"
+      ],
+      "review_reason": "The cited rw-agent-interrupts excerpt semantically supports the adjacent assertion ‘[S1]’; its supporting text begins ‘execution. As an example, you might have an API call to update a record inside of a node. If @[`interru pt`] is called after that call is made, it will be re-run multiple times when the node is re sumed, potentially over’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S2",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-stress-deep-precision-id-versus-content",
+      "citation_review_id": "rw-gold-v1-stress-deep-precision-id-versus-content:S1:1",
+      "content_excerpt": "IDBasedContextPrecision provides a direct and efficient way to measure precision by comparing the IDs of retrieved contexts with reference context IDs. This metric is particularly useful when you have a unique ID system for your documents and want to evaluate retrieval performance without comparing the actual content.\n\nThe metric computes precision using retrieved_context_ids and reference_context_ids, with values ranging between 0 and 1. Higher values indicate better performance. It works with both string and integer IDs.\n\nThe formula for calculating ID-based context precision is as follows:\n\n$$ \\text{ID-Based Context Precision} = \\frac{\\text{Number of retrieved context IDs found in reference context IDs}}{\\text{Total number of retrieved context IDs}} $$",
+      "document_id": "rw-eval-context-precision",
+      "evidence_ids": [
+        "ev-rw-precision-id-based"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-stress-deep-precision-id-versus-content-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-stress-deep-precision-id-versus-content-claim-01",
+        "rw-gold-v1-stress-deep-precision-id-versus-content-claim-02"
+      ],
+      "review_reason": "The cited rw-eval-context-precision excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘IDBasedContextPrecision provides a direct and efficient way to measure precision by comparing the IDs of retrieved contexts with reference context IDs. This metric is particularly useful when you have a unique ID system ’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-stress-cross-embedding-api-concurrency",
+      "citation_review_id": "rw-gold-v1-stress-cross-embedding-api-concurrency:S3:1",
+      "content_excerpt": "the case for most database libraries), then declare your *path operation functions* as normally, with just def, like:\n\n@app.get('/')\ndef results():\n    results = some_library()\n    return results\n\n---\n\nIf your application (somehow) doesn't have to communicate with anything else and wait for it to respond, use async def, even if you don't need to use await inside.\n\n---\n\nIf you just don't know, use normal def.\n\n---\n\nNote: You can mix def and async def in your *path operation functions* as much as you need and define each one using the best option for you. FastAPI will do the right thing with them.\n\nAnyway, in any of the cases above, FastAPI will still work asynchronously and be extremely fast.\n\nBut by following the steps above, it will be able to do some performance optimizations.",
+      "document_id": "rw-backend-fastapi-async",
+      "evidence_ids": [
+        "ev-rw-async-tldr"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-stress-cross-embedding-api-concurrency-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-stress-cross-embedding-api-concurrency-claim-02"
+      ],
+      "review_reason": "The cited rw-backend-fastapi-async excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘the case for most database libraries), then declare your *path operation functions* as normally, with just def, like: @app.get('/') def results(): results = some_library() return results --- If your application (somehow)’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S3",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-stress-cross-embedding-api-concurrency",
+      "citation_review_id": "rw-gold-v1-stress-cross-embedding-api-concurrency:S5:2",
+      "content_excerpt": "- Dense Embedding\nfrom FlagEmbedding import BGEM3FlagModel\n\nmodel = BGEM3FlagModel('BAAI/bge-m3',\n                       use_fp16=True,\n                       devices=['cuda:0']) # Setting use_fp16 to True speeds up computation with a slight performance degradation\n\nsentences_1 = [\"What is BGE M3?\", \"Defination of BM25\"]\nsentences_2 = [\"BGE M3 is an embedding model supporting dense retrieval, lexical matching and multi-vector interaction.\",\n               \"BM25 is a bag-of-words retrieval function that ranks a set of documents based on the query terms appearing in each document\"]",
+      "document_id": "rw-rag-bge-m3",
+      "evidence_ids": [
+        "ev-rw-bge-dense-usage",
+        "ev-rw-bge-score-weights",
+        "ev-rw-bge-sparse-usage"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-stress-cross-embedding-api-concurrency-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-stress-cross-embedding-api-concurrency-claim-01"
+      ],
+      "review_reason": "The cited rw-rag-bge-m3 excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘- Dense Embedding from FlagEmbedding import BGEM3FlagModel model = BGEM3FlagModel('BAAI/bge-m3', use_fp16=True, devices=['cuda:0']) # Setting use_fp16 to True speeds up computation with a slight performance degradation s’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S5",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-stress-cross-persistence-tracing",
+      "citation_review_id": "rw-gold-v1-stress-cross-persistence-tracing:S1:1",
+      "content_excerpt": "span with one or more spans, implying\na causal relationship. For example, let’s say we have a distributed system where\nsome operations are tracked by a trace.\nIn response to some of these operations, an additional operation is queued to be\nexecuted, but its execution is asynchronous. We can track this subsequent\noperation with a trace as well.\nWe would like to associate the trace for the subsequent operations with the\nfirst trace, but we cannot predict when the subsequent operations will start. We\nneed to associate these two traces, so we will use a span link.\n4",
+      "document_id": "rw-eval-otel-traces",
+      "evidence_ids": [
+        "ev-rw-otel-attributes-events"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-stress-cross-persistence-tracing-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-stress-cross-persistence-tracing-claim-02"
+      ],
+      "review_reason": "The cited rw-eval-otel-traces excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘span with one or more spans, implying a causal relationship. For example, let’s say we have a distributed system where some operations are tracked by a trace. In response to some of these operations, an additional operat’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-stress-cross-persistence-tracing",
+      "citation_review_id": "rw-gold-v1-stress-cross-persistence-tracing:S3:2",
+      "content_excerpt": "r stores manually. The server handles persistence infrastructure behind the scenes.\n</Info>\n\n## Checkpointer vs. store\n\n| | Checkpointer | Store |\n| ---- | ---- | ---- |\n| Persists | Graph state snapshots | Application-defined key-value data |\n| Scope | A single thread | Across threads |\n| Memory type | Short-term, thread-scoped memory | Long-term, cross-thread memory |\n| Use for | Conversation continuity, human-in-the-loop, time travel, and fault tolerance | User preferences, facts, and shared knowledge |\n| Access pattern | Pass a `thread_id` in graph config | Read and write items from nodes or application code |\n| Full guide | [Checkpointers](/oss/langgraph/checkpointers) | [Stores](/oss/langgraph/stores) |\n\n## Troubleshooting common issues\n\n### PostgresSaver: `thread_id` too long",
+      "document_id": "rw-agent-persistence",
+      "evidence_ids": [
+        "ev-rw-persist-comparison"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-stress-cross-persistence-tracing-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-stress-cross-persistence-tracing-claim-01"
+      ],
+      "review_reason": "The cited rw-agent-persistence excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘r stores manually. The server handles persistence infrastructure behind the scenes. </Info> ## Checkpointer vs. store | | Checkpointer | Store | | ---- | ---- | ---- | | Persists | Graph state snapshots | Application-def’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S3",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "[S3]",
+      "case_id": "rw-gold-v1-stress-cross-persistence-tracing",
+      "citation_review_id": "rw-gold-v1-stress-cross-persistence-tracing:S4:3",
+      "content_excerpt": "---\ntitle: Persistence\ndescription: LangGraph's persistence layer gives agents short-term memory through checkpointers and long-term memory through stores.\n---\n\n{/* Anchor stubs for backwards-compatible deep links */}\n<a id=\"checkpoints\" />\n<a id=\"threads\" />\n<a id=\"memory-store\" />\n<a id=\"checkpointer-libraries\" />\n<a id=\"pending-writes\" />\n<a id=\"durability-modes\" />\n\nPersistence lets LangGraph applications keep useful information beyond a single graph run. It matters when an agent needs to continue a conversation, resume after an interruption, recover from a failure, or remember information across interactions.\n\nLangGraph provides two complementary persistence systems:",
+      "document_id": "rw-agent-persistence",
+      "evidence_ids": [
+        "ev-rw-persist-overview"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-stress-cross-persistence-tracing-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-stress-cross-persistence-tracing-claim-01"
+      ],
+      "review_reason": "The cited rw-agent-persistence excerpt semantically supports the adjacent assertion ‘[S3]’; its supporting text begins ‘--- title: Persistence description: LangGraph's persistence layer gives agents short-term memory through checkpointers and long-term memory through stores. --- {/* Anchor stubs for backwards-compatible deep links */} <a ’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S4",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-stress-conflict-bge-faiss-compression",
+      "citation_review_id": "rw-gold-v1-stress-conflict-bge-faiss-compression:S4:1",
+      "content_excerpt": "product with the query vector. It also supports cosine similarity, since this is a dot product on normalized vectors.\n\nSome of the methods, like those based on binary vectors and compact quantization codes, solely use a compressed representation of the vectors and do not require to keep the original vectors. This generally comes at the cost of a less precise search but these methods can scale to billions of vectors in main memory on a single server. Other methods, like HNSW and NSG add an indexing structure on top of the raw vectors to make searching more efficient.",
+      "document_id": "rw-rag-faiss-overview",
+      "evidence_ids": [
+        "ev-rw-faiss-distance"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-stress-conflict-bge-faiss-compression-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-stress-conflict-bge-faiss-compression-claim-01"
+      ],
+      "review_reason": "The cited rw-rag-faiss-overview excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘product with the query vector. It also supports cosine similarity, since this is a dot product on normalized vectors. Some of the methods, like those based on binary vectors and compact quantization codes, solely use a c’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S4",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-stress-conflict-fastapi-handler-type",
+      "citation_review_id": "rw-gold-v1-stress-conflict-fastapi-handler-type:S1:1",
+      "content_excerpt": "FastAPI has its own HTTPException.\n\nAnd FastAPI's HTTPException error class inherits from Starlette's HTTPException error class.\n\nThe only difference is that FastAPI's HTTPException accepts any JSON-able data for the detail field, while Starlette's HTTPException only accepts strings for it.\n\nSo, you can keep raising FastAPI's HTTPException as normally in your code.\n\nBut when you register an exception handler, you should register it for Starlette's HTTPException.\n\nThis way, if any part of Starlette's internal code, or a Starlette extension or plug-in, raises a Starlette HTTPException, your handler will be able to catch and handle it.\n\nIn this example, to be able to have both HTTPExceptions in the same code, Starlette's exceptions is renamed to StarletteHTTPException:\n\nfrom starlette.excepti",
+      "document_id": "rw-backend-fastapi-errors",
+      "evidence_ids": [
+        "ev-rw-errors-fastapi-starlette"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-stress-conflict-fastapi-handler-type-01",
+        "eg-rw-stress-conflict-fastapi-handler-type-02",
+        "eg-rw-stress-conflict-fastapi-handler-type-03"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-stress-conflict-fastapi-handler-type-claim-01",
+        "rw-gold-v1-stress-conflict-fastapi-handler-type-claim-02"
+      ],
+      "review_reason": "The cited rw-backend-fastapi-errors excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘FastAPI has its own HTTPException. And FastAPI's HTTPException error class inherits from Starlette's HTTPException error class. The only difference is that FastAPI's HTTPException accepts any JSON-able data for the detai’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "[S1]",
+      "case_id": "rw-gold-v1-stress-conflict-fastapi-handler-type",
+      "citation_review_id": "rw-gold-v1-stress-conflict-fastapi-handler-type:S2:2",
+      "content_excerpt": "The same way, you can override the HTTPException handler.\n\nFor example, you could want to return a plain text response instead of JSON for these errors:\n\n{* ../../docs_src/handling_errors/tutorial004_py310.py hl[3:4,9:11,25] *}\n\n/// note | Technical Details\n\nYou could also use from starlette.responses import PlainTextResponse.\n\nFastAPI provides the same starlette.responses as fastapi.responses just as a convenience for you, the developer. But most of the available responses come directly from Starlette.\n\n///\n\n/// warning\n\nHave in mind that the RequestValidationError contains the information of the file name and line where the validation error happens so that you can show it in your logs with the relevant information if you want to.",
+      "document_id": "rw-backend-fastapi-errors",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-stress-conflict-fastapi-handler-type-01",
+        "eg-rw-stress-conflict-fastapi-handler-type-02",
+        "eg-rw-stress-conflict-fastapi-handler-type-03"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-stress-conflict-fastapi-handler-type-claim-01",
+        "rw-gold-v1-stress-conflict-fastapi-handler-type-claim-02"
+      ],
+      "review_reason": "The cited rw-backend-fastapi-errors excerpt semantically supports the adjacent assertion ‘[S1]’; its supporting text begins ‘The same way, you can override the HTTPException handler. For example, you could want to return a plain text response instead of JSON for these errors: {* ../../docs_src/handling_errors/tutorial004_py310.py hl[3:4,9:11,2’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S2",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-stress-conflict-fastapi-handler-type",
+      "citation_review_id": "rw-gold-v1-stress-conflict-fastapi-handler-type:S5:3",
+      "content_excerpt": "All these dependencies, while declaring their requirements, also add parameters, validations, etc. to your *path operations*.\n\nFastAPI will take care of adding it all to the OpenAPI schema, so that it is shown in the interactive documentation systems.",
+      "document_id": "rw-backend-fastapi-dependencies",
+      "evidence_ids": [
+        "ev-rw-deps-hierarchy"
+      ],
+      "matching_required_evidence_group_ids": [],
+      "related_claim_ids": [],
+      "review_reason": "This dependency/OpenAPI excerpt is accurately described as irrelevant to exception handlers, but it is unnecessary to support the required handler-type answer.",
+      "semantic_status": "CITATION_UNNECESSARY",
+      "source_label": "S5",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "[S5]",
+      "case_id": "rw-gold-v1-stress-conflict-fastapi-handler-type",
+      "citation_review_id": "rw-gold-v1-stress-conflict-fastapi-handler-type:S6:4",
+      "content_excerpt": "But because FastAPI is based on the Python standards, including Annotated, you can use this trick in your code. 😎\n\n///\n\nThe dependencies will keep working as expected, and the best part is that the type information will be preserved, which means that your editor will be able to keep providing you with autocompletion, inline errors, etc. The same for other tools like mypy.\n\nThis will be especially useful when you use it in a large code base where you use the same dependencies over and over again in many *path operations*.",
+      "document_id": "rw-backend-fastapi-dependencies",
+      "evidence_ids": [],
+      "matching_required_evidence_group_ids": [],
+      "related_claim_ids": [],
+      "review_reason": "This Annotated/type-information excerpt is a correctly identified distractor and adds no required support for the exception-handler claim.",
+      "semantic_status": "CITATION_UNNECESSARY",
+      "source_label": "S6",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-stress-conflict-interrupt-persistence-resume",
+      "citation_review_id": "rw-gold-v1-stress-conflict-interrupt-persistence-resume:S2:1",
+      "content_excerpt": "from langgraph.types import interrupt\ndef approval_node(state: State):\n    # Pause and ask for approval\n    approved = interrupt(\"Do you approve this action?\")\n    # When you resume, Command(resume=...) returns that value here\n    return {\"approved\": approved}\n```\n:::\n:::js\n```typescript\nimport { interrupt } from \"@langchain/langgraph\";\nasync function approvalNode(state: State) {\n    // Pause and ask for approval\n    const approved = interrupt(\"Do you approve this action?\");\n    // Command({ resume: ... }) provides the value returned into this variable\n    return { approved };\n}\n```\n:::\nWhen you call @[`interrupt`], here's what happens:\n1. **Graph execution gets suspended** at the exact point where @[`interrupt`] is called",
+      "document_id": "rw-agent-interrupts",
+      "evidence_ids": [
+        "ev-rw-interrupt-mechanism"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-stress-conflict-interrupt-persistence-resume-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-stress-conflict-interrupt-persistence-resume-claim-01"
+      ],
+      "review_reason": "The cited rw-agent-interrupts excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘from langgraph.types import interrupt def approval_node(state: State): # Pause and ask for approval approved = interrupt(\"Do you approve this action?\") # When you resume, Command(resume=...) returns that value here retur’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S2",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-stress-conflict-interrupt-persistence-resume",
+      "citation_review_id": "rw-gold-v1-stress-conflict-interrupt-persistence-resume:S4:2",
+      "content_excerpt": "---\ntitle: Persistence\ndescription: LangGraph's persistence layer gives agents short-term memory through checkpointers and long-term memory through stores.\n---\n\n{/* Anchor stubs for backwards-compatible deep links */}\n<a id=\"checkpoints\" />\n<a id=\"threads\" />\n<a id=\"memory-store\" />\n<a id=\"checkpointer-libraries\" />\n<a id=\"pending-writes\" />\n<a id=\"durability-modes\" />\n\nPersistence lets LangGraph applications keep useful information beyond a single graph run. It matters when an agent needs to continue a conversation, resume after an interruption, recover from a failure, or remember information across interactions.\n\nLangGraph provides two complementary persistence systems:",
+      "document_id": "rw-agent-persistence",
+      "evidence_ids": [
+        "ev-rw-persist-overview"
+      ],
+      "matching_required_evidence_group_ids": [],
+      "related_claim_ids": [],
+      "review_reason": "The cited rw-agent-persistence excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘--- title: Persistence description: LangGraph's persistence layer gives agents short-term memory through checkpointers and long-term memory through stores. --- {/* Anchor stubs for backwards-compatible deep links */} <a ’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S4",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "[S2]",
+      "case_id": "rw-gold-v1-stress-conflict-interrupt-persistence-resume",
+      "citation_review_id": "rw-gold-v1-stress-conflict-interrupt-persistence-resume:S6:3",
+      "content_excerpt": "streaming](/oss/langgraph/\nevent-streaming) — it surfaces interrupts via `stream.interrupts` and `stream.interrupted`,\nand exposes the final state through `stream.output`.\n<LanggraphInterruptsResumeV2Py />\n<Note>\nThe default `graph.invoke(...)` API still works and surfaces interrupts under `result[\"__int\nerrupt__\"]`. Use it when you don't need streamed projections; otherwise prefer `graph.stream\n_events(..., version=\"v3\")`.\n</Note>\n**Key points about resuming:**\n- You must use the **same thread ID** when resuming that was used when the interrupt occurre\nd\n- The value passed to `Command(resume=...)` becomes the return value of the @[`interrupt`] c\nall\n- The node restarts from the beginning of the node where the @[`interrupt`] was called when",
+      "document_id": "rw-agent-interrupts",
+      "evidence_ids": [
+        "ev-rw-interrupt-mechanism"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-stress-conflict-interrupt-persistence-resume-01"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-stress-conflict-interrupt-persistence-resume-claim-01"
+      ],
+      "review_reason": "The cited rw-agent-interrupts excerpt semantically supports the adjacent assertion ‘[S2]’; its supporting text begins ‘streaming](/oss/langgraph/ event-streaming) — it surfaces interrupts via `stream.interrupts` and `stream.interrupted`, and exposes the final state through `stream.output`. <LanggraphInterruptsResumeV2Py /> <Note> The def’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S6",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-stress-conflict-ragas-reference-mode",
+      "citation_review_id": "rw-gold-v1-stress-conflict-ragas-reference-mode:S1:1",
+      "content_excerpt": "from ragas import SingleTurnSample\nfrom ragas.metrics import IDBasedContextPrecision\n\nsample = SingleTurnSample(\n    retrieved_context_ids=[\"doc_1\", \"doc_2\", \"doc_3\", \"doc_4\"],\n    reference_context_ids=[\"doc_1\", \"doc_4\", \"doc_5\", \"doc_6\"]\n)\n\nid_precision = IDBasedContextPrecision()\nawait id_precision.single_turn_ascore(sample)\n\nOutput:\n0.5\n\nIn this example, out of the 4 retrieved context IDs, only 2 (\"doc_1\" and \"doc_4\") are found in the reference context IDs, resulting in a precision score of 0.5 or 50%.",
+      "document_id": "rw-eval-context-precision",
+      "evidence_ids": [
+        "ev-rw-precision-id-based"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-stress-conflict-ragas-reference-mode-01",
+        "eg-rw-stress-conflict-ragas-reference-mode-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-stress-conflict-ragas-reference-mode-claim-01"
+      ],
+      "review_reason": "The cited rw-eval-context-precision excerpt semantically supports the adjacent assertion ‘’; its supporting text begins ‘from ragas import SingleTurnSample from ragas.metrics import IDBasedContextPrecision sample = SingleTurnSample( retrieved_context_ids=[\"doc_1\", \"doc_2\", \"doc_3\", \"doc_4\"], reference_context_ids=[\"doc_1\", \"doc_4\", \"doc_5\"’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S1",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "[S1]",
+      "case_id": "rw-gold-v1-stress-conflict-ragas-reference-mode",
+      "citation_review_id": "rw-gold-v1-stress-conflict-ragas-reference-mode:S2:2",
+      "content_excerpt": "from ragas import SingleTurnSample\nfrom ragas.metrics import NonLLMContextPrecisionWithReference\n\ncontext_precision = NonLLMContextPrecisionWithReference()\n\nsample = SingleTurnSample(\n    retrieved_contexts=[\"The Eiffel Tower is located in Paris.\"],\n    reference_contexts=[\"Paris is the capital of France.\", \"The Eiffel Tower is one of the most famous landmarks in Paris.\"]\n)\n\nawait context_precision.single_turn_ascore(sample)\n\nOutput:\n0.9999999999",
+      "document_id": "rw-eval-context-precision",
+      "evidence_ids": [
+        "ev-rw-precision-nonllm",
+        "ev-rw-precision-with-reference",
+        "ev-rw-precision-without-reference"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-stress-conflict-ragas-reference-mode-01",
+        "eg-rw-stress-conflict-ragas-reference-mode-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-stress-conflict-ragas-reference-mode-claim-01"
+      ],
+      "review_reason": "The cited rw-eval-context-precision excerpt semantically supports the adjacent assertion ‘[S1]’; its supporting text begins ‘from ragas import SingleTurnSample from ragas.metrics import NonLLMContextPrecisionWithReference context_precision = NonLLMContextPrecisionWithReference() sample = SingleTurnSample( retrieved_contexts=[\"The Eiffel Tower ’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S2",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "[S1][S2]",
+      "case_id": "rw-gold-v1-stress-conflict-ragas-reference-mode",
+      "citation_review_id": "rw-gold-v1-stress-conflict-ragas-reference-mode:S3:3",
+      "content_excerpt": "from ragas import SingleTurnSample\nfrom ragas.metrics import LLMContextPrecisionWithoutReference\n\ncontext_precision = LLMContextPrecisionWithoutReference(llm=evaluator_llm)\n\nsample = SingleTurnSample(\n    user_input=\"Where is the Eiffel Tower located?\",\n    response=\"The Eiffel Tower is located in Paris.\",\n    retrieved_contexts=[\"The Eiffel Tower is located in Paris.\"],\n)\n\nawait context_precision.single_turn_ascore(sample)\n\nOutput:\n0.9999999999",
+      "document_id": "rw-eval-context-precision",
+      "evidence_ids": [
+        "ev-rw-precision-nonllm",
+        "ev-rw-precision-with-reference",
+        "ev-rw-precision-without-reference"
+      ],
+      "matching_required_evidence_group_ids": [
+        "eg-rw-stress-conflict-ragas-reference-mode-01",
+        "eg-rw-stress-conflict-ragas-reference-mode-02"
+      ],
+      "related_claim_ids": [
+        "rw-gold-v1-stress-conflict-ragas-reference-mode-claim-01"
+      ],
+      "review_reason": "The cited rw-eval-context-precision excerpt semantically supports the adjacent assertion ‘[S1][S2]’; its supporting text begins ‘from ragas import SingleTurnSample from ragas.metrics import LLMContextPrecisionWithoutReference context_precision = LLMContextPrecisionWithoutReference(llm=evaluator_llm) sample = SingleTurnSample( user_input=\"Where is ’.",
+      "semantic_status": "CITATION_SUPPORTS_CLAIM",
+      "source_label": "S3",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "",
+      "case_id": "rw-gold-v1-stress-conflict-ragas-reference-mode",
+      "citation_review_id": "rw-gold-v1-stress-conflict-ragas-reference-mode:S4:4",
+      "content_excerpt": "arwin introduced the theory of evolution by natural selection in his book 'On the Origin of Species'.\"\n]\n\ndataset = []\n\nfor query,reference in zip(sample_queries,expected_responses):\n\n    relevant_docs = rag.get_most_relevant_docs(query)\n    response = rag.generate_answer(query, relevant_docs)\n    dataset.append(\n        {\n            \"user_input\":query,\n            \"retrieved_contexts\":relevant_docs,\n            \"response\":response,\n            \"reference\":reference\n        }\n    )\n\nNow, load the dataset into EvaluationDataset object.\n\nfrom ragas import EvaluationDataset\nevaluation_dataset = EvaluationDataset.from_list(dataset)",
+      "document_id": "rw-eval-ragas-workflow",
+      "evidence_ids": [
+        "ev-rw-ragas-collect-data"
+      ],
+      "matching_required_evidence_group_ids": [],
+      "related_claim_ids": [],
+      "review_reason": "The generic data-collection workflow is correctly labeled indirect, but it is unnecessary for distinguishing the context-precision reference modes.",
+      "semantic_status": "CITATION_UNNECESSARY",
+      "source_label": "S4",
+      "validity_status": "CITATION_VALID"
+    },
+    {
+      "attached_answer_span": "[S4]",
+      "case_id": "rw-gold-v1-stress-conflict-ragas-reference-mode",
+      "citation_review_id": "rw-gold-v1-stress-conflict-ragas-reference-mode:S5:5",
+      "content_excerpt": "We have successfully collected the evaluation data. Now, we can evaluate our RAG system on the collected dataset using a set of commonly used RAG evaluation metrics. You may choose any model as evaluator LLM (./../howtos/customizations/customize_models.md) for evaluation.\n\nfrom ragas import evaluate\nfrom ragas.llms import LangchainLLMWrapper\n\nevaluator_llm = LangchainLLMWrapper(llm)\nfrom ragas.metrics import LLMContextRecall, Faithfulness, FactualCorrectness\n\nresult = evaluate(dataset=evaluation_dataset,metrics=[LLMContextRecall(), Faithfulness(), FactualCorrectness()],llm=evaluator_llm)\nresult\n\nOutput\n{'context_recall': 1.0000, 'faithfulness': 0.8571, 'factual_correctness': 0.7280}",
+      "document_id": "rw-eval-ragas-workflow",
+      "evidence_ids": [
+        "ev-rw-ragas-evaluate"
+      ],
+      "matching_required_evidence_group_ids": [],
+      "related_claim_ids": [],
+      "review_reason": "The generic evaluate-call passage does not distinguish the reference modes and is unnecessary to the required answer.",
+      "semantic_status": "CITATION_UNNECESSARY",
+      "source_label": "S5",
+      "validity_status": "CITATION_VALID"
+    }
+  ],
+  "methodology": {
+    "external_llm_used": false,
+    "review_scope": "Every returned citation is checked against its attached answer assertion and frozen selected excerpt; missing required source groups are recorded separately.",
+    "structural_validity_is_not_semantic_support": true
+  },
+  "missing_required_evidence_groups": [
+    {
+      "case_id": "rw-gold-v1-single-dependency-defaults",
+      "evidence_group_id": "eg-rw-single-dependency-defaults-01",
+      "expected_document_ids": [
+        "rw-backend-fastapi-dependencies"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-deps-dependable"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-semantic-checkpointer-store",
+      "evidence_group_id": "eg-rw-semantic-checkpointer-store-01",
+      "expected_document_ids": [
+        "rw-agent-langgraph-overview"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-agent-overview-capabilities"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-long-bge-score-mix",
+      "evidence_group_id": "eg-rw-long-bge-score-mix-01",
+      "expected_document_ids": [
+        "rw-rag-bge-m3"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-bge-score-weights"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-long-bge-training",
+      "evidence_group_id": "eg-rw-long-bge-training-01",
+      "expected_document_ids": [
+        "rw-rag-bge-m3"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-bge-training"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-long-deps-hierarchy",
+      "evidence_group_id": "eg-rw-long-deps-hierarchy-01",
+      "expected_document_ids": [
+        "rw-backend-fastapi-dependencies"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-deps-hierarchy"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-long-deps-hierarchy",
+      "evidence_group_id": "eg-rw-long-deps-hierarchy-02",
+      "expected_document_ids": [
+        "rw-backend-fastapi-dependencies"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-deps-openapi"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-multi-agent-resume",
+      "evidence_group_id": "eg-rw-multi-agent-resume-01",
+      "expected_document_ids": [
+        "rw-agent-persistence"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-persist-overview",
+        "ev-rw-persist-comparison"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-multi-eval-stack",
+      "evidence_group_id": "eg-rw-multi-eval-stack-01",
+      "expected_document_ids": [
+        "rw-eval-ragas-workflow"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-ragas-collect-data"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-multi-eval-stack",
+      "evidence_group_id": "eg-rw-multi-eval-stack-02",
+      "expected_document_ids": [
+        "rw-eval-context-precision"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-precision-reference-response",
+        "ev-rw-precision-without-reference",
+        "ev-rw-precision-with-reference"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-multi-rag-tracing",
+      "evidence_group_id": "eg-rw-multi-rag-tracing-01",
+      "expected_document_ids": [
+        "rw-eval-ragas-workflow"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-ragas-components"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-multi-rag-tracing",
+      "evidence_group_id": "eg-rw-multi-rag-tracing-02",
+      "expected_document_ids": [
+        "rw-eval-otel-traces"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-otel-trace-overview"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-multi-rag-tracing",
+      "evidence_group_id": "eg-rw-multi-rag-tracing-03",
+      "expected_document_ids": [
+        "rw-eval-ragas-workflow"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-ragas-collect-data"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-multi-rag-tracing",
+      "evidence_group_id": "eg-rw-multi-rag-tracing-04",
+      "expected_document_ids": [
+        "rw-eval-otel-traces"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-otel-propagation-span"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-multi-retrieval-eval",
+      "evidence_group_id": "eg-rw-multi-retrieval-eval-01",
+      "expected_document_ids": [
+        "rw-rag-faiss-overview"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-faiss-purpose",
+        "ev-rw-faiss-distance"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-multi-retrieval-eval",
+      "evidence_group_id": "eg-rw-multi-retrieval-eval-02",
+      "expected_document_ids": [
+        "rw-eval-ragas-workflow"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-ragas-collect-data"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-multi-retrieval-eval",
+      "evidence_group_id": "eg-rw-multi-retrieval-eval-03",
+      "expected_document_ids": [
+        "rw-eval-context-precision"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-precision-definition"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-agent-persist-interrupt",
+      "evidence_group_id": "eg-rw-disambig-agent-persist-interrupt-01",
+      "expected_document_ids": [
+        "rw-agent-persistence"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-persist-memorysaver",
+        "ev-rw-persist-comparison"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-agent-persist-interrupt",
+      "evidence_group_id": "eg-rw-disambig-agent-persist-interrupt-02",
+      "expected_document_ids": [
+        "rw-agent-interrupts"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-interrupt-resume"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-fastapi-errors",
+      "evidence_group_id": "eg-rw-disambig-fastapi-errors-01",
+      "expected_document_ids": [
+        "rw-backend-fastapi-errors"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-errors-http-exception"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-interrupt-static",
+      "evidence_group_id": "eg-rw-disambig-interrupt-static-01",
+      "expected_document_ids": [
+        "rw-agent-interrupts"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-interrupt-static"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-disambig-interrupt-static",
+      "evidence_group_id": "eg-rw-disambig-interrupt-static-02",
+      "expected_document_ids": [
+        "rw-agent-interrupts"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-interrupt-runtime-static"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-stress-cross-agent-api-replay",
+      "evidence_group_id": "eg-rw-stress-cross-agent-api-replay-01",
+      "expected_document_ids": [
+        "rw-agent-interrupts"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-interrupt-restart-rule",
+        "ev-rw-interrupt-side-effects"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-stress-cross-agent-api-replay",
+      "evidence_group_id": "eg-rw-stress-cross-agent-api-replay-02",
+      "expected_document_ids": [
+        "rw-backend-fastapi-errors"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-errors-http-exception"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-stress-cross-retrieval-evaluation",
+      "evidence_group_id": "eg-rw-stress-cross-retrieval-evaluation-01",
+      "expected_document_ids": [
+        "rw-rag-bge-m3"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-bge-pipeline"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-stress-cross-retrieval-evaluation",
+      "evidence_group_id": "eg-rw-stress-cross-retrieval-evaluation-02",
+      "expected_document_ids": [
+        "rw-rag-faiss-overview"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-faiss-tradeoffs"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    },
+    {
+      "case_id": "rw-gold-v1-stress-cross-retrieval-evaluation",
+      "evidence_group_id": "eg-rw-stress-cross-retrieval-evaluation-03",
+      "expected_document_ids": [
+        "rw-eval-context-precision"
+      ],
+      "expected_evidence_ids": [
+        "ev-rw-precision-definition"
+      ],
+      "review_reason": "No returned citation covers this frozen required evidence group by document, so the citation contract obligation is missing.",
+      "status": "CITATION_MISSING"
+    }
+  ],
+  "provenance": {
+    "baseline_run_id": "20260814T052007Z-593cd2ac",
+    "raw_results_sha256": "bf718aed08e226149c9310cbf20bf25c403708217e2908789120178ac5574e28"
+  },
+  "review_id": "learnpilot-rag-real-world-citation-semantic-reviews-v1",
+  "schema_version": "1.0.0",
+  "summary": {
+    "case_status_counts": {
+      "FAIL": 14,
+      "PARTIAL": 2,
+      "PASS": 56
+    },
+    "coverage_complete": true,
+    "missing_required_group_count": 26,
+    "returned_citation_count": 97,
+    "returned_citations_reviewed": 97,
+    "semantic_status_counts": {
+      "CITATION_PARTIALLY_SUPPORTS": 2,
+      "CITATION_SUPPORTS_CLAIM": 91,
+      "CITATION_UNNECESSARY": 4,
+      "CITATION_UNSUPPORTED": 0
+    },
+    "valid_citation_count": 97
+  }
+}

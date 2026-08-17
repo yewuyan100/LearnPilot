@@ -50,7 +50,7 @@ export function MaterialSearchPanel({ materials }: { materials: Material[] }) {
         <label className="field">
           <span>资料范围</span>
           <select value={materialId} onChange={(event) => setMaterialId(event.target.value)}>
-            <option value="">全部已索引资料</option>
+            <option value="">全部可检索资料</option>
             {materials
               .filter((material) => material.indexing_status === "completed")
               .map((material) => (

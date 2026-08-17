@@ -1,0 +1,1217 @@
+{
+  "design_version": "V1.1",
+  "ablation_design_sha256": "442bedce1c43b27b3557b0055708342edd278e98bcac0c12a68c1390fe88f655",
+  "phase2_run_id": "20260814T095542Z-1317c6a7",
+  "phase3_run_id": "20260814T123142Z-8852712b",
+  "phase4_run_id": "20260814T131417Z-04dfc031",
+  "recorded_at": "2026-08-14T13:32:16.411223+00:00",
+  "blinded_review_sha256": "0e91fedd1a4b98152e77a093dff1a18ed3f177a92b3d1d4ddc67073b3fcdaf9c",
+  "unblinded_after_pass1_freeze": true,
+  "post_unblind_review_corrections": [],
+  "arms": {
+    "A": {
+      "arm": "A",
+      "frozen_claim_count": 132,
+      "reviewed_correctness": {
+        "count": 92,
+        "rate": 0.69697
+      },
+      "required_claim_coverage": {
+        "count": 101,
+        "rate": 0.765152,
+        "definition": "SUPPORTED_CORRECT or SUPPORTED_BUT_INCOMPLETE; not an Overall Accuracy redefinition"
+      },
+      "semantic_state_counts": {
+        "MISSING": 30,
+        "SUPPORTED_BUT_INCOMPLETE": 9,
+        "SUPPORTED_CORRECT": 92,
+        "UNSUPPORTED": 1
+      },
+      "unsupported_claim_count": 1,
+      "contradicted_claim_count": 0,
+      "semantic_citation_support": {
+        "applicable_claim_count": 122,
+        "valid_id_and_support_count": 82,
+        "valid_id_and_support_rate": 0.672131,
+        "status_counts": {
+          "MISATTRIBUTED_SUPPORT": 1,
+          "MISSING_REQUIRED_CITATION": 30,
+          "NOT_APPLICABLE_REFUSAL": 10,
+          "VALID_ID_AND_SUPPORT": 82,
+          "VALID_ID_BUT_WEAK_SUPPORT": 9
+        }
+      },
+      "expected_evidence_group_support": {
+        "complete_claim_count": 93,
+        "applicable_claim_count": 122,
+        "rate": 0.762295
+      },
+      "case_count": 72,
+      "case_verdict_counts": {
+        "CORRECT_REFUSAL": 10,
+        "FULL_PASS": 40,
+        "INCORRECT_REFUSAL": 12,
+        "PARTIAL_PASS": 10
+      },
+      "answerability_class_counts": {
+        "CORRECT_ANSWER": 40,
+        "CORRECT_REFUSAL": 10,
+        "INCORRECT_REFUSAL": 12,
+        "PARTIAL_ANSWER": 10
+      },
+      "fully_correct_case_count": 50,
+      "fully_correct_case_rate": 0.694444,
+      "answerability_accuracy": {
+        "count": 60,
+        "rate": 0.833333,
+        "correct_refusal": 10,
+        "incorrect_refusal": 12
+      },
+      "overall_accuracy": null,
+      "overall_accuracy_note": "No single Overall Accuracy decision metric is defined in the frozen V1.1 design; fully-correct case rate is reported separately."
+    },
+    "B": {
+      "arm": "B",
+      "frozen_claim_count": 132,
+      "reviewed_correctness": {
+        "count": 96,
+        "rate": 0.727273
+      },
+      "required_claim_coverage": {
+        "count": 105,
+        "rate": 0.795455,
+        "definition": "SUPPORTED_CORRECT or SUPPORTED_BUT_INCOMPLETE; not an Overall Accuracy redefinition"
+      },
+      "semantic_state_counts": {
+        "CONTRADICTED": 4,
+        "MISSING": 23,
+        "SUPPORTED_BUT_INCOMPLETE": 9,
+        "SUPPORTED_CORRECT": 96
+      },
+      "unsupported_claim_count": 0,
+      "contradicted_claim_count": 4,
+      "semantic_citation_support": {
+        "applicable_claim_count": 122,
+        "valid_id_and_support_count": 86,
+        "valid_id_and_support_rate": 0.704918,
+        "status_counts": {
+          "MISATTRIBUTED_SUPPORT": 4,
+          "MISSING_REQUIRED_CITATION": 23,
+          "NOT_APPLICABLE_REFUSAL": 10,
+          "VALID_ID_AND_SUPPORT": 86,
+          "VALID_ID_BUT_WEAK_SUPPORT": 9
+        }
+      },
+      "expected_evidence_group_support": {
+        "complete_claim_count": 103,
+        "applicable_claim_count": 122,
+        "rate": 0.844262
+      },
+      "case_count": 72,
+      "case_verdict_counts": {
+        "CORRECT_REFUSAL": 10,
+        "FAIL": 1,
+        "FULL_PASS": 39,
+        "INCORRECT_REFUSAL": 9,
+        "PARTIAL_PASS": 13
+      },
+      "answerability_class_counts": {
+        "CORRECT_ANSWER": 39,
+        "CORRECT_REFUSAL": 10,
+        "INCORRECT_ANSWER": 1,
+        "INCORRECT_REFUSAL": 9,
+        "PARTIAL_ANSWER": 13
+      },
+      "fully_correct_case_count": 49,
+      "fully_correct_case_rate": 0.680556,
+      "answerability_accuracy": {
+        "count": 63,
+        "rate": 0.875,
+        "correct_refusal": 10,
+        "incorrect_refusal": 9
+      },
+      "overall_accuracy": null,
+      "overall_accuracy_note": "No single Overall Accuracy decision metric is defined in the frozen V1.1 design; fully-correct case rate is reported separately."
+    },
+    "C": {
+      "arm": "C",
+      "frozen_claim_count": 132,
+      "reviewed_correctness": {
+        "count": 105,
+        "rate": 0.795455
+      },
+      "required_claim_coverage": {
+        "count": 116,
+        "rate": 0.878788,
+        "definition": "SUPPORTED_CORRECT or SUPPORTED_BUT_INCOMPLETE; not an Overall Accuracy redefinition"
+      },
+      "semantic_state_counts": {
+        "CONTRADICTED": 2,
+        "MISSING": 13,
+        "SUPPORTED_BUT_INCOMPLETE": 11,
+        "SUPPORTED_CORRECT": 105,
+        "UNSUPPORTED": 1
+      },
+      "unsupported_claim_count": 1,
+      "contradicted_claim_count": 2,
+      "semantic_citation_support": {
+        "applicable_claim_count": 122,
+        "valid_id_and_support_count": 95,
+        "valid_id_and_support_rate": 0.778689,
+        "status_counts": {
+          "MISATTRIBUTED_SUPPORT": 3,
+          "MISSING_REQUIRED_CITATION": 13,
+          "NOT_APPLICABLE_REFUSAL": 10,
+          "VALID_ID_AND_SUPPORT": 95,
+          "VALID_ID_BUT_WEAK_SUPPORT": 11
+        }
+      },
+      "expected_evidence_group_support": {
+        "complete_claim_count": 111,
+        "applicable_claim_count": 122,
+        "rate": 0.909836
+      },
+      "case_count": 72,
+      "case_verdict_counts": {
+        "CORRECT_REFUSAL": 10,
+        "FULL_PASS": 43,
+        "INCORRECT_REFUSAL": 5,
+        "PARTIAL_PASS": 14
+      },
+      "answerability_class_counts": {
+        "CORRECT_ANSWER": 43,
+        "CORRECT_REFUSAL": 10,
+        "INCORRECT_REFUSAL": 5,
+        "PARTIAL_ANSWER": 14
+      },
+      "fully_correct_case_count": 53,
+      "fully_correct_case_rate": 0.736111,
+      "answerability_accuracy": {
+        "count": 67,
+        "rate": 0.930556,
+        "correct_refusal": 10,
+        "incorrect_refusal": 5
+      },
+      "overall_accuracy": null,
+      "overall_accuracy_note": "No single Overall Accuracy decision metric is defined in the frozen V1.1 design; fully-correct case rate is reported separately."
+    },
+    "D": {
+      "arm": "D",
+      "frozen_claim_count": 132,
+      "reviewed_correctness": {
+        "count": 106,
+        "rate": 0.80303
+      },
+      "required_claim_coverage": {
+        "count": 117,
+        "rate": 0.886364,
+        "definition": "SUPPORTED_CORRECT or SUPPORTED_BUT_INCOMPLETE; not an Overall Accuracy redefinition"
+      },
+      "semantic_state_counts": {
+        "CONTRADICTED": 1,
+        "MISSING": 14,
+        "SUPPORTED_BUT_INCOMPLETE": 11,
+        "SUPPORTED_CORRECT": 106
+      },
+      "unsupported_claim_count": 0,
+      "contradicted_claim_count": 1,
+      "semantic_citation_support": {
+        "applicable_claim_count": 122,
+        "valid_id_and_support_count": 96,
+        "valid_id_and_support_rate": 0.786885,
+        "status_counts": {
+          "MISATTRIBUTED_SUPPORT": 1,
+          "MISSING_REQUIRED_CITATION": 14,
+          "NOT_APPLICABLE_REFUSAL": 10,
+          "VALID_ID_AND_SUPPORT": 96,
+          "VALID_ID_BUT_WEAK_SUPPORT": 11
+        }
+      },
+      "expected_evidence_group_support": {
+        "complete_claim_count": 111,
+        "applicable_claim_count": 122,
+        "rate": 0.909836
+      },
+      "case_count": 72,
+      "case_verdict_counts": {
+        "CORRECT_REFUSAL": 10,
+        "FULL_PASS": 42,
+        "INCORRECT_REFUSAL": 5,
+        "PARTIAL_PASS": 15
+      },
+      "answerability_class_counts": {
+        "CORRECT_ANSWER": 42,
+        "CORRECT_REFUSAL": 10,
+        "INCORRECT_REFUSAL": 5,
+        "PARTIAL_ANSWER": 15
+      },
+      "fully_correct_case_count": 52,
+      "fully_correct_case_rate": 0.722222,
+      "answerability_accuracy": {
+        "count": 67,
+        "rate": 0.930556,
+        "correct_refusal": 10,
+        "incorrect_refusal": 5
+      },
+      "overall_accuracy": null,
+      "overall_accuracy_note": "No single Overall Accuracy decision metric is defined in the frozen V1.1 design; fully-correct case rate is reported separately."
+    }
+  },
+  "breakdowns": {
+    "A": {
+      "tier": {
+        "CORE": {
+          "case_count": 60,
+          "case_verdict_counts": {
+            "CORRECT_REFUSAL": 10,
+            "FULL_PASS": 33,
+            "INCORRECT_REFUSAL": 10,
+            "PARTIAL_PASS": 7
+          },
+          "fully_correct_count": 43
+        },
+        "STRESS": {
+          "case_count": 12,
+          "case_verdict_counts": {
+            "FULL_PASS": 7,
+            "INCORRECT_REFUSAL": 2,
+            "PARTIAL_PASS": 3
+          },
+          "fully_correct_count": 7
+        }
+      },
+      "case_type": {
+        "cross_topic_multi_doc": {
+          "case_count": 4,
+          "case_verdict_counts": {
+            "INCORRECT_REFUSAL": 2,
+            "PARTIAL_PASS": 2
+          },
+          "fully_correct_count": 0
+        },
+        "deep_long_doc_localization": {
+          "case_count": 4,
+          "case_verdict_counts": {
+            "FULL_PASS": 4
+          },
+          "fully_correct_count": 4
+        },
+        "high_overlap_source_conflict": {
+          "case_count": 4,
+          "case_verdict_counts": {
+            "FULL_PASS": 3,
+            "PARTIAL_PASS": 1
+          },
+          "fully_correct_count": 3
+        },
+        "long_doc_localization": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "FULL_PASS": 4,
+            "INCORRECT_REFUSAL": 3,
+            "PARTIAL_PASS": 3
+          },
+          "fully_correct_count": 4
+        },
+        "multi_doc_synthesis": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "FULL_PASS": 4,
+            "INCORRECT_REFUSAL": 3,
+            "PARTIAL_PASS": 3
+          },
+          "fully_correct_count": 4
+        },
+        "semantic_paraphrase": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "FULL_PASS": 9,
+            "PARTIAL_PASS": 1
+          },
+          "fully_correct_count": 9
+        },
+        "single_doc_fact": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "FULL_PASS": 9,
+            "INCORRECT_REFUSAL": 1
+          },
+          "fully_correct_count": 9
+        },
+        "source_disambiguation": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "FULL_PASS": 7,
+            "INCORRECT_REFUSAL": 3
+          },
+          "fully_correct_count": 7
+        },
+        "unanswerable_near_boundary": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "CORRECT_REFUSAL": 10
+          },
+          "fully_correct_count": 10
+        }
+      },
+      "query_language": {
+        "en": {
+          "case_count": 18,
+          "case_verdict_counts": {
+            "CORRECT_REFUSAL": 6,
+            "FULL_PASS": 9,
+            "INCORRECT_REFUSAL": 1,
+            "PARTIAL_PASS": 2
+          },
+          "fully_correct_count": 15
+        },
+        "zh-CN": {
+          "case_count": 54,
+          "case_verdict_counts": {
+            "CORRECT_REFUSAL": 4,
+            "FULL_PASS": 31,
+            "INCORRECT_REFUSAL": 11,
+            "PARTIAL_PASS": 8
+          },
+          "fully_correct_count": 35
+        }
+      },
+      "frozen_failure_class": {
+        "ANSWERABILITY_FALSE_NEGATIVE": {
+          "case_count": 3,
+          "case_verdict_counts": {
+            "INCORRECT_REFUSAL": 3
+          },
+          "fully_correct_count": 0
+        },
+        "CITATION_ONLY_FAILURE": {
+          "case_count": 2,
+          "case_verdict_counts": {
+            "FULL_PASS": 1,
+            "PARTIAL_PASS": 1
+          },
+          "fully_correct_count": 1
+        },
+        "EVAL_MAPPING_DIAGNOSTIC": {
+          "case_count": 12,
+          "case_verdict_counts": {
+            "FULL_PASS": 12
+          },
+          "fully_correct_count": 12
+        },
+        "GENERATION_OMISSION": {
+          "case_count": 3,
+          "case_verdict_counts": {
+            "PARTIAL_PASS": 3
+          },
+          "fully_correct_count": 0
+        },
+        "NO_FAILURE": {
+          "case_count": 33,
+          "case_verdict_counts": {
+            "CORRECT_REFUSAL": 10,
+            "FULL_PASS": 23
+          },
+          "fully_correct_count": 33
+        },
+        "RETRIEVAL_MISS": {
+          "case_count": 9,
+          "case_verdict_counts": {
+            "INCORRECT_REFUSAL": 5,
+            "PARTIAL_PASS": 4
+          },
+          "fully_correct_count": 0
+        },
+        "SELECTION_DIVERSITY_MISS": {
+          "case_count": 8,
+          "case_verdict_counts": {
+            "FULL_PASS": 2,
+            "INCORRECT_REFUSAL": 4,
+            "PARTIAL_PASS": 2
+          },
+          "fully_correct_count": 2
+        },
+        "SELECTION_RANKING_MISS": {
+          "case_count": 2,
+          "case_verdict_counts": {
+            "FULL_PASS": 2
+          },
+          "fully_correct_count": 2
+        }
+      },
+      "target_group": {
+        "NONE": {
+          "case_count": 53,
+          "case_verdict_counts": {
+            "CORRECT_REFUSAL": 10,
+            "FULL_PASS": 36,
+            "INCORRECT_REFUSAL": 3,
+            "PARTIAL_PASS": 4
+          },
+          "fully_correct_count": 46
+        },
+        "dense_rerank": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "FULL_PASS": 4,
+            "INCORRECT_REFUSAL": 4,
+            "PARTIAL_PASS": 2
+          },
+          "fully_correct_count": 4
+        },
+        "hybrid": {
+          "case_count": 9,
+          "case_verdict_counts": {
+            "INCORRECT_REFUSAL": 5,
+            "PARTIAL_PASS": 4
+          },
+          "fully_correct_count": 0
+        },
+        "hybrid_rerank": {
+          "case_count": 19,
+          "case_verdict_counts": {
+            "FULL_PASS": 4,
+            "INCORRECT_REFUSAL": 9,
+            "PARTIAL_PASS": 6
+          },
+          "fully_correct_count": 4
+        },
+        "reranker_diversity_miss": {
+          "case_count": 8,
+          "case_verdict_counts": {
+            "FULL_PASS": 2,
+            "INCORRECT_REFUSAL": 4,
+            "PARTIAL_PASS": 2
+          },
+          "fully_correct_count": 2
+        },
+        "reranker_ranking_miss": {
+          "case_count": 2,
+          "case_verdict_counts": {
+            "FULL_PASS": 2
+          },
+          "fully_correct_count": 2
+        }
+      }
+    },
+    "B": {
+      "tier": {
+        "CORE": {
+          "case_count": 60,
+          "case_verdict_counts": {
+            "CORRECT_REFUSAL": 10,
+            "FULL_PASS": 32,
+            "INCORRECT_REFUSAL": 9,
+            "PARTIAL_PASS": 9
+          },
+          "fully_correct_count": 42
+        },
+        "STRESS": {
+          "case_count": 12,
+          "case_verdict_counts": {
+            "FAIL": 1,
+            "FULL_PASS": 7,
+            "PARTIAL_PASS": 4
+          },
+          "fully_correct_count": 7
+        }
+      },
+      "case_type": {
+        "cross_topic_multi_doc": {
+          "case_count": 4,
+          "case_verdict_counts": {
+            "PARTIAL_PASS": 4
+          },
+          "fully_correct_count": 0
+        },
+        "deep_long_doc_localization": {
+          "case_count": 4,
+          "case_verdict_counts": {
+            "FULL_PASS": 4
+          },
+          "fully_correct_count": 4
+        },
+        "high_overlap_source_conflict": {
+          "case_count": 4,
+          "case_verdict_counts": {
+            "FAIL": 1,
+            "FULL_PASS": 3
+          },
+          "fully_correct_count": 3
+        },
+        "long_doc_localization": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "FULL_PASS": 4,
+            "INCORRECT_REFUSAL": 2,
+            "PARTIAL_PASS": 4
+          },
+          "fully_correct_count": 4
+        },
+        "multi_doc_synthesis": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "FULL_PASS": 5,
+            "INCORRECT_REFUSAL": 2,
+            "PARTIAL_PASS": 3
+          },
+          "fully_correct_count": 5
+        },
+        "semantic_paraphrase": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "FULL_PASS": 8,
+            "INCORRECT_REFUSAL": 1,
+            "PARTIAL_PASS": 1
+          },
+          "fully_correct_count": 8
+        },
+        "single_doc_fact": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "FULL_PASS": 8,
+            "INCORRECT_REFUSAL": 1,
+            "PARTIAL_PASS": 1
+          },
+          "fully_correct_count": 8
+        },
+        "source_disambiguation": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "FULL_PASS": 7,
+            "INCORRECT_REFUSAL": 3
+          },
+          "fully_correct_count": 7
+        },
+        "unanswerable_near_boundary": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "CORRECT_REFUSAL": 10
+          },
+          "fully_correct_count": 10
+        }
+      },
+      "query_language": {
+        "en": {
+          "case_count": 18,
+          "case_verdict_counts": {
+            "CORRECT_REFUSAL": 6,
+            "FULL_PASS": 9,
+            "PARTIAL_PASS": 3
+          },
+          "fully_correct_count": 15
+        },
+        "zh-CN": {
+          "case_count": 54,
+          "case_verdict_counts": {
+            "CORRECT_REFUSAL": 4,
+            "FAIL": 1,
+            "FULL_PASS": 30,
+            "INCORRECT_REFUSAL": 9,
+            "PARTIAL_PASS": 10
+          },
+          "fully_correct_count": 34
+        }
+      },
+      "frozen_failure_class": {
+        "ANSWERABILITY_FALSE_NEGATIVE": {
+          "case_count": 3,
+          "case_verdict_counts": {
+            "INCORRECT_REFUSAL": 2,
+            "PARTIAL_PASS": 1
+          },
+          "fully_correct_count": 0
+        },
+        "CITATION_ONLY_FAILURE": {
+          "case_count": 2,
+          "case_verdict_counts": {
+            "FULL_PASS": 2
+          },
+          "fully_correct_count": 2
+        },
+        "EVAL_MAPPING_DIAGNOSTIC": {
+          "case_count": 12,
+          "case_verdict_counts": {
+            "FULL_PASS": 10,
+            "INCORRECT_REFUSAL": 1,
+            "PARTIAL_PASS": 1
+          },
+          "fully_correct_count": 10
+        },
+        "GENERATION_OMISSION": {
+          "case_count": 3,
+          "case_verdict_counts": {
+            "FAIL": 1,
+            "PARTIAL_PASS": 2
+          },
+          "fully_correct_count": 0
+        },
+        "NO_FAILURE": {
+          "case_count": 33,
+          "case_verdict_counts": {
+            "CORRECT_REFUSAL": 10,
+            "FULL_PASS": 22,
+            "PARTIAL_PASS": 1
+          },
+          "fully_correct_count": 32
+        },
+        "RETRIEVAL_MISS": {
+          "case_count": 9,
+          "case_verdict_counts": {
+            "FULL_PASS": 1,
+            "INCORRECT_REFUSAL": 3,
+            "PARTIAL_PASS": 5
+          },
+          "fully_correct_count": 1
+        },
+        "SELECTION_DIVERSITY_MISS": {
+          "case_count": 8,
+          "case_verdict_counts": {
+            "FULL_PASS": 2,
+            "INCORRECT_REFUSAL": 3,
+            "PARTIAL_PASS": 3
+          },
+          "fully_correct_count": 2
+        },
+        "SELECTION_RANKING_MISS": {
+          "case_count": 2,
+          "case_verdict_counts": {
+            "FULL_PASS": 2
+          },
+          "fully_correct_count": 2
+        }
+      },
+      "target_group": {
+        "NONE": {
+          "case_count": 53,
+          "case_verdict_counts": {
+            "CORRECT_REFUSAL": 10,
+            "FAIL": 1,
+            "FULL_PASS": 34,
+            "INCORRECT_REFUSAL": 3,
+            "PARTIAL_PASS": 5
+          },
+          "fully_correct_count": 44
+        },
+        "dense_rerank": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "FULL_PASS": 4,
+            "INCORRECT_REFUSAL": 3,
+            "PARTIAL_PASS": 3
+          },
+          "fully_correct_count": 4
+        },
+        "hybrid": {
+          "case_count": 9,
+          "case_verdict_counts": {
+            "FULL_PASS": 1,
+            "INCORRECT_REFUSAL": 3,
+            "PARTIAL_PASS": 5
+          },
+          "fully_correct_count": 1
+        },
+        "hybrid_rerank": {
+          "case_count": 19,
+          "case_verdict_counts": {
+            "FULL_PASS": 5,
+            "INCORRECT_REFUSAL": 6,
+            "PARTIAL_PASS": 8
+          },
+          "fully_correct_count": 5
+        },
+        "reranker_diversity_miss": {
+          "case_count": 8,
+          "case_verdict_counts": {
+            "FULL_PASS": 2,
+            "INCORRECT_REFUSAL": 3,
+            "PARTIAL_PASS": 3
+          },
+          "fully_correct_count": 2
+        },
+        "reranker_ranking_miss": {
+          "case_count": 2,
+          "case_verdict_counts": {
+            "FULL_PASS": 2
+          },
+          "fully_correct_count": 2
+        }
+      }
+    },
+    "C": {
+      "tier": {
+        "CORE": {
+          "case_count": 60,
+          "case_verdict_counts": {
+            "CORRECT_REFUSAL": 10,
+            "FULL_PASS": 36,
+            "INCORRECT_REFUSAL": 5,
+            "PARTIAL_PASS": 9
+          },
+          "fully_correct_count": 46
+        },
+        "STRESS": {
+          "case_count": 12,
+          "case_verdict_counts": {
+            "FULL_PASS": 7,
+            "PARTIAL_PASS": 5
+          },
+          "fully_correct_count": 7
+        }
+      },
+      "case_type": {
+        "cross_topic_multi_doc": {
+          "case_count": 4,
+          "case_verdict_counts": {
+            "PARTIAL_PASS": 4
+          },
+          "fully_correct_count": 0
+        },
+        "deep_long_doc_localization": {
+          "case_count": 4,
+          "case_verdict_counts": {
+            "FULL_PASS": 4
+          },
+          "fully_correct_count": 4
+        },
+        "high_overlap_source_conflict": {
+          "case_count": 4,
+          "case_verdict_counts": {
+            "FULL_PASS": 3,
+            "PARTIAL_PASS": 1
+          },
+          "fully_correct_count": 3
+        },
+        "long_doc_localization": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "FULL_PASS": 6,
+            "PARTIAL_PASS": 4
+          },
+          "fully_correct_count": 6
+        },
+        "multi_doc_synthesis": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "FULL_PASS": 5,
+            "INCORRECT_REFUSAL": 2,
+            "PARTIAL_PASS": 3
+          },
+          "fully_correct_count": 5
+        },
+        "semantic_paraphrase": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "FULL_PASS": 9,
+            "PARTIAL_PASS": 1
+          },
+          "fully_correct_count": 9
+        },
+        "single_doc_fact": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "FULL_PASS": 10
+          },
+          "fully_correct_count": 10
+        },
+        "source_disambiguation": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "FULL_PASS": 6,
+            "INCORRECT_REFUSAL": 3,
+            "PARTIAL_PASS": 1
+          },
+          "fully_correct_count": 6
+        },
+        "unanswerable_near_boundary": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "CORRECT_REFUSAL": 10
+          },
+          "fully_correct_count": 10
+        }
+      },
+      "query_language": {
+        "en": {
+          "case_count": 18,
+          "case_verdict_counts": {
+            "CORRECT_REFUSAL": 6,
+            "FULL_PASS": 9,
+            "PARTIAL_PASS": 3
+          },
+          "fully_correct_count": 15
+        },
+        "zh-CN": {
+          "case_count": 54,
+          "case_verdict_counts": {
+            "CORRECT_REFUSAL": 4,
+            "FULL_PASS": 34,
+            "INCORRECT_REFUSAL": 5,
+            "PARTIAL_PASS": 11
+          },
+          "fully_correct_count": 38
+        }
+      },
+      "frozen_failure_class": {
+        "ANSWERABILITY_FALSE_NEGATIVE": {
+          "case_count": 3,
+          "case_verdict_counts": {
+            "INCORRECT_REFUSAL": 2,
+            "PARTIAL_PASS": 1
+          },
+          "fully_correct_count": 0
+        },
+        "CITATION_ONLY_FAILURE": {
+          "case_count": 2,
+          "case_verdict_counts": {
+            "FULL_PASS": 2
+          },
+          "fully_correct_count": 2
+        },
+        "EVAL_MAPPING_DIAGNOSTIC": {
+          "case_count": 12,
+          "case_verdict_counts": {
+            "FULL_PASS": 11,
+            "PARTIAL_PASS": 1
+          },
+          "fully_correct_count": 11
+        },
+        "GENERATION_OMISSION": {
+          "case_count": 3,
+          "case_verdict_counts": {
+            "PARTIAL_PASS": 3
+          },
+          "fully_correct_count": 0
+        },
+        "NO_FAILURE": {
+          "case_count": 33,
+          "case_verdict_counts": {
+            "CORRECT_REFUSAL": 10,
+            "FULL_PASS": 23
+          },
+          "fully_correct_count": 33
+        },
+        "RETRIEVAL_MISS": {
+          "case_count": 9,
+          "case_verdict_counts": {
+            "FULL_PASS": 1,
+            "INCORRECT_REFUSAL": 2,
+            "PARTIAL_PASS": 6
+          },
+          "fully_correct_count": 1
+        },
+        "SELECTION_DIVERSITY_MISS": {
+          "case_count": 8,
+          "case_verdict_counts": {
+            "FULL_PASS": 5,
+            "INCORRECT_REFUSAL": 1,
+            "PARTIAL_PASS": 2
+          },
+          "fully_correct_count": 5
+        },
+        "SELECTION_RANKING_MISS": {
+          "case_count": 2,
+          "case_verdict_counts": {
+            "FULL_PASS": 1,
+            "PARTIAL_PASS": 1
+          },
+          "fully_correct_count": 1
+        }
+      },
+      "target_group": {
+        "NONE": {
+          "case_count": 53,
+          "case_verdict_counts": {
+            "CORRECT_REFUSAL": 10,
+            "FULL_PASS": 36,
+            "INCORRECT_REFUSAL": 2,
+            "PARTIAL_PASS": 5
+          },
+          "fully_correct_count": 46
+        },
+        "dense_rerank": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "FULL_PASS": 6,
+            "INCORRECT_REFUSAL": 1,
+            "PARTIAL_PASS": 3
+          },
+          "fully_correct_count": 6
+        },
+        "hybrid": {
+          "case_count": 9,
+          "case_verdict_counts": {
+            "FULL_PASS": 1,
+            "INCORRECT_REFUSAL": 2,
+            "PARTIAL_PASS": 6
+          },
+          "fully_correct_count": 1
+        },
+        "hybrid_rerank": {
+          "case_count": 19,
+          "case_verdict_counts": {
+            "FULL_PASS": 7,
+            "INCORRECT_REFUSAL": 3,
+            "PARTIAL_PASS": 9
+          },
+          "fully_correct_count": 7
+        },
+        "reranker_diversity_miss": {
+          "case_count": 8,
+          "case_verdict_counts": {
+            "FULL_PASS": 5,
+            "INCORRECT_REFUSAL": 1,
+            "PARTIAL_PASS": 2
+          },
+          "fully_correct_count": 5
+        },
+        "reranker_ranking_miss": {
+          "case_count": 2,
+          "case_verdict_counts": {
+            "FULL_PASS": 1,
+            "PARTIAL_PASS": 1
+          },
+          "fully_correct_count": 1
+        }
+      }
+    },
+    "D": {
+      "tier": {
+        "CORE": {
+          "case_count": 60,
+          "case_verdict_counts": {
+            "CORRECT_REFUSAL": 10,
+            "FULL_PASS": 35,
+            "INCORRECT_REFUSAL": 5,
+            "PARTIAL_PASS": 10
+          },
+          "fully_correct_count": 45
+        },
+        "STRESS": {
+          "case_count": 12,
+          "case_verdict_counts": {
+            "FULL_PASS": 7,
+            "PARTIAL_PASS": 5
+          },
+          "fully_correct_count": 7
+        }
+      },
+      "case_type": {
+        "cross_topic_multi_doc": {
+          "case_count": 4,
+          "case_verdict_counts": {
+            "PARTIAL_PASS": 4
+          },
+          "fully_correct_count": 0
+        },
+        "deep_long_doc_localization": {
+          "case_count": 4,
+          "case_verdict_counts": {
+            "FULL_PASS": 4
+          },
+          "fully_correct_count": 4
+        },
+        "high_overlap_source_conflict": {
+          "case_count": 4,
+          "case_verdict_counts": {
+            "FULL_PASS": 3,
+            "PARTIAL_PASS": 1
+          },
+          "fully_correct_count": 3
+        },
+        "long_doc_localization": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "FULL_PASS": 5,
+            "INCORRECT_REFUSAL": 1,
+            "PARTIAL_PASS": 4
+          },
+          "fully_correct_count": 5
+        },
+        "multi_doc_synthesis": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "FULL_PASS": 5,
+            "INCORRECT_REFUSAL": 1,
+            "PARTIAL_PASS": 4
+          },
+          "fully_correct_count": 5
+        },
+        "semantic_paraphrase": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "FULL_PASS": 9,
+            "PARTIAL_PASS": 1
+          },
+          "fully_correct_count": 9
+        },
+        "single_doc_fact": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "FULL_PASS": 10
+          },
+          "fully_correct_count": 10
+        },
+        "source_disambiguation": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "FULL_PASS": 6,
+            "INCORRECT_REFUSAL": 3,
+            "PARTIAL_PASS": 1
+          },
+          "fully_correct_count": 6
+        },
+        "unanswerable_near_boundary": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "CORRECT_REFUSAL": 10
+          },
+          "fully_correct_count": 10
+        }
+      },
+      "query_language": {
+        "en": {
+          "case_count": 18,
+          "case_verdict_counts": {
+            "CORRECT_REFUSAL": 6,
+            "FULL_PASS": 9,
+            "PARTIAL_PASS": 3
+          },
+          "fully_correct_count": 15
+        },
+        "zh-CN": {
+          "case_count": 54,
+          "case_verdict_counts": {
+            "CORRECT_REFUSAL": 4,
+            "FULL_PASS": 33,
+            "INCORRECT_REFUSAL": 5,
+            "PARTIAL_PASS": 12
+          },
+          "fully_correct_count": 37
+        }
+      },
+      "frozen_failure_class": {
+        "ANSWERABILITY_FALSE_NEGATIVE": {
+          "case_count": 3,
+          "case_verdict_counts": {
+            "INCORRECT_REFUSAL": 2,
+            "PARTIAL_PASS": 1
+          },
+          "fully_correct_count": 0
+        },
+        "CITATION_ONLY_FAILURE": {
+          "case_count": 2,
+          "case_verdict_counts": {
+            "FULL_PASS": 2
+          },
+          "fully_correct_count": 2
+        },
+        "EVAL_MAPPING_DIAGNOSTIC": {
+          "case_count": 12,
+          "case_verdict_counts": {
+            "FULL_PASS": 11,
+            "PARTIAL_PASS": 1
+          },
+          "fully_correct_count": 11
+        },
+        "GENERATION_OMISSION": {
+          "case_count": 3,
+          "case_verdict_counts": {
+            "PARTIAL_PASS": 3
+          },
+          "fully_correct_count": 0
+        },
+        "NO_FAILURE": {
+          "case_count": 33,
+          "case_verdict_counts": {
+            "CORRECT_REFUSAL": 10,
+            "FULL_PASS": 23
+          },
+          "fully_correct_count": 33
+        },
+        "RETRIEVAL_MISS": {
+          "case_count": 9,
+          "case_verdict_counts": {
+            "FULL_PASS": 1,
+            "INCORRECT_REFUSAL": 1,
+            "PARTIAL_PASS": 7
+          },
+          "fully_correct_count": 1
+        },
+        "SELECTION_DIVERSITY_MISS": {
+          "case_count": 8,
+          "case_verdict_counts": {
+            "FULL_PASS": 4,
+            "INCORRECT_REFUSAL": 2,
+            "PARTIAL_PASS": 2
+          },
+          "fully_correct_count": 4
+        },
+        "SELECTION_RANKING_MISS": {
+          "case_count": 2,
+          "case_verdict_counts": {
+            "FULL_PASS": 1,
+            "PARTIAL_PASS": 1
+          },
+          "fully_correct_count": 1
+        }
+      },
+      "target_group": {
+        "NONE": {
+          "case_count": 53,
+          "case_verdict_counts": {
+            "CORRECT_REFUSAL": 10,
+            "FULL_PASS": 36,
+            "INCORRECT_REFUSAL": 2,
+            "PARTIAL_PASS": 5
+          },
+          "fully_correct_count": 46
+        },
+        "dense_rerank": {
+          "case_count": 10,
+          "case_verdict_counts": {
+            "FULL_PASS": 5,
+            "INCORRECT_REFUSAL": 2,
+            "PARTIAL_PASS": 3
+          },
+          "fully_correct_count": 5
+        },
+        "hybrid": {
+          "case_count": 9,
+          "case_verdict_counts": {
+            "FULL_PASS": 1,
+            "INCORRECT_REFUSAL": 1,
+            "PARTIAL_PASS": 7
+          },
+          "fully_correct_count": 1
+        },
+        "hybrid_rerank": {
+          "case_count": 19,
+          "case_verdict_counts": {
+            "FULL_PASS": 6,
+            "INCORRECT_REFUSAL": 3,
+            "PARTIAL_PASS": 10
+          },
+          "fully_correct_count": 6
+        },
+        "reranker_diversity_miss": {
+          "case_count": 8,
+          "case_verdict_counts": {
+            "FULL_PASS": 4,
+            "INCORRECT_REFUSAL": 2,
+            "PARTIAL_PASS": 2
+          },
+          "fully_correct_count": 4
+        },
+        "reranker_ranking_miss": {
+          "case_count": 2,
+          "case_verdict_counts": {
+            "FULL_PASS": 1,
+            "PARTIAL_PASS": 1
+          },
+          "fully_correct_count": 1
+        }
+      }
+    }
+  }
+}

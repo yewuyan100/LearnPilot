@@ -1,0 +1,784 @@
+{
+  "schema_version": "1.0.0",
+  "case_count": 72,
+  "tier_distribution": {
+    "CORE": 60,
+    "STRESS": 12
+  },
+  "case_type_distribution": {
+    "cross_topic_multi_doc": 4,
+    "deep_long_doc_localization": 4,
+    "high_overlap_source_conflict": 4,
+    "long_doc_localization": 10,
+    "multi_doc_synthesis": 10,
+    "semantic_paraphrase": 10,
+    "single_doc_fact": 10,
+    "source_disambiguation": 10,
+    "unanswerable_near_boundary": 10
+  },
+  "topic_distribution": {
+    "agent_engineering": 18,
+    "ai_app_backend": 18,
+    "evaluation_reliability": 19,
+    "rag_retrieval": 17
+  },
+  "query_language_distribution": {
+    "en": 18,
+    "zh-CN": 54
+  },
+  "difficulty_distribution": {
+    "easy": 10,
+    "hard": 31,
+    "medium": 19,
+    "stress": 12
+  },
+  "answerability_distribution": {
+    "answerable": 62,
+    "unanswerable": 10
+  },
+  "claim_count": 132,
+  "required_evidence_group_count": 100,
+  "required_anchor_reference_count": 115,
+  "acceptable_support_record_count": 11,
+  "unsupported_distractor_record_count": 25,
+  "document_exposure": {
+    "rw-rag-bge-m3": {
+      "topic_cluster": "rag_retrieval",
+      "source_format": "md",
+      "required_case_count": 11,
+      "sole_required_core_answerable_case_count": 6,
+      "acceptable_support_case_count": 1,
+      "distractor_or_boundary_case_count": 2
+    },
+    "rw-rag-faiss-overview": {
+      "topic_cluster": "rag_retrieval",
+      "source_format": "md",
+      "required_case_count": 8,
+      "sole_required_core_answerable_case_count": 2,
+      "acceptable_support_case_count": 1,
+      "distractor_or_boundary_case_count": 2
+    },
+    "rw-agent-langgraph-overview": {
+      "topic_cluster": "agent_engineering",
+      "source_format": "md",
+      "required_case_count": 3,
+      "sole_required_core_answerable_case_count": 2,
+      "acceptable_support_case_count": 3,
+      "distractor_or_boundary_case_count": 1
+    },
+    "rw-agent-persistence": {
+      "topic_cluster": "agent_engineering",
+      "source_format": "txt",
+      "required_case_count": 7,
+      "sole_required_core_answerable_case_count": 1,
+      "acceptable_support_case_count": 2,
+      "distractor_or_boundary_case_count": 1
+    },
+    "rw-agent-interrupts": {
+      "topic_cluster": "agent_engineering",
+      "source_format": "pdf",
+      "required_case_count": 12,
+      "sole_required_core_answerable_case_count": 5,
+      "acceptable_support_case_count": 0,
+      "distractor_or_boundary_case_count": 1
+    },
+    "rw-backend-fastapi-async": {
+      "topic_cluster": "ai_app_backend",
+      "source_format": "md",
+      "required_case_count": 7,
+      "sole_required_core_answerable_case_count": 2,
+      "acceptable_support_case_count": 0,
+      "distractor_or_boundary_case_count": 5
+    },
+    "rw-backend-fastapi-dependencies": {
+      "topic_cluster": "ai_app_backend",
+      "source_format": "md",
+      "required_case_count": 6,
+      "sole_required_core_answerable_case_count": 3,
+      "acceptable_support_case_count": 2,
+      "distractor_or_boundary_case_count": 2
+    },
+    "rw-backend-fastapi-errors": {
+      "topic_cluster": "ai_app_backend",
+      "source_format": "md",
+      "required_case_count": 8,
+      "sole_required_core_answerable_case_count": 4,
+      "acceptable_support_case_count": 0,
+      "distractor_or_boundary_case_count": 1
+    },
+    "rw-eval-ragas-workflow": {
+      "topic_cluster": "evaluation_reliability",
+      "source_format": "md",
+      "required_case_count": 6,
+      "sole_required_core_answerable_case_count": 2,
+      "acceptable_support_case_count": 2,
+      "distractor_or_boundary_case_count": 1
+    },
+    "rw-eval-context-precision": {
+      "topic_cluster": "evaluation_reliability",
+      "source_format": "md",
+      "required_case_count": 11,
+      "sole_required_core_answerable_case_count": 3,
+      "acceptable_support_case_count": 0,
+      "distractor_or_boundary_case_count": 4
+    },
+    "rw-eval-otel-traces": {
+      "topic_cluster": "evaluation_reliability",
+      "source_format": "pdf",
+      "required_case_count": 7,
+      "sole_required_core_answerable_case_count": 3,
+      "acceptable_support_case_count": 0,
+      "distractor_or_boundary_case_count": 5
+    }
+  },
+  "format_required_case_distribution": {
+    "md": 46,
+    "pdf": 19,
+    "txt": 7
+  },
+  "pdf_required_case_count": 19,
+  "pdf_required_case_ids": [
+    "rw-gold-v1-single-interrupt-status",
+    "rw-gold-v1-single-otel-status",
+    "rw-gold-v1-semantic-interrupt-replay",
+    "rw-gold-v1-semantic-trace-correlation",
+    "rw-gold-v1-long-interrupt-static",
+    "rw-gold-v1-long-interrupt-validation",
+    "rw-gold-v1-long-otel-links",
+    "rw-gold-v1-multi-agent-memory-hitl",
+    "rw-gold-v1-multi-agent-resume",
+    "rw-gold-v1-multi-error-observability",
+    "rw-gold-v1-multi-rag-tracing",
+    "rw-gold-v1-disambig-agent-memory",
+    "rw-gold-v1-disambig-agent-persist-interrupt",
+    "rw-gold-v1-disambig-interrupt-static",
+    "rw-gold-v1-disambig-ragas-otel",
+    "rw-gold-v1-stress-deep-interrupt-side-effects",
+    "rw-gold-v1-stress-cross-agent-api-replay",
+    "rw-gold-v1-stress-cross-persistence-tracing",
+    "rw-gold-v1-stress-conflict-interrupt-persistence-resume"
+  ],
+  "txt_required_or_acceptable_case_count": 9,
+  "txt_required_or_acceptable_case_ids": [
+    "rw-gold-v1-single-persist-thread-id",
+    "rw-gold-v1-semantic-checkpointer-store",
+    "rw-gold-v1-multi-agent-memory-hitl",
+    "rw-gold-v1-multi-agent-resume",
+    "rw-gold-v1-disambig-agent-memory",
+    "rw-gold-v1-disambig-agent-persist-interrupt",
+    "rw-gold-v1-disambig-interrupt-static",
+    "rw-gold-v1-stress-cross-persistence-tracing",
+    "rw-gold-v1-stress-conflict-interrupt-persistence-resume"
+  ],
+  "long_localization_region_distribution": {
+    "deep": 12,
+    "early": 1,
+    "middle": 1
+  },
+  "multi_document_case_count": 21,
+  "required_document_count_distribution": {
+    "0": 10,
+    "1": 41,
+    "2": 18,
+    "3": 3
+  },
+  "required_document_participation": {
+    "per_case": [
+      {
+        "case_id": "rw-gold-v1-single-bge-shape",
+        "case_type": "single_doc_fact",
+        "unique_required_document_ids": [
+          "rw-rag-bge-m3"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-single-dependency-defaults",
+        "case_type": "single_doc_fact",
+        "unique_required_document_ids": [
+          "rw-backend-fastapi-dependencies"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-single-error-response",
+        "case_type": "single_doc_fact",
+        "unique_required_document_ids": [
+          "rw-backend-fastapi-errors"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-single-faiss-cosine",
+        "case_type": "single_doc_fact",
+        "unique_required_document_ids": [
+          "rw-rag-faiss-overview"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-single-interrupt-status",
+        "case_type": "single_doc_fact",
+        "unique_required_document_ids": [
+          "rw-agent-interrupts"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-single-langgraph-js",
+        "case_type": "single_doc_fact",
+        "unique_required_document_ids": [
+          "rw-agent-langgraph-overview"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-single-otel-status",
+        "case_type": "single_doc_fact",
+        "unique_required_document_ids": [
+          "rw-eval-otel-traces"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-single-persist-thread-id",
+        "case_type": "single_doc_fact",
+        "unique_required_document_ids": [
+          "rw-agent-persistence"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-single-precision-id",
+        "case_type": "single_doc_fact",
+        "unique_required_document_ids": [
+          "rw-eval-context-precision"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-single-ragas-dataset",
+        "case_type": "single_doc_fact",
+        "unique_required_document_ids": [
+          "rw-eval-ragas-workflow"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-semantic-bge-functions",
+        "case_type": "semantic_paraphrase",
+        "unique_required_document_ids": [
+          "rw-rag-bge-m3"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-semantic-checkpointer-store",
+        "case_type": "semantic_paraphrase",
+        "unique_required_document_ids": [
+          "rw-agent-langgraph-overview",
+          "rw-agent-persistence"
+        ],
+        "required_document_count": 2
+      },
+      {
+        "case_id": "rw-gold-v1-semantic-context-order",
+        "case_type": "semantic_paraphrase",
+        "unique_required_document_ids": [
+          "rw-eval-context-precision"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-semantic-deps-automatic",
+        "case_type": "semantic_paraphrase",
+        "unique_required_document_ids": [
+          "rw-backend-fastapi-dependencies"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-semantic-error-raise",
+        "case_type": "semantic_paraphrase",
+        "unique_required_document_ids": [
+          "rw-backend-fastapi-errors"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-semantic-faiss-compression",
+        "case_type": "semantic_paraphrase",
+        "unique_required_document_ids": [
+          "rw-rag-faiss-overview"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-semantic-fastapi-blocking",
+        "case_type": "semantic_paraphrase",
+        "unique_required_document_ids": [
+          "rw-backend-fastapi-async"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-semantic-interrupt-replay",
+        "case_type": "semantic_paraphrase",
+        "unique_required_document_ids": [
+          "rw-agent-interrupts"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-semantic-ragas-data",
+        "case_type": "semantic_paraphrase",
+        "unique_required_document_ids": [
+          "rw-eval-ragas-workflow"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-semantic-trace-correlation",
+        "case_type": "semantic_paraphrase",
+        "unique_required_document_ids": [
+          "rw-eval-otel-traces"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-long-async-threadpool",
+        "case_type": "long_doc_localization",
+        "unique_required_document_ids": [
+          "rw-backend-fastapi-async"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-long-bge-query-instruction",
+        "case_type": "long_doc_localization",
+        "unique_required_document_ids": [
+          "rw-rag-bge-m3"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-long-bge-score-mix",
+        "case_type": "long_doc_localization",
+        "unique_required_document_ids": [
+          "rw-rag-bge-m3"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-long-bge-training",
+        "case_type": "long_doc_localization",
+        "unique_required_document_ids": [
+          "rw-rag-bge-m3"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-long-deps-hierarchy",
+        "case_type": "long_doc_localization",
+        "unique_required_document_ids": [
+          "rw-backend-fastapi-dependencies"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-long-interrupt-static",
+        "case_type": "long_doc_localization",
+        "unique_required_document_ids": [
+          "rw-agent-interrupts"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-long-interrupt-validation",
+        "case_type": "long_doc_localization",
+        "unique_required_document_ids": [
+          "rw-agent-interrupts"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-long-langgraph-positioning",
+        "case_type": "long_doc_localization",
+        "unique_required_document_ids": [
+          "rw-agent-langgraph-overview"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-long-otel-links",
+        "case_type": "long_doc_localization",
+        "unique_required_document_ids": [
+          "rw-eval-otel-traces"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-long-precision-nonllm",
+        "case_type": "long_doc_localization",
+        "unique_required_document_ids": [
+          "rw-eval-context-precision"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-multi-agent-memory-hitl",
+        "case_type": "multi_doc_synthesis",
+        "unique_required_document_ids": [
+          "rw-agent-interrupts",
+          "rw-agent-persistence"
+        ],
+        "required_document_count": 2
+      },
+      {
+        "case_id": "rw-gold-v1-multi-agent-resume",
+        "case_type": "multi_doc_synthesis",
+        "unique_required_document_ids": [
+          "rw-agent-interrupts",
+          "rw-agent-persistence"
+        ],
+        "required_document_count": 2
+      },
+      {
+        "case_id": "rw-gold-v1-multi-async-dependency",
+        "case_type": "multi_doc_synthesis",
+        "unique_required_document_ids": [
+          "rw-backend-fastapi-async",
+          "rw-backend-fastapi-dependencies"
+        ],
+        "required_document_count": 2
+      },
+      {
+        "case_id": "rw-gold-v1-multi-backend-control",
+        "case_type": "multi_doc_synthesis",
+        "unique_required_document_ids": [
+          "rw-backend-fastapi-async",
+          "rw-backend-fastapi-dependencies",
+          "rw-backend-fastapi-errors"
+        ],
+        "required_document_count": 3
+      },
+      {
+        "case_id": "rw-gold-v1-multi-error-observability",
+        "case_type": "multi_doc_synthesis",
+        "unique_required_document_ids": [
+          "rw-backend-fastapi-errors",
+          "rw-eval-otel-traces"
+        ],
+        "required_document_count": 2
+      },
+      {
+        "case_id": "rw-gold-v1-multi-eval-stack",
+        "case_type": "multi_doc_synthesis",
+        "unique_required_document_ids": [
+          "rw-eval-context-precision",
+          "rw-eval-ragas-workflow"
+        ],
+        "required_document_count": 2
+      },
+      {
+        "case_id": "rw-gold-v1-multi-faiss-context-precision",
+        "case_type": "multi_doc_synthesis",
+        "unique_required_document_ids": [
+          "rw-eval-context-precision",
+          "rw-rag-faiss-overview"
+        ],
+        "required_document_count": 2
+      },
+      {
+        "case_id": "rw-gold-v1-multi-hybrid-index",
+        "case_type": "multi_doc_synthesis",
+        "unique_required_document_ids": [
+          "rw-rag-bge-m3",
+          "rw-rag-faiss-overview"
+        ],
+        "required_document_count": 2
+      },
+      {
+        "case_id": "rw-gold-v1-multi-rag-tracing",
+        "case_type": "multi_doc_synthesis",
+        "unique_required_document_ids": [
+          "rw-eval-otel-traces",
+          "rw-eval-ragas-workflow"
+        ],
+        "required_document_count": 2
+      },
+      {
+        "case_id": "rw-gold-v1-multi-retrieval-eval",
+        "case_type": "multi_doc_synthesis",
+        "unique_required_document_ids": [
+          "rw-eval-context-precision",
+          "rw-eval-ragas-workflow",
+          "rw-rag-faiss-overview"
+        ],
+        "required_document_count": 3
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-agent-memory",
+        "case_type": "source_disambiguation",
+        "unique_required_document_ids": [
+          "rw-agent-interrupts",
+          "rw-agent-persistence"
+        ],
+        "required_document_count": 2
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-agent-persist-interrupt",
+        "case_type": "source_disambiguation",
+        "unique_required_document_ids": [
+          "rw-agent-interrupts",
+          "rw-agent-persistence"
+        ],
+        "required_document_count": 2
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-bge-faiss",
+        "case_type": "source_disambiguation",
+        "unique_required_document_ids": [
+          "rw-rag-bge-m3",
+          "rw-rag-faiss-overview"
+        ],
+        "required_document_count": 2
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-bge-long",
+        "case_type": "source_disambiguation",
+        "unique_required_document_ids": [
+          "rw-rag-bge-m3"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-fastapi-async-deps",
+        "case_type": "source_disambiguation",
+        "unique_required_document_ids": [
+          "rw-backend-fastapi-async",
+          "rw-backend-fastapi-dependencies"
+        ],
+        "required_document_count": 2
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-fastapi-errors",
+        "case_type": "source_disambiguation",
+        "unique_required_document_ids": [
+          "rw-backend-fastapi-errors"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-fastapi-exceptions",
+        "case_type": "source_disambiguation",
+        "unique_required_document_ids": [
+          "rw-backend-fastapi-errors"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-interrupt-static",
+        "case_type": "source_disambiguation",
+        "unique_required_document_ids": [
+          "rw-agent-interrupts"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-ragas-metrics",
+        "case_type": "source_disambiguation",
+        "unique_required_document_ids": [
+          "rw-eval-context-precision",
+          "rw-eval-ragas-workflow"
+        ],
+        "required_document_count": 2
+      },
+      {
+        "case_id": "rw-gold-v1-disambig-ragas-otel",
+        "case_type": "source_disambiguation",
+        "unique_required_document_ids": [
+          "rw-eval-context-precision",
+          "rw-eval-otel-traces"
+        ],
+        "required_document_count": 2
+      },
+      {
+        "case_id": "rw-gold-v1-unanswerable-bge-language-counts",
+        "case_type": "unanswerable_near_boundary",
+        "unique_required_document_ids": [],
+        "required_document_count": 0
+      },
+      {
+        "case_id": "rw-gold-v1-unanswerable-bge-optimal-weights",
+        "case_type": "unanswerable_near_boundary",
+        "unique_required_document_ids": [],
+        "required_document_count": 0
+      },
+      {
+        "case_id": "rw-gold-v1-unanswerable-checkpoint-encryption",
+        "case_type": "unanswerable_near_boundary",
+        "unique_required_document_ids": [],
+        "required_document_count": 0
+      },
+      {
+        "case_id": "rw-gold-v1-unanswerable-dependency-depth",
+        "case_type": "unanswerable_near_boundary",
+        "unique_required_document_ids": [],
+        "required_document_count": 0
+      },
+      {
+        "case_id": "rw-gold-v1-unanswerable-faiss-p95-latency",
+        "case_type": "unanswerable_near_boundary",
+        "unique_required_document_ids": [],
+        "required_document_count": 0
+      },
+      {
+        "case_id": "rw-gold-v1-unanswerable-interrupt-timeout",
+        "case_type": "unanswerable_near_boundary",
+        "unique_required_document_ids": [],
+        "required_document_count": 0
+      },
+      {
+        "case_id": "rw-gold-v1-unanswerable-precision-pass-threshold",
+        "case_type": "unanswerable_near_boundary",
+        "unique_required_document_ids": [],
+        "required_document_count": 0
+      },
+      {
+        "case_id": "rw-gold-v1-unanswerable-ragas-minimum-score",
+        "case_type": "unanswerable_near_boundary",
+        "unique_required_document_ids": [],
+        "required_document_count": 0
+      },
+      {
+        "case_id": "rw-gold-v1-unanswerable-threadpool-workers",
+        "case_type": "unanswerable_near_boundary",
+        "unique_required_document_ids": [],
+        "required_document_count": 0
+      },
+      {
+        "case_id": "rw-gold-v1-unanswerable-trace-retention",
+        "case_type": "unanswerable_near_boundary",
+        "unique_required_document_ids": [],
+        "required_document_count": 0
+      },
+      {
+        "case_id": "rw-gold-v1-stress-deep-async-call-kinds",
+        "case_type": "deep_long_doc_localization",
+        "unique_required_document_ids": [
+          "rw-backend-fastapi-async"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-stress-deep-bge-mldr-comparison",
+        "case_type": "deep_long_doc_localization",
+        "unique_required_document_ids": [
+          "rw-rag-bge-m3"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-stress-deep-interrupt-side-effects",
+        "case_type": "deep_long_doc_localization",
+        "unique_required_document_ids": [
+          "rw-agent-interrupts"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-stress-deep-precision-id-versus-content",
+        "case_type": "deep_long_doc_localization",
+        "unique_required_document_ids": [
+          "rw-eval-context-precision"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-stress-cross-agent-api-replay",
+        "case_type": "cross_topic_multi_doc",
+        "unique_required_document_ids": [
+          "rw-agent-interrupts",
+          "rw-backend-fastapi-errors"
+        ],
+        "required_document_count": 2
+      },
+      {
+        "case_id": "rw-gold-v1-stress-cross-embedding-api-concurrency",
+        "case_type": "cross_topic_multi_doc",
+        "unique_required_document_ids": [
+          "rw-backend-fastapi-async",
+          "rw-rag-bge-m3"
+        ],
+        "required_document_count": 2
+      },
+      {
+        "case_id": "rw-gold-v1-stress-cross-persistence-tracing",
+        "case_type": "cross_topic_multi_doc",
+        "unique_required_document_ids": [
+          "rw-agent-persistence",
+          "rw-eval-otel-traces"
+        ],
+        "required_document_count": 2
+      },
+      {
+        "case_id": "rw-gold-v1-stress-cross-retrieval-evaluation",
+        "case_type": "cross_topic_multi_doc",
+        "unique_required_document_ids": [
+          "rw-eval-context-precision",
+          "rw-rag-bge-m3",
+          "rw-rag-faiss-overview"
+        ],
+        "required_document_count": 3
+      },
+      {
+        "case_id": "rw-gold-v1-stress-conflict-bge-faiss-compression",
+        "case_type": "high_overlap_source_conflict",
+        "unique_required_document_ids": [
+          "rw-rag-faiss-overview"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-stress-conflict-fastapi-handler-type",
+        "case_type": "high_overlap_source_conflict",
+        "unique_required_document_ids": [
+          "rw-backend-fastapi-errors"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-stress-conflict-interrupt-persistence-resume",
+        "case_type": "high_overlap_source_conflict",
+        "unique_required_document_ids": [
+          "rw-agent-interrupts"
+        ],
+        "required_document_count": 1
+      },
+      {
+        "case_id": "rw-gold-v1-stress-conflict-ragas-reference-mode",
+        "case_type": "high_overlap_source_conflict",
+        "unique_required_document_ids": [
+          "rw-eval-context-precision"
+        ],
+        "required_document_count": 1
+      }
+    ],
+    "left_sum_of_per_case_unique_required_document_count": 86,
+    "right_sum_of_per_document_distinct_required_case_count": 86,
+    "match": true
+  },
+  "cross_topic_case_count": 7,
+  "cross_topic_case_ids": [
+    "rw-gold-v1-multi-error-observability",
+    "rw-gold-v1-multi-faiss-context-precision",
+    "rw-gold-v1-multi-retrieval-eval",
+    "rw-gold-v1-stress-cross-agent-api-replay",
+    "rw-gold-v1-stress-cross-embedding-api-concurrency",
+    "rw-gold-v1-stress-cross-persistence-tracing",
+    "rw-gold-v1-stress-cross-retrieval-evaluation"
+  ],
+  "unresolved_document_reference_count": 0,
+  "unresolved_evidence_anchor_count": 0
+}

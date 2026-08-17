@@ -1,8 +1,8 @@
-# PersonalLearning 面试指南
+# LearnPilot 面试指南
 
 ## 两分钟介绍
 
-PersonalLearning 是本地优先的单用户学习工作台。V1 管理目标、课程、知识点、任务和会话；V2 用 BGE-M3 与 FAISS 建本地资料库；V3 提供带来源快照和引用校验的可信 RAG；V4 把资料变成四类测验并区分确定性客观批改和受控简答批改；V5 用显式 LangGraph 单 Agent、SQLite Checkpoint 与人工确认编排受控工具；V6 用真实学习证据和版本化规则计算掌握度与置信度，再生成复习建议。项目已完成主线开发。
+LearnPilot 是本地优先的单用户学习工作台。V1 管理目标、课程、知识点、任务和会话；V2 用 BGE-M3 与 FAISS 建本地资料库；V3 提供带来源快照和引用校验的可信 RAG；V4 把资料变成四类测验并区分确定性客观批改和受控简答批改；V5 用显式 LangGraph 单 Agent、SQLite Checkpoint 与人工确认编排受控工具；V6 用真实学习证据和版本化规则计算掌握度与置信度，再生成复习建议。当前架构以 `docs/architecture.md` 为准。
 
 ## 一次请求调用链
 

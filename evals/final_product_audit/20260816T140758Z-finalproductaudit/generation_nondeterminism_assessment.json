@@ -1,0 +1,34 @@
+{
+  "run_id": "20260816T140758Z-finalproductaudit",
+  "classification": "GENERATION_NONDETERMINISM_LIMITATION",
+  "final_severity": "DOCUMENTED_LIMITATION",
+  "release_blocking": false,
+  "source_run": "20260816T130718Z-onefinalclosure",
+  "fixed_sample": {
+    "cases": 5,
+    "passed": 4,
+    "failed": 1,
+    "frequency": "1/5"
+  },
+  "failed_case": {
+    "case_id": "rw-gold-v1-disambig-fastapi-async-deps",
+    "http_status": 200,
+    "candidate_count": 18,
+    "selected_context_count": 7,
+    "required_context_evidence_groups": "3/3",
+    "answer_supported_required_groups": "2/3",
+    "citation_id_validity": "PASS",
+    "unsupported_fabrication": false,
+    "partially_correct": true,
+    "omission": "The answer omitted the standard-def dependency external-threadpool behavior supported by selected chunk 351."
+  },
+  "severity_reasoning": [
+    "The failure is downstream generation coverage, not retrieval, reranking, governance, Top7 selection or context budget.",
+    "The answer remains factually supported and partially correct; no unsupported claim or invalid source ID was emitted.",
+    "A single omission in a five-case fixed sample does not prove a stable, severe failure during normal LearnPilot use.",
+    "The supplied severity gate explicitly allows P2 or DOCUMENTED_LIMITATION for this pattern.",
+    "No further prompt tuning, benchmark, TopK change, reranker change or Hybrid experiment is justified in this audit."
+  ],
+  "new_deepseek_calls": 0,
+  "new_benchmarks": 0
+}

@@ -11,9 +11,12 @@ from langgraph.types import interrupt
 from sqlalchemy import select
 
 from app.models.agent import AgentConfirmation, AgentMessage, AgentRun, AgentToolCall
+from app.core.clock import Clock
 from app.schemas.agent import AgentPlan, IntentClassification
+from app.services.agent.public_errors import public_agent_error
 from app.services.agent.state import AgentState
-from app.services.agent.tools import ToolRegistry, confirmation_summary, stable_hash
+from app.services.agent.tools import ALLOWED_ARGS, ToolRegistry, confirmation_summary, stable_hash
+from app.services.llm.errors import LLMOutputInvalidError
 
 
 CLASSIFY_PROMPT = """You are the PersonalLearning request classifier. Return only JSON matching the schema.
@@ -34,6 +37,7 @@ list_quiz_attempts(activity_id?, limit?); get_wrong_answers(status?, course_id?,
 get_knowledge_mastery(knowledge_point_id); list_weak_knowledge_points(course_id?, limit?, include_unassessed?);
 list_due_reviews(start_date?, end_date?, course_id?, status?, overdue?, limit?);
 get_adaptive_recommendations(status?, course_id?, limit?); explain_mastery(knowledge_point_id);
+get_next_learning_action(available_minutes?);
 create_daily_task(learning_goal_id, title, scheduled_date YYYY-MM-DD, estimated_minutes?, course_id?, knowledge_point_id?, activity_id?, task_type?, status?);
 update_daily_task_status(task_id, status); save_learning_note(learning_goal_id, note, course_id?, knowledge_point_id?);
 generate_learning_activity(title, material_ids, question_types, question_count, difficulty, course_id?, knowledge_point_id?);
@@ -42,18 +46,35 @@ accept_review_recommendation(recommendation_id). This write still requires confi
 Prompt version: {version}. Current local time: {now}."""
 
 
+def is_dangerous_execution_request(text: str) -> bool:
+    low = text.lower()
+    blocked_intents = (
+        "删除所有", "删除数据", "修改分数", "设置掌握度", "修改掌握度", "掌握度改成",
+        "正确答案", "评分标准",
+        "绕过确认", "不用确认", "api key", "密钥", "环境变量", "读取秘密",
+        "delete all", "change score", "bypass confirmation", "secret key",
+    )
+    if any(token in low for token in blocked_intents):
+        return True
+    execution_verbs = ("执行", "运行", "调用", "启动", "写入文件", "读取文件", "run ", "execute ", "invoke ")
+    execution_targets = ("shell", "powershell", "cmd.exe", "python脚本", "python script", "sql命令", "sql command", "filesystem command")
+    return any(verb in low for verb in execution_verbs) and any(
+        target in low for target in execution_targets
+    )
+
+
 @dataclass
 class GraphContext:
     db: object
     settings: object
     provider: object
     tools: ToolRegistry
+    clock: Clock
 
 
 def _fallback_classification(text: str) -> IntentClassification:
     low = text.lower()
-    unsafe = ("删除", "delete", "改分", "修改分数", "正确答案", "评分标准", "rubric", "sql", "shell", "powershell", "api key", "密钥", "环境变量", "绕过确认", "不用确认", "联网", "网页")
-    if any(x in low for x in unsafe):
+    if is_dangerous_execution_request(text):
         return IntentClassification(intent="unsupported", confidence=1, entities={})
     mapping = [
         (("根据资料", "资料回答", "从资料", "问答"), "answer_materials"),
@@ -66,6 +87,7 @@ def _fallback_classification(text: str) -> IntentClassification:
         (("复习建议", "自适应建议"), "get_adaptive_recommendations"),
         (("掌握度原因", "为什么掌握度"), "explain_mastery"),
         (("掌握度",), "get_knowledge_mastery"),
+        (("下一步", "接下来学什么", "现在学什么"), "get_next_learning_action"),
         (("创建任务", "安排任务", "新增任务"), "create_daily_task"),
         (("任务状态", "完成任务"), "update_daily_task_status"),
         (("学习笔记", "保存笔记", "记录笔记"), "save_learning_note"),
@@ -98,10 +120,15 @@ def _fallback_plan(intent: str, entities: dict, text: str) -> AgentPlan:
         "list_due_reviews": ("list_due_reviews", entities),
         "get_adaptive_recommendations": ("get_adaptive_recommendations", entities),
         "explain_mastery": ("explain_mastery", entities),
+        "get_next_learning_action": ("get_next_learning_action", entities),
         "accept_review_recommendation": ("accept_review_recommendation", entities),
     }
     item = direct.get(intent)
-    return AgentPlan(steps=[] if item is None else [{"tool_name": item[0], "arguments": item[1]}])
+    if item is None:
+        return AgentPlan(steps=[])
+    name, arguments = item
+    filtered = {key: value for key, value in arguments.items() if key in ALLOWED_ARGS[name]}
+    return AgentPlan(steps=[{"tool_name": name, "arguments": filtered}])
 
 
 def _explicit_write_args(intent: str, text: str, entities: dict) -> dict:
@@ -141,7 +168,7 @@ def _explicit_write_args(intent: str, text: str, entities: dict) -> dict:
     if difficulty: values["difficulty"] = difficulty.group(1)
     wrong_id = re.search(r"错题\s*(?:ID)?\s*[=:：]?\s*(\d+)", text, re.IGNORECASE)
     if wrong_id and "wrong_answer_ids" not in values: values["wrong_answer_ids"] = [int(wrong_id.group(1))]
-    return values
+    return {key: value for key, value in values.items() if key in ALLOWED_ARGS.get(intent, set())}
 
 
 def build_graph(ctx: GraphContext, checkpointer):
@@ -154,7 +181,7 @@ def build_graph(ctx: GraphContext, checkpointer):
         for row in reversed(rows):
             if chars + len(row.content) > settings.agent_max_history_chars: continue
             history.append({"role": row.role, "content": row.content}); chars += len(row.content)
-        now = datetime.now(ZoneInfo(settings.app_timezone)).isoformat()
+        now = ctx.clock.now().astimezone(ZoneInfo(settings.app_timezone)).isoformat()
         return {"history": history, "current_time": now, "timezone": settings.app_timezone,
                 "tool_results": state.get("tool_results", []), "errors": state.get("errors", []),
                 "completed_steps": state.get("completed_steps", []), "current_step": state.get("current_step", 0),
@@ -168,10 +195,12 @@ def build_graph(ctx: GraphContext, checkpointer):
         text = state["user_input"]
         classified = None
         low = text.lower()
-        unsafe_request = any(x in low for x in ("删除","delete","改分","修改分数","设置掌握度","修改掌握度","掌握度改","正确答案","评分标准","rubric","sql","shell","powershell","api key","密钥","环境变量","绕过确认","不用确认","联网","网页"))
+        unsafe_request = is_dangerous_execution_request(text)
         fast_intent = None
         if not unsafe_request and not any(x in text for x in ("创建", "新增", "安排", "更新", "修改", "设置")):
-            if any(x in text for x in ("今日任务", "今天任务", "今天的学习任务")):
+            if any(x in text for x in ("下一步", "接下来学什么", "现在学什么")):
+                fast_intent = "get_next_learning_action"
+            elif any(x in text for x in ("今日任务", "今天任务", "今天的学习任务")):
                 fast_intent = "list_daily_tasks"
             elif "错题" in text and "复习" not in text:
                 fast_intent = "get_wrong_answers"
@@ -225,28 +254,84 @@ def build_graph(ctx: GraphContext, checkpointer):
 
     def plan_actions(state: AgentState):
         planned = None
+        validation_error = None
+        llm_calls = 0
         if ctx.provider is not None and not state.get("fast_route_used"):
             try:
                 response = ctx.provider.generate_structured(messages=[
                     {"role":"system", "content": PLAN_PROMPT.format(reads=", ".join(tools.read_names), writes=", ".join(tools.write_names),
                         max_steps=settings.agent_max_steps, version=settings.agent_planning_prompt_version, now=state["current_time"])},
                     {"role":"user", "content": json.dumps({"request":state["user_input"], "intent":state["intent"], "entities":state.get("entities",{})}, ensure_ascii=False)}],
-                    schema=AgentPlan, temperature=0, max_output_tokens=1400)
+                    schema=AgentPlan, temperature=0,
+                    max_output_tokens=settings.agent_planning_max_output_tokens)
+                llm_calls += 1
                 planned = response.value
+            except LLMOutputInvalidError as exc:
+                llm_calls += 1
+                validation_error = exc.reason
             except Exception:
+                llm_calls += 1
                 planned = None
-        planned = planned or _fallback_plan(state["intent"], state.get("entities", {}), state["user_input"])
-        steps = [step.model_dump() for step in planned.steps]
+        if planned is None and validation_error is None:
+            planned = _fallback_plan(state["intent"], state.get("entities", {}), state["user_input"])
+        steps = [step.model_dump(mode="json", exclude_none=True) for step in planned.steps] if planned else []
         write_intents = {"create_daily_task","update_daily_task_status","save_learning_note","generate_learning_activity","create_wrong_answer_review","start_quiz_attempt","accept_review_recommendation"}
         if state["intent"] in write_intents:
             explicit = _explicit_write_args(state["intent"], state["user_input"], state.get("entities", {}))
             matching = next((step for step in steps if step["tool_name"] == state["intent"]), None)
             if matching is None: steps = [{"tool_name":state["intent"],"arguments":explicit}]
             else: matching["arguments"] = {**matching["arguments"], **explicit}
+        if validation_error is None:
+            try:
+                tools.validate_plan(steps)
+            except ValueError as exc:
+                validation_error = str(exc)
+        repair_attempted = False
+        if validation_error and ctx.provider is not None and not state.get("fast_route_used"):
+            repair_attempted = True
+            try:
+                repair = ctx.provider.generate_structured(messages=[
+                    {
+                        "role": "system",
+                        "content": (
+                            "Repair one invalid PersonalLearning Agent plan. Return only a valid plan. "
+                            "Use only the allowed tools and exact typed arguments from the JSON Schema. "
+                            "Reads must precede at most one write. Do not invent identifiers."
+                        ),
+                    },
+                    {
+                        "role": "user",
+                        "content": json.dumps(
+                            {
+                                "request": state["user_input"],
+                                "intent": state["intent"],
+                                "entities": state.get("entities", {}),
+                                "conversation_context": state.get("conversation_context", {}),
+                                "invalid_plan": steps,
+                                "validation_code": validation_error,
+                            },
+                            ensure_ascii=False,
+                        ),
+                    },
+                ], schema=AgentPlan, temperature=0,
+                    max_output_tokens=settings.agent_planning_max_output_tokens)
+                llm_calls += 1
+                steps = [step.model_dump(mode="json", exclude_none=True) for step in repair.value.steps]
+                if state["intent"] in write_intents:
+                    explicit = _explicit_write_args(state["intent"], state["user_input"], state.get("entities", {}))
+                    matching = next((step for step in steps if step["tool_name"] == state["intent"]), None)
+                    if matching is None:
+                        steps = [{"tool_name": state["intent"], "arguments": explicit}]
+                    else:
+                        matching["arguments"] = {**matching["arguments"], **explicit}
+            except Exception:
+                llm_calls += 1
+                steps = []
         return {
             "plan": steps, "current_step": 0,
             "planner_skipped": bool(state.get("fast_route_used")),
-            "llm_call_count": state.get("llm_call_count", 0) + int(ctx.provider is not None and not state.get("fast_route_used")),
+            "plan_repair_attempted": repair_attempted,
+            "llm_call_count": state.get("llm_call_count", 0) + llm_calls,
             "status": "planning",
         }
 
@@ -294,7 +379,7 @@ def build_graph(ctx: GraphContext, checkpointer):
         if confirmation is None:
             confirmation = AgentConfirmation(run_id=state["run_id"], tool_call_id=call.id,
                 summary=confirmation_summary(name,args), arguments_snapshot=args, arguments_hash=stable_hash(args),
-                status="pending", expires_at=datetime.now(timezone.utc)+timedelta(minutes=settings.agent_confirmation_ttl_minutes))
+                status="pending", expires_at=ctx.clock.now()+timedelta(minutes=settings.agent_confirmation_ttl_minutes))
             db.add(confirmation)
         run = db.get(AgentRun, state["run_id"]); run.status = "awaiting_confirmation"; db.commit(); db.refresh(confirmation)
         return {"pending_tool_name":name, "pending_tool_args":args, "pending_tool_args_hash":stable_hash(args),
@@ -327,7 +412,7 @@ def build_graph(ctx: GraphContext, checkpointer):
         if state.get("status") == "rejected": answer="已取消该操作，没有写入业务数据。"
         elif state.get("intent") == "clarification": answer=state.get("clarification_question") or "请补充具体对象或范围。"
         elif state.get("intent") == "unsupported": answer="这个请求超出了学习助手的受控能力范围，我不能删除数据、修改分数或答案、执行代码/SQL、读取密钥、联网或绕过确认。"
-        elif state.get("status") == "failed": answer=f"操作未完成（{state.get('failure_code') or 'unknown_error'}）。"
+        elif state.get("status") == "failed": answer=public_agent_error(state.get("failure_code")).safe_message
         else:
             summaries=[x.get("user_summary","") for x in state.get("tool_results",[]) if x.get("user_summary")]
             answer="\n\n".join(summaries) or "已完成。"
@@ -342,14 +427,14 @@ def build_graph(ctx: GraphContext, checkpointer):
             "composer_skipped": True,
             "llm_call_count": int(state.get("llm_call_count", 0)),
         }}
-        run.completed_at=datetime.now(timezone.utc)
+        run.completed_at=ctx.clock.now()
         existing=db.scalar(select(AgentMessage).where(AgentMessage.run_id==run.id,AgentMessage.role=="assistant"))
         if existing is None:
             db.add(AgentMessage(conversation_id=run.conversation_id,run_id=run.id,role="assistant",content=run.final_answer or "",citations=run.citations))
         db.commit(); return {"status":run.status}
 
     def handle_failure(state: AgentState):
-        return {"status":"failed", "final_answer":f"操作未完成（{state.get('failure_code') or 'agent_failure'}）。"}
+        return {"status":"failed", "final_answer":public_agent_error(state.get("failure_code")).safe_message}
 
     graph=StateGraph(AgentState)
     for name,node in (("load_context",load_context),("classify_request",classify_request),("plan_actions",plan_actions),

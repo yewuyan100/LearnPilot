@@ -1,18 +1,18 @@
-from datetime import datetime, timezone
-
 from fastapi import status
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from app.core.errors import AppError
+from app.core.clock import Clock
 from app.models.rag_citation import RagCitation
 from app.models.rag_conversation import RagConversation
 from app.models.rag_message import RagMessage
 
 
 class RagRepository:
-    def __init__(self, db: Session):
+    def __init__(self, db: Session, clock: Clock):
         self.db = db
+        self.clock = clock
 
     def get_conversation(self, conversation_id: int) -> RagConversation:
         conversation = self.db.get(RagConversation, conversation_id)
@@ -96,5 +96,4 @@ class RagRepository:
         )
 
     def touch(self, conversation: RagConversation) -> None:
-        conversation.last_message_at = datetime.now(timezone.utc)
-
+        conversation.last_message_at = self.clock.now()

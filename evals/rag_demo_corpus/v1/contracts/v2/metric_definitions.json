@@ -1,0 +1,30 @@
+{
+  "schema_version": "2.0.0",
+  "policy": {
+    "lexical_proxy": "diagnostic_only",
+    "semantic_review": "explicit_versioned_record",
+    "machine_deterministic_pass": "Only deterministically evaluable required claims plus answerability and structural citation checks; not an overall semantic score.",
+    "reviewed_semantic_pass": "Correct answerability, all required claims SUPPORTED, required citation groups covered, structurally valid citations, and no unsupported citation."
+  },
+  "metrics": [
+    {"name": "raw_k_required_evidence_hit_rate", "layer": "raw_first_k", "definition": "Mean per answerable case of whether Raw First K satisfies at least one required evidence group."},
+    {"name": "raw_k_required_evidence_recall", "layer": "raw_first_k", "definition": "Mean fraction of required evidence groups satisfied by Raw First K."},
+    {"name": "candidate_required_evidence_recall", "layer": "candidate_expansion", "definition": "Mean fraction of required groups satisfied by threshold-eligible expanded candidates."},
+    {"name": "final_context_required_evidence_recall", "layer": "final_context", "definition": "Mean fraction of required groups satisfied by sources sent to answer generation."},
+    {"name": "raw_k_exact_gold_precision", "layer": "raw_first_k", "definition": "Exact V1-label documents divided by distinct Raw First K documents. Diagnostic only; not overall relevance."},
+    {"name": "raw_k_non_gold_rate", "layer": "raw_first_k", "definition": "One minus raw_k_exact_gold_precision. A non-gold item can still be useful."},
+    {"name": "raw_k_acceptable_evidence_precision", "layer": "raw_first_k", "definition": "Required-or-reviewed-supporting documents divided by distinct Raw First K documents."},
+    {"name": "citation_contract_validity", "layer": "citation", "definition": "Inline labels equal persisted citation labels and persisted sources remain available in the frozen run."},
+    {"name": "required_evidence_citation_coverage", "layer": "citation", "definition": "Mean fraction of required evidence groups represented by cited documents."},
+    {"name": "acceptable_support_citation_rate", "layer": "citation", "definition": "Citations reviewed as ACCEPTABLE_SUPPORT divided by all answerable-case citations."},
+    {"name": "unsupported_citation_rate", "layer": "citation", "definition": "Citations reviewed as UNSUPPORTED divided by all answerable-case citations."},
+    {"name": "missing_required_citation_rate", "layer": "citation", "definition": "Answerable cases missing at least one required evidence group citation."},
+    {"name": "citation_free_unanswerable_rate", "layer": "citation", "definition": "Unanswerable cases with zero citations."},
+    {"name": "candidate_noise_rate", "layer": "candidate_expansion", "definition": "Candidate documents outside required and reviewed supporting evidence, over distinct candidate documents."},
+    {"name": "selected_context_noise_rate", "layer": "final_context", "definition": "Final-context documents outside required and reviewed supporting evidence, over distinct final-context documents."},
+    {"name": "unsupported_citation_usage_rate", "layer": "citation", "definition": "Cases containing at least one unsupported citation."},
+    {"name": "unsupported_answer_impact_rate", "layer": "answer", "definition": "Cases whose reviewed verdict fails because unsupported evidence materially carries the answer."},
+    {"name": "lexical_proxy_coverage", "layer": "answer", "definition": "V1 term-overlap coverage, retained unchanged as a diagnostic."},
+    {"name": "semantic_reviewed_claim_coverage", "layer": "answer", "definition": "Required SEMANTIC_REVIEW claims with SUPPORTED verdict divided by all required SEMANTIC_REVIEW claims."}
+  ]
+}

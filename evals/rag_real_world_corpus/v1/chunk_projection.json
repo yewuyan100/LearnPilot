@@ -1,0 +1,160 @@
+{
+  "schema_version": "1.0.0",
+  "canonical_chunking": {
+    "chunk_size": 800,
+    "overlap": 120,
+    "min_chunk_size": 80
+  },
+  "total_projected_chunks": 442,
+  "by_topic": {
+    "agent_engineering": 164,
+    "ai_app_backend": 76,
+    "evaluation_reliability": 55,
+    "rag_retrieval": 147
+  },
+  "topic_shares": {
+    "agent_engineering": 0.371041,
+    "ai_app_backend": 0.171946,
+    "evaluation_reliability": 0.124434,
+    "rag_retrieval": 0.332579
+  },
+  "by_format": {
+    "md": 325,
+    "pdf": 109,
+    "txt": 8
+  },
+  "documents": [
+    {
+      "document_id": "rw-rag-bge-m3",
+      "topic_cluster": "rag_retrieval",
+      "source_format": "md",
+      "file_bytes": 16256,
+      "parsed_char_count": 15304,
+      "projected_chunk_count": 134,
+      "projected_chunk_chars_min": 80,
+      "projected_chunk_chars_max": 799,
+      "projected_chunk_chars_mean": 204.98,
+      "page_count": null
+    },
+    {
+      "document_id": "rw-rag-faiss-overview",
+      "topic_cluster": "rag_retrieval",
+      "source_format": "md",
+      "file_bytes": 6462,
+      "parsed_char_count": 6140,
+      "projected_chunk_count": 13,
+      "projected_chunk_chars_min": 79,
+      "projected_chunk_chars_max": 792,
+      "projected_chunk_chars_mean": 498.85,
+      "page_count": null
+    },
+    {
+      "document_id": "rw-agent-langgraph-overview",
+      "topic_cluster": "agent_engineering",
+      "source_format": "md",
+      "file_bytes": 6477,
+      "parsed_char_count": 6155,
+      "projected_chunk_count": 69,
+      "projected_chunk_chars_min": 80,
+      "projected_chunk_chars_max": 790,
+      "projected_chunk_chars_mean": 178.17,
+      "page_count": null
+    },
+    {
+      "document_id": "rw-agent-persistence",
+      "topic_cluster": "agent_engineering",
+      "source_format": "txt",
+      "file_bytes": 5023,
+      "parsed_char_count": 4896,
+      "projected_chunk_count": 8,
+      "projected_chunk_chars_min": 570,
+      "projected_chunk_chars_max": 794,
+      "projected_chunk_chars_mean": 715.25,
+      "page_count": null
+    },
+    {
+      "document_id": "rw-agent-interrupts",
+      "topic_cluster": "agent_engineering",
+      "source_format": "pdf",
+      "file_bytes": 71081,
+      "parsed_char_count": 55691,
+      "projected_chunk_count": 87,
+      "projected_chunk_chars_min": 226,
+      "projected_chunk_chars_max": 845,
+      "projected_chunk_chars_mean": 727.11,
+      "page_count": 23
+    },
+    {
+      "document_id": "rw-backend-fastapi-async",
+      "topic_cluster": "ai_app_backend",
+      "source_format": "md",
+      "file_bytes": 24422,
+      "parsed_char_count": 22073,
+      "projected_chunk_count": 42,
+      "projected_chunk_chars_min": 140,
+      "projected_chunk_chars_max": 789,
+      "projected_chunk_chars_mean": 584.02,
+      "page_count": null
+    },
+    {
+      "document_id": "rw-backend-fastapi-dependencies",
+      "topic_cluster": "ai_app_backend",
+      "source_format": "md",
+      "file_bytes": 10021,
+      "parsed_char_count": 8702,
+      "projected_chunk_count": 18,
+      "projected_chunk_chars_min": 63,
+      "projected_chunk_chars_max": 804,
+      "projected_chunk_chars_mean": 508.94,
+      "page_count": null
+    },
+    {
+      "document_id": "rw-backend-fastapi-errors",
+      "topic_cluster": "ai_app_backend",
+      "source_format": "md",
+      "file_bytes": 9400,
+      "parsed_char_count": 7903,
+      "projected_chunk_count": 16,
+      "projected_chunk_chars_min": 63,
+      "projected_chunk_chars_max": 850,
+      "projected_chunk_chars_mean": 515.25,
+      "page_count": null
+    },
+    {
+      "document_id": "rw-eval-ragas-workflow",
+      "topic_cluster": "evaluation_reliability",
+      "source_format": "md",
+      "file_bytes": 8114,
+      "parsed_char_count": 7491,
+      "projected_chunk_count": 14,
+      "projected_chunk_chars_min": 67,
+      "projected_chunk_chars_max": 795,
+      "projected_chunk_chars_mean": 584.0,
+      "page_count": null
+    },
+    {
+      "document_id": "rw-eval-context-precision",
+      "topic_cluster": "evaluation_reliability",
+      "source_format": "md",
+      "file_bytes": 8967,
+      "parsed_char_count": 8071,
+      "projected_chunk_count": 19,
+      "projected_chunk_chars_min": 184,
+      "projected_chunk_chars_max": 765,
+      "projected_chunk_chars_mean": 455.11,
+      "page_count": null
+    },
+    {
+      "document_id": "rw-eval-otel-traces",
+      "topic_cluster": "evaluation_reliability",
+      "source_format": "pdf",
+      "file_bytes": 35625,
+      "parsed_char_count": 13009,
+      "projected_chunk_count": 22,
+      "projected_chunk_chars_min": 169,
+      "projected_chunk_chars_max": 796,
+      "projected_chunk_chars_mean": 677.32,
+      "page_count": 6
+    }
+  ]
+}

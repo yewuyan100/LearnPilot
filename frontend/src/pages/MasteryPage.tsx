@@ -34,7 +34,7 @@ export function MasteryPage() {
     <main className="page mastery-page">
       <header className="page-header page-header--split">
         <div>
-          <p className="page-kicker">V6 · Adaptive learning</p>
+          <p className="page-kicker">学习</p>
           <h1>掌握度</h1>
           <p>根据真实测验、复习、任务和学习会话，以透明规则展示掌握情况与证据置信度。</p>
         </div>

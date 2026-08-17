@@ -1,0 +1,118 @@
+{
+  "analysis_code_identity": {
+    "evals/rag_real_world_corpus/v1/failure_analysis_v1/analysis_decisions.py": "943bf736fad624c4986905ff79e1f128daae502d37cbd26f728b8a9675bb7441",
+    "evals/rag_real_world_corpus/v1/failure_analysis_v1/build_failure_analysis_v1.py": "3586b8ed30aae09422e1568cf0234ef9eb573c273d4c5e235b6e69276b248421",
+    "evals/rag_real_world_corpus/v1/failure_analysis_v1/freeze_semantic_reviews.py": "9e3f5ee3c246edc7defd687b6003560522f1ccf2340340b4dc30b0555b9de1cd",
+    "evals/rag_real_world_corpus/v1/failure_analysis_v1/semantic_review_decisions.py": "56f55aabfbde7e8f10bd64cb671fb7d0b4f145b82eef2233fe5571b262708e6e"
+  },
+  "analysis_id": "learnpilot-rag-real-world-baseline-failure-analysis-v1",
+  "analysis_timestamp": "2026-08-14T07:36:41.770677+00:00",
+  "artifact_sha256": {
+    "evals/rag_real_world_corpus/v1/RAG_REAL_WORLD_BASELINE_FAILURE_ANALYSIS_V1_REPORT.md": "b10c60dc2006d9ce8852b530a2117c34f2d326ecb1a62b845b14582880f09479",
+    "evals/rag_real_world_corpus/v1/failure_analysis_v1/ablation_hypotheses.json": "27184ff8ddbf628f78767ede545e202ee66cb9ff17f56728961a8ce2d801f610",
+    "evals/rag_real_world_corpus/v1/failure_analysis_v1/case_failure_analysis.json": "406527bcb6b7efeea885175bb9ea5f99af1b3bf91ccc0c79711d88854bc57b1e",
+    "evals/rag_real_world_corpus/v1/failure_analysis_v1/case_failure_analysis.schema.json": "2c87cc289f7b1263917bc34ba3bc5f004d4539d27167f3bda9b0c6e1b50e412b",
+    "evals/rag_real_world_corpus/v1/failure_analysis_v1/citation_semantic_reviews.json": "97c0f52239dfeec2876115ead8657bf1182c6f3b3f4df0cb71122866ff89fd4a",
+    "evals/rag_real_world_corpus/v1/failure_analysis_v1/citation_semantic_reviews.schema.json": "7f15b79ee56ebf4f2eacdef8f4f116f2a95cddd08501f568076f358fa6812eab",
+    "evals/rag_real_world_corpus/v1/failure_analysis_v1/optimization_addressability_matrix.json": "877d2ba3948e5bdcf530307b4719cd46df74ae5c4680547fab7fa09374f31726",
+    "evals/rag_real_world_corpus/v1/failure_analysis_v1/root_cause_summary.json": "03d7d9a89f5d62fd3c69c41a1f7f335f74bdba022d33b39c6f9ebbaafdaa9cd4",
+    "evals/rag_real_world_corpus/v1/failure_analysis_v1/semantic_claim_reviews.json": "671fe1a484dd6ff8986b34c0ebf0826f274bbb9ed6dda404f18ad0a2bd60a176",
+    "evals/rag_real_world_corpus/v1/failure_analysis_v1/semantic_claim_reviews.schema.json": "444ddbcdb1f244939880dda1912b4e6159df87bdcfeeb82bb15c4ec55cd002ef",
+    "evals/rag_real_world_corpus/v1/failure_analysis_v1/semantic_claim_reviews.sha256": "0aefb684e96e63d09ee96a89d9ee58fbdf8e9622479eb259cc2e799eee320dcc"
+  },
+  "baseline_run_id": "20260814T052007Z-593cd2ac",
+  "coverage": {
+    "cases": 72,
+    "combined_claims": 132,
+    "returned_citations": 97,
+    "semantic_claims": 104
+  },
+  "execution_declarations": {
+    "baseline_rerun": false,
+    "corpus_ingestion_executions": 0,
+    "deepseek_calls": 0,
+    "embedding_executions": 0,
+    "external_llm_calls": 0,
+    "faiss_retrieval_executions": 0,
+    "optimization_performed": false,
+    "production_modified": false,
+    "production_rag_ask_calls": 0
+  },
+  "frozen_bindings": {
+    "production_code": {
+      "all_match": true,
+      "baseline_sha256": {
+        "backend/app/api/routes/materials.py": "8220c330e275b23d401e206daa28e06627ba5b6d4d54d64a828803e76dfbd7af",
+        "backend/app/api/routes/rag.py": "625e79b074411c661e7b51bdabcd0ff3e25b76f9e785506db839071941b4fce3",
+        "backend/app/core/config.py": "b36a39b5e36273e71a6ac605f72304208f3eefc2d9763b36286640ec09881054",
+        "backend/app/services/embedding/bge_m3.py": "f854f413502bde196e55ab5281639a4467badc2970b63b7878f6243f81e8130f",
+        "backend/app/services/llm/openai_compatible.py": "129bdd27d85296d960eb12bebc3dfe06ca85f2ad3a043eb4e8673adedaf20e68",
+        "backend/app/services/material_processing/chunking.py": "35340d010b8072b60c918f85f24fff477e22a19c7a08665457031fa2689b2a54",
+        "backend/app/services/material_processing/pipeline.py": "9f4114b62261259edfe7815da59cf50399041cd618b7d1cba1c56858acb4ab65",
+        "backend/app/services/rag/grounding.py": "742ef8a6fbee3b16fc690ddb7e9829e03a48652e6bb2c19342eaad9cabb302cb",
+        "backend/app/services/rag/prompts.py": "fbd463bb3789f21885f832a47f1f1a67a7d4a31bd76de1ad38744f690e31c49c",
+        "backend/app/services/rag/query_rewriter.py": "043cbd139cc3861e95245312c038111f7da5d2ae69b355f354096f131772b1b3",
+        "backend/app/services/rag/retrieval.py": "1209b7ff0714072f9dd396e03636dc3cfb17fbd2ba58795bcc4ad1d01ef7387a",
+        "backend/app/services/rag/service.py": "01edadb0d56c0724c3aa6beebbb006b0b891409d276cc2fb03f61f83c8cfe42b",
+        "backend/app/services/rag/validation.py": "0bbcbf3f0e4ba3beb74ccab0e64f5ca5b945b36c058d4adb78b7fd3985329494",
+        "backend/app/services/vector_store/faiss_store.py": "e7b66dbe96a871b3956d9e23b8157567636670b2204dacfa5b3cc36303f7599a",
+        "backend/app/services/vector_store/service.py": "585d87602dfb72433c4793ea4c979e4afb57c36f53fe6ba22ad6adf480047ac4"
+      },
+      "current_sha256": {
+        "backend/app/api/routes/materials.py": "8220c330e275b23d401e206daa28e06627ba5b6d4d54d64a828803e76dfbd7af",
+        "backend/app/api/routes/rag.py": "625e79b074411c661e7b51bdabcd0ff3e25b76f9e785506db839071941b4fce3",
+        "backend/app/core/config.py": "b36a39b5e36273e71a6ac605f72304208f3eefc2d9763b36286640ec09881054",
+        "backend/app/services/embedding/bge_m3.py": "f854f413502bde196e55ab5281639a4467badc2970b63b7878f6243f81e8130f",
+        "backend/app/services/llm/openai_compatible.py": "129bdd27d85296d960eb12bebc3dfe06ca85f2ad3a043eb4e8673adedaf20e68",
+        "backend/app/services/material_processing/chunking.py": "35340d010b8072b60c918f85f24fff477e22a19c7a08665457031fa2689b2a54",
+        "backend/app/services/material_processing/pipeline.py": "9f4114b62261259edfe7815da59cf50399041cd618b7d1cba1c56858acb4ab65",
+        "backend/app/services/rag/grounding.py": "742ef8a6fbee3b16fc690ddb7e9829e03a48652e6bb2c19342eaad9cabb302cb",
+        "backend/app/services/rag/prompts.py": "fbd463bb3789f21885f832a47f1f1a67a7d4a31bd76de1ad38744f690e31c49c",
+        "backend/app/services/rag/query_rewriter.py": "043cbd139cc3861e95245312c038111f7da5d2ae69b355f354096f131772b1b3",
+        "backend/app/services/rag/retrieval.py": "1209b7ff0714072f9dd396e03636dc3cfb17fbd2ba58795bcc4ad1d01ef7387a",
+        "backend/app/services/rag/service.py": "01edadb0d56c0724c3aa6beebbb006b0b891409d276cc2fb03f61f83c8cfe42b",
+        "backend/app/services/rag/validation.py": "0bbcbf3f0e4ba3beb74ccab0e64f5ca5b945b36c058d4adb78b7fd3985329494",
+        "backend/app/services/vector_store/faiss_store.py": "e7b66dbe96a871b3956d9e23b8157567636670b2204dacfa5b3cc36303f7599a",
+        "backend/app/services/vector_store/service.py": "585d87602dfb72433c4793ea4c979e4afb57c36f53fe6ba22ad6adf480047ac4"
+      },
+      "file_count": 15
+    },
+    "protected": {
+      "corpus_manifest_sha256": {
+        "actual_sha256": "6f67d510cd35197f107400d33033972c0c3c84478174e4991e491f6c8e4ab563",
+        "expected_sha256": "6f67d510cd35197f107400d33033972c0c3c84478174e4991e491f6c8e4ab563",
+        "match": true,
+        "path": "evals/rag_real_world_corpus/v1/corpus_manifest.json"
+      },
+      "freeze_manifest_sha256": {
+        "actual_sha256": "d979079be4eb901a825ab29414dd7b5124d030182e09b55eea1e93749c12a5c2",
+        "expected_sha256": "d979079be4eb901a825ab29414dd7b5124d030182e09b55eea1e93749c12a5c2",
+        "match": true,
+        "path": "evals/rag_real_world_corpus/v1/gold/v1/gold_dataset_v1_freeze_manifest.json"
+      },
+      "gold_sha256": {
+        "actual_sha256": "33a0b69901fa47e3fe45be0277228cd4a5519fe780fe5b9d2c52b1bfe614927a",
+        "expected_sha256": "33a0b69901fa47e3fe45be0277228cd4a5519fe780fe5b9d2c52b1bfe614927a",
+        "match": true,
+        "path": "evals/rag_real_world_corpus/v1/gold/v1/gold_cases.json"
+      },
+      "raw_results_sha256": {
+        "actual_sha256": "bf718aed08e226149c9310cbf20bf25c403708217e2908789120178ac5574e28",
+        "expected_sha256": "bf718aed08e226149c9310cbf20bf25c403708217e2908789120178ac5574e28",
+        "match": true,
+        "path": "evals/rag_real_world_corpus/v1/results/dense_only_baseline_v1/20260814T052007Z-593cd2ac/raw_results.json"
+      },
+      "semantic_claim_reviews_sha256": {
+        "actual_sha256": "671fe1a484dd6ff8986b34c0ebf0826f274bbb9ed6dda404f18ad0a2bd60a176",
+        "expected_sha256": "671fe1a484dd6ff8986b34c0ebf0826f274bbb9ed6dda404f18ad0a2bd60a176",
+        "match": true,
+        "path": "evals/rag_real_world_corpus/v1/failure_analysis_v1/semantic_claim_reviews.json"
+      }
+    },
+    "semantic_detached_sha256_match": true
+  },
+  "ready_for_ablation_design": true,
+  "schema_version": "1.0.0",
+  "semantic_review_sha256": "671fe1a484dd6ff8986b34c0ebf0826f274bbb9ed6dda404f18ad0a2bd60a176",
+  "status": "COMPLETE"
+}

@@ -1,6 +1,3 @@
-from datetime import date
-
-
 def create_goal(test_client, goal_payload):
     return test_client.post("/api/learning-goals", json=goal_payload).json()
 
@@ -35,11 +32,31 @@ def test_course_and_knowledge_point_crud(client, goal_payload):
         f"/api/knowledge-points/{point_id}",
         json={"status": "learning"},
     ).json()["status"] == "learning"
-    assert test_client.delete(f"/api/knowledge-points/{point_id}").status_code == 204
-    assert test_client.delete(f"/api/courses/{course_id}").status_code == 204
+    hard_delete = test_client.delete(f"/api/knowledge-points/{point_id}")
+    assert hard_delete.status_code == 409
+    assert hard_delete.json()["error"]["code"] == "knowledge_point_impact_analysis_required"
+    impact = test_client.post(
+        f"/api/knowledge-points/{point_id}/impact",
+        json={"action": "archive", "lifecycle_reason": "课程内容已调整"},
+    ).json()
+    archived = test_client.post(
+        f"/api/knowledge-points/{point_id}/archive",
+        json={
+            "action": "archive",
+            "lifecycle_reason": "课程内容已调整",
+            "request_id": "archive-point-crud-001",
+            "expected_version": point.json()["version"],
+            "impact_hash": impact["impact_hash"],
+            "confirmed": True,
+        },
+    )
+    assert archived.status_code == 200
+    assert archived.json()["point"]["lifecycle_status"] == "archived"
+    assert test_client.get(f"/api/courses/{course_id}/knowledge-points").json() == []
+    assert test_client.delete(f"/api/courses/{course_id}").status_code == 409
 
 
-def test_today_and_learning_session_flow(client, goal_payload):
+def test_today_and_learning_session_flow(client, goal_payload, business_date):
     test_client, _ = client
     goal = create_goal(test_client, goal_payload)
     course = test_client.post(
@@ -58,7 +75,7 @@ def test_today_and_learning_session_flow(client, goal_payload):
             "knowledge_point_id": point["id"],
             "title": "学习 Client 与 Server",
             "estimated_minutes": 25,
-            "scheduled_date": date.today().isoformat(),
+            "scheduled_date": business_date.isoformat(),
         },
     )
     assert task.status_code == 201

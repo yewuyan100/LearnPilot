@@ -23,6 +23,10 @@ const material: Material = {
   processed_at: now,
   indexed_at: now,
   error_message: null,
+  deletion_status: "active",
+  deletion_error: null,
+  deletion_requested_at: null,
+  deletion_attempts: 0,
   created_at: now,
   updated_at: now,
 };

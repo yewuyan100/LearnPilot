@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img">
+  <title>LearnPilot</title>
+  <rect width="64" height="64" rx="14" fill="#f5f9fc" />
+  <path d="M15 10v35c0 5 4 9 9 9h7" fill="none" stroke="#20b7df" stroke-linecap="round" stroke-linejoin="round" stroke-width="9" />
+  <path d="M33 54V13h11a10 10 0 0 1 0 20H33" fill="none" stroke="#176fc6" stroke-linecap="round" stroke-linejoin="round" stroke-width="9" />
+  <circle cx="44" cy="13" r="3.5" fill="#20b7df" />
+</svg>

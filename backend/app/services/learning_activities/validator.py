@@ -63,8 +63,11 @@ def validate_generated_activity(
         hashes.add(digest)
         normalized.add(normalized_stem)
         source_ids = list(dict.fromkeys(question.cited_source_ids))
-        if not source_ids or any(item not in allowed_sources for item in source_ids):
-            errors.append(f"{prefix}引用了不存在的来源")
+        if request.source_mode == "materials":
+            if not source_ids or any(item not in allowed_sources for item in source_ids):
+                errors.append(f"{prefix}引用了不存在的来源")
+        elif source_ids:
+            errors.append(f"{prefix}无资料模式不得声明引用来源")
         if question.question_type.value in {"single_choice", "multiple_choice"}:
             options = question.options or []
             ids = [item.id for item in options]

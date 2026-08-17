@@ -8,10 +8,11 @@ import {
   Send,
   Trash2,
 } from "lucide-react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { activitiesApi } from "../api/resources";
 import { ErrorState, LoadingState } from "../components/States";
 import { useToast } from "../components/toast-context";
+import { parseQuizNavigation, quizAttemptHref } from "../utils/quizNavigation";
 
 const typeLabel: Record<string, string> = {
   single_choice: "单选题",
@@ -24,6 +25,8 @@ export function ActivityBuilderPage() {
   const { id } = useParams();
   const activityId = Number(id);
   const navigate = useNavigate();
+  const location = useLocation();
+  const navigation = parseQuizNavigation(location.search);
   const queryClient = useQueryClient();
   const { showToast } = useToast();
   const activity = useQuery({
@@ -59,7 +62,11 @@ export function ActivityBuilderPage() {
   });
   const start = useMutation({
     mutationFn: () => activitiesApi.start(activityId),
-    onSuccess: (attempt) => navigate(`/quiz-attempts/${attempt.id}`),
+    onSuccess: (attempt) => navigate(
+      navigation.kind === "fallback"
+        ? quizAttemptHref(attempt.id, { kind: "activity", activityId })
+        : `/quiz-attempts/${attempt.id}${location.search}`,
+    ),
     onError: (error: Error) => showToast(error.message, "error"),
   });
 
@@ -84,7 +91,7 @@ export function ActivityBuilderPage() {
 
   return (
     <div className="page activity-builder">
-      <button className="text-button" onClick={() => navigate("/activities")}>
+      <button className="text-button" onClick={() => navigate(navigation.returnHref)}>
         <ArrowLeft size={16} />返回学习活动
       </button>
       <header className="page-header page-header--split">

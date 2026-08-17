@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "anchor_count": 89,
+  "source_line_anchor_count": 65,
+  "pdf_page_anchor_count": 24,
+  "unresolved_document_count": 0,
+  "unresolved_locator_count": 0,
+  "hash_failure_count": 0,
+  "runtime_id_field_count": 0
+}

@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gold_dataset_v1_freeze_manifest.schema.json",
+  "title": "LearnPilot Real-world Gold Dataset V1 Final Freeze Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "manifest_version",
+    "manifest_schema",
+    "dataset_id",
+    "dataset_version",
+    "status",
+    "frozen_at",
+    "freeze_protocol",
+    "gold",
+    "corpus",
+    "evidence_anchor_audit",
+    "semantic_closure",
+    "repair_closure",
+    "unaffected_preservation",
+    "contract_compatibility",
+    "answerability_audit",
+    "evidence_role_audit",
+    "required_document_invariants",
+    "duplicate_and_leakage_audit",
+    "protected_scopes",
+    "evaluation_manifest_binding",
+    "artifact_bindings",
+    "no_execution_audit",
+    "baseline_binding_contract",
+    "freeze_policy"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "manifest_version": {"const": "gold-dataset-v1-final-freeze"},
+    "manifest_schema": {"$ref": "#/$defs/pathHash"},
+    "dataset_id": {"const": "learnpilot-rag-real-world-gold-v1"},
+    "dataset_version": {"const": "v1"},
+    "status": {"const": "FROZEN"},
+    "frozen_at": {"type": "string", "minLength": 10},
+    "freeze_protocol": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {"enum": ["VERIFY", "FREEZE", "BIND", "REPORT"]}
+    },
+    "gold": {
+      "type": "object",
+      "required": ["source_dataset_id", "path", "sha256", "case_count", "claim_count", "core_case_count", "stress_case_count", "case_type_distribution", "case_id_unique_count", "claim_id_unique_count", "information_need_key_unique_count", "semantic_payload_changes_during_final_freeze"],
+      "properties": {
+        "source_dataset_id": {"const": "learnpilot-rag-real-world-gold"},
+        "path": {"type": "string"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "case_count": {"const": 72},
+        "claim_count": {"const": 132},
+        "core_case_count": {"const": 60},
+        "stress_case_count": {"const": 12},
+        "case_type_distribution": {"type": "object"},
+        "case_id_unique_count": {"const": 72},
+        "claim_id_unique_count": {"const": 132},
+        "information_need_key_unique_count": {"const": 72},
+        "semantic_payload_changes_during_final_freeze": {"const": 0}
+      }
+    },
+    "corpus": {
+      "type": "object",
+      "required": ["dataset_id", "manifest_path", "manifest_sha256", "identity_sha256", "document_count", "projected_chunk_count", "installed_chunk_count", "source_document_hash_pass_count", "document_hashes"],
+      "properties": {
+        "dataset_id": {"const": "learnpilot-rag-real-world-corpus@v1"},
+        "manifest_path": {"type": "string"},
+        "manifest_sha256": {"$ref": "#/$defs/sha256"},
+        "identity_sha256": {"$ref": "#/$defs/sha256"},
+        "document_count": {"const": 11},
+        "projected_chunk_count": {"const": 442},
+        "installed_chunk_count": {"const": 442},
+        "source_document_hash_pass_count": {"const": 11},
+        "document_hashes": {"type": "array", "minItems": 11, "maxItems": 11, "items": {"type": "object"}}
+      }
+    },
+    "evidence_anchor_audit": {
+      "type": "object",
+      "required": ["artifact_path", "artifact_sha256", "anchor_count", "locator_kind_distribution", "document_resolution_pass", "locator_resolution_pass", "anchor_hash_pass", "runtime_id_leakage"],
+      "properties": {
+        "artifact_path": {"type": "string"},
+        "artifact_sha256": {"$ref": "#/$defs/sha256"},
+        "anchor_count": {"const": 89},
+        "locator_kind_distribution": {"type": "object"},
+        "document_resolution_pass": {"const": 89},
+        "locator_resolution_pass": {"const": 89},
+        "anchor_hash_pass": {"const": 89},
+        "runtime_id_leakage": {"const": 0}
+      }
+    },
+    "semantic_closure": {
+      "type": "object",
+      "required": ["semantic_review_claims", "supported", "partially_supported", "unsupported", "ambiguous", "previously_supported_unchanged", "repaired_fresh_reviewed_supported"],
+      "properties": {
+        "semantic_review_claims": {"const": 104},
+        "supported": {"const": 104},
+        "partially_supported": {"const": 0},
+        "unsupported": {"const": 0},
+        "ambiguous": {"const": 0},
+        "previously_supported_unchanged": {"const": 96},
+        "repaired_fresh_reviewed_supported": {"const": 8}
+      }
+    },
+    "repair_closure": {"type": "object"},
+    "unaffected_preservation": {"type": "object"},
+    "contract_compatibility": {"type": "object"},
+    "answerability_audit": {"type": "object"},
+    "evidence_role_audit": {"type": "object"},
+    "required_document_invariants": {"type": "object"},
+    "duplicate_and_leakage_audit": {"type": "object"},
+    "protected_scopes": {"type": "object"},
+    "evaluation_manifest_binding": {"type": "object"},
+    "artifact_bindings": {"type": "object"},
+    "no_execution_audit": {
+      "type": "object",
+      "required": ["deepseek_calls", "other_llm_calls", "production_rag_ask_calls", "real_world_baseline_executions", "embedding_executions", "faiss_retrieval_executions", "baseline_executed_before_freeze"],
+      "properties": {
+        "deepseek_calls": {"const": 0},
+        "other_llm_calls": {"const": 0},
+        "production_rag_ask_calls": {"const": 0},
+        "real_world_baseline_executions": {"const": 0},
+        "embedding_executions": {"const": 0},
+        "faiss_retrieval_executions": {"const": 0},
+        "baseline_executed_before_freeze": {"const": false}
+      }
+    },
+    "baseline_binding_contract": {"type": "object"},
+    "freeze_policy": {
+      "type": "object",
+      "required": ["benchmark_state", "semantic_modification_rule", "next_version_example", "silent_v1_mutation_forbidden", "ready_for_dense_only_baseline"],
+      "properties": {
+        "benchmark_state": {"const": "RAG_REAL_WORLD_GOLD_DATASET_V1 = FROZEN"},
+        "semantic_modification_rule": {"const": "Any semantic modification after this point requires a new benchmark version."},
+        "next_version_example": {"const": "v2"},
+        "silent_v1_mutation_forbidden": {"const": true},
+        "ready_for_dense_only_baseline": {"const": true}
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "pathHash": {
+      "type": "object",
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  }
+}

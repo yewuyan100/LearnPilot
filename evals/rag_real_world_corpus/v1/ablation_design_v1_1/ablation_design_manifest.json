@@ -1,0 +1,484 @@
+{
+  "schema_version": "1.1.0",
+  "design_id": "learnpilot-rag-hybrid-rerank-ablation-design-v1-1",
+  "design_version": "V1.1",
+  "status": "COMPLETE",
+  "ready_for_hybrid_rerank_implementation": true,
+  "supersession": {
+    "scope": "eligibility placement / candidate-admission ordering only",
+    "predecessor": {
+      "path": "evals/rag_real_world_corpus/v1/ablation_design_v1/ablation_design_manifest.json",
+      "sha256": "4c3b2e294b63dcc0ae57be1d30d713b3cf1ffed5b0f3a989499f1298902703c6"
+    },
+    "audit_authority": {
+      "path": "RAG_ELIGIBILITY_PLACEMENT_AUDIT_V1.md",
+      "sha256": "8e31f700d4d1a4d18ef102b38b13681eedfa02d7ea24fd641fd566c886f66f8b"
+    },
+    "unrelated_v1_fields_changed": false
+  },
+  "scope_declarations": {
+    "design_only": true,
+    "hybrid_implemented": false,
+    "reranker_implemented": false,
+    "experimental_llm_calls": 0,
+    "model_downloads": 0,
+    "reranker_instantiations": 0,
+    "reranker_inference_calls": 0,
+    "embedding_executions": 0,
+    "faiss_experimental_executions": 0,
+    "bm25_executions": 0,
+    "baseline_rerun": false,
+    "production_rag_modified": false,
+    "gold_modified": false,
+    "corpus_modified": false,
+    "parameter_tuning_performed": false
+  },
+  "frozen_inputs": {
+    "manifest_schema": {
+      "path": "evals/rag_real_world_corpus/v1/ablation_design_v1_1/ablation_design_manifest.schema.json",
+      "sha256": "929fe7aeff73554c921f6a55eb9de35d7ab4996a240e3f357f02875d9eba6820"
+    },
+    "gold": {
+      "path": "evals/rag_real_world_corpus/v1/gold/v1/gold_cases.json",
+      "sha256": "33a0b69901fa47e3fe45be0277228cd4a5519fe780fe5b9d2c52b1bfe614927a",
+      "case_count": 72,
+      "claim_count": 132
+    },
+    "freeze_manifest": {
+      "path": "evals/rag_real_world_corpus/v1/gold/v1/gold_dataset_v1_freeze_manifest.json",
+      "sha256": "d979079be4eb901a825ab29414dd7b5124d030182e09b55eea1e93749c12a5c2"
+    },
+    "corpus_manifest": {
+      "path": "evals/rag_real_world_corpus/v1/corpus_manifest.json",
+      "sha256": "6f67d510cd35197f107400d33033972c0c3c84478174e4991e491f6c8e4ab563",
+      "document_count": 11,
+      "runtime_chunk_count": 442
+    },
+    "dense_control": {
+      "run_id": "20260814T052007Z-593cd2ac",
+      "run_manifest_path": "evals/rag_real_world_corpus/v1/results/dense_only_baseline_v1/20260814T052007Z-593cd2ac/run_manifest.json",
+      "run_manifest_sha256": "9b19c9c223d10d8bb7e81087adcf1a394874d8c7f89304cf0a847be8169c37b0",
+      "raw_results_path": "evals/rag_real_world_corpus/v1/results/dense_only_baseline_v1/20260814T052007Z-593cd2ac/raw_results.json",
+      "raw_results_sha256": "bf718aed08e226149c9310cbf20bf25c403708217e2908789120178ac5574e28",
+      "reuse_without_rerun": true,
+      "rerun_only_if_execution_is_proven_invalid": true
+    },
+    "failure_analysis": {
+      "manifest_path": "evals/rag_real_world_corpus/v1/failure_analysis_v1/failure_analysis_manifest.json",
+      "manifest_sha256": "e869fd73e2570413595c1af194b6ec6876e8b822fbd4eac279541a03cac27fb8",
+      "ablation_hypotheses_path": "evals/rag_real_world_corpus/v1/failure_analysis_v1/ablation_hypotheses.json",
+      "ablation_hypotheses_sha256": "27184ff8ddbf628f78767ede545e202ee66cb9ff17f56728961a8ce2d801f610",
+      "addressability_matrix_sha256": "877d2ba3948e5bdcf530307b4719cd46df74ae5c4680547fab7fa09374f31726",
+      "case_analysis_sha256": "406527bcb6b7efeea885175bb9ea5f99af1b3bf91ccc0c79711d88854bc57b1e"
+    },
+    "production_code_binding": {
+      "source_manifest_path": "evals/rag_real_world_corpus/v1/failure_analysis_v1/failure_analysis_manifest.json",
+      "binding_field": "frozen_bindings.production_code.baseline_sha256",
+      "file_count": 15,
+      "all_files_match_on_v1_1_design_freeze": true
+    }
+  },
+  "arms": {
+    "dense_only": {
+      "role": "A — frozen control; reuse the frozen run and never rerun it for this ablation.",
+      "stage_order": [
+        "raw_dense_top_18",
+        "dense_branch_admission_score_gte_0_35",
+        "overlap_dedup",
+        "document_diversity_first_pass_max_3_per_material",
+        "rank_ordered_backfill",
+        "final_top_6_and_context_budget",
+        "generation",
+        "citation_validation"
+      ],
+      "raw_dense_limit": 18,
+      "raw_bm25_limit": null,
+      "union_identity_limit": null,
+      "fused_limit": null,
+      "reranker_input_limit": null,
+      "no_padding_or_refill": true,
+      "governance_ref": "#/governance_contract"
+    },
+    "hybrid": {
+      "role": "B — isolate lexical complement using branch admission before deterministic fusion.",
+      "stage_order": [
+        "raw_dense_top_18",
+        "dense_branch_admission_score_gte_0_35",
+        "raw_bm25_top_18",
+        "bm25_top_18_membership_admission",
+        "admitted_identity_union_dedup_preserving_all_observed_provenance",
+        "rrf_k_60_over_admitted_branch_contributions_only",
+        "fused_top_18",
+        "overlap_dedup",
+        "document_diversity_first_pass_max_3_per_material",
+        "rank_ordered_backfill",
+        "final_top_6_and_context_budget",
+        "generation",
+        "citation_validation"
+      ],
+      "raw_dense_limit": 18,
+      "raw_bm25_limit": 18,
+      "union_identity_limit": 36,
+      "fused_limit": 18,
+      "reranker_input_limit": null,
+      "no_padding_or_refill": true,
+      "governance_ref": "#/governance_contract"
+    },
+    "dense_rerank": {
+      "role": "C — isolate reranker ordering on exactly the candidates admitted by frozen Dense semantics.",
+      "stage_order": [
+        "raw_dense_top_18",
+        "dense_branch_admission_score_gte_0_35",
+        "rerank_all_dense_admitted_candidates_max_18",
+        "overlap_dedup",
+        "document_diversity_first_pass_max_3_per_material",
+        "rank_ordered_backfill",
+        "final_top_6_and_context_budget",
+        "generation",
+        "citation_validation"
+      ],
+      "raw_dense_limit": 18,
+      "raw_bm25_limit": null,
+      "union_identity_limit": null,
+      "fused_limit": null,
+      "reranker_input_limit": 18,
+      "no_padding_or_refill": true,
+      "governance_ref": "#/governance_contract"
+    },
+    "hybrid_rerank": {
+      "role": "D — compose admitted Hybrid recall with reranker ordering; no superiority is presumed.",
+      "stage_order": [
+        "raw_dense_top_18",
+        "dense_branch_admission_score_gte_0_35",
+        "raw_bm25_top_18",
+        "bm25_top_18_membership_admission",
+        "admitted_identity_union_dedup_preserving_all_observed_provenance",
+        "rrf_k_60_over_admitted_branch_contributions_only",
+        "fused_top_18",
+        "rerank_all_fused_candidates_max_18",
+        "overlap_dedup",
+        "document_diversity_first_pass_max_3_per_material",
+        "rank_ordered_backfill",
+        "final_top_6_and_context_budget",
+        "generation",
+        "citation_validation"
+      ],
+      "raw_dense_limit": 18,
+      "raw_bm25_limit": 18,
+      "union_identity_limit": 36,
+      "fused_limit": 18,
+      "reranker_input_limit": 18,
+      "no_padding_or_refill": true,
+      "governance_ref": "#/governance_contract"
+    }
+  },
+  "admission_contract": {
+    "selected_option": "B_BRANCH_ELIGIBILITY_BEFORE_FUSION",
+    "candidate_construction_not_governance": true,
+    "dense_branch_rule": "branch_admitted_dense = dense_rank IS NOT NULL AND dense_score >= 0.35",
+    "bm25_branch_rule": "branch_admitted_bm25 = bm25_rank IS NOT NULL AND bm25_rank <= 18",
+    "candidate_rule": "candidate_admitted = branch_admitted_dense OR branch_admitted_bm25",
+    "required_fields": {
+      "branch_admitted_dense": "boolean",
+      "branch_admitted_bm25": "boolean",
+      "candidate_admitted": "boolean",
+      "admission_basis": "DENSE_THRESHOLD | BM25_TOP18 | BOTH | NONE",
+      "dense_score": "number or null; raw observed value",
+      "dense_rank": "integer or null; raw observed branch rank",
+      "bm25_score": "number or null; raw observed value",
+      "bm25_rank": "integer or null; raw observed branch rank",
+      "dense_fusion_rank": "integer or null; null when Dense did not admit",
+      "bm25_fusion_rank": "integer or null; null when BM25 did not admit"
+    },
+    "unavailable_value_rule": "A value not observed in a branch remains null.",
+    "observed_but_nonadmitting_rule": "Observed raw score/rank provenance is retained even when that branch does not admit the candidate; only that branch's fusion-rank contribution becomes null.",
+    "identity_merge_rule": "Deduplicate by stable runtime chunk identity after branch admission and before RRF; fail on identity/content-hash collision.",
+    "dual_hit_example": {
+      "dense_score": 0.31,
+      "dense_rank": 8,
+      "bm25_score": "actual observed BM25 value",
+      "bm25_rank": 3,
+      "branch_admitted_dense": false,
+      "branch_admitted_bm25": true,
+      "candidate_admitted": true,
+      "admission_basis": "BM25_TOP18",
+      "dense_fusion_rank": null,
+      "bm25_fusion_rank": 3,
+      "rrf_contributing_branches": ["bm25"]
+    }
+  },
+  "candidate_budget": {
+    "raw_dense_top_18": "First 18 raw Dense retrieval results before dense admission.",
+    "raw_bm25_top_18": "First 18 raw lexical retrieval results; membership is BM25 admission.",
+    "maximum_branch_admitted_entries_before_identity_dedup": 36,
+    "maximum_admitted_union_identities_after_identity_dedup": 36,
+    "fused_top_18": "First at most 18 admitted union identities after deterministic RRF ordering.",
+    "dense_rerank_input": "All Dense-admitted identities from raw Dense Top 18; count is <=18.",
+    "hybrid_rerank_input": "Fused Top 18 admitted identities; count is <=18.",
+    "limit_is_maximum_not_padding_requirement": true,
+    "dense_rank_greater_than_18_refill_forbidden": true,
+    "underfill_example": "If only 12 raw Dense Top-18 candidates meet 0.35, C reranks 12 and never fetches ranks 19+."
+  },
+  "score_contract": {
+    "dense_score": "Dense branch admission only: dense_score >= 0.35.",
+    "bm25_score": "Raw telemetry only; BM25 Top-18 membership performs lexical admission.",
+    "fusion_score": "Ordering only.",
+    "reranker_score": "Raw relevance logit; ordering only; higher is better.",
+    "normalization_or_calibration_introduced": false,
+    "forbidden_comparisons": [
+      "bm25_score_to_0.35",
+      "fusion_score_to_0.35",
+      "reranker_score_to_0.35",
+      "dense_bm25_rrf_or_reranker_scores_arithmetically_across_score_spaces"
+    ]
+  },
+  "rrf_contract": {
+    "method": "equal-weight Reciprocal Rank Fusion",
+    "formula": "fusion_score(d) = sum(1 / (60 + branch_fusion_rank(d))) over admitted branch contributions",
+    "rrf_constant": 60,
+    "rank_start": 1,
+    "branch_weights": {
+      "dense": 1.0,
+      "bm25": 1.0
+    },
+    "input": "Only candidate_admitted identities and only branches whose branch_admitted flag is true.",
+    "missing_or_nonadmitting_branch_contribution": 0.0,
+    "limit_after_fusion": 18,
+    "tie_break_order": [
+      "best admitted branch fusion rank ascending",
+      "dense_fusion_rank ascending with null last",
+      "bm25_fusion_rank ascending with null last",
+      "stable_chunk_id ascending"
+    ],
+    "raw_scores_are_telemetry_only": true,
+    "tuning_in_v1_1": false
+  },
+  "reranker_contract": {
+    "model_id": "BAAI/bge-reranker-v2-m3",
+    "revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+    "input_pair": ["effective retrieval query", "raw chunk text"],
+    "maximum_pair_count": 18,
+    "pair_token_cap": 1024,
+    "truncation": "Preserve the query, truncate only the chunk tail, and record truncation telemetry.",
+    "query_too_long_rule": "Fail the case before scoring if the query alone cannot fit with required special tokens.",
+    "score": "raw single-logit relevance score",
+    "normalization": null,
+    "threshold": null,
+    "use": "ordering only",
+    "tie_break_order": ["upstream candidate rank ascending", "stable_chunk_id ascending"],
+    "automatic_backup_fallback": false,
+    "placement_dense_rerank": "after Dense admission and before evidence governance",
+    "placement_hybrid_rerank": "after branch admission, identity union, RRF, and fused Top 18; before evidence governance",
+    "changes_eligibility": false
+  },
+  "governance_contract": {
+    "frozen_unchanged": true,
+    "admission_is_part_of_governance": false,
+    "overlap_dedup": "Current same-material adjacent substantial-overlap policy.",
+    "document_diversity": "Current two-pass policy: first pass max 3 per material, then rank-ordered backfill.",
+    "max_sources": 6,
+    "final_top_k": 6,
+    "max_chunk_chars": 2200,
+    "context_budget_chars": 12000,
+    "generation_ref": "#/unchanged_v1_contract/generation",
+    "citation_ref": "#/unchanged_v1_contract/citation",
+    "answerability_ref": "#/unchanged_v1_contract/answerability"
+  },
+  "unchanged_v1_contract": {
+    "predecessor_hash_is_invariant_authority": "4c3b2e294b63dcc0ae57be1d30d713b3cf1ffed5b0f3a989499f1298902703c6",
+    "gold_identity": {
+      "case_count": 72,
+      "claim_count": 132,
+      "sha256": "33a0b69901fa47e3fe45be0277228cd4a5519fe780fe5b9d2c52b1bfe614927a"
+    },
+    "corpus_identity": {
+      "document_count": 11,
+      "runtime_chunk_count": 442,
+      "sha256": "6f67d510cd35197f107400d33033972c0c3c84478174e4991e491f6c8e4ab563"
+    },
+    "dense_control": {
+      "run_id": "20260814T052007Z-593cd2ac",
+      "reuse_without_rerun": true,
+      "raw_results_sha256": "bf718aed08e226149c9310cbf20bf25c403708217e2908789120178ac5574e28"
+    },
+    "failure_analysis": {
+      "manifest_sha256": "e869fd73e2570413595c1af194b6ec6876e8b822fbd4eac279541a03cac27fb8",
+      "hybrid_target_count": 9,
+      "reranker_target_count": 10,
+      "reranker_ranking_miss_count": 2,
+      "reranker_diversity_miss_count": 8,
+      "hybrid_rerank_requires_both": []
+    },
+    "bm25": {
+      "algorithm": "BM25Okapi",
+      "k1": 1.5,
+      "b": 0.75,
+      "epsilon": 0.25,
+      "bilingual_analyzer": {
+        "normalization": "Unicode NFKC then casefold",
+        "latin_and_identifier_tokens": "Emit contiguous alphanumeric identifiers; preserve underscore, dot, slash, colon, and hyphen inside identifiers and also emit their alphanumeric parts.",
+        "cjk_tokens": "Emit overlapping CJK character bigrams; emit a unigram only for a one-character CJK run.",
+        "stopword_removal": false,
+        "stemming": false,
+        "synonym_expansion": false,
+        "query_expansion": false,
+        "same_processing_for_query_and_chunks": true
+      }
+    },
+    "rrf": {
+      "constant": 60,
+      "branch_weights": {
+        "dense": 1.0,
+        "bm25": 1.0
+      }
+    },
+    "candidate_depths": {
+      "dense": 18,
+      "bm25": 18,
+      "fused": 18,
+      "reranker_max": 18
+    },
+    "reranker": {
+      "model_id": "BAAI/bge-reranker-v2-m3",
+      "revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+      "pair_token_cap": 1024,
+      "preserve_query": true,
+      "truncate_chunk_tail": true,
+      "record_truncation": true,
+      "raw_logit_ordering_only": true
+    },
+    "governance": {
+      "overlap_dedup_unchanged": true,
+      "diversity_first_pass_max_per_material": 3,
+      "rank_ordered_backfill": true,
+      "final_top_k": 6,
+      "max_chunk_chars": 2200,
+      "context_budget_chars": 12000
+    },
+    "generation": {
+      "provider": "openai_compatible",
+      "model": "deepseek-v4-flash",
+      "structured_model": "deepseek-v4-flash",
+      "temperature": 0.1,
+      "reasoning_enabled": false,
+      "structured_output_token_limit": 2400,
+      "timeout_seconds": 60,
+      "max_retries": 2,
+      "prompt_version": "rag-answer-v2-evidence-binding",
+      "grounding_repair_limit": 1,
+      "frozen_across_arms": true
+    },
+    "citation": {
+      "pipeline": "Current evidence-block validation, deterministic rendering, allowed-source enforcement, and persistence.",
+      "frozen_across_arms": true
+    },
+    "answerability": {
+      "contract": "Current production answerability and refusal behavior.",
+      "frozen_across_arms": true
+    },
+    "metrics_and_regression_guard": {
+      "hybrid_primary": "claim_required_evidence_candidate_coverage",
+      "reranker_primary": "claim_required_evidence_selected_context_coverage",
+      "regression_reference_root_cause": "NO_FAILURE",
+      "regression_reference_case_count": 33,
+      "regression_transitions": ["FIXED_FAILURE", "UNCHANGED_FAILURE", "NEW_REGRESSION", "UNCHANGED_PASS"],
+      "semantic_review_required": true,
+      "overall_accuracy_as_sole_decision_metric_forbidden": true
+    },
+    "latency_reporting": {
+      "required_per_arm_stages": ["dense retrieval", "BM25 retrieval", "fusion", "reranker", "eligibility and selection", "generation", "total"],
+      "required_aggregates": ["mean", "P50", "P95", "max"],
+      "timeout_and_error_counts_required": true
+    },
+    "production_decision_rule": {
+      "rule_id": "PRE_REGISTERED_MULTI_DIMENSION_GATE_V1",
+      "automatic_best_overall_score_selection_forbidden": true,
+      "numeric_latency_gate": null,
+      "minimal_architecture_on_quality_latency_complexity_pareto_frontier": true,
+      "hybrid_rerank_complementarity_required": true,
+      "automatic_deployment_authorized": false
+    }
+  },
+  "target_case_sets": {
+    "source_path": "evals/rag_real_world_corpus/v1/failure_analysis_v1/ablation_hypotheses.json",
+    "source_sha256": "27184ff8ddbf628f78767ede545e202ee66cb9ff17f56728961a8ce2d801f610",
+    "dense_only": [],
+    "hybrid": [
+      "rw-gold-v1-single-dependency-defaults",
+      "rw-gold-v1-multi-backend-control",
+      "rw-gold-v1-multi-error-observability",
+      "rw-gold-v1-multi-rag-tracing",
+      "rw-gold-v1-multi-retrieval-eval",
+      "rw-gold-v1-stress-cross-agent-api-replay",
+      "rw-gold-v1-stress-cross-embedding-api-concurrency",
+      "rw-gold-v1-stress-cross-persistence-tracing",
+      "rw-gold-v1-stress-cross-retrieval-evaluation"
+    ],
+    "dense_rerank": [
+      "rw-gold-v1-semantic-deps-automatic",
+      "rw-gold-v1-long-bge-training",
+      "rw-gold-v1-long-deps-hierarchy",
+      "rw-gold-v1-long-interrupt-static",
+      "rw-gold-v1-long-otel-links",
+      "rw-gold-v1-multi-eval-stack",
+      "rw-gold-v1-multi-hybrid-index",
+      "rw-gold-v1-disambig-fastapi-async-deps",
+      "rw-gold-v1-disambig-interrupt-static",
+      "rw-gold-v1-disambig-ragas-metrics"
+    ],
+    "reranker_ranking_miss": [
+      "rw-gold-v1-disambig-fastapi-async-deps",
+      "rw-gold-v1-disambig-ragas-metrics"
+    ],
+    "reranker_diversity_miss": [
+      "rw-gold-v1-semantic-deps-automatic",
+      "rw-gold-v1-long-bge-training",
+      "rw-gold-v1-long-deps-hierarchy",
+      "rw-gold-v1-long-interrupt-static",
+      "rw-gold-v1-long-otel-links",
+      "rw-gold-v1-multi-eval-stack",
+      "rw-gold-v1-multi-hybrid-index",
+      "rw-gold-v1-disambig-interrupt-static"
+    ],
+    "hybrid_rerank": [
+      "rw-gold-v1-disambig-fastapi-async-deps",
+      "rw-gold-v1-disambig-interrupt-static",
+      "rw-gold-v1-disambig-ragas-metrics",
+      "rw-gold-v1-long-bge-training",
+      "rw-gold-v1-long-deps-hierarchy",
+      "rw-gold-v1-long-interrupt-static",
+      "rw-gold-v1-long-otel-links",
+      "rw-gold-v1-multi-backend-control",
+      "rw-gold-v1-multi-error-observability",
+      "rw-gold-v1-multi-eval-stack",
+      "rw-gold-v1-multi-hybrid-index",
+      "rw-gold-v1-multi-rag-tracing",
+      "rw-gold-v1-multi-retrieval-eval",
+      "rw-gold-v1-semantic-deps-automatic",
+      "rw-gold-v1-single-dependency-defaults",
+      "rw-gold-v1-stress-cross-agent-api-replay",
+      "rw-gold-v1-stress-cross-embedding-api-concurrency",
+      "rw-gold-v1-stress-cross-persistence-tracing",
+      "rw-gold-v1-stress-cross-retrieval-evaluation"
+    ],
+    "hybrid_rerank_requires_both": [],
+    "mutation_after_results_forbidden": true
+  },
+  "production_seam_contract": {
+    "result": "PRODUCTION_SEAM_WITHOUT_BOUND_FILE_CHANGE=YES",
+    "seam": "module-bound retrieve_sources used by backend/app/services/rag/service.py",
+    "phase_1_expected_adapter": "Experiment-only adapter/composition around existing retrieve_sources behavior.",
+    "interface": "retrieve_sources-compatible ordered evidence result for the existing generation caller",
+    "implementation_locality": "Candidate retrieval, branch admission, identity union, RRF, optional reranking, and governance parity stay behind the experiment adapter interface.",
+    "bound_production_file_change_required_to_execute_ablation": false,
+    "production_refactor_in_v1_1": false,
+    "implemented_in_this_round": false
+  },
+  "implementation_binding": {
+    "phase_1_status": "NOT_STARTED",
+    "future_implementation_must_bind": "SHA-256 recorded in evals/rag_real_world_corpus/v1/ablation_design_v1_1/ablation_design_manifest.sha256",
+    "predecessor_hash_must_not_be_used_for_v1_1_implementation": true,
+    "phase_2_required_before_llm": "Retrieval-only/no-LLM parity and adversarial contract tests for admission, provenance, fusion boundary, governance, isolation, latency, and determinism.",
+    "direct_implementation_to_216_llm_calls_forbidden": true
+  }
+}

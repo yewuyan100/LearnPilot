@@ -1,9 +1,8 @@
-from datetime import date
-
 from fastapi import APIRouter, Response, status
 from sqlalchemy import select
 
-from app.api.deps import AppSettings, DbSession
+from app.api.deps import AppClock, AppSettings, DbSession
+from app.core.errors import AppError
 from app.models.course import Course
 from app.models.daily_task import DailyTask
 from app.models.knowledge_point import KnowledgePoint
@@ -17,8 +16,8 @@ router = APIRouter(tags=["daily tasks"])
 
 
 @router.get("/today", response_model=TodayResponse)
-def get_today(db: DbSession) -> TodayResponse:
-    today = date.today()
+def get_today(db: DbSession, clock: AppClock) -> TodayResponse:
+    today = clock.today()
     tasks = list(
         db.scalars(
             select(DailyTask)
@@ -45,10 +44,15 @@ def get_today(db: DbSession) -> TodayResponse:
         if goal
         else None,
         tasks=[DailyTaskRead.model_validate(task) for task in tasks],
-        pending_count=sum(task.status in {"pending", "in_progress"} for task in tasks),
+        pending_count=sum(
+            task.status in {"pending", "in_progress"} and task.blocked_at is None
+            for task in tasks
+        ),
+        blocked_count=sum(task.blocked_at is not None for task in tasks),
         recent_course={"id": course.id, "title": course.title, "status": course.status} if course else None,
         recent_session={
             "id": session.id,
+            "learning_goal_id": session.learning_goal_id,
             "started_at": session.started_at,
             "ended_at": session.ended_at,
             "status": session.status,
@@ -65,7 +69,13 @@ def create_task(payload: DailyTaskCreate, db: DbSession) -> DailyTask:
     if payload.course_id:
         get_or_404(db, Course, payload.course_id, "课程")
     if payload.knowledge_point_id:
-        get_or_404(db, KnowledgePoint, payload.knowledge_point_id, "知识点")
+        point = get_or_404(db, KnowledgePoint, payload.knowledge_point_id, "知识点")
+        if point.lifecycle_status != "active":
+            raise AppError(
+                "knowledge_point_not_active",
+                "不能为已归档或已替代的知识点创建任务",
+                status.HTTP_409_CONFLICT,
+            )
     if payload.activity_id:
         get_or_404(db, LearningActivity, payload.activity_id, "学习活动")
     task = DailyTask(**payload.model_dump())
@@ -74,9 +84,15 @@ def create_task(payload: DailyTaskCreate, db: DbSession) -> DailyTask:
 
 
 @router.patch("/daily-tasks/{task_id}", response_model=DailyTaskRead)
-def update_task(task_id: int, payload: DailyTaskUpdate, db: DbSession, settings: AppSettings) -> DailyTask:
+def update_task(task_id: int, payload: DailyTaskUpdate, db: DbSession, settings: AppSettings, clock: AppClock) -> DailyTask:
     task = get_or_404(db, DailyTask, task_id, "今日任务")
     values = payload.model_dump(exclude_unset=True)
+    if task.blocked_at is not None and values.get("status") in {"in_progress", "completed"}:
+        raise AppError(
+            "daily_task_blocked",
+            task.blocked_reason or "该任务对应课程内容已变化，需要重新规划",
+            status.HTTP_409_CONFLICT,
+        )
     if values.get("activity_id"):
         get_or_404(db, LearningActivity, values["activity_id"], "学习活动")
     apply_updates(task, values)
@@ -89,6 +105,7 @@ def update_task(task_id: int, payload: DailyTaskUpdate, db: DbSession, settings:
         try_refresh_adaptive_learning(
             db, settings, task.knowledge_point_id,
             trigger_type="task_completed", trigger_source_id=task.id,
+            clock=clock,
         )
     return task
 

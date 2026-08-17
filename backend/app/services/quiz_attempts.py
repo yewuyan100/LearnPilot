@@ -1,6 +1,5 @@
 import json
 import logging
-from datetime import datetime, timezone
 from hashlib import sha256
 from threading import Lock
 
@@ -10,6 +9,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from app.core.config import Settings
+from app.core.clock import clock_from_settings
 from app.core.errors import AppError
 from app.models.activity_question import ActivityQuestion
 from app.models.daily_task import DailyTask
@@ -31,7 +31,6 @@ from app.services.grading.objective import normalize_objective_answer
 from app.services.grading.service import GradingService
 from app.services.llm.base import LLMProvider
 from app.services.wrong_answers import WrongAnswerService
-from app.services.adaptive_learning.lifecycle import try_refresh_adaptive_learning
 
 
 logger = logging.getLogger("personal_learning.attempts")
@@ -48,6 +47,7 @@ class QuizAttemptService:
         self.db = db
         self.settings = settings
         self.provider = provider
+        self.clock = clock_from_settings(settings)
 
     def _attempt(self, attempt_id: int) -> QuizAttempt:
         attempt = self.db.get(QuizAttempt, attempt_id)
@@ -99,7 +99,7 @@ class QuizAttemptService:
             activity_id=activity.id,
             learning_session_id=learning_session_id,
             status="in_progress",
-            started_at=datetime.now(timezone.utc),
+            started_at=self.clock.now(),
         )
         self.db.add(attempt)
         self.db.commit()
@@ -197,6 +197,7 @@ class QuizAttemptService:
                 attempt.request_id == payload.request_id
                 and attempt.submission_hash == submission_hash
             ):
+                self._run_adaptive_loop(attempt, self._activity(attempt.activity_id))
                 return self.serialize(attempt, idempotent_replay=True)
             raise AppError(
                 "attempt_already_submitted",
@@ -252,7 +253,7 @@ class QuizAttemptService:
             attempt.request_id = payload.request_id
             attempt.submission_hash = submission_hash
             attempt.status = "grading"
-            attempt.submitted_at = attempt.submitted_at or datetime.now(timezone.utc)
+            attempt.submitted_at = attempt.submitted_at or self.clock.now()
             attempt.error_message = None
             for question in questions:
                 answer = existing_answers.get(question.id)
@@ -305,7 +306,7 @@ class QuizAttemptService:
                 activity, questions, answers
             )
             attempt.status = "completed"
-            attempt.graded_at = datetime.now(timezone.utc)
+            attempt.graded_at = self.clock.now()
             self._complete_learning_links(attempt, activity)
             self.db.commit()
             if activity.knowledge_point_id:
@@ -318,15 +319,7 @@ class QuizAttemptService:
                 for completed_task in completed_tasks:
                     scheduler.complete_for_task(completed_task)
                 self.db.commit()
-            try_refresh_adaptive_learning(
-                self.db, self.settings, activity.knowledge_point_id,
-                trigger_type=(
-                    "review_completed"
-                    if activity.source_scope.get("kind") == "wrong_answer_review"
-                    else "quiz_completed"
-                ),
-                trigger_source_id=attempt.id,
-            )
+            self._run_adaptive_loop(attempt, activity)
             logger.info(
                 "attempt_grading_completed request_id=%s activity_id=%s attempt_id=%s "
                 "objective_question_count=%s short_answer_count=%s earned_points=%s "
@@ -349,10 +342,28 @@ class QuizAttemptService:
             raise
         return self.serialize(attempt)
 
+    def _run_adaptive_loop(
+        self, attempt: QuizAttempt, activity: LearningActivity
+    ) -> None:
+        """The completed Quiz remains true even if adaptive follow-up needs retry."""
+
+        try:
+            from app.learning.adaptive import AdaptiveLearningLoop
+
+            AdaptiveLearningLoop(self.db, self.settings, self.clock).after_quiz_finished(
+                attempt, activity
+            )
+        except Exception:
+            logger.exception(
+                "adaptive_loop_after_quiz_failed attempt_id=%s activity_id=%s",
+                attempt.id,
+                activity.id,
+            )
+
     def _complete_learning_links(
         self, attempt: QuizAttempt, activity: LearningActivity
     ) -> None:
-        now = datetime.now(timezone.utc)
+        now = self.clock.now()
         if attempt.learning_session_id:
             session = self.db.get(LearningSession, attempt.learning_session_id)
             if session:
@@ -460,6 +471,7 @@ class QuizAttemptService:
                 "id": attempt.id,
                 "activity_id": attempt.activity_id,
                 "learning_session_id": attempt.learning_session_id,
+                "request_id": attempt.request_id,
                 "status": attempt.status,
                 "started_at": attempt.started_at,
                 "submitted_at": attempt.submitted_at,

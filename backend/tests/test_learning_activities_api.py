@@ -1,4 +1,3 @@
-from datetime import date
 from io import BytesIO
 
 from app.api.deps import get_llm_provider
@@ -65,6 +64,15 @@ def prepare_context(client):
     ).json()
     processed = http.post(f"/api/materials/{material['id']}/process")
     assert processed.status_code == 200, processed.text
+    assert http.post(
+        f"/api/materials/{material['id']}/learning-links",
+        json={
+            "target_type": "knowledge_point",
+            "knowledge_point_id": point["id"],
+            "relation_type": "primary_source",
+            "is_primary": True,
+        },
+    ).status_code == 201
     return course, point, material
 
 
@@ -89,7 +97,7 @@ def generate(http, course, point, material, request_id="activity-request-1"):
     )
 
 
-def test_activity_generation_lifecycle_grading_and_review(client):
+def test_activity_generation_lifecycle_grading_and_review(client, business_date):
     http, _ = client
     fake = FakeLearningLLM()
     app.dependency_overrides[get_llm_provider] = lambda: fake
@@ -134,7 +142,7 @@ def test_activity_generation_lifecycle_grading_and_review(client):
             "activity_id": draft["id"],
             "title": "完成 MCP 测验",
             "estimated_minutes": 20,
-            "scheduled_date": date.today().isoformat(),
+            "scheduled_date": business_date.isoformat(),
         },
     ).json()
     session = http.post(
@@ -313,6 +321,7 @@ def test_short_answer_failure_is_not_zero_and_can_retry(client):
     attempt = http.post(
         f"/api/learning-activities/{draft['id']}/attempts", json={}
     ).json()
+    assert attempt["request_id"] is None
     snapshot = {question["id"]: question for question in draft["questions"]}
     answers = []
     for question in attempt["questions"]:
@@ -339,6 +348,7 @@ def test_short_answer_failure_is_not_zero_and_can_retry(client):
     assert failed.status_code == 503
     restored = http.get(f"/api/quiz-attempts/{attempt['id']}").json()
     assert restored["status"] == "failed"
+    assert restored["request_id"] == payload["request_id"]
     short = next(
         answer
         for answer in restored["answers"]
@@ -347,9 +357,31 @@ def test_short_answer_failure_is_not_zero_and_can_retry(client):
     assert short["grading_status"] == "failed"
     assert short["earned_points"] is None
 
+    wrong_identity = http.post(
+        f"/api/quiz-attempts/{attempt['id']}/submit",
+        json={**payload, "request_id": "submit-request-after-refresh"},
+    )
+    assert wrong_identity.status_code == 409
+    assert wrong_identity.json()["error"]["code"] == "attempt_already_submitted"
+    still_failed = http.get(f"/api/quiz-attempts/{attempt['id']}").json()
+    assert still_failed["request_id"] == payload["request_id"]
+    assert still_failed["status"] == "failed"
+
     app.dependency_overrides[get_llm_provider] = lambda: fake
     retried = http.post(
         f"/api/quiz-attempts/{attempt['id']}/submit", json=payload
     )
     assert retried.status_code == 200
     assert retried.json()["status"] == "completed"
+    assert retried.json()["request_id"] == payload["request_id"]
+
+    replay = http.post(f"/api/quiz-attempts/{attempt['id']}/submit", json=payload)
+    assert replay.status_code == 200
+    assert replay.json()["id"] == attempt["id"]
+    assert replay.json()["idempotent_replay"] is True
+
+    second_attempt = http.post(
+        f"/api/learning-activities/{draft['id']}/attempts", json={}
+    ).json()
+    assert second_attempt["id"] != attempt["id"]
+    assert second_attempt["request_id"] is None

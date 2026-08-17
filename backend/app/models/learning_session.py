@@ -18,10 +18,13 @@ class LearningSession(TimestampMixin, Base):
         ForeignKey("courses.id", ondelete="SET NULL"), index=True, nullable=True
     )
     knowledge_point_id: Mapped[int | None] = mapped_column(
-        ForeignKey("knowledge_points.id", ondelete="SET NULL"), index=True, nullable=True
+        ForeignKey("knowledge_points.id", ondelete="RESTRICT"), index=True, nullable=True
     )
     daily_task_id: Mapped[int | None] = mapped_column(
         ForeignKey("daily_tasks.id", ondelete="SET NULL"), index=True, nullable=True
+    )
+    lesson_version_id: Mapped[int | None] = mapped_column(
+        ForeignKey("lesson_versions.id", ondelete="RESTRICT"), index=True, nullable=True
     )
     started_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
     ended_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
@@ -29,4 +32,5 @@ class LearningSession(TimestampMixin, Base):
         String(32), default=LearningSessionStatus.active, nullable=False, index=True
     )
     notes: Mapped[str] = mapped_column(Text, default="", nullable=False)
-
+    invalidated_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True, index=True)
+    invalidation_reason: Mapped[str | None] = mapped_column(Text, nullable=True)

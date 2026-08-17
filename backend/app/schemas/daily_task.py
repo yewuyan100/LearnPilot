@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 
 from pydantic import BaseModel, Field
 
@@ -37,6 +37,10 @@ class DailyTaskRead(Timestamped):
     estimated_minutes: int
     scheduled_date: date
     status: str
+    blocked_at: datetime | None
+    blocked_reason: str | None
+    blocked_source_type: str | None
+    blocked_source_id: int | None
 
 
 class TodayResponse(BaseModel):
@@ -44,5 +48,6 @@ class TodayResponse(BaseModel):
     current_goal: dict | None
     tasks: list[DailyTaskRead]
     pending_count: int
+    blocked_count: int = 0
     recent_course: dict | None
     recent_session: dict | None

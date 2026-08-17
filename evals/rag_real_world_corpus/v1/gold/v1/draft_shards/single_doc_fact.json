@@ -1,0 +1,666 @@
+{
+  "schema_version": "1.0.0",
+  "schema_ref": "draft_shard.schema.json",
+  "draft_status": "UNVERIFIED",
+  "case_type": "single_doc_fact",
+  "expected_case_count": 10,
+  "cases": [
+    {
+      "case_id": "rw-gold-v1-single-bge-shape",
+      "tier": "CORE",
+      "case_type": "single_doc_fact",
+      "information_need_key": "single-bge-shape",
+      "question": "BGE-M3 的向量维度和最大序列长度分别是多少？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "rag_retrieval",
+      "secondary_topics": [],
+      "difficulty": "easy",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-single-bge-shape-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-rag-bge-m3"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-bge-specs"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-single-bge-shape-claim-01",
+          "canonical_claim": "BAAI/bge-m3 has dimension 1024.",
+          "required": true,
+          "evaluation_mode": "NUMERIC_EXACT",
+          "evidence_group_ids": [
+            "eg-rw-single-bge-shape-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups.",
+          "deterministic_match": {
+            "all_terms": [
+              "1024"
+            ]
+          }
+        },
+        {
+          "claim_id": "rw-gold-v1-single-bge-shape-claim-02",
+          "canonical_claim": "BAAI/bge-m3 has sequence length 8192.",
+          "required": true,
+          "evaluation_mode": "NUMERIC_EXACT",
+          "evidence_group_ids": [
+            "eg-rw-single-bge-shape-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups.",
+          "deterministic_match": {
+            "all_terms": [
+              "8192"
+            ]
+          }
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-single-bge-shape-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-single-faiss-cosine",
+      "tier": "CORE",
+      "case_type": "single_doc_fact",
+      "information_need_key": "single-faiss-cosine",
+      "question": "Faiss 在什么条件下可以用点积来实现余弦相似度检索？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "rag_retrieval",
+      "secondary_topics": [],
+      "difficulty": "easy",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-single-faiss-cosine-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-rag-faiss-overview"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-faiss-distance"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-single-faiss-cosine-claim-01",
+          "canonical_claim": "Faiss supports cosine similarity as dot product on normalized vectors.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-single-faiss-cosine-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-single-faiss-cosine-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-single-persist-thread-id",
+      "tier": "CORE",
+      "case_type": "single_doc_fact",
+      "information_need_key": "single-persist-thread-id",
+      "question": "PostgresSaver 的 thread_id 应控制在什么长度以内，文档建议超长时怎么生成稳定 ID？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "agent_engineering",
+      "secondary_topics": [],
+      "difficulty": "easy",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-single-persist-thread-id-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-persistence"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-persist-thread-id"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-single-persist-thread-id-claim-01",
+          "canonical_claim": "PostgresSaver thread_id values should stay under 255 characters.",
+          "required": true,
+          "evaluation_mode": "NUMERIC_EXACT",
+          "evidence_group_ids": [
+            "eg-rw-single-persist-thread-id-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups.",
+          "deterministic_match": {
+            "all_terms": [
+              "255"
+            ]
+          }
+        },
+        {
+          "claim_id": "rw-gold-v1-single-persist-thread-id-claim-02",
+          "canonical_claim": "A UUID or hash can be used when deterministic IDs are needed.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-single-persist-thread-id-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-single-persist-thread-id-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-single-interrupt-status",
+      "tier": "CORE",
+      "case_type": "single_doc_fact",
+      "information_need_key": "single-interrupt-status",
+      "question": "恢复审批节点时，布尔值 True 和 False 分别会把流程导向哪里？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "agent_engineering",
+      "secondary_topics": [],
+      "difficulty": "easy",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-single-interrupt-status-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-interrupts"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-interrupt-approval"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-single-interrupt-status-claim-01",
+          "canonical_claim": "A True resume value routes to proceed.",
+          "required": true,
+          "evaluation_mode": "STRUCTURED_EXACT",
+          "evidence_group_ids": [
+            "eg-rw-single-interrupt-status-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups.",
+          "deterministic_match": {
+            "all_terms": [
+              "True",
+              "proceed"
+            ]
+          }
+        },
+        {
+          "claim_id": "rw-gold-v1-single-interrupt-status-claim-02",
+          "canonical_claim": "A False resume value routes to cancel.",
+          "required": true,
+          "evaluation_mode": "STRUCTURED_EXACT",
+          "evidence_group_ids": [
+            "eg-rw-single-interrupt-status-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups.",
+          "deterministic_match": {
+            "all_terms": [
+              "False",
+              "cancel"
+            ]
+          }
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-single-interrupt-status-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-single-dependency-defaults",
+      "tier": "CORE",
+      "case_type": "single_doc_fact",
+      "information_need_key": "single-dependency-defaults",
+      "question": "FastAPI 文档里的 common_parameters 示例中，skip 和 limit 的默认值是什么？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "ai_app_backend",
+      "secondary_topics": [],
+      "difficulty": "easy",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-single-dependency-defaults-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-dependencies"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-deps-dependable"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-single-dependency-defaults-claim-01",
+          "canonical_claim": "skip defaults to 0.",
+          "required": true,
+          "evaluation_mode": "NUMERIC_EXACT",
+          "evidence_group_ids": [
+            "eg-rw-single-dependency-defaults-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups.",
+          "deterministic_match": {
+            "all_terms": [
+              "skip",
+              "0"
+            ]
+          }
+        },
+        {
+          "claim_id": "rw-gold-v1-single-dependency-defaults-claim-02",
+          "canonical_claim": "limit defaults to 100.",
+          "required": true,
+          "evaluation_mode": "NUMERIC_EXACT",
+          "evidence_group_ids": [
+            "eg-rw-single-dependency-defaults-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups.",
+          "deterministic_match": {
+            "all_terms": [
+              "limit",
+              "100"
+            ]
+          }
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-single-dependency-defaults-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-single-error-response",
+      "tier": "CORE",
+      "case_type": "single_doc_fact",
+      "information_need_key": "single-error-response",
+      "question": "访问不存在的 item_id='bar' 时，示例返回的 HTTP 状态码和 JSON detail 是什么？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "ai_app_backend",
+      "secondary_topics": [],
+      "difficulty": "easy",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-single-error-response-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-errors"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-errors-http-exception"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-single-error-response-claim-01",
+          "canonical_claim": "The response status is 404.",
+          "required": true,
+          "evaluation_mode": "NUMERIC_EXACT",
+          "evidence_group_ids": [
+            "eg-rw-single-error-response-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups.",
+          "deterministic_match": {
+            "all_terms": [
+              "404"
+            ]
+          }
+        },
+        {
+          "claim_id": "rw-gold-v1-single-error-response-claim-02",
+          "canonical_claim": "The JSON detail is 'Item not found'.",
+          "required": true,
+          "evaluation_mode": "IDENTIFIER_EXACT",
+          "evidence_group_ids": [
+            "eg-rw-single-error-response-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups.",
+          "deterministic_match": {
+            "all_terms": [
+              "Item not found"
+            ]
+          }
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-single-error-response-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-single-precision-id",
+      "tier": "CORE",
+      "case_type": "single_doc_fact",
+      "information_need_key": "single-precision-id",
+      "question": "IDBasedContextPrecision 的示例里，4 个 retrieved IDs 命中 2 个 reference IDs，最终分数是多少？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "evaluation_reliability",
+      "secondary_topics": [],
+      "difficulty": "easy",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-single-precision-id-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-context-precision"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-precision-id-based"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-single-precision-id-claim-01",
+          "canonical_claim": "The example score is 0.5 (50%).",
+          "required": true,
+          "evaluation_mode": "NUMERIC_EXACT",
+          "evidence_group_ids": [
+            "eg-rw-single-precision-id-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups.",
+          "deterministic_match": {
+            "all_terms": [
+              "0.5"
+            ]
+          }
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-single-precision-id-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-single-otel-status",
+      "tier": "CORE",
+      "case_type": "single_doc_fact",
+      "information_need_key": "single-otel-status",
+      "question": "OpenTelemetry span status 有哪三个取值，默认是哪一个？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "evaluation_reliability",
+      "secondary_topics": [],
+      "difficulty": "easy",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-single-otel-status-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-otel-traces"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-otel-links-status"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-single-otel-status-claim-01",
+          "canonical_claim": "Span status values are Unset, Error, and Ok.",
+          "required": true,
+          "evaluation_mode": "STRUCTURED_EXACT",
+          "evidence_group_ids": [
+            "eg-rw-single-otel-status-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups.",
+          "deterministic_match": {
+            "all_terms": [
+              "Unset",
+              "Error",
+              "Ok"
+            ]
+          }
+        },
+        {
+          "claim_id": "rw-gold-v1-single-otel-status-claim-02",
+          "canonical_claim": "The default span status is Unset.",
+          "required": true,
+          "evaluation_mode": "IDENTIFIER_EXACT",
+          "evidence_group_ids": [
+            "eg-rw-single-otel-status-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups.",
+          "deterministic_match": {
+            "all_terms": [
+              "Unset"
+            ]
+          }
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-single-otel-status-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-single-ragas-dataset",
+      "tier": "CORE",
+      "case_type": "single_doc_fact",
+      "information_need_key": "single-ragas-dataset",
+      "question": "Ragas 教程把收集好的列表装载成哪个 dataset object？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "evaluation_reliability",
+      "secondary_topics": [],
+      "difficulty": "easy",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-single-ragas-dataset-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-ragas-workflow"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-ragas-collect-data"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-single-ragas-dataset-claim-01",
+          "canonical_claim": "The list is loaded with EvaluationDataset.from_list into an EvaluationDataset.",
+          "required": true,
+          "evaluation_mode": "IDENTIFIER_EXACT",
+          "evidence_group_ids": [
+            "eg-rw-single-ragas-dataset-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups.",
+          "deterministic_match": {
+            "all_terms": [
+              "EvaluationDataset",
+              "from_list"
+            ]
+          }
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-single-ragas-dataset-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-single-langgraph-js",
+      "tier": "CORE",
+      "case_type": "single_doc_fact",
+      "information_need_key": "single-langgraph-js",
+      "question": "What repository is identified as the equivalent JavaScript/TypeScript LangGraph library?",
+      "query_language": "en",
+      "expected_answer_language": "en",
+      "primary_topic": "agent_engineering",
+      "secondary_topics": [],
+      "difficulty": "easy",
+      "answerable": true,
+      "localization_region": "not_applicable",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-single-langgraph-js-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-langgraph-overview"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-agent-overview-purpose"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-single-langgraph-js-claim-01",
+          "canonical_claim": "The equivalent JavaScript/TypeScript library is LangGraph.js.",
+          "required": true,
+          "evaluation_mode": "IDENTIFIER_EXACT",
+          "evidence_group_ids": [
+            "eg-rw-single-langgraph-js-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups.",
+          "deterministic_match": {
+            "all_terms": [
+              "LangGraph.js"
+            ]
+          }
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-single-langgraph-js-01"
+        ],
+        "minimum_distinct_required_documents": 1,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    }
+  ]
+}

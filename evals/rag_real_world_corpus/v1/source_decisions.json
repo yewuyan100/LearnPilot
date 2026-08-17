@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0.0",
+  "accepted": [
+    {
+      "document_id": "rw-rag-bge-m3",
+      "project": "FlagEmbedding",
+      "path": "research/BGE_M3/README.md",
+      "reason": "official, pinned, licensed, substantial, and useful for an overlapping topic family"
+    },
+    {
+      "document_id": "rw-rag-faiss-overview",
+      "project": "FAISS",
+      "path": "README.md",
+      "reason": "official, pinned, licensed, substantial, and useful for an overlapping topic family"
+    },
+    {
+      "document_id": "rw-agent-langgraph-overview",
+      "project": "LangGraph",
+      "path": "README.md",
+      "reason": "official, pinned, licensed, substantial, and useful for an overlapping topic family"
+    },
+    {
+      "document_id": "rw-agent-persistence",
+      "project": "LangChain Documentation",
+      "path": "src/oss/langgraph/persistence.mdx",
+      "reason": "official, pinned, licensed, substantial, and useful for an overlapping topic family"
+    },
+    {
+      "document_id": "rw-agent-interrupts",
+      "project": "LangChain Documentation",
+      "path": "src/oss/langgraph/interrupts.mdx",
+      "reason": "official, pinned, licensed, substantial, and useful for an overlapping topic family"
+    },
+    {
+      "document_id": "rw-backend-fastapi-async",
+      "project": "FastAPI",
+      "path": "docs/en/docs/async.md",
+      "reason": "official, pinned, licensed, substantial, and useful for an overlapping topic family"
+    },
+    {
+      "document_id": "rw-backend-fastapi-dependencies",
+      "project": "FastAPI",
+      "path": "docs/en/docs/tutorial/dependencies/index.md",
+      "reason": "official, pinned, licensed, substantial, and useful for an overlapping topic family"
+    },
+    {
+      "document_id": "rw-backend-fastapi-errors",
+      "project": "FastAPI",
+      "path": "docs/en/docs/tutorial/handling-errors.md",
+      "reason": "official, pinned, licensed, substantial, and useful for an overlapping topic family"
+    },
+    {
+      "document_id": "rw-eval-ragas-workflow",
+      "project": "Ragas",
+      "path": "docs/getstarted/rag_eval.md",
+      "reason": "official, pinned, licensed, substantial, and useful for an overlapping topic family"
+    },
+    {
+      "document_id": "rw-eval-context-precision",
+      "project": "Ragas",
+      "path": "docs/concepts/metrics/available_metrics/context_precision.md",
+      "reason": "official, pinned, licensed, substantial, and useful for an overlapping topic family"
+    },
+    {
+      "document_id": "rw-eval-otel-traces",
+      "project": "OpenTelemetry Website",
+      "path": "content/en/docs/concepts/signals/traces.md",
+      "reason": "official, pinned, licensed, substantial, and useful for an overlapping topic family"
+    }
+  ],
+  "rejected": [
+    {
+      "candidate": "BAAI/bge-m3 Hugging Face model card",
+      "reason": "rejected as a second copy of the selected official FlagEmbedding BGE-M3 material; avoids semantic duplication"
+    },
+    {
+      "candidate": "FAISS GitHub wiki pages",
+      "reason": "rejected because the main-repository README provides a cleaner commit-pinned provenance chain"
+    },
+    {
+      "candidate": "Sentence Transformers semantic-search README",
+      "reason": "license-eligible but rejected after canonical chunk projection produced 170 chunks and made retrieval 53.46% of the corpus while evaluation was only 6.07%"
+    },
+    {
+      "candidate": "Sentence Transformers retrieve-and-rerank README",
+      "reason": "license-eligible but rejected because its projected fragmentation still left retrieval significantly dominant; the persistence material already satisfies the TXT format slot"
+    },
+    {
+      "candidate": "LangGraph orchestration overview MDX",
+      "reason": "license-eligible but rejected after canonical chunk projection to keep the agent cluster balanced with the larger interrupts PDF"
+    },
+    {
+      "candidate": "Pydantic models documentation",
+      "reason": "license-eligible but rejected after canonical chunk projection produced 187 chunks and caused backend-cluster dominance"
+    },
+    {
+      "candidate": "OpenTelemetry observability primer",
+      "reason": "rejected as broader and more overlapping than the selected traces/spans material"
+    }
+  ]
+}

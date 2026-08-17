@@ -1,4 +1,3 @@
-from datetime import datetime, timezone
 import logging
 from pathlib import Path
 from time import perf_counter
@@ -7,6 +6,7 @@ from fastapi import status
 from sqlalchemy.orm import Session
 
 from app.core.config import Settings
+from app.core.clock import clock_from_settings
 from app.core.errors import AppError
 from app.models.material import Material
 from app.models.material_chunk import MaterialChunk
@@ -16,6 +16,7 @@ from app.services.material_processing.chunking import chunk_sections
 from app.services.material_processing.cleaning import clean_text
 from app.services.material_processing.parsers import parser_for
 from app.services.material_processing.types import MaterialProcessingError, ParsedSection
+from app.services.material_state import touch_material
 
 
 logger = logging.getLogger("personal_learning.material_processing")
@@ -25,6 +26,7 @@ class MaterialProcessingPipeline:
     def __init__(self, db: Session, settings: Settings):
         self.db = db
         self.settings = settings
+        self.clock = clock_from_settings(settings)
         self.materials = MaterialRepository(db)
         self.chunks = MaterialChunkRepository(db)
 
@@ -40,6 +42,7 @@ class MaterialProcessingPipeline:
         material.ingestion_status = "processing"
         material.indexing_status = "pending"
         material.error_message = None
+        touch_material(material, self.clock.now())
         self.db.commit()
 
         started = perf_counter()
@@ -88,7 +91,8 @@ class MaterialProcessingPipeline:
             material.indexed_chunk_count = 0
             material.ingestion_status = "completed"
             material.indexing_status = "pending"
-            material.processed_at = datetime.now(timezone.utc)
+            material.processed_at = self.clock.now()
+            touch_material(material, material.processed_at)
             material.indexed_at = None
             material.error_message = None
             self.db.commit()
@@ -116,6 +120,7 @@ class MaterialProcessingPipeline:
                 if isinstance(exc, MaterialProcessingError)
                 else "资料处理失败，请查看后端日志后重试。"
             )
+            touch_material(failed, self.clock.now())
             self.db.commit()
             logger.exception(
                 "material_processing_failed material_id=%s filename=%s error_type=%s",

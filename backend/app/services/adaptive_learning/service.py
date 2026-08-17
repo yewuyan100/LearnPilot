@@ -4,6 +4,7 @@ from zoneinfo import ZoneInfo
 
 from sqlalchemy import func, select
 
+from app.core.clock import clock_from_settings
 from app.core.errors import AppError
 from app.models import (
     AdaptiveRecommendation, Course, KnowledgeMastery, KnowledgePoint,
@@ -23,7 +24,7 @@ class AdaptiveLearningService:
     def __init__(self, db, settings, *, now: datetime | None = None):
         self.db = db
         self.settings = settings
-        self.now = now or settings.adaptive_fixed_now or datetime.now(timezone.utc)
+        self.now = now or clock_from_settings(settings).now()
         self.zone = ZoneInfo(settings.app_timezone)
 
     def _ensure_current(self, point_id: int) -> KnowledgeMastery:

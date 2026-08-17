@@ -2,16 +2,20 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   Eye,
   FileText,
+  FolderInput,
   Filter,
+  NotebookPen,
   RefreshCw,
   Search,
   Trash2,
   UploadCloud,
 } from "lucide-react";
 import { useRef, useState, type DragEvent } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { materialsApi } from "../api/resources";
 import { MaterialChunksDialog } from "../components/MaterialChunksDialog";
 import { MaterialIndexPanel } from "../components/MaterialIndexPanel";
+import { MaterialLinkDialog } from "../components/MaterialLinkDialog";
 import { MaterialSearchPanel } from "../components/MaterialSearchPanel";
 import { EmptyState, ErrorState, LoadingState } from "../components/States";
 import { useToast } from "../components/toast-context";
@@ -24,14 +28,31 @@ import {
   statusLabel,
 } from "../utils/format";
 
-export function MaterialsPage() {
+function materialState(material: Material) {
+  if (material.ingestion_status === "failed" || material.indexing_status === "failed" || material.deletion_status === "failed") {
+    return { key: "failed", label: "处理失败" };
+  }
+  if (material.ingestion_status === "processing" || material.indexing_status === "indexing" || material.deletion_status === "pending") {
+    return { key: "processing", label: "正在整理" };
+  }
+  if (material.ingestion_status === "completed" && material.indexing_status === "completed") {
+    return { key: "ready", label: "可使用" };
+  }
+  return { key: "pending", label: "需要处理" };
+}
+
+export function MaterialsPage({ embedded = false }: { embedded?: boolean }) {
+  const [params] = useSearchParams();
+  const showTechnical = !embedded || params.get("advanced") === "1";
   const queryClient = useQueryClient();
   const { showToast } = useToast();
   const inputRef = useRef<HTMLInputElement>(null);
   const [search, setSearch] = useState("");
   const [type, setType] = useState("");
+  const [uploadOpen, setUploadOpen] = useState(false);
   const [dragging, setDragging] = useState(false);
   const [chunkMaterial, setChunkMaterial] = useState<Material | null>(null);
+  const [linkMaterialId, setLinkMaterialId] = useState<number | null>(null);
   const materials = useQuery({
     queryKey: ["materials", search, type],
     queryFn: () => materialsApi.list(search, type),
@@ -40,7 +61,8 @@ export function MaterialsPage() {
     mutationFn: materialsApi.upload,
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["materials"] });
-      showToast("资料已保存，请点击“处理资料”建立知识片段", "success");
+      setUploadOpen(false);
+      showToast("资料已保存，可以开始整理", "success");
     },
     onError: (error: Error) => showToast(error.message, "error"),
   });
@@ -49,7 +71,7 @@ export function MaterialsPage() {
     onSuccess: async (material) => {
       await queryClient.invalidateQueries({ queryKey: ["materials"] });
       await queryClient.invalidateQueries({ queryKey: ["material-index"] });
-      showToast(`${material.original_filename} 已完成解析和索引`, "success");
+      showToast(showTechnical ? `${material.original_filename} 已完成解析和索引` : `${material.original_filename} 已可以使用`, "success");
     },
     onError: (error: Error) => {
       queryClient.invalidateQueries({ queryKey: ["materials"] });
@@ -64,7 +86,22 @@ export function MaterialsPage() {
       await queryClient.invalidateQueries({ queryKey: ["material-index"] });
       showToast("资料、片段和本地索引已更新", "success");
     },
-    onError: (error: Error) => showToast(error.message, "error"),
+    onError: (error: Error) => {
+      queryClient.invalidateQueries({ queryKey: ["materials"] });
+      showToast(error.message, "error");
+    },
+  });
+  const retryDelete = useMutation({
+    mutationFn: materialsApi.retryDelete,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["materials"] });
+      await queryClient.invalidateQueries({ queryKey: ["material-index"] });
+      showToast("资料删除已恢复完成", "success");
+    },
+    onError: (error: Error) => {
+      queryClient.invalidateQueries({ queryKey: ["materials"] });
+      showToast(error.message, "error");
+    },
   });
   const acceptFile = (file?: File) => {
     if (file) upload.mutate(file);
@@ -78,16 +115,17 @@ export function MaterialsPage() {
   const materialItems = materials.data ?? [];
 
   return (
-    <div className="page">
-      <header className="page-header">
-        <h1>资料知识库</h1>
-        <p>上传本地资料，解析为稳定片段，并使用本地 BGE-M3 与 FAISS 进行语义检索。</p>
-      </header>
+    <div className={embedded ? "materials-embedded" : "page"}>
+      {!embedded && <header className="page-header">
+        <h1>资料与来源</h1>
+        <p>导入本地资料，关联事项，并在需要时限定来源进行核对。</p>
+      </header>}
+      {embedded && <header className="materials-commandbar"><div><h2>资料与来源</h2><p>{materialItems.length} 份资料 · 来源列表优先，需要时再展开导入区。</p></div><button className="button button--primary" aria-expanded={uploadOpen} onClick={() => setUploadOpen((value) => !value)}><UploadCloud size={16}/>{uploadOpen ? "收起导入" : "导入资料"}</button></header>}
 
-      <MaterialIndexPanel />
+      {showTechnical && <MaterialIndexPanel />}
 
-      <section
-        className={`upload-zone ${dragging ? "upload-zone--dragging" : ""}`}
+      {(!embedded || uploadOpen) && <section
+        className={`upload-zone material-import-panel ${dragging ? "upload-zone--dragging" : ""}`}
         onDragEnter={(event) => { event.preventDefault(); setDragging(true); }}
         onDragOver={(event) => event.preventDefault()}
         onDragLeave={() => setDragging(false)}
@@ -115,7 +153,7 @@ export function MaterialsPage() {
             event.currentTarget.value = "";
           }}
         />
-      </section>
+      </section>}
 
       <div className="toolbar">
         <label className="search-field">
@@ -159,29 +197,28 @@ export function MaterialsPage() {
                 <div className="material-card__file">
                   <span className="file-icon"><FileText size={20} /></span>
                   <div>
-                    <strong>{material.original_filename}</strong>
+                    <strong><Link to={`/materials/${material.id}`}>{material.original_filename}</Link></strong>
                     <span>
                       {material.source_type.toUpperCase()} · {formatBytes(material.file_size)} · {formatDateTime(material.created_at)}
                     </span>
-                    <span>{statusLabel[material.processing_status]} · {material.chunk_count} 个片段 · 已索引 {material.indexed_chunk_count}</span>
+                    {showTechnical && <span>{statusLabel[material.processing_status]} · {material.chunk_count} 个片段 · 已索引 {material.indexed_chunk_count}</span>}
                   </div>
                 </div>
                 <div className="material-card__states">
-                  <span className={`status status--${material.ingestion_status}`}>
-                    {ingestionStatusLabel[material.ingestion_status] ?? material.ingestion_status}
-                  </span>
-                  <span className={`status status--${material.indexing_status}`}>
-                    {indexingStatusLabel[material.indexing_status] ?? material.indexing_status}
-                  </span>
+                  {!showTechnical ? <span className={`status status--${materialState(material).key}`}>{materialState(material).label}</span> : <><span className={`status status--${material.ingestion_status}`}>{ingestionStatusLabel[material.ingestion_status] ?? material.ingestion_status}</span><span className={`status status--${material.indexing_status}`}>{indexingStatusLabel[material.indexing_status] ?? material.indexing_status}</span></>}
                 </div>
-                <dl className="material-card__dates">
+                {showTechnical && <dl className="material-card__dates">
                   <div><dt>处理完成</dt><dd>{formatDateTime(material.processed_at)}</dd></div>
                   <div><dt>索引完成</dt><dd>{formatDateTime(material.indexed_at)}</dd></div>
-                </dl>
+                </dl>}
                 {material.error_message && (
                   <p className="material-card__error">{material.error_message}</p>
                 )}
+                {material.deletion_status === "failed" && <p className="material-card__error">{material.deletion_error || "资料删除尚未完成，可重新尝试。"}</p>}
                 <div className="material-card__actions">
+                  <button className="button button--secondary" disabled={material.ingestion_status !== "completed" || !!material.archived_at} onClick={() => setLinkMaterialId(material.id)}><FolderInput size={16}/>关联事项</button>
+                  <Link className="button button--secondary" to={`/knowledge?tab=notes&new=1&entity_type=material&entity_id=${material.id}&note_type=material`}><NotebookPen size={16}/>记录笔记</Link>
+                  {material.deletion_status === "failed" && <button className="button button--secondary" disabled={retryDelete.isPending} onClick={() => retryDelete.mutate(material.id)}><RefreshCw size={16}/>重试删除</button>}
                   <button
                     className="button button--primary"
                     disabled={processing || material.ingestion_status === "processing" || material.indexing_status === "indexing"}
@@ -191,16 +228,16 @@ export function MaterialsPage() {
                     {processing
                       ? "正在处理"
                       : material.ingestion_status === "completed"
-                        ? "重新处理"
-                        : "处理资料"}
+                        ? showTechnical ? "重新处理" : "重新整理"
+                        : "开始整理"}
                   </button>
-                  <button
+                  {showTechnical && <button
                     className="button button--secondary"
                     disabled={material.chunk_count === 0}
                     onClick={() => setChunkMaterial(material)}
                   >
                     <Eye size={16} />查看片段
-                  </button>
+                  </button>}
                   <button
                     className="icon-button icon-button--danger"
                     aria-label={`删除 ${material.original_filename}`}
@@ -220,8 +257,9 @@ export function MaterialsPage() {
         </div>
       )}
 
-      <MaterialSearchPanel materials={materialItems} />
+      {showTechnical && <MaterialSearchPanel materials={materialItems} />}
       <MaterialChunksDialog material={chunkMaterial} onClose={() => setChunkMaterial(null)} />
+      <MaterialLinkDialog open={linkMaterialId !== null} materialIds={linkMaterialId === null ? [] : [linkMaterialId]} onClose={() => setLinkMaterialId(null)} />
     </div>
   );
 }

@@ -1,0 +1,352 @@
+{
+  "schema_version": "1.0.0",
+  "schema_ref": "draft_shard.schema.json",
+  "draft_status": "UNVERIFIED",
+  "case_type": "cross_topic_multi_doc",
+  "expected_case_count": 4,
+  "cases": [
+    {
+      "case_id": "rw-gold-v1-stress-cross-retrieval-evaluation",
+      "tier": "STRESS",
+      "case_type": "cross_topic_multi_doc",
+      "information_need_key": "stress-cross-retrieval-evaluation",
+      "question": "用 context precision 评估 BGE-M3 加 Faiss 的检索器时，三份来源各自说明什么，为什么仅凭向量搜索速度不能断定排序质量？",
+      "query_language": "zh-CN",
+      "expected_answer_language": "zh-CN",
+      "primary_topic": "rag_retrieval",
+      "secondary_topics": [
+        "evaluation_reliability"
+      ],
+      "difficulty": "stress",
+      "answerable": true,
+      "localization_region": "mixed",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-stress-cross-retrieval-evaluation-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-rag-bge-m3"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-bge-pipeline"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-stress-cross-retrieval-evaluation-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-rag-faiss-overview"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-faiss-tradeoffs"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-stress-cross-retrieval-evaluation-03",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-context-precision"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-precision-definition"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-stress-cross-retrieval-evaluation-claim-01",
+          "canonical_claim": "BGE-M3 supplies dense/sparse retrieval signals and recommends hybrid retrieval with reranking.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-stress-cross-retrieval-evaluation-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-stress-cross-retrieval-evaluation-claim-02",
+          "canonical_claim": "Faiss supplies vector-index search with explicit speed, quality, memory, training, and adding trade-offs.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-stress-cross-retrieval-evaluation-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-stress-cross-retrieval-evaluation-claim-03",
+          "canonical_claim": "Context precision judges whether relevant chunks are ranked ahead of irrelevant ones, so speed alone cannot establish ranking quality.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-stress-cross-retrieval-evaluation-03"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-stress-cross-retrieval-evaluation-01",
+          "eg-rw-stress-cross-retrieval-evaluation-02",
+          "eg-rw-stress-cross-retrieval-evaluation-03"
+        ],
+        "minimum_distinct_required_documents": 3,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-stress-cross-agent-api-replay",
+      "tier": "STRESS",
+      "case_type": "cross_topic_multi_doc",
+      "information_need_key": "stress-cross-agent-api-replay",
+      "question": "If a LangGraph approval node calls an external API before interrupting, why can resume repeat the call, and how should a FastAPI-facing design expose a failed call to its client?",
+      "query_language": "en",
+      "expected_answer_language": "en",
+      "primary_topic": "agent_engineering",
+      "secondary_topics": [
+        "ai_app_backend"
+      ],
+      "difficulty": "stress",
+      "answerable": true,
+      "localization_region": "mixed",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-stress-cross-agent-api-replay-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-interrupts"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-interrupt-restart-rule",
+            "ev-rw-interrupt-side-effects"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-stress-cross-agent-api-replay-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-errors"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-errors-http-exception"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-stress-cross-agent-api-replay-claim-01",
+          "canonical_claim": "Resume restarts the node, so a pre-interrupt non-idempotent API call can repeat.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-stress-cross-agent-api-replay-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-stress-cross-agent-api-replay-claim-02",
+          "canonical_claim": "The side effect should be idempotent, moved after the interrupt, or isolated in a separate node.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-stress-cross-agent-api-replay-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-stress-cross-agent-api-replay-claim-03",
+          "canonical_claim": "At the FastAPI boundary, HTTPException terminates the request and carries an HTTP error response to the client.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-stress-cross-agent-api-replay-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-stress-cross-agent-api-replay-01",
+          "eg-rw-stress-cross-agent-api-replay-02"
+        ],
+        "minimum_distinct_required_documents": 2,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-stress-cross-persistence-tracing",
+      "tier": "STRESS",
+      "case_type": "cross_topic_multi_doc",
+      "information_need_key": "stress-cross-persistence-tracing",
+      "question": "Across a process restart, what preserves an agent's workflow state and what trace structure correlates later work when it belongs to a separate but causally related trace?",
+      "query_language": "en",
+      "expected_answer_language": "en",
+      "primary_topic": "evaluation_reliability",
+      "secondary_topics": [
+        "agent_engineering"
+      ],
+      "difficulty": "stress",
+      "answerable": true,
+      "localization_region": "mixed",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-stress-cross-persistence-tracing-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-agent-persistence"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-persist-memorysaver",
+            "ev-rw-persist-overview"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-stress-cross-persistence-tracing-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-eval-otel-traces"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-otel-links-status"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-stress-cross-persistence-tracing-claim-01",
+          "canonical_claim": "A persistent checkpointer, rather than an in-memory saver, preserves thread state across process restarts.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-stress-cross-persistence-tracing-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-stress-cross-persistence-tracing-claim-02",
+          "canonical_claim": "Span Links associate causally related spans across separate traces without requiring a parent-child relationship.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-stress-cross-persistence-tracing-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-stress-cross-persistence-tracing-01",
+          "eg-rw-stress-cross-persistence-tracing-02"
+        ],
+        "minimum_distinct_required_documents": 2,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    },
+    {
+      "case_id": "rw-gold-v1-stress-cross-embedding-api-concurrency",
+      "tier": "STRESS",
+      "case_type": "cross_topic_multi_doc",
+      "information_need_key": "stress-cross-embedding-api-concurrency",
+      "question": "A FastAPI endpoint wraps BGE-M3 embedding generation. Which BGE-M3 option trades a little quality for faster computation, and which FastAPI rule decides between async def and normal def for the library call?",
+      "query_language": "en",
+      "expected_answer_language": "en",
+      "primary_topic": "ai_app_backend",
+      "secondary_topics": [
+        "rag_retrieval"
+      ],
+      "difficulty": "stress",
+      "answerable": true,
+      "localization_region": "mixed",
+      "evidence_groups": [
+        {
+          "evidence_group_id": "eg-rw-stress-cross-embedding-api-concurrency-01",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-rag-bge-m3"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-bge-dense-usage"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        },
+        {
+          "evidence_group_id": "eg-rw-stress-cross-embedding-api-concurrency-02",
+          "required": true,
+          "evidence_role": "REQUIRED",
+          "any_of_document_ids": [
+            "rw-backend-fastapi-async"
+          ],
+          "any_of_evidence_ids": [
+            "ev-rw-async-tldr"
+          ],
+          "notes": "AND across required groups; OR within this group's stable source anchors."
+        }
+      ],
+      "acceptable_supporting_evidence": [],
+      "plausible_distractor_documents": [],
+      "claims": [
+        {
+          "claim_id": "rw-gold-v1-stress-cross-embedding-api-concurrency-claim-01",
+          "canonical_claim": "BGE-M3's example says use_fp16=True speeds computation with slight performance degradation.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-stress-cross-embedding-api-concurrency-01"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        },
+        {
+          "claim_id": "rw-gold-v1-stress-cross-embedding-api-concurrency-claim-02",
+          "canonical_claim": "Use async def when the library call must be awaited; use normal def for a blocking library without await support.",
+          "required": true,
+          "evaluation_mode": "SEMANTIC_REVIEW",
+          "evidence_group_ids": [
+            "eg-rw-stress-cross-embedding-api-concurrency-02"
+          ],
+          "notes": "Atomic claim; judge against the referenced stable evidence groups."
+        }
+      ],
+      "citation_contract": {
+        "citation_required": true,
+        "required_evidence_group_ids": [
+          "eg-rw-stress-cross-embedding-api-concurrency-01",
+          "eg-rw-stress-cross-embedding-api-concurrency-02"
+        ],
+        "minimum_distinct_required_documents": 2,
+        "acceptable_support_policy": "ALLOW_GENUINE_SUPPORT",
+        "forbid_citations": false,
+        "notes": "Citations must semantically support each attached claim and cover every required group."
+      }
+    }
+  ]
+}

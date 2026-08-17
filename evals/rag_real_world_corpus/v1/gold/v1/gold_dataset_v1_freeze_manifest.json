@@ -1,0 +1,309 @@
+{
+  "schema_version": "1.0.0",
+  "manifest_version": "gold-dataset-v1-final-freeze",
+  "manifest_schema": {
+    "path": "evals/rag_real_world_corpus/v1/gold/v1/gold_dataset_v1_freeze_manifest.schema.json",
+    "sha256": "b905c28568d361477489408671a1263fbf66c3d88a89e041dc2dadde5feec2a1"
+  },
+  "dataset_id": "learnpilot-rag-real-world-gold-v1",
+  "dataset_version": "v1",
+  "status": "FROZEN",
+  "frozen_at": "2026-08-14T03:40:15.857274+00:00",
+  "freeze_protocol": [
+    "VERIFY",
+    "FREEZE",
+    "BIND",
+    "REPORT"
+  ],
+  "gold": {
+    "source_dataset_id": "learnpilot-rag-real-world-gold",
+    "path": "evals/rag_real_world_corpus/v1/gold/v1/gold_cases.json",
+    "sha256": "33a0b69901fa47e3fe45be0277228cd4a5519fe780fe5b9d2c52b1bfe614927a",
+    "case_count": 72,
+    "claim_count": 132,
+    "core_case_count": 60,
+    "stress_case_count": 12,
+    "case_type_distribution": {
+      "cross_topic_multi_doc": 4,
+      "deep_long_doc_localization": 4,
+      "high_overlap_source_conflict": 4,
+      "long_doc_localization": 10,
+      "multi_doc_synthesis": 10,
+      "semantic_paraphrase": 10,
+      "single_doc_fact": 10,
+      "source_disambiguation": 10,
+      "unanswerable_near_boundary": 10
+    },
+    "case_id_unique_count": 72,
+    "claim_id_unique_count": 132,
+    "information_need_key_unique_count": 72,
+    "semantic_payload_changes_during_final_freeze": 0
+  },
+  "corpus": {
+    "dataset_id": "learnpilot-rag-real-world-corpus@v1",
+    "manifest_path": "evals/rag_real_world_corpus/v1/corpus_manifest.json",
+    "manifest_sha256": "6f67d510cd35197f107400d33033972c0c3c84478174e4991e491f6c8e4ab563",
+    "identity_sha256": "6f67d510cd35197f107400d33033972c0c3c84478174e4991e491f6c8e4ab563",
+    "document_count": 11,
+    "projected_chunk_count": 442,
+    "installed_chunk_count": 442,
+    "source_document_hash_pass_count": 11,
+    "document_hashes": [
+      {
+        "document_id": "rw-agent-interrupts",
+        "repository_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-interrupts.pdf",
+        "expected_sha256": "42aab890b1009f736e41d6160caddaee49ca06da25252a77b756710d26869909",
+        "actual_sha256": "42aab890b1009f736e41d6160caddaee49ca06da25252a77b756710d26869909",
+        "match": true
+      },
+      {
+        "document_id": "rw-agent-langgraph-overview",
+        "repository_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-langgraph-overview.md",
+        "expected_sha256": "4b5bf18421432989b6e46f22751fed5d0a14a908628e039fc6e1d6543d1e858c",
+        "actual_sha256": "4b5bf18421432989b6e46f22751fed5d0a14a908628e039fc6e1d6543d1e858c",
+        "match": true
+      },
+      {
+        "document_id": "rw-agent-persistence",
+        "repository_path": "evals/rag_real_world_corpus/v1/corpus/rw-agent-persistence.txt",
+        "expected_sha256": "0b2be3426fc43a7d5da8d98f316ca93a1e4951e47a12d286d1fdb2d5a3edfc17",
+        "actual_sha256": "0b2be3426fc43a7d5da8d98f316ca93a1e4951e47a12d286d1fdb2d5a3edfc17",
+        "match": true
+      },
+      {
+        "document_id": "rw-backend-fastapi-async",
+        "repository_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-async.md",
+        "expected_sha256": "de47a11e50cc2e3beadc69f7b6b9524f0a55ac95aaa4c68768cdfe7dd5e8c8ee",
+        "actual_sha256": "de47a11e50cc2e3beadc69f7b6b9524f0a55ac95aaa4c68768cdfe7dd5e8c8ee",
+        "match": true
+      },
+      {
+        "document_id": "rw-backend-fastapi-dependencies",
+        "repository_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-dependencies.md",
+        "expected_sha256": "7ab140531a4fc05e67255c87e16f64a858a0151d4eaaaa98a315c316138c3dd8",
+        "actual_sha256": "7ab140531a4fc05e67255c87e16f64a858a0151d4eaaaa98a315c316138c3dd8",
+        "match": true
+      },
+      {
+        "document_id": "rw-backend-fastapi-errors",
+        "repository_path": "evals/rag_real_world_corpus/v1/corpus/rw-backend-fastapi-errors.md",
+        "expected_sha256": "61fae95bbbf9d3b29882cbc01b5220f81271814083662e8a790e47a4c90e822c",
+        "actual_sha256": "61fae95bbbf9d3b29882cbc01b5220f81271814083662e8a790e47a4c90e822c",
+        "match": true
+      },
+      {
+        "document_id": "rw-eval-context-precision",
+        "repository_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-context-precision.md",
+        "expected_sha256": "f2f5850ee0f04826a46a8c1492e60cf6c51ff0389f0d88fe966b9fb776b38310",
+        "actual_sha256": "f2f5850ee0f04826a46a8c1492e60cf6c51ff0389f0d88fe966b9fb776b38310",
+        "match": true
+      },
+      {
+        "document_id": "rw-eval-otel-traces",
+        "repository_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-otel-traces.pdf",
+        "expected_sha256": "f20c1a63b8603a5c79e546ff8474194a7160b154a87cee36831ab8a52dc834cd",
+        "actual_sha256": "f20c1a63b8603a5c79e546ff8474194a7160b154a87cee36831ab8a52dc834cd",
+        "match": true
+      },
+      {
+        "document_id": "rw-eval-ragas-workflow",
+        "repository_path": "evals/rag_real_world_corpus/v1/corpus/rw-eval-ragas-workflow.md",
+        "expected_sha256": "4bbe894b2a6313d8af058705de87f7c407f4378727b8784372c2c370b6b7da18",
+        "actual_sha256": "4bbe894b2a6313d8af058705de87f7c407f4378727b8784372c2c370b6b7da18",
+        "match": true
+      },
+      {
+        "document_id": "rw-rag-bge-m3",
+        "repository_path": "evals/rag_real_world_corpus/v1/corpus/rw-rag-bge-m3.md",
+        "expected_sha256": "716e66d3a954813afb7cee5dc4c0d56c1bb106e0e40e057ede32c9e796edee87",
+        "actual_sha256": "716e66d3a954813afb7cee5dc4c0d56c1bb106e0e40e057ede32c9e796edee87",
+        "match": true
+      },
+      {
+        "document_id": "rw-rag-faiss-overview",
+        "repository_path": "evals/rag_real_world_corpus/v1/corpus/rw-rag-faiss-overview.md",
+        "expected_sha256": "ff24d50bbbe48398f309a9400c2e73695344a14301d97d6eb72629e9fa4ef786",
+        "actual_sha256": "ff24d50bbbe48398f309a9400c2e73695344a14301d97d6eb72629e9fa4ef786",
+        "match": true
+      }
+    ]
+  },
+  "evidence_anchor_audit": {
+    "artifact_path": "evals/rag_real_world_corpus/v1/gold/v1/evidence_anchors.json",
+    "artifact_sha256": "ff0f72ac0595c4748d1601d374397925548feccf301424cc31538b7f67cd586e",
+    "anchor_count": 89,
+    "locator_kind_distribution": {
+      "PDF_PAGE": 24,
+      "SOURCE_LINES": 65
+    },
+    "document_resolution_pass": 89,
+    "locator_resolution_pass": 89,
+    "anchor_hash_pass": 89,
+    "runtime_id_leakage": 0
+  },
+  "semantic_closure": {
+    "semantic_review_claims": 104,
+    "supported": 104,
+    "partially_supported": 0,
+    "unsupported": 0,
+    "ambiguous": 0,
+    "previously_supported_unchanged": 96,
+    "repaired_fresh_reviewed_supported": 8
+  },
+  "repair_closure": {
+    "defects": 9,
+    "affected_cases": 8,
+    "affected_case_ids": [
+      "rw-gold-v1-disambig-fastapi-async-deps",
+      "rw-gold-v1-disambig-fastapi-exceptions",
+      "rw-gold-v1-disambig-interrupt-static",
+      "rw-gold-v1-long-langgraph-positioning",
+      "rw-gold-v1-multi-rag-tracing",
+      "rw-gold-v1-semantic-checkpointer-store",
+      "rw-gold-v1-stress-conflict-fastapi-handler-type",
+      "rw-gold-v1-stress-conflict-ragas-reference-mode"
+    ],
+    "status": "COMPLETE"
+  },
+  "unaffected_preservation": {
+    "case_count": 64,
+    "semantic_payload_unchanged": 64,
+    "status": "PASS"
+  },
+  "contract_compatibility": {
+    "evidence_roles": [
+      "REQUIRED",
+      "ACCEPTABLE_SUPPORT",
+      "UNSUPPORTED"
+    ],
+    "or_inside_evidence_group": true,
+    "and_across_evidence_groups": true,
+    "evaluation_mode_distribution": {
+      "ANSWERABILITY_ONLY": 10,
+      "IDENTIFIER_EXACT": 5,
+      "NUMERIC_EXACT": 7,
+      "SEMANTIC_REVIEW": 104,
+      "STRUCTURED_EXACT": 6
+    },
+    "controlled_v2_artifacts_modified": false,
+    "controlled_v2_helper_compatibility": "PASS"
+  },
+  "answerability_audit": {
+    "unanswerable_near_boundary_count": 10,
+    "valid_count": 10,
+    "violation_count": 0
+  },
+  "evidence_role_audit": {
+    "acceptable_support_count": 11,
+    "unsupported_count": 25,
+    "target_case_count": 14,
+    "misclassified_count": 0
+  },
+  "required_document_invariants": {
+    "participation_left": 86,
+    "participation_right": 86,
+    "match": true,
+    "candidate_required_document_count_distribution": {
+      "0": 10,
+      "1": 41,
+      "2": 18,
+      "3": 3
+    },
+    "minimum_hitting_set_distribution": {
+      "0": 10,
+      "1": 41,
+      "2": 18,
+      "3": 3
+    },
+    "candidate_multi_document_case_count": 21
+  },
+  "duplicate_and_leakage_audit": {
+    "information_need_key_unique_count": 72,
+    "exact_duplicate_question_count": 0,
+    "near_duplicate_question_pair_count": 0,
+    "exact_source_sentence_question_count": 0,
+    "runtime_id_leakage_count": 0,
+    "baseline_answer_leakage_count": 0,
+    "real_world_baseline_output_file_count": 0
+  },
+  "protected_scopes": {
+    "frozen_real_world_corpus": {
+      "monitored_file_count": 40,
+      "mismatch_count": 0,
+      "expected_hash_map_sha256": "5b0b8109cbc9383bdf48f68b959a200ebb6877ff722014e3c174ee9a926a4513",
+      "actual_hash_map_sha256": "5b0b8109cbc9383bdf48f68b959a200ebb6877ff722014e3c174ee9a926a4513"
+    },
+    "controlled_corpus_v2": {
+      "monitored_file_count": 10,
+      "mismatch_count": 0,
+      "expected_hash_map_sha256": "575e6821ccc4bdfaf34219e3bede5e6bd732c17f0b642dd60daa3eed65953b95",
+      "actual_hash_map_sha256": "575e6821ccc4bdfaf34219e3bede5e6bd732c17f0b642dd60daa3eed65953b95"
+    },
+    "production_rag": {
+      "monitored_file_count": 21,
+      "mismatch_count": 0,
+      "expected_hash_map_sha256": "6591849b05c8eaca35daf6774ae707e8760302d195bb0c55006a8397a0636700",
+      "actual_hash_map_sha256": "6591849b05c8eaca35daf6774ae707e8760302d195bb0c55006a8397a0636700"
+    }
+  },
+  "evaluation_manifest_binding": {
+    "path": "evals/rag_real_world_corpus/v1/gold/v1/evaluation_manifest.json",
+    "sha256": "a3c0130f2180ba144eda209e8ebe50f69350812ab7739af626cbef82053480db",
+    "corpus_manifest_sha256": "6f67d510cd35197f107400d33033972c0c3c84478174e4991e491f6c8e4ab563",
+    "gold_sha256": "33a0b69901fa47e3fe45be0277228cd4a5519fe780fe5b9d2c52b1bfe614927a",
+    "case_count": 72,
+    "status": "PASS"
+  },
+  "artifact_bindings": {
+    "pre_repair_semantic_review": {
+      "path": "evals/rag_real_world_corpus/v1/gold/v1/independent_semantic_verification_v1.json",
+      "sha256": "89bf00e924579c1c68a88a952797d4bfb73bccab0f7ba8ffe28bb74e5888279d"
+    },
+    "repair_baseline": {
+      "path": "evals/rag_real_world_corpus/v1/gold/v1/gold_correctness_repair_v1_baseline.json",
+      "sha256": "88813adad104a129a7c868cb7b7d43550c71b88d48695270a3e92cefa1f5b461"
+    },
+    "repair_change_log": {
+      "path": "evals/rag_real_world_corpus/v1/gold/v1/gold_correctness_repair_v1.json",
+      "sha256": "8be6d5214fcb32fe4b6423b035c71f05df9b21355a2889c414e4415fd1980557"
+    },
+    "post_repair_semantic_verification": {
+      "path": "evals/rag_real_world_corpus/v1/gold/v1/post_repair_semantic_verification_v1.json",
+      "sha256": "e0aa718b0167154f62abfeb8f2f03b1529e5d3890a56bfb9a1257004ce4653bb"
+    },
+    "repair_audit": {
+      "path": "evals/rag_real_world_corpus/v1/gold/v1/gold_correctness_repair_v1_audit.json",
+      "sha256": "2c6522c484e51f88a5ab94a50c44a697023cf11eba83068d0163b8759cef432a"
+    }
+  },
+  "no_execution_audit": {
+    "deepseek_calls": 0,
+    "other_llm_calls": 0,
+    "production_rag_ask_calls": 0,
+    "real_world_baseline_executions": 0,
+    "embedding_executions": 0,
+    "faiss_retrieval_executions": 0,
+    "baseline_executed_before_freeze": false
+  },
+  "baseline_binding_contract": {
+    "path": "evals/rag_real_world_corpus/v1/gold/v1/BASELINE_BINDING.md",
+    "required_identity_fields": [
+      "corpus identity/hash",
+      "Gold identity/hash",
+      "freeze manifest hash",
+      "production RAG code/config identity",
+      "embedding model",
+      "retrieval configuration",
+      "generation model",
+      "evaluation timestamp"
+    ],
+    "same_benchmark_rule": "A changed Gold SHA-256 or corpus manifest SHA-256 is not the same frozen V1 benchmark."
+  },
+  "freeze_policy": {
+    "benchmark_state": "RAG_REAL_WORLD_GOLD_DATASET_V1 = FROZEN",
+    "semantic_modification_rule": "Any semantic modification after this point requires a new benchmark version.",
+    "next_version_example": "v2",
+    "silent_v1_mutation_forbidden": true,
+    "ready_for_dense_only_baseline": true
+  }
+}
